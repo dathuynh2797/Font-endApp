@@ -21,12 +21,12 @@ export class InforScreen extends Component {
               this.props.navigation.navigate('Policy');
             }}>
             <View style={styles.TabMenu}>
-              <TouchableOpacity style={styles.Iconstyle}>
+              <View style={styles.Iconstyle}>
                 <Image
                   source={require('../img/Inforicon/policy.png')}
                   style={styles.Icon}
                 />
-              </TouchableOpacity>
+              </View>
               <Text style={styles.Text}>Chính sách công ty</Text>
               <Text />
             </View>
@@ -35,12 +35,12 @@ export class InforScreen extends Component {
         <View style={styles.Col}>
           <TouchableOpacity>
             <View style={styles.TabMenu}>
-              <TouchableOpacity style={styles.Iconstyle}>
+              <View style={styles.Iconstyle}>
                 <Image
                   source={require('../img/Inforicon/personnel.png')}
                   style={styles.Icon}
                 />
-              </TouchableOpacity>
+              </View>
               <Text style={styles.Text}>Nhân sự</Text>
               <Text />
             </View>
@@ -52,12 +52,12 @@ export class InforScreen extends Component {
               this.props.navigation.navigate('Ogchart');
             }}>
             <View style={styles.TabMenu}>
-              <TouchableOpacity style={styles.Iconstyle}>
+              <View style={styles.Iconstyle}>
                 <Image
                   source={require('../img/Inforicon/ogchart.png')}
                   style={styles.Icon}
                 />
-              </TouchableOpacity>
+              </View>
               <Text style={styles.Text}>Sơ đồ tổ chức</Text>
               <Text />
             </View>
