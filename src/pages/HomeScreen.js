@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
   Text: {
     fontStyle: 'normal',
-    fontFamily: 'Roboto',
+    // fontFamily: 'Roboto',
     fontWeight: '500',
     fontSize: 20,
     lineHeight: 23,
