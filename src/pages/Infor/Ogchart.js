@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   Text: {
     color: 'white',
     fontStyle: 'normal',
-    fontFamily: 'Roboto',
+    // fontFamily: 'Roboto',
     fontWeight: '900',
     fontSize: 20,
     lineHeight: 23,

@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   TxtAvatar: {
     color: '#FFFFFF',
     fontStyle: 'normal',
-    fontFamily: 'Roboto',
+    //fontFamily: 'Roboto',
     fontWeight: '900',
     fontSize: 18,
     lineHeight: 21,
