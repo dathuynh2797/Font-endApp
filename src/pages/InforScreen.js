@@ -33,7 +33,10 @@ export class InforScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Personel');
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image

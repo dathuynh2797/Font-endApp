@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {HomeScreen} from './src/pages/HomeScreen';
 import {InforScreen} from './src/pages/InforScreen';
 import {Policy} from './src/pages/Infor/Policy';
+import {Personel} from './src/pages/Infor/Personel';
 import {Ogchart} from './src/pages/Infor/Ogchart';
 
 const AppNavigator = createStackNavigator(
@@ -11,6 +12,7 @@ const AppNavigator = createStackNavigator(
     Home: HomeScreen,
     Infor: InforScreen,
     Policy: Policy,
+    Personel: Personel,
     Ogchart: Ogchart,
   },
   {
