@@ -86,6 +86,7 @@ export class LoginScreen extends React.Component {
             <TextInput
               style={styles.input}
               placeholder="Tên Đăng Nhập"
+              keyboardType="email-address"
               autoCapitalize="none"
               onChangeText={email => this.setState({email})}
               placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
