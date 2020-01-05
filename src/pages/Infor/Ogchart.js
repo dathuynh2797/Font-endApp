@@ -5,16 +5,28 @@ import {
   View,
   TouchableOpacity,
   SafeAreaView,
+  Image,
 } from 'react-native';
 
 export class Ogchart extends Component {
-  static navigationOptions = {
-    title: 'CHÍNH SÁCH CÔNG TY',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    headerTintColor: '#0A053F',
-    headerTitleAlign: 'center',
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'SƠ ĐỒ TỔ CHỨC',
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate({routeName: 'Home'})}>
+          <Image
+            source={require('../../img/exit.png')}
+            style={styles.iconBack}
+          />
+        </TouchableOpacity>
+      ),
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerTintColor: '#0A053F',
+      headerTitleAlign: 'center',
+    };
   };
 
   render() {
@@ -72,6 +84,10 @@ const styles = StyleSheet.create({
     flex: 1 / 3,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  iconBack: {
+    width: 30,
+    height: 30,
   },
   Chart: {
     justifyContent: 'center',

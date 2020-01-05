@@ -10,6 +10,8 @@ import {
   TextInput,
   Dimensions,
   TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {firebaseApp} from './config';
 import bgImage from '../img/bgLogin.png';
@@ -66,44 +68,48 @@ export class LoginScreen extends React.Component {
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
-        <View style={styles.logoContainer}>
-          <Image style={styles.logo} />
-          <Text style={styles.logoText}>Logo</Text>
-        </View>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : null}>
+          <View style={styles.logoContainer}>
+            <Image style={styles.logo} />
+            <Text style={styles.logoText}>Logo</Text>
+          </View>
 
-        <View>
-          <Text style={styles.headerText}>
-            Ứng dụng quản lý công ty bất động sản
-          </Text>
-        </View>
-        {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Tên Đăng Nhập"
-            autoCapitalize="none"
-            onChangeText={email => this.setState({email})}
-            placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
-            underlineColorAndroid="transparent"
-            value={this.state.email}
-          />
-        </View>
+          <View>
+            <Text style={styles.headerText}>
+              Ứng dụng quản lý công ty bất động sản
+            </Text>
+          </View>
+          {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Tên Đăng Nhập"
+              autoCapitalize="none"
+              onChangeText={email => this.setState({email})}
+              placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
+              underlineColorAndroid="transparent"
+              value={this.state.email}
+            />
+          </View>
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Mật Khẩu"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            onChangeText={password => this.setState({password})}
-            placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
-            underlineColorAndroid="transparent"
-            value={this.state.password}
-          />
-        </View>
-        <TouchableOpacity style={styles.btnLogin} onPress={this.handleLogin}>
-          <Text style={styles.text}>Đăng Nhập</Text>
-        </TouchableOpacity>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Mật Khẩu"
+              autoCapitalize="none"
+              secureTextEntry={true}
+              onChangeText={password => this.setState({password})}
+              placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
+              underlineColorAndroid="transparent"
+              value={this.state.password}
+            />
+          </View>
+          <TouchableOpacity style={styles.btnLogin} onPress={this.handleLogin}>
+            <Text style={styles.text}>Đăng Nhập</Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
       </ImageBackground>
     );
   }
@@ -119,9 +125,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'grey',
   },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
     backgroundColor: 'white',
   },
   logoText: {
