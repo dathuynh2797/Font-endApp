@@ -22,6 +22,13 @@ export class HomeScreen extends Component {
     return (
       <SafeAreaView style={styles.body}>
         <ImageBackground style={styles.Proflie} source={bgImage}>
+          <TouchableOpacity
+            style={styles.btnLogut}
+            onPress={() => {
+              this.props.navigation.navigate('Login');
+            }}>
+            <Image source={require('../img/logout.png')} />
+          </TouchableOpacity>
           <Text style={styles.TxtAvatar}>Xin chào</Text>
           <View style={styles.Avatar}>
             <Text>Avatar</Text>
@@ -36,7 +43,7 @@ export class HomeScreen extends Component {
                 onPress={() => {
                   this.props.navigation.navigate('Infor');
                 }}>
-                <ElevatedView elevation={24} style={styles.BtnStyle}>
+                <ElevatedView elevation={6} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/information.png')}
                     style={styles.Icon}
@@ -50,7 +57,7 @@ export class HomeScreen extends Component {
 
             <View style={styles.Row}>
               <TouchableOpacity>
-                <ElevatedView elevation={24} style={styles.BtnStyle}>
+                <ElevatedView elevation={6} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/project.png')}
                     style={styles.Icon}
@@ -65,7 +72,7 @@ export class HomeScreen extends Component {
           <View style={styles.Col}>
             <View style={styles.Row}>
               <TouchableOpacity>
-                <ElevatedView elevation={24} style={styles.BtnStyle}>
+                <ElevatedView elevation={6} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/chart.png')}
                     style={styles.Icon}
@@ -80,7 +87,7 @@ export class HomeScreen extends Component {
             <View style={styles.Row}>
               <View style={styles.BtnStyle}>
                 <TouchableOpacity>
-                  <ElevatedView elevation={24} style={styles.BtnStyle}>
+                  <ElevatedView elevation={6} style={styles.BtnStyle}>
                     <Image
                       source={require('../img/trip.png')}
                       style={styles.Icon}
@@ -97,7 +104,7 @@ export class HomeScreen extends Component {
           <View style={styles.Col}>
             <View style={styles.Row}>
               <TouchableOpacity>
-                <ElevatedView elevation={24} style={styles.BtnStyle}>
+                <ElevatedView elevation={6} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/retired.png')}
                     style={styles.Icon}
@@ -122,9 +129,12 @@ const styles = StyleSheet.create({
   },
   Proflie: {
     flex: 1 / 3,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: 'grey',
+  },
+  btnLogut: {
+    alignSelf: 'flex-end',
   },
   Avatar: {
     justifyContent: 'center',

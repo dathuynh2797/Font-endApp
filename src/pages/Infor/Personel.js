@@ -6,11 +6,19 @@ export class Personel extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity>
-          <ElevatedView elevation={24} style={styles.stayElevated}>
-            <Image source={require('../../img/trip.png')} style={styles.Icon} />
-          </ElevatedView>
-        </TouchableOpacity>
+        <View style={styles.top}>
+          <Text style={styles.btnLogout}>Test</Text>
+        </View>
+        <View style={styles.body}>
+          <TouchableOpacity>
+            <ElevatedView elevation={6} style={styles.stayElevated}>
+              <Image
+                source={require('../../img/trip.png')}
+                style={styles.Icon}
+              />
+            </ElevatedView>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -20,11 +28,21 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  top: {
+    flex: 1 / 3,
+    backgroundColor: 'yellow',
+  },
+  btnLogout: {
+    alignItems: 'flex-end',
+  },
+  body: {
+    flex: 2 / 3,
+    backgroundColor: 'blue',
   },
 
   stayElevated: {
+    alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 0.5,
