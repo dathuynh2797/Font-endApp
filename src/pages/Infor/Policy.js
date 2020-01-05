@@ -5,16 +5,28 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 
 export class Policy extends Component {
-  static navigationOptions = {
-    title: 'CHÍNH SÁCH CÔNG TY',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    headerTintColor: '#0A053F',
-    headerTitleAlign: 'center',
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'CHÍNH SÁCH CÔNG TY',
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate({routeName: 'Home'})}>
+          <Image
+            source={require('../../img/exit.png')}
+            style={styles.iconBack}
+          />
+        </TouchableOpacity>
+      ),
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerTintColor: '#0A053F',
+      headerTitleAlign: 'center',
+    };
   };
 
   render() {
@@ -88,6 +100,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+  iconBack: {
+    width: 30,
+    height: 30,
   },
   Iconstyle: {
     justifyContent: 'space-around',
