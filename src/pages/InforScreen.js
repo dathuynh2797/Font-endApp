@@ -8,7 +8,7 @@ export class InforScreen extends Component {
       title: 'XEM THÔNG TIN',
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'Home'})}>
+          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
           <Image source={require('../img/exit.png')} style={styles.iconBack} />
         </TouchableOpacity>
       ),

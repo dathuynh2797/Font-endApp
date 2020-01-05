@@ -52,7 +52,7 @@ export class HomeScreen extends Component {
             <View style={styles.Row}>
               <TouchableOpacity
                 onPress={() => {
-                  this.props.navigation.navigate('Infor');
+                  this.props.navigation.navigate('InforScreen');
                 }}>
                 <ElevatedView elevation={6} style={styles.BtnStyle}>
                   <Image
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     width: 30,
     height: 30,
-    marginRight: 5,
+    // marginRight: 5,
   },
   Avatar: {
     justifyContent: 'center',
