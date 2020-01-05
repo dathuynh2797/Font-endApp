@@ -11,15 +11,15 @@ import {Ogchart} from './src/pages/Infor/Ogchart';
 
 const AppNavigator = createStackNavigator(
   {
-    Login: LoginScreen,
-    Home: HomeScreen,
-    Infor: InforScreen,
+    LoginScreen: LoginScreen,
+    HomeScreen: HomeScreen,
+    InforScreen: InforScreen,
     Policy: Policy,
     Personel: Personel,
     Ogchart: Ogchart,
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'LoginScreen',
   },
 );
 

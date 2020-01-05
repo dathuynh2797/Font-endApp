@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import 'react-native-gesture-handler';
 import {
   View,
   Text,
@@ -9,17 +10,25 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-
+import {firebaseApp} from './config';
 import bgImage from '../img/bgLogin.png';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const {width: WIDTH} = Dimensions.get('window');
 
-export class LoginScreen extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      header: () => null,
-    };
+export class LoginScreen extends React.Component {
+  state = {email: '', password: '', errorMessage: null};
+  handleLogin = () => {
+    const {email, password} = this.state;
+    firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => this.props.navigation.navigate('HomeScreen'))
+      .catch(error =>
+        this.setState({
+          errorMessage: 'Tên đăng nhập hoặc mật khẩu sai, vui lòng nhập lại',
+        }),
+      );
   };
 
   render() {
@@ -35,13 +44,16 @@ export class LoginScreen extends Component {
             Ứng dụng quản lý công ty bất động sản
           </Text>
         </View>
-
+        {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
             placeholder="Tên Đăng Nhập"
+            autoCapitalize="none"
+            onChangeText={email => this.setState({email})}
             placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
             underlineColorAndroid="transparent"
+            value={this.state.email}
           />
         </View>
 
@@ -49,16 +61,15 @@ export class LoginScreen extends Component {
           <TextInput
             style={styles.input}
             placeholder="Mật Khẩu"
+            autoCapitalize="none"
             secureTextEntry={true}
+            onChangeText={password => this.setState({password})}
             placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
             underlineColorAndroid="transparent"
+            value={this.state.password}
           />
         </View>
-        <TouchableOpacity
-          style={styles.btnLogin}
-          onPress={() => {
-            this.props.navigation.navigate('Home');
-          }}>
+        <TouchableOpacity style={styles.btnLogin} onPress={this.handleLogin}>
           <Text style={styles.text}>Đăng Nhập</Text>
         </TouchableOpacity>
       </ImageBackground>

@@ -10,6 +10,7 @@ import {
 import {SafeAreaView} from 'react-navigation';
 import ElevatedView from 'react-native-elevated-view';
 import bgImage from '../img/bgprofile.png';
+import {firebaseApp} from './config';
 
 export class HomeScreen extends Component {
   static navigationOptions = ({navigation}) => {
@@ -17,7 +18,17 @@ export class HomeScreen extends Component {
       header: () => null,
     };
   };
-
+  signOut() {
+    firebaseApp
+      .auth()
+      .signOut()
+      .then(function() {
+        // Sign-out successful.
+      })
+      .catch(function(error) {
+        // An error happened.
+      });
+  }
   render() {
     return (
       <SafeAreaView style={styles.body}>
@@ -25,7 +36,7 @@ export class HomeScreen extends Component {
           <TouchableOpacity
             style={styles.btnLogut}
             onPress={() => {
-              this.props.navigation.navigate('Login');
+              this.props.navigation.navigate('LoginScreen');
             }}>
             <Image source={require('../img/logout.png')} />
           </TouchableOpacity>
