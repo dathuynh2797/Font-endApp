@@ -1,15 +1,30 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Image,
+  Button,
+} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 
 export class InforScreen extends Component {
-  static navigationOptions = {
-    title: 'XEM THÔNG TIN',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    headerTintColor: '#0A053F',
-    headerTitleAlign: 'center',
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'XEM THÔNG TIN',
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate({routeName: 'Home'})}>
+          <Image source={require('../img/exit.png')} style={styles.iconBack} />
+        </TouchableOpacity>
+      ),
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerTintColor: '#0A053F',
+      headerTitleAlign: 'center',
+    };
   };
 
   render() {
@@ -94,6 +109,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+  iconBack: {
+    width: 30,
+    height: 30,
   },
   Iconstyle: {
     justifyContent: 'space-around',

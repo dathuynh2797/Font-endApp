@@ -135,6 +135,9 @@ const styles = StyleSheet.create({
   },
   btnLogut: {
     alignSelf: 'flex-end',
+    width: 30,
+    height: 30,
+    marginRight: 5,
   },
   Avatar: {
     justifyContent: 'center',
