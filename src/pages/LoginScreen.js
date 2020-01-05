@@ -1,5 +1,6 @@
 import React from 'react';
 import 'react-native-gesture-handler';
+import {Alert, BackHandler} from 'react-native';
 import {
   View,
   Text,
@@ -30,7 +31,32 @@ export class LoginScreen extends React.Component {
         }),
       );
   };
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      Alert.alert(
+        'Logout',
+        'Are you sure you want to logout?',
+        [
+          {text: 'Cancel', onPress: () => {}, style: 'cancel'},
+          {text: 'Logout', onPress: () => this.handleLogout()},
+        ],
+        {cancelable: false},
+      );
+      return true;
+    });
+  }
 
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  handleLogout() {
+    global.screenName = 'Dashboard';
+    return this.props.navigation.navigate('LoginScreen');
+  }
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
@@ -76,6 +102,7 @@ export class LoginScreen extends React.Component {
     );
   }
 }
+//xu ly phim back android
 
 const styles = StyleSheet.create({
   ImageBackground: {
