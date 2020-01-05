@@ -8,6 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import {SafeAreaView} from 'react-navigation';
+import ElevatedView from 'react-native-elevated-view';
 import bgImage from '../img/bgprofile.png';
 
 export class HomeScreen extends Component {
@@ -31,30 +32,31 @@ export class HomeScreen extends Component {
         <SafeAreaView style={styles.MenuContainer}>
           <View style={styles.Col}>
             <View style={styles.Row}>
-              <View style={styles.BtnStyle}>
-                <TouchableOpacity
-                  onPress={() => {
-                    this.props.navigation.navigate('Infor');
-                  }}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('Infor');
+                }}>
+                <ElevatedView elevation={24} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/information.png')}
                     style={styles.Icon}
                   />
-                </TouchableOpacity>
-              </View>
+                </ElevatedView>
+              </TouchableOpacity>
               <View>
                 <Text style={styles.Text}>Thông Tin</Text>
               </View>
             </View>
+
             <View style={styles.Row}>
-              <View style={styles.BtnStyle}>
-                <TouchableOpacity>
+              <TouchableOpacity>
+                <ElevatedView elevation={24} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/project.png')}
                     style={styles.Icon}
                   />
-                </TouchableOpacity>
-              </View>
+                </ElevatedView>
+              </TouchableOpacity>
               <View>
                 <Text style={styles.Text}>Dự án bất động sản</Text>
               </View>
@@ -62,14 +64,15 @@ export class HomeScreen extends Component {
           </View>
           <View style={styles.Col}>
             <View style={styles.Row}>
-              <View style={styles.BtnStyle}>
-                <TouchableOpacity>
+              <TouchableOpacity>
+                <ElevatedView elevation={24} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/chart.png')}
                     style={styles.Icon}
                   />
-                </TouchableOpacity>
-              </View>
+                </ElevatedView>
+              </TouchableOpacity>
+
               <View>
                 <Text style={styles.Text}>Báo cáo - thông kê</Text>
               </View>
@@ -77,10 +80,12 @@ export class HomeScreen extends Component {
             <View style={styles.Row}>
               <View style={styles.BtnStyle}>
                 <TouchableOpacity>
-                  <Image
-                    source={require('../img/trip.png')}
-                    style={styles.Icon}
-                  />
+                  <ElevatedView elevation={24} style={styles.BtnStyle}>
+                    <Image
+                      source={require('../img/trip.png')}
+                      style={styles.Icon}
+                    />
+                  </ElevatedView>
                 </TouchableOpacity>
               </View>
               <View>
@@ -88,16 +93,17 @@ export class HomeScreen extends Component {
               </View>
             </View>
           </View>
+
           <View style={styles.Col}>
             <View style={styles.Row}>
-              <View style={styles.BtnStyle}>
-                <TouchableOpacity>
+              <TouchableOpacity>
+                <ElevatedView elevation={24} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/retired.png')}
                     style={styles.Icon}
                   />
-                </TouchableOpacity>
-              </View>
+                </ElevatedView>
+              </TouchableOpacity>
               <View>
                 <Text style={styles.Text}>Nghỉ Việc</Text>
               </View>
@@ -156,20 +162,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   BtnStyle: {
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 0.5,
     borderRadius: 50,
-    borderWidth: 1,
-    //borderBottomWidth: 0,
-    marginBottom: 3,
-    height: 80,
-    width: 80,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
-    shadowRadius: 50,
-    // elevation: 2,
+    width: 90,
+    height: 90,
+    margin: 10,
+    backgroundColor: 'white',
   },
   Icon: {
     height: 50,

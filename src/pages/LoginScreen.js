@@ -32,18 +32,11 @@ export class LoginScreen extends Component {
 
         <View>
           <Text style={styles.headerText}>
-            {' '}
             Ứng dụng quản lý công ty bất động sản
           </Text>
         </View>
 
         <View style={styles.inputContainer}>
-          {/* <Icon
-            name={'ios-person'}
-            size={28}
-            color={'rgba(255 , 255 , 255 , 0.7)'}
-            style={styles.inputIcon}
-          /> */}
           <TextInput
             style={styles.input}
             placeholder="Tên Đăng Nhập"
@@ -53,12 +46,6 @@ export class LoginScreen extends Component {
         </View>
 
         <View style={styles.inputContainer}>
-          {/* <Icon
-            name={'ios-lock'}
-            size={28}
-            color={'rgba(255 , 255 , 255 , 0.7)'}
-            style={styles.inputIcon}
-          /> */}
           <TextInput
             style={styles.input}
             placeholder="Mật Khẩu"

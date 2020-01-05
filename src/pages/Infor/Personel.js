@@ -1,41 +1,41 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native';
+import ElevatedView from 'react-native-elevated-view';
 
 export class Personel extends Component {
   render() {
     return (
-      <View style={styles.shadow}>
-        <TouchableOpacity style={styles.cirle} />
+      <View style={styles.container}>
+        <TouchableOpacity>
+          <ElevatedView elevation={24} style={styles.stayElevated}>
+            <Image source={require('../../img/trip.png')} style={styles.Icon} />
+          </ElevatedView>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  cirle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    borderWidth: 0.8,
-    // borderBottomWidth: 0,
-    marginBottom: 3,
-    height: 80,
-    width: 80,
-  },
-  shadow: {
+var styles = StyleSheet.create({
+  container: {
     flex: 1,
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
+  },
 
-    shadowOffset: {
-      width: 0,
-
-      height: 3,
-    },
-
-    shadowRadius: 5,
-
-    shadowOpacity: 2.0,
+  stayElevated: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 0.5,
+    borderRadius: 50,
+    width: 100,
+    height: 100,
+    margin: 10,
+    backgroundColor: 'white',
+  },
+  Icon: {
+    height: 50,
+    width: 50,
   },
 });
