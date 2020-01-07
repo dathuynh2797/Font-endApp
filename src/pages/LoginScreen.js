@@ -62,7 +62,6 @@ export class LoginScreen extends React.Component {
   }
 
   handleLogout() {
-    global.screenName = 'Dashboard';
     return this.props.navigation.navigate('LoginScreen');
   }
   render() {
