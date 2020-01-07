@@ -14,7 +14,7 @@ export class Ogchart extends Component {
       title: 'SƠ ĐỒ TỔ CHỨC',
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'Home'})}>
+          onPress={() => navigation.navigate({routeName: 'HomeSrceen'})}>
           <Image
             source={require('../../img/exit.png')}
             style={styles.iconBack}
