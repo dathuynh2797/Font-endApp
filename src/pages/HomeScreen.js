@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   Text,
   StyleSheet,
+  Alert,
   View,
   TouchableOpacity,
   Image,
@@ -29,6 +30,9 @@ export class HomeScreen extends Component {
         // An error happened.
       });
   }
+  handleLogout() {
+    return this.props.navigation.navigate('LoginScreen');
+  }
   render() {
     return (
       <SafeAreaView style={styles.body}>
@@ -36,7 +40,16 @@ export class HomeScreen extends Component {
           <TouchableOpacity
             style={styles.btnLogut}
             onPress={() => {
-              this.props.navigation.navigate('LoginScreen');
+              Alert.alert(
+                'Logout',
+                'Are you sure you want to logout?',
+                [
+                  {text: 'Cancel', onPress: () => {}, style: 'cancel'},
+                  {text: 'Logout', onPress: () => this.handleLogout()},
+                ],
+                {cancelable: false},
+              );
+              return true;
             }}>
             <Image source={require('../img/logout.png')} />
           </TouchableOpacity>
