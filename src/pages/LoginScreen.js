@@ -35,13 +35,15 @@ export class LoginScreen extends React.Component {
       .then(() => this.props.navigation.navigate('HomeScreen'))
       .catch(error =>
         this.setState({
-          errorMessage: 'Tên đăng nhập hoặc mật khẩu sai, vui lòng nhập lại',
+          errorMessage:
+            'Tên đăng nhập hoặc mật khẩu không đúng, xin kiểm tra lại',
         }),
       );
   };
   constructor(props) {
     super(props);
   }
+  //xu ly phim back android
   componentDidMount() {
     this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
       Alert.alert(
@@ -64,6 +66,7 @@ export class LoginScreen extends React.Component {
   handleLogout() {
     return this.props.navigation.navigate('LoginScreen');
   }
+  //
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
@@ -87,6 +90,7 @@ export class LoginScreen extends React.Component {
               placeholder="Tên Đăng Nhập"
               keyboardType="email-address"
               autoCapitalize="none"
+              iconName="ios-mail"
               onChangeText={email => this.setState({email})}
               placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
               underlineColorAndroid="transparent"
@@ -109,12 +113,17 @@ export class LoginScreen extends React.Component {
           <TouchableOpacity style={styles.btnLogin} onPress={this.handleLogin}>
             <Text style={styles.text}>Đăng Nhập</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('ForgotPassword');
+            }}>
+            <Text>Quên mật khẩu?</Text>
+          </TouchableOpacity>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
   }
 }
-//xu ly phim back android
 
 const styles = StyleSheet.create({
   ImageBackground: {

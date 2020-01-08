@@ -8,7 +8,7 @@ import {InforScreen} from './src/pages/InforScreen';
 import {Policy} from './src/pages/Infor/Policy';
 import {Personel} from './src/pages/Infor/Personel';
 import {Ogchart} from './src/pages/Infor/Ogchart';
-
+import {ForgotPassword} from './src/pages/ForgotPassword';
 const AppNavigator = createStackNavigator(
   {
     LoginScreen: LoginScreen,
@@ -17,6 +17,7 @@ const AppNavigator = createStackNavigator(
     Policy: Policy,
     Personel: Personel,
     Ogchart: Ogchart,
+    ForgotPassword: ForgotPassword,
   },
   {
     initialRouteName: 'LoginScreen',
