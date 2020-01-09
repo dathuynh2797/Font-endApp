@@ -75,7 +75,7 @@ export class HomeScreen extends Component {
                 </ElevatedView>
               </TouchableOpacity>
               <View>
-                <Text style={styles.Text}>Thông Tin</Text>
+                <Text style={styles.Text}>Thông Tin Công Ty</Text>
               </View>
             </View>
 
