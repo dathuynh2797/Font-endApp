@@ -41,11 +41,11 @@ export class HomeScreen extends Component {
             style={styles.btnLogut}
             onPress={() => {
               Alert.alert(
-                'Logout',
-                'Are you sure you want to logout?',
+                'Đăng xuất',
+                'Bạn có muốn đăng xuất không ?',
                 [
-                  {text: 'Cancel', onPress: () => {}, style: 'cancel'},
-                  {text: 'Logout', onPress: () => this.handleLogout()},
+                  {text: 'Huỷ bỏ', onPress: () => {}, style: 'cancel'},
+                  {text: 'Đăng xuất', onPress: () => this.handleLogout()},
                 ],
                 {cancelable: false},
               );

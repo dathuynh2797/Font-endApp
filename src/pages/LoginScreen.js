@@ -44,20 +44,6 @@ export class LoginScreen extends React.Component {
     super(props);
   }
   //xu ly phim back android
-  componentDidMount() {
-    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      Alert.alert(
-        'Logout',
-        'Are you sure you want to logout?',
-        [
-          {text: 'Cancel', onPress: () => {}, style: 'cancel'},
-          {text: 'Logout', onPress: () => this.handleLogout()},
-        ],
-        {cancelable: false},
-      );
-      return true;
-    });
-  }
 
   componentWillUnmount() {
     this.backHandler.remove();

@@ -3,21 +3,34 @@ import {Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native';
 import ElevatedView from 'react-native-elevated-view';
 
 export class Personel extends Component {
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'NHÂN SỰ',
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
+          <Image
+            source={require('../../img/exit.png')}
+            style={styles.iconBack}
+          />
+        </TouchableOpacity>
+      ),
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerTintColor: '#0A053F',
+      headerTitleAlign: 'center',
+    };
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text style={styles.btnLogout}>Test</Text>
+          <Text style={styles.text}>Trang Thông Tin Nhân Sự</Text>
         </View>
         <View style={styles.body}>
-          <TouchableOpacity>
-            <ElevatedView elevation={6} style={styles.stayElevated}>
-              <Image
-                source={require('../../img/trip.png')}
-                style={styles.Icon}
-              />
-            </ElevatedView>
-          </TouchableOpacity>
+          <View />
         </View>
       </View>
     );
@@ -29,16 +42,23 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  iconBack: {
+    width: 30,
+    height: 30,
+  },
   top: {
     flex: 1 / 3,
-    backgroundColor: 'yellow',
+    //backgroundColor: 'yellow',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  btnLogout: {
-    alignItems: 'flex-end',
+  text: {
+    fontSize: 30,
+    textAlign: 'center',
   },
   body: {
     flex: 2 / 3,
-    backgroundColor: 'blue',
+    //backgroundColor: 'blue',
   },
 
   stayElevated: {
