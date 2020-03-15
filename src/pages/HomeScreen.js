@@ -80,7 +80,10 @@ export class HomeScreen extends Component {
             </View>
 
             <View style={styles.Row}>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('Project');
+                }}>
                 <ElevatedView elevation={6} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/project.png')}
