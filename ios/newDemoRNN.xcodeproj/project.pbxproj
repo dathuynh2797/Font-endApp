@@ -19,6 +19,7 @@
 		36F8DD39A9579EAF2B2E4443 /* libPods-newDemoRNN-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09562451C56FDB8597334E5B /* libPods-newDemoRNN-tvOS.a */; };
 		5756F705C5D4EBDB6B22820F /* libPods-newDemoRNN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD421329F56F8CCA04D4EFD /* libPods-newDemoRNN.a */; };
 		9996FC1B703E7BB2ACD4F645 /* libPods-newDemoRNNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9B83E3B50E2903973A8314 /* libPods-newDemoRNNTests.a */; };
+		ADCFA8F4EE9E4705ADADBB6A /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 048233D6DF104E77B9732FE4 /* Roboto.ttf */; };
 		AE66981F45EF9C7EBC987EBD /* libPods-newDemoRNN-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D78BDC547B37BE257F4EF9 /* libPods-newDemoRNN-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		00E356EE1AD99517003FC87E /* newDemoRNNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = newDemoRNNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* newDemoRNNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newDemoRNNTests.m; sourceTree = "<group>"; };
+		048233D6DF104E77B9732FE4 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = ../assets/fonts/Roboto.ttf; sourceTree = "<group>"; };
 		09562451C56FDB8597334E5B /* libPods-newDemoRNN-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNN-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9B83E3B50E2903973A8314 /* libPods-newDemoRNNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* newDemoRNN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newDemoRNN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +167,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				DCB305DE9EF5599322639754 /* Pods */,
+				B82B59DD12D94104A389C367 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -182,6 +185,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B82B59DD12D94104A389C367 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				048233D6DF104E77B9732FE4 /* Roboto.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		DCB305DE9EF5599322639754 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +205,6 @@
 				C18CEC325ABEFE3AABBFC50B /* Pods-newDemoRNNTests.debug.xcconfig */,
 				F3A85226E31D668585487FB1 /* Pods-newDemoRNNTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -285,7 +295,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -308,6 +318,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -338,6 +349,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				ADCFA8F4EE9E4705ADADBB6A /* Roboto.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

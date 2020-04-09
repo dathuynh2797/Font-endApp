@@ -7,14 +7,13 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  SafeAreaView,
 } from 'react-native';
-import {SafeAreaView} from 'react-navigation';
-import ElevatedView from 'react-native-elevated-view';
 import bgImage from '../img/bgprofile.png';
 import {firebaseApp} from './config';
 
 export class HomeScreen extends Component {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = () => {
     return {
       header: () => null,
     };
@@ -60,88 +59,71 @@ export class HomeScreen extends Component {
           <Text style={styles.TxtAvatar}>VND: 500,000,000</Text>
         </ImageBackground>
 
-        <SafeAreaView style={styles.MenuContainer}>
+        <View style={styles.MenuContainer}>
           <View style={styles.Col}>
-            <View style={styles.Row}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.props.navigation.navigate('InforScreen');
-                }}>
-                <ElevatedView elevation={6} style={styles.BtnStyle}>
-                  <Image
-                    source={require('../img/information.png')}
-                    style={styles.Icon}
-                  />
-                </ElevatedView>
-              </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('InforScreen');
+              }}
+              style={styles.Row}>
+              <View style={styles.BtnStyle}>
+                <Image
+                  source={require('../img/information.png')}
+                  style={styles.Icon}
+                />
+              </View>
+
               <View>
                 <Text style={styles.Text}>Thông Tin Công Ty</Text>
               </View>
-            </View>
+            </TouchableOpacity>
 
-            <View style={styles.Row}>
-              <TouchableOpacity>
-                <ElevatedView elevation={6} style={styles.BtnStyle}>
-                  <Image
-                    source={require('../img/project.png')}
-                    style={styles.Icon}
-                  />
-                </ElevatedView>
-              </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('ProjectScreen');
+              }}
+              style={styles.Row}>
+              <View style={styles.BtnStyle}>
+                <Image
+                  source={require('../img/project.png')}
+                  style={styles.Icon}
+                />
+              </View>
+
               <View>
                 <Text style={styles.Text}>Dự án bất động sản</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
-          <View style={styles.Col}>
-            <View style={styles.Row}>
-              <TouchableOpacity>
-                <ElevatedView elevation={6} style={styles.BtnStyle}>
-                  <Image
-                    source={require('../img/chart.png')}
-                    style={styles.Icon}
-                  />
-                </ElevatedView>
-              </TouchableOpacity>
 
+          <View style={styles.Col}>
+            <TouchableOpacity style={styles.Row}>
+              <View style={styles.BtnStyle}>
+                <Image
+                  source={require('../img/chart.png')}
+                  style={styles.Icon}
+                />
+              </View>
               <View>
                 <Text style={styles.Text}>Báo cáo - thông kê</Text>
               </View>
-            </View>
-            <View style={styles.Row}>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.Row}>
               <View style={styles.BtnStyle}>
-                <TouchableOpacity>
-                  <ElevatedView elevation={6} style={styles.BtnStyle}>
-                    <Image
-                      source={require('../img/trip.png')}
-                      style={styles.Icon}
-                    />
-                  </ElevatedView>
-                </TouchableOpacity>
+                <View style={styles.BtnStyle}>
+                  <Image
+                    source={require('../img/trip.png')}
+                    style={styles.Icon}
+                  />
+                </View>
               </View>
               <View>
                 <Text style={styles.Text}>Công tác</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
-
-          <View style={styles.Col}>
-            <View style={styles.Row}>
-              <TouchableOpacity>
-                <ElevatedView elevation={6} style={styles.BtnStyle}>
-                  <Image
-                    source={require('../img/retired.png')}
-                    style={styles.Icon}
-                  />
-                </ElevatedView>
-              </TouchableOpacity>
-              <View>
-                <Text style={styles.Text}>Nghỉ Việc</Text>
-              </View>
-            </View>
-            <View style={styles.Row} />
-          </View>
-        </SafeAreaView>
+        </View>
       </SafeAreaView>
     );
   }
@@ -150,9 +132,10 @@ export class HomeScreen extends Component {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
+    backgroundColor: '#f1f1f1',
   },
   Proflie: {
-    flex: 1 / 3,
+    flex: 1 / 2,
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: 'grey',
@@ -182,22 +165,29 @@ const styles = StyleSheet.create({
   },
   MenuContainer: {
     flex: 2 / 3,
-    //justifyContent: 'center',
-    //flexDirection: 'column',
-    //alignItems: 'center',
-    //backgroundColor: 'grey',
   },
   Col: {
     flex: 1,
     flexDirection: 'row',
-    borderBottomColor: 'grey',
-    //borderBottomWidth: 1,
+    margin: 20,
   },
   Row: {
     flex: 1,
-    //borderWidth: 1,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+
+    elevation: 15,
   },
 
   BtnStyle: {
@@ -216,9 +206,12 @@ const styles = StyleSheet.create({
   },
   Text: {
     fontStyle: 'normal',
-    // fontFamily: 'Roboto',
+    fontFamily: 'Roboto',
     fontWeight: '500',
     fontSize: 20,
-    lineHeight: 23,
+    lineHeight: 25,
+    textAlign: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });

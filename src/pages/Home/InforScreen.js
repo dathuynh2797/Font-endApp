@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
-import {SafeAreaView} from 'react-navigation';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Image,
+  SafeAreaView,
+} from 'react-native';
 
 export class InforScreen extends Component {
   static navigationOptions = ({navigation}) => {
@@ -9,7 +15,10 @@ export class InforScreen extends Component {
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image source={require('../img/exit.png')} style={styles.iconBack} />
+          <Image
+            source={require('../../img/exit.png')}
+            style={styles.iconBack}
+          />
         </TouchableOpacity>
       ),
       headerTitleStyle: {
@@ -31,7 +40,7 @@ export class InforScreen extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../img/Inforicon/policy.png')}
+                  source={require('../../img/Inforicon/policy.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -48,7 +57,7 @@ export class InforScreen extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../img/Inforicon/personnel.png')}
+                  source={require('../../img/Inforicon/personnel.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -65,7 +74,7 @@ export class InforScreen extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../img/Inforicon/ogchart.png')}
+                  source={require('../../img/Inforicon/ogchart.png')}
                   style={styles.Icon}
                 />
               </View>
