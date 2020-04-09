@@ -9,11 +9,9 @@ import {Policy} from './src/pages/Infor/Policy';
 import {Personel} from './src/pages/Personel';
 import {Ogchart} from './src/pages/Infor/Ogchart';
 import {ForgotPassword} from './src/pages/ForgotPassword';
-<<<<<<< HEAD
 import {ProjectScreen} from './src/pages/Project/ProjectScreen';
 // import {ProjectDetails} from './src/pages/Project/ProjectDetails';
 
-=======
 import {Project} from './src/Project/Project';
 import {location} from './src/Project/location';
 import {Qdctp} from './src/pages/Infor/Qdctp';
@@ -29,7 +27,6 @@ import {Qc} from './src/Project/Qc';
 import {Bg} from './src/Project/Bg';
 import {baocao} from './src/baocao/baocao';
 import {detail} from './src/pages/Infor/detail';
->>>>>>> dfaff0593da9c940b6e1a72892f7b3997ade4947
 const AppNavigator = createStackNavigator(
   {
     LoginScreen: LoginScreen,
@@ -40,10 +37,8 @@ const AppNavigator = createStackNavigator(
     Personel: Personel,
     Ogchart: Ogchart,
     ForgotPassword: ForgotPassword,
-<<<<<<< HEAD
     ProjectScreen: ProjectScreen,
     // ProjectDetails: ProjectDetails,
-=======
     Project: Project,
     location: location,
     Cdlt: Cdlt,
@@ -58,7 +53,6 @@ const AppNavigator = createStackNavigator(
     Bg: Bg,
     baocao: baocao,
     detail: detail,
->>>>>>> dfaff0593da9c940b6e1a72892f7b3997ade4947
   },
   {
     initialRouteName: 'HomeScreen',

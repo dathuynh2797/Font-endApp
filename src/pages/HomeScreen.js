@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import bgImage from '../img/bgprofile.png';
 import {firebaseApp} from './config';
-
 export class HomeScreen extends Component {
   static navigationOptions = () => {
     return {
@@ -22,10 +21,10 @@ export class HomeScreen extends Component {
     firebaseApp
       .auth()
       .signOut()
-      .then(function() {
+      .then(function () {
         // Sign-out successful.
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // An error happened.
       });
   }
@@ -58,7 +57,6 @@ export class HomeScreen extends Component {
           </View>
           <Text style={styles.TxtAvatar}>VND: 500,000,000</Text>
         </ImageBackground>
-
         <View style={styles.MenuContainer}>
           <View style={styles.Col}>
             <TouchableOpacity
@@ -72,12 +70,10 @@ export class HomeScreen extends Component {
                   style={styles.Icon}
                 />
               </View>
-
               <View>
                 <Text style={styles.Text}>Thông Tin Công Ty</Text>
               </View>
             </TouchableOpacity>
-
             <TouchableOpacity
               onPress={() => {
                 this.props.navigation.navigate('ProjectScreen');
@@ -89,44 +85,11 @@ export class HomeScreen extends Component {
                   style={styles.Icon}
                 />
               </View>
-
-<<<<<<< HEAD
-=======
-            <View style={styles.Row}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.props.navigation.navigate('Project');
-                }}>
-                <ElevatedView elevation={6} style={styles.BtnStyle}>
-                  <Image
-                    source={require('../img/project.png')}
-                    style={styles.Icon}
-                  />
-                </ElevatedView>
-              </TouchableOpacity>
->>>>>>> dfaff0593da9c940b6e1a72892f7b3997ade4947
               <View>
                 <Text style={styles.Text}>Dự án bất động sản</Text>
               </View>
             </TouchableOpacity>
           </View>
-<<<<<<< HEAD
-=======
-          <View style={styles.Col}>
-            <View style={styles.Row}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.props.navigation.navigate('baocao');
-                }}>
-                <ElevatedView elevation={6} style={styles.BtnStyle}>
-                  <Image
-                    source={require('../img/chart.png')}
-                    style={styles.Icon}
-                  />
-                </ElevatedView>
-              </TouchableOpacity>
->>>>>>> dfaff0593da9c940b6e1a72892f7b3997ade4947
-
           <View style={styles.Col}>
             <TouchableOpacity style={styles.Row}>
               <View style={styles.BtnStyle}>
@@ -138,9 +101,7 @@ export class HomeScreen extends Component {
               <View>
                 <Text style={styles.Text}>Báo cáo - thông kê</Text>
               </View>
-<<<<<<< HEAD
             </TouchableOpacity>
-
             <TouchableOpacity style={styles.Row}>
               <View style={styles.BtnStyle}>
                 <View style={styles.BtnStyle}>
@@ -156,16 +117,10 @@ export class HomeScreen extends Component {
             </TouchableOpacity>
           </View>
         </View>
-=======
-            </View>
-          </View>
-        </SafeAreaView>
->>>>>>> dfaff0593da9c940b6e1a72892f7b3997ade4947
       </SafeAreaView>
     );
   }
 }
-
 const styles = StyleSheet.create({
   body: {
     flex: 1,
@@ -223,10 +178,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
-
     elevation: 15,
   },
-
   BtnStyle: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -252,3 +205,4 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
 });
+Aa;
