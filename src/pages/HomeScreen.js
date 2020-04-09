@@ -21,10 +21,10 @@ export class HomeScreen extends Component {
     firebaseApp
       .auth()
       .signOut()
-      .then(function () {
+      .then(function() {
         // Sign-out successful.
       })
-      .catch(function (error) {
+      .catch(function(error) {
         // An error happened.
       });
   }
@@ -205,4 +205,3 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
 });
-Aa;

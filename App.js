@@ -1,7 +1,6 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-
 import {LoginScreen} from './src/pages/LoginScreen';
 import {HomeScreen} from './src/pages/HomeScreen';
 import {InforScreen} from './src/pages/Home/InforScreen';
