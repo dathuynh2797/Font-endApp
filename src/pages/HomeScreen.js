@@ -98,7 +98,10 @@ export class HomeScreen extends Component {
           </View>
           <View style={styles.Col}>
             <View style={styles.Row}>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('baocao');
+                }}>
                 <ElevatedView elevation={6} style={styles.BtnStyle}>
                   <Image
                     source={require('../img/chart.png')}
@@ -126,23 +129,6 @@ export class HomeScreen extends Component {
                 <Text style={styles.Text}>Công tác</Text>
               </View>
             </View>
-          </View>
-
-          <View style={styles.Col}>
-            <View style={styles.Row}>
-              <TouchableOpacity>
-                <ElevatedView elevation={6} style={styles.BtnStyle}>
-                  <Image
-                    source={require('../img/retired.png')}
-                    style={styles.Icon}
-                  />
-                </ElevatedView>
-              </TouchableOpacity>
-              <View>
-                <Text style={styles.Text}>Nghỉ Việc</Text>
-              </View>
-            </View>
-            <View style={styles.Row} />
           </View>
         </SafeAreaView>
       </SafeAreaView>

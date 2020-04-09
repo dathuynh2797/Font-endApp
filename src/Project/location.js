@@ -1,21 +1,65 @@
 import React, {Component} from 'react';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import {StyleSheet, View} from 'react-native';
+import {Marker} from 'react-native-maps';
+import {StyleSheet, View, Text} from 'react-native';
+import {firebaseApp} from '../pages/config';
+import 'firebase/firestore';
+import {FlatList} from 'react-native-gesture-handler';
+
 export class location extends Component {
+  constructor() {
+    super();
+    this.state = {
+      markers: [],
+    };
+  }
+  componentDidMount() {
+    const vitri = firebaseApp.firestore().collection('location');
+    vitri.onSnapshot(querySnapshot => {
+      var marker1 = [];
+      querySnapshot.forEach(doc => {
+        marker1.push({
+          lati: doc.data().lat,
+          longi: doc.data().long,
+        });
+        this.setState({
+          markers: marker1,
+        });
+      });
+    });
+  }
   render() {
     return (
       <View style={styles.container}>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          initialRegion={{
-            latitude: 37.58825,
-            longitude: -122.424,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        />
+        {this.state.markers.map(marker => (
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            region={{
+              latitude: parseFloat(marker.lati),
+              longitude: parseFloat(marker.longi),
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+            keyExtractor={item => item.latitude}>
+            <MapView.Marker
+              coordinate={{
+                latitude: parseFloat(marker.lati),
+                longitude: parseFloat(marker.longi),
+              }}
+              title={'nha em'}
+              description={'nha em ne'}
+            />
+          </MapView>
+        ))}
       </View>
+      // <View>
+      //   <FlatList
+      //     data={this.state.markers}
+      //     renderItem={({item}) => <Text>{item.longi}</Text>}
+      //     keyExtractor={item => item.sdt}
+      //   />
+      // </View>
     );
   }
 }

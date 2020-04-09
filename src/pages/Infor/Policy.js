@@ -33,7 +33,10 @@ export class Policy extends Component {
     return (
       <SafeAreaView style={styles.MenuContainer}>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Qdctp');
+            }}>
             <View style={styles.TabMenu}>
               <Text style={styles.Text}>Quy định công tác phí</Text>
               <Text />
@@ -41,7 +44,10 @@ export class Policy extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Cdlt');
+            }}>
             <View style={styles.TabMenu}>
               <Text style={styles.Text}>Chế độ lương thưởng</Text>
               <Text />
@@ -49,7 +55,10 @@ export class Policy extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Lnl');
+            }}>
             <View style={styles.TabMenu}>
               <Text style={styles.Text}>Lịch nghỉ lễ</Text>
               <Text />
@@ -57,7 +66,10 @@ export class Policy extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Bnns');
+            }}>
             <View style={styles.TabMenu}>
               <Text style={styles.Text}>Bổ nhiệm nhân sự</Text>
               <Text />
@@ -65,7 +77,10 @@ export class Policy extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Hdtb');
+            }}>
             <View style={styles.TabMenu}>
               <Text style={styles.Text}>Hoạt động team building</Text>
               <Text />

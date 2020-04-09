@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 
-export class Project extends Component {
+export class baocao extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'XEM THÔNG TIN',
+      title: 'BÁO CÁO - THỐNG KÊ',
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
@@ -35,7 +35,7 @@ export class Project extends Component {
                   style={styles.Icon}
                 />
               </View>
-              <Text style={styles.Text}>Tổng quan</Text>
+              <Text style={styles.Text}>Kết quả kinh doanh tuần</Text>
               <Text />
             </View>
           </TouchableOpacity>
@@ -52,7 +52,7 @@ export class Project extends Component {
                   style={styles.Icon}
                 />
               </View>
-              <Text style={styles.Text}>Pháp lý</Text>
+              <Text style={styles.Text}>Đồ thị kết quả kinh doanh</Text>
               <Text />
             </View>
           </TouchableOpacity>
@@ -69,75 +69,7 @@ export class Project extends Component {
                   style={styles.Icon}
                 />
               </View>
-              <Text style={styles.Text}>Bảng giá</Text>
-              <Text />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Csbhnv');
-            }}>
-            <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../img/Inforicon/policy.png')}
-                  style={styles.Icon}
-                />
-              </View>
-              <Text style={styles.Text}>CSBH dành cho nhân viên</Text>
-              <Text />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Csbhkh');
-            }}>
-            <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../img/Inforicon/policy.png')}
-                  style={styles.Icon}
-                />
-              </View>
-              <Text style={styles.Text}>CSBH dành cho khách hàng</Text>
-              <Text />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Qc');
-            }}>
-            <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../img/Inforicon/policy.png')}
-                  style={styles.Icon}
-                />
-              </View>
-              <Text style={styles.Text}>Quảng cáo</Text>
-              <Text />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('location');
-            }}>
-            <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../img/Inforicon/policy.png')}
-                  style={styles.Icon}
-                />
-              </View>
-              <Text style={styles.Text}>Vị trí</Text>
+              <Text style={styles.Text}>So sánh kết quả kinh doanh</Text>
               <Text />
             </View>
           </TouchableOpacity>
