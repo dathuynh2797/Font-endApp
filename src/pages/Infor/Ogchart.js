@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
+import {firebaseApp} from '../config';
 
 export class Ogchart extends Component {
   static navigationOptions = ({navigation}) => {
@@ -28,13 +29,34 @@ export class Ogchart extends Component {
       headerTitleAlign: 'center',
     };
   };
-
+  componentDidMount() {
+    firebaseApp
+      .database()
+      .ref('thongtinnhanvien')
+      .child('tennv')
+      .on('value', dataSnapshot => {
+        var data = [];
+        dataSnapshot.forEach(doc => {
+          data.push({
+            key: doc.key,
+            name: doc.val(),
+          });
+          this.setState({
+            data: data,
+            // loading: false,
+          });
+        });
+      });
+  }
   render() {
     return (
       <SafeAreaView style={styles.body}>
         <SafeAreaView style={styles.Imgview}>
           <View style={styles.Chart}>
-            <Text>Image</Text>
+            <Image
+              source={require('../../img/4a4d35e88fc1749f2dd0.jpg')}
+              style={styles.Imgview1}
+            />
           </View>
         </SafeAreaView>
         <SafeAreaView style={styles.MenuContainer}>
@@ -84,6 +106,17 @@ const styles = StyleSheet.create({
     flex: 1 / 3,
     justifyContent: 'center',
     alignItems: 'center',
+    // width: 300,
+    // height: 50,
+    // marginLeft: 45,
+  },
+  Imgview1: {
+    // flex: 1 / 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 333,
+    height: 168,
+    // marginLeft: 45,
   },
   iconBack: {
     width: 30,

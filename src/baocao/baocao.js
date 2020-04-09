@@ -1,24 +1,15 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
+import {SafeAreaView} from 'react-navigation';
 
-export class Policy extends Component {
+export class baocao extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'CHÍNH SÁCH CÔNG TY',
+      title: 'BÁO CÁO - THỐNG KÊ',
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image
-            source={require('../../img/exit.png')}
-            style={styles.iconBack}
-          />
+          <Image source={require('../img/exit.png')} style={styles.iconBack} />
         </TouchableOpacity>
       ),
       headerTitleStyle: {
@@ -35,10 +26,16 @@ export class Policy extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Qdctp');
+              this.props.navigation.navigate('Tq');
             }}>
             <View style={styles.TabMenu}>
-              <Text style={styles.Text}>Quy định công tác phí</Text>
+              <View style={styles.Iconstyle}>
+                <Image
+                  source={require('../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
+              </View>
+              <Text style={styles.Text}>Kết quả kinh doanh tuần</Text>
               <Text />
             </View>
           </TouchableOpacity>
@@ -46,10 +43,16 @@ export class Policy extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Cdlt');
+              this.props.navigation.navigate('Pl');
             }}>
             <View style={styles.TabMenu}>
-              <Text style={styles.Text}>Chế độ lương thưởng</Text>
+              <View style={styles.Iconstyle}>
+                <Image
+                  source={require('../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
+              </View>
+              <Text style={styles.Text}>Đồ thị kết quả kinh doanh</Text>
               <Text />
             </View>
           </TouchableOpacity>
@@ -57,32 +60,16 @@ export class Policy extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Lnl');
+              this.props.navigation.navigate('Bg');
             }}>
             <View style={styles.TabMenu}>
-              <Text style={styles.Text}>Lịch nghỉ lễ</Text>
-              <Text />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Bnns');
-            }}>
-            <View style={styles.TabMenu}>
-              <Text style={styles.Text}>Bổ nhiệm nhân sự</Text>
-              <Text />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Hdtb');
-            }}>
-            <View style={styles.TabMenu}>
-              <Text style={styles.Text}>Hoạt động team building</Text>
+              <View style={styles.Iconstyle}>
+                <Image
+                  source={require('../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
+              </View>
+              <Text style={styles.Text}>So sánh kết quả kinh doanh</Text>
               <Text />
             </View>
           </TouchableOpacity>
