@@ -136,14 +136,11 @@ export class Personel extends Component {
             data={this.state.tableData}
             renderItem={({item}) => (
               <Text
-              // onPress={() => {
-              //   this.props.navigation.navigate('detail', {
-              //     data: this.data,
-              //   });
-              // }}
-              // style={styles.head}
-              // textStyle={styles.text}
-              >
+                onPress={() => {
+                  this.props.navigation.navigate('detail', {
+                    data: this.data,
+                  });
+                }}>
                 {item.ten}
               </Text>
             )}
