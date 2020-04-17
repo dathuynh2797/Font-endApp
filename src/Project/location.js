@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import {Marker} from 'react-native-maps';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {firebaseApp} from '../pages/config';
 import 'firebase/firestore';
-import {FlatList} from 'react-native-gesture-handler';
 
 export class location extends Component {
   constructor() {
@@ -41,7 +39,7 @@ export class location extends Component {
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}
-            keyExtractor={item => item.latitude}>
+            keyExtractor={(item => item.lati, item => item.longi)}>
             <MapView.Marker
               coordinate={{
                 latitude: parseFloat(marker.lati),

@@ -7,6 +7,10 @@ import {InforScreen} from './src/pages/Home/InforScreen';
 import {Policy} from './src/pages/Infor/Policy';
 import {Personel} from './src/pages/Personel';
 import {Ogchart} from './src/pages/Infor/Ogchart';
+import {Ogchartbgd} from './src/pages/Infor/Ogchartbgd';
+import {Ogchartpkd} from './src/pages/Infor/Ogchartpkd';
+import {Ogchartptc} from './src/pages/Infor/Ogchartptc';
+import {Ogchartpns} from './src/pages/Infor/Ogchartpns';
 import {ForgotPassword} from './src/pages/ForgotPassword';
 import {ProjectScreen} from './src/pages/Project/ProjectScreen';
 // import {ProjectDetails} from './src/pages/Project/ProjectDetails';
@@ -52,9 +56,13 @@ const AppNavigator = createStackNavigator(
     Bg: Bg,
     baocao: baocao,
     detail: detail,
+    Ogchartbgd: Ogchartbgd,
+    Ogchartpkd: Ogchartpkd,
+    Ogchartptc: Ogchartptc,
+    Ogchartpns: Ogchartpns,
   },
   {
-    initialRouteName: 'HomeScreen',
+    initialRouteName: 'LoginScreen',
   },
 );
 

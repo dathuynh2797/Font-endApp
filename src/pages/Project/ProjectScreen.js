@@ -10,6 +10,9 @@ import {
   Image,
 } from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import {firebaseApp} from '../config';
+import 'firebase/firestore';
+import {FlatList} from 'react-native-gesture-handler';
 
 const FirstRoute = () => (
   <View style={styles.scene}>
@@ -48,13 +51,12 @@ const ThirdRoute = () => (
         <View style={styles.data}>
           <Text style={styles.title}>Title</Text>
           <Text style={styles.description}>Location</Text>
-          <Text style={styles.price}>Price</Text>
+          <Text style={styles.price}>gia</Text>
         </View>
       </View>
     </TouchableOpacity>
   </View>
 );
-
 export class ProjectScreen extends Component {
   static navigationOptions = ({navigation}) => {
     return {
@@ -75,7 +77,12 @@ export class ProjectScreen extends Component {
       headerTitleAlign: 'center',
     };
   };
-
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     tableData: [],
+  //   };
+  // }
   state = {
     index: 1,
     routes: [
@@ -105,7 +112,23 @@ export class ProjectScreen extends Component {
     second: SecondRoute,
     third: ThirdRoute,
   });
-
+  componentDidMount() {
+    const abc = firebaseApp.firestore();
+    abc.collection('suppliers').onSnapshot(querySnapshot => {
+      var duan = [];
+      querySnapshot.forEach(doc => {
+        duan.push({
+          id: doc.id,
+          ten: doc.data().tên,
+          vitri: doc.data().vitri,
+          gia: doc.data().giá,
+        });
+        this.setState({
+          tableData: duan,
+        });
+      });
+    });
+  }
   render() {
     return (
       <SafeAreaView style={styles.body}>

@@ -20,12 +20,6 @@ import bgImage from '../img/bgLogin.png';
 const {width: WIDTH} = Dimensions.get('window');
 
 export class LoginScreen extends React.Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      header: () => null,
-    };
-  };
-
   state = {email: '', password: '', errorMessage: null};
   handleLogin = () => {
     const {email, password} = this.state;
@@ -45,13 +39,9 @@ export class LoginScreen extends React.Component {
   }
   //xu ly phim back android
 
-  componentWillUnmount() {
-    this.backHandler.remove();
-  }
-
-  handleLogout() {
-    return this.props.navigation.navigate('LoginScreen');
-  }
+  // componentWillUnmount() {
+  //   this.backHandler.remove();
+  // }
   //
   render() {
     return (

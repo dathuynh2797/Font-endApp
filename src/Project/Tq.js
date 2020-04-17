@@ -26,29 +26,16 @@ export class Tq extends Component {
       headerTitleAlign: 'center',
     };
   };
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     avatarSource: null,
-  //   };
-  // }
-  // pickImage() {
-  //   const ref = firebaseApp
-  //     .storage()
-  //     .ref('images')
-  //     .child('36aa1e16955e6c00354f.jpg');
-  //   ref.getDownloadURL().then(data => {
-  //     this.setState({
-  //       avatarSource: data,
-  //     });
-  //   });
-  // }
   render() {
+    const {navigation} = this.props;
+    const hinhanh = navigation.getParam('hinhanh', 'chưa có dữ liệu');
     return (
       <View>
         <Text style={styles.headerText}>Bổ nhiệm nhân sự </Text>
         <Image
-          source={require('../img/CHINHSACHMOITRUONG.jpg')}
+          source={{
+            uri: hinhanh,
+          }}
           style={styles.Proflie}
         />
       </View>
