@@ -45,9 +45,9 @@ export class LoginScreen extends React.Component {
   }
   //xu ly phim back android
 
-  componentWillUnmount() {
-    this.backHandler.remove();
-  }
+  // componentWillUnmount() {
+  //   this.backHandler.remove();
+  // }
 
   handleLogout() {
     return this.props.navigation.navigate('LoginScreen');

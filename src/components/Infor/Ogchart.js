@@ -8,27 +8,9 @@ import {
   Image,
 } from 'react-native';
 import {firebaseApp} from '../config';
+import {CustomHeader} from '../CustomHeader';
 
 export class Ogchart extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'SƠ ĐỒ TỔ CHỨC',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeSrceen'})}>
-          <Image
-            source={require('../../img/exit.png')}
-            style={styles.iconBack}
-          />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
-    };
-  };
   componentDidMount() {
     firebaseApp
       .database()
@@ -51,6 +33,10 @@ export class Ogchart extends Component {
   render() {
     return (
       <SafeAreaView style={styles.body}>
+        <CustomHeader
+          title="Sơ đồ tổ chức"
+          navigation={this.props.navigation}
+        />
         <SafeAreaView style={styles.Imgview}>
           <View style={styles.Chart}>
             <Image

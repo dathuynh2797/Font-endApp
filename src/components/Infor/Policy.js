@@ -5,33 +5,18 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 
-export class Policy extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'CHÍNH SÁCH CÔNG TY',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image
-            source={require('../../img/exit.png')}
-            style={styles.iconBack}
-          />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
-    };
-  };
+import {CustomHeader} from '../CustomHeader';
 
+export class Policy extends Component {
   render() {
     return (
       <SafeAreaView style={styles.MenuContainer}>
+        <CustomHeader
+          title="Chính Sách Công Ty"
+          navigation={this.props.navigation}
+        />
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {

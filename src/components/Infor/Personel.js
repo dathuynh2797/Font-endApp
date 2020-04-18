@@ -9,10 +9,12 @@ import {
   Image,
   Button,
 } from 'react-native';
-import {firebaseApp} from './config';
+import {firebaseApp} from '../config';
 import 'firebase/firestore';
 import {Table, Row, Rows} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
+import {CustomHeader} from '../CustomHeader';
+
 const {width: WIDTH} = Dimensions.get('window');
 //set time out
 const _setTimeout = global.setTimeout;
@@ -60,23 +62,6 @@ if (Platform.OS === 'android') {
 }
 
 export class Personel extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'THÔNG TIN NHÂN VIÊN',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image source={require('../img/exit.png')} style={styles.iconBack} />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
-    };
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -122,8 +107,11 @@ export class Personel extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <CustomHeader
+          title="Danh Sách Nhân Sự"
+          navigation={this.props.navigation}
+        />
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
-
         <Table style={styles.borderStyle}>
           <Row
             data={this.state.tableHead}

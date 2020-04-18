@@ -12,11 +12,6 @@ import {
 import bgImage from '../img/bgprofile.png';
 import {firebaseApp} from './config';
 export class HomeScreen extends Component {
-  static navigationOptions = () => {
-    return {
-      header: () => null,
-    };
-  };
   signOut() {
     firebaseApp
       .auth()
@@ -61,7 +56,7 @@ export class HomeScreen extends Component {
           <View style={styles.Col}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('InforScreen');
+                this.props.navigation.navigate('Infor');
               }}
               style={styles.Row}>
               <View style={styles.BtnStyle}>
@@ -76,7 +71,7 @@ export class HomeScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('ProjectScreen');
+                this.props.navigation.navigate('Project');
               }}
               style={styles.Row}>
               <View style={styles.BtnStyle}>
@@ -201,7 +196,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 25,
     textAlign: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
+    padding: 10,
   },
 });

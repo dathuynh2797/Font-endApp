@@ -7,78 +7,86 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
+import {CustomHeader} from '../CustomHeader';
 
-export class InforScreen extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'XEM THÔNG TIN',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image
-            source={require('../../img/exit.png')}
-            style={styles.iconBack}
-          />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
-    };
-  };
-
+export class ProjectDetails extends Component {
   render() {
     return (
       <SafeAreaView style={styles.MenuContainer}>
+        <CustomHeader title="Dự án ABC" navigation={this.props.navigation} />
         <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Policy');
-            }}>
+          <TouchableOpacity>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../../img/Inforicon/policy.png')}
-                  style={styles.Icon}
-                />
+                <Image style={styles.Icon} />
               </View>
-              <Text style={styles.Text}>Chính sách công ty</Text>
+              <Text style={styles.Text}>Tổng quan</Text>
               <Text />
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Personel');
-            }}>
+          <TouchableOpacity>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../../img/Inforicon/personnel.png')}
-                  style={styles.Icon}
-                />
+                <Image style={styles.Icon} />
               </View>
-              <Text style={styles.Text}>Nhân sự</Text>
+              <Text style={styles.Text}>Pháp lý</Text>
               <Text />
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Ogchart');
-            }}>
+          <TouchableOpacity>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../../img/Inforicon/ogchart.png')}
-                  style={styles.Icon}
-                />
+                <Image style={styles.Icon} />
               </View>
-              <Text style={styles.Text}>Sơ đồ tổ chức</Text>
+              <Text style={styles.Text}>Bảng giá</Text>
+              <Text />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.Col}>
+          <TouchableOpacity>
+            <View style={styles.TabMenu}>
+              <View style={styles.Iconstyle}>
+                <Image style={styles.Icon} />
+              </View>
+              <Text style={styles.Text}>CSBH dành cho nhân viên</Text>
+              <Text />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.Col}>
+          <TouchableOpacity>
+            <View style={styles.TabMenu}>
+              <View style={styles.Iconstyle}>
+                <Image style={styles.Icon} />
+              </View>
+              <Text style={styles.Text}>CSBH dành cho khách hàng</Text>
+              <Text />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.Col}>
+          <TouchableOpacity>
+            <View style={styles.TabMenu}>
+              <View style={styles.Iconstyle}>
+                <Image style={styles.Icon} />
+              </View>
+              <Text style={styles.Text}>Quảng cáo</Text>
+              <Text />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.Col}>
+          <TouchableOpacity>
+            <View style={styles.TabMenu}>
+              <View style={styles.Iconstyle}>
+                <Image style={styles.Icon} />
+              </View>
+              <Text style={styles.Text}>Vị trí</Text>
               <Text />
             </View>
           </TouchableOpacity>
