@@ -2,24 +2,24 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {LoginScreen} from './src/components/LoginScreen';
-import {HomeScreen} from './src/components/HomeScreen';
-import {InforScreen} from './src/components/Home/InforScreen';
-import {Policy} from './src/components/Infor/Policy';
-import {Personel} from './src/components/Infor/Personel';
-import {Ogchart} from './src/components/Infor/Ogchart';
-import {ForgotPassword} from './src/components/ForgotPassword';
+import {LoginScreen} from './src/Components/LoginScreen';
+import {HomeScreen} from './src/Components/HomeScreen';
+import {InforScreen} from './src/Components/Home/InforScreen';
+import {Policy} from './src/Components/Infor/Policy';
+import {Personel} from './src/Components/Infor/Personel';
+import {Ogchart} from './src/Components/Infor/Ogchart';
+import {ForgotPassword} from './src/Components/ForgotPassword';
 
-import {CustomHeader} from './src/components/CustomHeader';
+import {CustomHeader} from './src/Components/CustomHeader';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBar,
 } from 'react-navigation-tabs';
 import {SafeAreaView} from 'react-native';
-import {ProjectNow} from './src/components/Project/ProjectNow';
-import {ProjectWas} from './src/components/Project/ProjectWas';
-import {ProjectWill} from './src/components/Project/ProjectWill';
-import {ProjectDetails} from './src/components/Project/ProjectDetails';
+import {ProjectNow} from './src/Components/Project/ProjectNow';
+import {ProjectWas} from './src/Components/Project/ProjectWas';
+import {ProjectWill} from './src/Components/Project/ProjectWill';
+import {ProjectDetails} from './src/Components/Project/ProjectDetails';
 
 // import {Project} from './src/Project/Project';
 // import {location} from './src/Project/location';
