@@ -138,7 +138,7 @@ const MainApp = createStackNavigator(
     // detail: detail,
   },
   {
-    initialRouteName: 'HomeScreen',
+    initialRouteName: 'LoginScreen',
   },
 );
 

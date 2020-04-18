@@ -12,23 +12,23 @@ import {CustomHeader} from '../CustomHeader';
 
 export class Ogchart extends Component {
   componentDidMount() {
-    firebaseApp
-      .database()
-      .ref('thongtinnhanvien')
-      .child('tennv')
-      .on('value', dataSnapshot => {
-        var data = [];
-        dataSnapshot.forEach(doc => {
-          data.push({
-            key: doc.key,
-            name: doc.val(),
-          });
-          this.setState({
-            data: data,
-            // loading: false,
-          });
+    const abc = firebaseApp.firestore();
+    abc.collection('staff').onSnapshot(querySnapshot => {
+      var dodai1 = [];
+      querySnapshot.forEach(doc => {
+        dodai1.push({
+          id: doc.id,
+          ten: doc.data().staffNames,
+          sdt: doc.data().staffPhoneNumber,
+          namsinh: doc.data().staffDateOfBirth,
+          hinhanh: doc.data().hinhanh,
+        });
+        dodai1.length;
+        this.setState({
+          dodai: dodai1,
         });
       });
+    });
   }
   render() {
     return (
@@ -47,34 +47,46 @@ export class Ogchart extends Component {
         </SafeAreaView>
         <SafeAreaView style={styles.MenuContainer}>
           <View style={styles.Col}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Ogchartbgd');
+              }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>BAN GIÁM ĐỐC</Text>
-                <Text>3 nhân sự</Text>
+                <Text>{this.state.dodai.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.Col}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Ogchartpkd');
+              }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>PHÒNG KINH DOANH</Text>
-                <Text>50 nhân sự</Text>
+                <Text>{this.state.dodai.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.Col}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Ogchartptc');
+              }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>PHÒNG TÀI CHÍNH</Text>
-                <Text>4 nhân sự</Text>
+                <Text>{this.state.dodai.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.Col}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Ogchartpns');
+              }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>PHÒNG NHÂN SỰ</Text>
-                <Text>4 nhân sự</Text>
+                <Text>{this.state.dodai.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>

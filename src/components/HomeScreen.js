@@ -8,9 +8,11 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
+  FlatList,
 } from 'react-native';
 import bgImage from '../img/bgprofile.png';
 import {firebaseApp} from './config';
+
 export class HomeScreen extends Component {
   signOut() {
     firebaseApp
@@ -22,6 +24,28 @@ export class HomeScreen extends Component {
       .catch(function(error) {
         // An error happened.
       });
+  }
+  componentDidMount() {
+    const vitri = firebaseApp.firestore().collection('user');
+    vitri.onSnapshot(querySnapshot => {
+      var marker1 = [];
+      querySnapshot.forEach(doc => {
+        if (
+          firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
+        ) {
+          marker1.push({
+            ten: doc.data().fullName,
+            ava: doc.data().hinhanh,
+            email: doc.data().email,
+            sdt: doc.data().phoneNumber,
+          });
+          this.setState({
+            avatar: marker1,
+            loading: true,
+          });
+        }
+      });
+    });
   }
   handleLogout() {
     return this.props.navigation.navigate('LoginScreen');
@@ -46,10 +70,29 @@ export class HomeScreen extends Component {
             }}>
             <Image source={require('../img/logout.png')} />
           </TouchableOpacity>
-          <Text style={styles.TxtAvatar}>Xin chào</Text>
-          <View style={styles.Avatar}>
-            <Text>Avatar</Text>
-          </View>
+          <FlatList
+            data={this.state.avatar}
+            renderItem={({item}) => (
+              <View>
+                <Text
+                  onPress={() => {
+                    this.props.navigation.navigate('detail', {
+                      id: item.id,
+                      ten: item.ten,
+                      sdt: item.sdt,
+                      namsinh: item.namsinh,
+                      hinhanh: item.ava,
+                      email: item.email,
+                    });
+                  }}
+                  style={styles.TxtAvatar}>
+                  Xin chào: {item.ten}
+                </Text>
+                <Image style={styles.Avatar} source={{uri: item.ava}} />
+              </View>
+            )}
+            keyExtractor={(item => item.ten, item => item.ava)}
+          />
           <Text style={styles.TxtAvatar}>VND: 500,000,000</Text>
         </ImageBackground>
         <View style={styles.MenuContainer}>
@@ -136,10 +179,9 @@ const styles = StyleSheet.create({
   Avatar: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 103,
-    width: 140,
+    height: 153,
+    width: 250,
     borderWidth: 1,
-    backgroundColor: '#FFFFFF',
   },
   TxtAvatar: {
     color: '#FFFFFF',
@@ -149,6 +191,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 21,
     letterSpacing: 0.01,
+    textAlign: 'center',
+    padding: 8,
   },
   MenuContainer: {
     flex: 2 / 3,

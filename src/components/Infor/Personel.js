@@ -7,11 +7,10 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-  Button,
 } from 'react-native';
 import {firebaseApp} from '../config';
 import 'firebase/firestore';
-import {Table, Row, Rows} from 'react-native-table-component';
+import {Table, Row} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
 import {CustomHeader} from '../CustomHeader';
 
@@ -65,7 +64,7 @@ export class Personel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // loading: false,
+      loading: true,
       tableHead: ['Tên', 'Năm sinh', 'Số điện thoại'],
       tableData: [],
       tableData1: [],
@@ -74,36 +73,25 @@ export class Personel extends Component {
 
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc
-      .collection('user')
-      // .where('authenticationUid', '==', 'Jzc42m2f78VYW9JXgLokBOiCqv72')
-      .onSnapshot(querySnapshot => {
-        var name = [];
-        querySnapshot.forEach(doc => {
-          name.push({
-            ten: doc.data().fullName,
-            sdt: doc.data().phoneNumber,
-          });
-          this.setState({
-            tableData: name,
-          });
+    abc.collection('staff').onSnapshot(querySnapshot => {
+      var name = [];
+      querySnapshot.forEach(doc => {
+        name.push({
+          id: doc.id,
+          ten: doc.data().staffNames,
+          sdt: doc.data().staffPhoneNumber,
+          namsinh: doc.data().staffDateOfBirth,
+          hinhanh: doc.data().hinhanh,
+        });
+
+        this.setState({
+          tableData: name,
+          loading: true,
         });
       });
-    abc
-      .collection('staff')
-      // .where('authenticationUid', '==', 'E8XqxFqdf5evfZQbKNvb3olnCkw1')
-      .onSnapshot(querySnapshot => {
-        var name1 = [];
-        querySnapshot.forEach(doc => {
-          name1.push({
-            namsinh: doc.data().staffDateOfBirth,
-          });
-          this.setState({
-            tableData1: name1,
-          });
-        });
-      });
+    });
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -123,30 +111,27 @@ export class Personel extends Component {
           <FlatList
             data={this.state.tableData}
             renderItem={({item}) => (
-              <Text
-              // onPress={() => {
-              //   this.props.navigation.navigate('detail', {
-              //     data: this.data,
-              //   });
-              // }}
-              // style={styles.head}
-              // textStyle={styles.text}
-              >
-                {item.ten}
-              </Text>
+              <View>
+                <View style={styles.ngang}>
+                  <Text
+                    style={styles.data}
+                    onPress={() => {
+                      this.props.navigation.navigate('detail', {
+                        id: item.id,
+                        ten: item.ten,
+                        sdt: item.sdt,
+                        namsinh: item.namsinh,
+                        hinhanh: item.hinhanh,
+                      });
+                    }}>
+                    {item.ten}
+                  </Text>
+                  <Text style={styles.data}>{item.namsinh}</Text>
+                  <Text style={styles.data}>{item.sdt}</Text>
+                </View>
+              </View>
             )}
             keyExtractor={item => item.ten}
-          />
-          <FlatList
-            data={this.state.tableData1}
-            renderItem={({item}) => <Text>{item.namsinh}</Text>}
-            keyExtractor={item => item.namsinh}
-          />
-
-          <FlatList
-            data={this.state.tableData}
-            renderItem={({item}) => <Text>{item.sdt}</Text>}
-            keyExtractor={item => item.sdt}
           />
         </View>
       </View>
@@ -173,6 +158,8 @@ const styles = StyleSheet.create({
   ngang: {
     flex: 1,
     flexDirection: 'row',
-    borderWidth: 1.5,
+  },
+  data: {
+    padding: 8,
   },
 });
