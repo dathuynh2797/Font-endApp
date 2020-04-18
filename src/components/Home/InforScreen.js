@@ -10,26 +10,6 @@ import {
 import {CustomHeader} from '../CustomHeader';
 
 export class InforScreen extends Component {
-  // static navigationOptions = ({navigation}) => {
-  //   return {
-  //     title: 'XEM THÔNG TIN',
-  //     headerRight: () => (
-  //       <TouchableOpacity
-  //         onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-  //         <Image
-  //           source={require('../../img/exit.png')}
-  //           style={styles.iconBack}
-  //         />
-  //       </TouchableOpacity>
-  //     ),
-  //     headerTitleStyle: {
-  //       fontWeight: 'bold',
-  //     },
-  //     headerTintColor: '#0A053F',
-  //     headerTitleAlign: 'center',
-  //   };
-  // };
-
   render() {
     return (
       <SafeAreaView style={styles.MenuContainer}>
