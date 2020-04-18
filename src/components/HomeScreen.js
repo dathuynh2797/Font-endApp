@@ -14,6 +14,12 @@ import bgImage from '../img/bgprofile.png';
 import {firebaseApp} from './config';
 
 export class HomeScreen extends Component {
+  constructor() {
+    super();
+    this.state = {
+      avatar: [],
+    };
+  }
   signOut() {
     firebaseApp
       .auth()

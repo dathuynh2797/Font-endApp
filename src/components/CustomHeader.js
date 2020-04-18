@@ -8,7 +8,7 @@ export class CustomHeader extends Component {
       <View style={styles.Header}>
         <TouchableOpacity
           style={styles.Left}
-          onPress={() => navigation.popToTop()}>
+          onPress={() => navigation.goBack()}>
           <Image source={require('../img/back.png')} style={styles.IconBack} />
         </TouchableOpacity>
         <View style={styles.Title}>

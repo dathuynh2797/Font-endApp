@@ -114,8 +114,14 @@ const Tab = createMaterialTopTabNavigator(
 
 const MainApp = createStackNavigator(
   {
-    LoginScreen: LoginScreen,
-    ForgotPassword: ForgotPassword,
+    LoginScreen: {
+      screen: LoginScreen,
+      navigationOptions: navOptionHandler,
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
+      navigationOptions: navOptionHandler,
+    },
 
     HomeScreen: {screen: HomeScreen, navigationOptions: navOptionHandler},
     Infor: {screen: InforStack, navigationOptions: navOptionHandler},
