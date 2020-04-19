@@ -26,7 +26,7 @@ export class LoginScreen extends React.Component {
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.replace('HomeScreen'))
+      .then(() => this.props.navigation.navigate('HomeScreen'))
       .catch(error =>
         this.setState({
           errorMessage:
@@ -91,7 +91,7 @@ export class LoginScreen extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('ForgotPassword');
+              this.props.navigation.navigate('ForgotScreen');
             }}>
             <Text>Quên mật khẩu?</Text>
           </TouchableOpacity>

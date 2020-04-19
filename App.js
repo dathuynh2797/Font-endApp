@@ -41,6 +41,16 @@ import {Bg} from './src/Project/Bg';
 import {baocao} from './src/baocao/baocao';
 import {detail} from './src/Components/Infor/detail';
 
+import {decode, encode} from 'base-64';
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+
+if (!global.atob) {
+  global.atob = decode;
+}
+
 const navOptionHandler = () => ({
   header: null,
 });
@@ -176,7 +186,7 @@ const AuthStack = createStackNavigator({
     screen: LoginScreen,
     navigationOptions: navOptionHandler,
   },
-  ForgotPassword: {
+  ForgotScreen: {
     screen: ForgotPassword,
     navigationOptions: navOptionHandler,
   },
@@ -196,21 +206,21 @@ const MainStack = createStackNavigator({
     navigationOptions: navOptionHandler,
   },
   // ProjectDetails: ProjectDetails,
-  // Qdctp: Qdctp,
+  Qdctp: Qdctp,
   // Project: Project,
-  // location: location,
-  // Cdlt: Cdlt,
-  // Bnns: Bnns,
-  // Hdtb: Hdtb,
+  location: location,
+  Cdlt: Cdlt,
+  Bnns: Bnns,
+  Hdtb: Hdtb,
   // Lnl: Lnl,
-  // Tq: Tq,
-  // Pl: Pl,
-  // Csbhkh: Csbhkh,
-  // Csbhnv: Csbhnv,
-  // Qc: Qc,
-  // Bg: Bg,
-  // baocao: baocao,
-  // detail: detail,
+  Tq: Tq,
+  Pl: Pl,
+  Csbhkh: Csbhkh,
+  Csbhnv: Csbhnv,
+  Qc: Qc,
+  Bg: Bg,
+  baocao: baocao,
+  detail: detail,
 });
 
 const MainApp = createSwitchNavigator(
