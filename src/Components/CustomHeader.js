@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderBottomWidth: 0.5,
     marginBottom: 10,
+    // backgroundColor: 'white',
   },
   Left: {
     flex: 1,

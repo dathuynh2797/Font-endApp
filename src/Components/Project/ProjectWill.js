@@ -7,7 +7,7 @@ export class ProjectWill extends Component {
       <View style={styles.scene}>
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate('ProjectDetails');
+            this.props.navigation.navigate('DetailsWill');
           }}>
           <View style={styles.items}>
             <View style={styles.image} />
