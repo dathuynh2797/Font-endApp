@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../config';
 const {width: WIDTH} = Dimensions.get('window');
-export class Qdctp extends Component {
+export class Lnl extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       title: 'CHÍNH SÁCH CÔNG TY',
@@ -40,12 +40,12 @@ export class Qdctp extends Component {
     const image = firebaseApp.firestore();
     image
       .collection('categories')
-      .where('categoryDetails', '==', 'qlctp')
+      .where('categoryDetails', '==', 'lnl')
       .onSnapshot(querySnapshot => {
         var anh = [];
         querySnapshot.forEach(doc => {
           anh.push({
-            hinh: doc.data().hinh,
+            hinh: doc.data().hinhanh,
           });
           this.setState({
             avatarSource: anh,

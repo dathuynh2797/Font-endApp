@@ -28,13 +28,13 @@ export class Tq extends Component {
   };
   render() {
     const {navigation} = this.props;
-    const hinhanh = navigation.getParam('hinhanh', 'chưa có dữ liệu');
+    const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
     return (
       <View>
-        <Text style={styles.headerText}>Bổ nhiệm nhân sự </Text>
+        <Text style={styles.headerText}>Tổng quan</Text>
         <Image
           source={{
-            uri: hinhanh,
+            uri: hinhanhtq,
           }}
           style={styles.Proflie}
         />

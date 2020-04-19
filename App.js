@@ -29,6 +29,7 @@ import {DetailsWill} from './src/Components/Project/DetailsWill';
 
 import {location} from './src/Project/location';
 import {Qdctp} from './src/Components/Infor/Qdctp';
+import {Lnl} from './src/Components/Infor/Lnl';
 import {Cdlt} from './src/Components/Infor/Cdlt';
 import {Bnns} from './src/Components/Infor/Bnns';
 import {Hdtb} from './src/Components/Infor/Hdtb';
@@ -40,16 +41,18 @@ import {Qc} from './src/Project/Qc';
 import {Bg} from './src/Project/Bg';
 import {baocao} from './src/baocao/baocao';
 import {detail} from './src/Components/Infor/detail';
+// import {Platform} from 'react-native';
+// import {decode, encode} from 'base-64';
 
-import {decode, encode} from 'base-64';
+// if (Platform.OS === 'ios') {
+//   if (!global.btoa) {
+//     global.btoa = encode;
+//   }
 
-if (!global.btoa) {
-  global.btoa = encode;
-}
-
-if (!global.atob) {
-  global.atob = decode;
-}
+//   if (!global.atob) {
+//     global.atob = decode;
+//   }
+// }
 
 const navOptionHandler = () => ({
   header: null,
@@ -90,7 +93,7 @@ const WasStack = createStackNavigator({
     navigationOptions: navOptionHandler,
   },
   DetailsWas: {
-    screen: DetailsWas,
+    screen: DetailsNow,
     navigationOptions: navOptionHandler,
   },
 });
@@ -100,7 +103,7 @@ const WillStack = createStackNavigator({
     navigationOptions: navOptionHandler,
   },
   DetailsWill: {
-    screen: DetailsWill,
+    screen: DetailsNow,
     navigationOptions: navOptionHandler,
   },
 });
@@ -212,7 +215,7 @@ const MainStack = createStackNavigator({
   Cdlt: Cdlt,
   Bnns: Bnns,
   Hdtb: Hdtb,
-  // Lnl: Lnl,
+  Lnl: Lnl,
   Tq: Tq,
   Pl: Pl,
   Csbhkh: Csbhkh,
@@ -221,6 +224,10 @@ const MainStack = createStackNavigator({
   Bg: Bg,
   baocao: baocao,
   detail: detail,
+  Ogchartpns: Ogchartpns,
+  Ogchartpkd: Ogchartpkd,
+  Ogchartptc: Ogchartptc,
+  Ogchartbgd: Ogchartbgd,
 });
 
 const MainApp = createSwitchNavigator(

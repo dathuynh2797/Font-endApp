@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Image,
-  SafeAreaView,
-} from 'react-native';
-import {CustomHeader} from '../CustomHeader';
-
+import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
+import {SafeAreaView} from 'react-navigation';
+import {CustomHeader} from '../../Components/CustomHeader';
 export class DetailsNow extends Component {
   render() {
+    const {navigation} = this.props;
+    const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const ten = navigation.getParam('ten', 'chưa có dữ liệu');
     return (
       <SafeAreaView style={styles.MenuContainer}>
-        <CustomHeader title="Dự án Now" navigation={this.props.navigation} />
+        <CustomHeader title={ten} navigation={this.props.navigation} />
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Tq', {hinhanhtq});
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image style={styles.Icon} />
+                <Image
+                  source={require('../../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
               </View>
               <Text style={styles.Text}>Tổng quan</Text>
               <Text />
@@ -26,10 +28,16 @@ export class DetailsNow extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Pl');
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image style={styles.Icon} />
+                <Image
+                  source={require('../../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
               </View>
               <Text style={styles.Text}>Pháp lý</Text>
               <Text />
@@ -37,10 +45,16 @@ export class DetailsNow extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Bg');
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image style={styles.Icon} />
+                <Image
+                  source={require('../../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
               </View>
               <Text style={styles.Text}>Bảng giá</Text>
               <Text />
@@ -48,10 +62,16 @@ export class DetailsNow extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Csbhnv');
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image style={styles.Icon} />
+                <Image
+                  source={require('../../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
               </View>
               <Text style={styles.Text}>CSBH dành cho nhân viên</Text>
               <Text />
@@ -59,10 +79,16 @@ export class DetailsNow extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Csbhkh');
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image style={styles.Icon} />
+                <Image
+                  source={require('../../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
               </View>
               <Text style={styles.Text}>CSBH dành cho khách hàng</Text>
               <Text />
@@ -70,10 +96,16 @@ export class DetailsNow extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Qc');
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image style={styles.Icon} />
+                <Image
+                  source={require('../../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
               </View>
               <Text style={styles.Text}>Quảng cáo</Text>
               <Text />
@@ -81,10 +113,16 @@ export class DetailsNow extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.Col}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('location');
+            }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
-                <Image style={styles.Icon} />
+                <Image
+                  source={require('../../img/Inforicon/policy.png')}
+                  style={styles.Icon}
+                />
               </View>
               <Text style={styles.Text}>Vị trí</Text>
               <Text />
