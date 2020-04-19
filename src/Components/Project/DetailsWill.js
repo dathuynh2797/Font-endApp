@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import {CustomHeader} from '../CustomHeader';
 
-export class ProjectDetails extends Component {
+export class DetailsWill extends Component {
   render() {
     return (
       <SafeAreaView style={styles.MenuContainer}>
-        <CustomHeader title="Dự án ABC" navigation={this.props.navigation} />
+        <CustomHeader title="Dự án Will" navigation={this.props.navigation} />
         <View style={styles.Col}>
           <TouchableOpacity>
             <View style={styles.TabMenu}>

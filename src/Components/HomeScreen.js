@@ -47,7 +47,7 @@ export class HomeScreen extends Component {
           });
           this.setState({
             avatar: marker1,
-            loading: true,
+            loading: false,
           });
         }
       });

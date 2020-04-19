@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {LoginScreen} from './src/Components/LoginScreen';
 import {HomeScreen} from './src/Components/HomeScreen';
@@ -19,7 +19,9 @@ import {SafeAreaView} from 'react-native';
 import {ProjectNow} from './src/Components/Project/ProjectNow';
 import {ProjectWas} from './src/Components/Project/ProjectWas';
 import {ProjectWill} from './src/Components/Project/ProjectWill';
-import {ProjectDetails} from './src/Components/Project/ProjectDetails';
+import {DetailsNow} from './src/Components/Project/DetailsNow';
+import {DetailsWas} from './src/Components/Project/DetailsWas';
+import {DetailsWill} from './src/Components/Project/DetailsWill';
 
 // import {Project} from './src/Project/Project';
 // import {location} from './src/Project/location';
@@ -46,17 +48,70 @@ const InforStack = createStackNavigator({
     screen: InforScreen,
     navigationOptions: navOptionHandler,
   },
-  Policy: {screen: Policy, navigationOptions: navOptionHandler},
-  Personel: {screen: Personel, navigationOptions: navOptionHandler},
-  Ogchart: {screen: Ogchart, navigationOptions: navOptionHandler},
+  Policy: {
+    screen: Policy,
+    navigationOptions: navOptionHandler,
+  },
+  Personel: {
+    screen: Personel,
+    navigationOptions: navOptionHandler,
+  },
+  Ogchart: {
+    screen: Ogchart,
+    navigationOptions: navOptionHandler,
+  },
 });
 
 const NowStack = createStackNavigator({
-  ProjectNow: {screen: ProjectNow, navigationOptions: navOptionHandler},
-  ProjectDetails: {screen: ProjectDetails, navigationOptions: navOptionHandler},
+  ProjectNow: {
+    screen: ProjectNow,
+    navigationOptions: navOptionHandler,
+  },
+  DetailsNow: {
+    screen: DetailsNow,
+    navigationOptions: navOptionHandler,
+  },
+});
+const WasStack = createStackNavigator({
+  ProjectWas: {
+    screen: ProjectWas,
+    navigationOptions: navOptionHandler,
+  },
+  DetailsWas: {
+    screen: DetailsWas,
+    navigationOptions: navOptionHandler,
+  },
+});
+const WillStack = createStackNavigator({
+  ProjectWill: {
+    screen: ProjectWill,
+    navigationOptions: navOptionHandler,
+  },
+  DetailsWill: {
+    screen: DetailsWill,
+    navigationOptions: navOptionHandler,
+  },
 });
 
 NowStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+  };
+};
+WasStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+  };
+};
+WillStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -97,7 +152,7 @@ const options = {
 const Tab = createMaterialTopTabNavigator(
   {
     Was: {
-      screen: ProjectWas,
+      screen: WasStack,
       navigationOptions: {tabBarLabel: 'Đã Triển Khai'},
     },
     Now: {
@@ -105,46 +160,64 @@ const Tab = createMaterialTopTabNavigator(
       navigationOptions: {tabBarLabel: 'Đang Triển Khai'},
     },
     Will: {
-      screen: ProjectWill,
+      screen: WillStack,
       navigationOptions: {tabBarLabel: 'Sắp Triển Khai'},
     },
   },
   options,
 );
 
-const MainApp = createStackNavigator(
-  {
-    LoginScreen: {
-      screen: LoginScreen,
-      navigationOptions: navOptionHandler,
-    },
-    ForgotPassword: {
-      screen: ForgotPassword,
-      navigationOptions: navOptionHandler,
-    },
+Tab.navigationOptions = ({navigation}) => ({});
 
-    HomeScreen: {screen: HomeScreen, navigationOptions: navOptionHandler},
-    Infor: {screen: InforStack, navigationOptions: navOptionHandler},
-    Project: {screen: Tab, navigationOptions: navOptionHandler},
-    // ProjectDetails: ProjectDetails,
-    // Qdctp: Qdctp,
-    // Project: Project,
-    // location: location,
-    // Cdlt: Cdlt,
-    // Bnns: Bnns,
-    // Hdtb: Hdtb,
-    // Lnl: Lnl,
-    // Tq: Tq,
-    // Pl: Pl,
-    // Csbhkh: Csbhkh,
-    // Csbhnv: Csbhnv,
-    // Qc: Qc,
-    // Bg: Bg,
-    // baocao: baocao,
-    // detail: detail,
+const AuthStack = createStackNavigator({
+  LoginScreen: {
+    screen: LoginScreen,
+    navigationOptions: navOptionHandler,
+  },
+  ForgotPassword: {
+    screen: ForgotPassword,
+    navigationOptions: navOptionHandler,
+  },
+});
+
+const MainStack = createStackNavigator({
+  HomeScreen: {
+    screen: HomeScreen,
+    navigationOptions: navOptionHandler,
+  },
+  Infor: {
+    screen: InforStack,
+    navigationOptions: navOptionHandler,
+  },
+  Project: {
+    screen: Tab,
+    navigationOptions: navOptionHandler,
+  },
+  // ProjectDetails: ProjectDetails,
+  // Qdctp: Qdctp,
+  // Project: Project,
+  // location: location,
+  // Cdlt: Cdlt,
+  // Bnns: Bnns,
+  // Hdtb: Hdtb,
+  // Lnl: Lnl,
+  // Tq: Tq,
+  // Pl: Pl,
+  // Csbhkh: Csbhkh,
+  // Csbhnv: Csbhnv,
+  // Qc: Qc,
+  // Bg: Bg,
+  // baocao: baocao,
+  // detail: detail,
+});
+
+const MainApp = createSwitchNavigator(
+  {
+    app: MainStack,
+    auth: AuthStack,
   },
   {
-    initialRouteName: 'LoginScreen',
+    initialRouteName: 'auth',
   },
 );
 

@@ -10,9 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "firebase": "^7.14.0",
+    "firebase": "^7.6.1",
     "react": "16.9.0",
-    "react-native": "^0.62.2",
+    "react-native": "^0.61.5",
     "react-native-config": "^1.0.0",
     "react-native-geocoding": "^0.4.0",
     "react-native-geolocation-service": "^4.0.0",
@@ -40,5 +40,4 @@
   "jest": {
     "preset": "react-native"
   }
- 
 }
