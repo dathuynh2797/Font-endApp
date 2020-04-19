@@ -33,7 +33,7 @@ export class Ogchartbgd extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       bgd: [],
     };
   }
@@ -53,7 +53,7 @@ export class Ogchartbgd extends Component {
 
         this.setState({
           bgd: name,
-          loading: true,
+          loading: false,
         });
       });
     });
@@ -66,8 +66,8 @@ export class Ogchartbgd extends Component {
           renderItem={({item}) => (
             <View style={styles.scene}>
               <View style={styles.items}>
-                <View style={styles.image}>
-                  <Image source={{uri: item.hinhanh}} />
+                <View>
+                  <Image style={styles.image} source={{uri: item.hinhanh}} />
                 </View>
                 <View style={styles.data}>
                   <Text style={styles.title}>Họ tên: {item.ten}</Text>
@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
-    backgroundColor: '#000',
   },
   data: {
     paddingHorizontal: 10,

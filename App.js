@@ -8,6 +8,10 @@ import {InforScreen} from './src/Components/Home/InforScreen';
 import {Policy} from './src/Components/Infor/Policy';
 import {Personel} from './src/Components/Infor/Personel';
 import {Ogchart} from './src/Components/Infor/Ogchart';
+import {Ogchartpns} from './src/Components/Infor/Ogchartpns';
+import {Ogchartptc} from './src/Components/Infor/Ogchartptc';
+import {Ogchartbgd} from './src/Components/Infor/Ogchartbgd';
+import {Ogchartpkd} from './src/Components/Infor/Ogchartpkd';
 import {ForgotPassword} from './src/Components/ForgotPassword';
 
 import {CustomHeader} from './src/Components/CustomHeader';
@@ -21,21 +25,19 @@ import {ProjectWas} from './src/Components/Project/ProjectWas';
 import {ProjectWill} from './src/Components/Project/ProjectWill';
 import {ProjectDetails} from './src/Components/Project/ProjectDetails';
 
-// import {Project} from './src/Project/Project';
-// import {location} from './src/Project/location';
-// import {Qdctp} from './src/pages/Infor/Qdctp';
-// import {Cdlt} from './src/pages/Infor/Cdlt';
-// import {Bnns} from './src/pages/Infor/Bnns';
-// import {Hdtb} from './src/pages/Infor/Hdtb';
-// import {Lnl} from './src/pages/Infor/Lnl';
-// import {Tq} from './src/Project/Tq';
-// import {Pl} from './src/Project/Pl';
-// import {Csbhnv} from './src/Project/Csbhnv';
-// import {Csbhkh} from './src/Project/Csbhkh';
-// import {Qc} from './src/Project/Qc';
-// import {Bg} from './src/Project/Bg';
-// import {baocao} from './src/baocao/baocao';
-// import {detail} from './src/pages/Infor/detail';
+import {location} from './src/Project/location';
+import {Qdctp} from './src/Components/Infor/Qdctp';
+import {Cdlt} from './src/Components/Infor/Cdlt';
+import {Bnns} from './src/Components/Infor/Bnns';
+import {Hdtb} from './src/Components/Infor/Hdtb';
+import {Tq} from './src/Project/Tq';
+import {Pl} from './src/Project/Pl';
+import {Csbhnv} from './src/Project/Csbhnv';
+import {Csbhkh} from './src/Project/Csbhkh';
+import {Qc} from './src/Project/Qc';
+import {Bg} from './src/Project/Bg';
+import {baocao} from './src/baocao/baocao';
+import {detail} from './src/Components/Infor/detail';
 
 const navOptionHandler = () => ({
   header: null,
@@ -126,22 +128,24 @@ const MainApp = createStackNavigator(
     HomeScreen: {screen: HomeScreen, navigationOptions: navOptionHandler},
     Infor: {screen: InforStack, navigationOptions: navOptionHandler},
     Project: {screen: Tab, navigationOptions: navOptionHandler},
-    // ProjectDetails: ProjectDetails,
-    // Qdctp: Qdctp,
-    // Project: Project,
-    // location: location,
-    // Cdlt: Cdlt,
-    // Bnns: Bnns,
-    // Hdtb: Hdtb,
-    // Lnl: Lnl,
-    // Tq: Tq,
-    // Pl: Pl,
-    // Csbhkh: Csbhkh,
-    // Csbhnv: Csbhnv,
-    // Qc: Qc,
-    // Bg: Bg,
-    // baocao: baocao,
-    // detail: detail,
+    ProjectDetails: ProjectDetails,
+    Qdctp: Qdctp,
+    location: location,
+    Cdlt: Cdlt,
+    Bnns: Bnns,
+    Hdtb: Hdtb,
+    Tq: Tq,
+    Pl: Pl,
+    Csbhkh: Csbhkh,
+    Csbhnv: Csbhnv,
+    Qc: Qc,
+    Bg: Bg,
+    baocao: baocao,
+    detail: detail,
+    Ogchartpns: Ogchartpns,
+    Ogchartbgd: Ogchartbgd,
+    Ogchartpkd: Ogchartpkd,
+    Ogchartptc: Ogchartptc,
   },
   {
     initialRouteName: 'LoginScreen',

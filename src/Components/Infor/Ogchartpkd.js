@@ -33,7 +33,7 @@ export class Ogchartpkd extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       bgd: [],
     };
   }
@@ -53,7 +53,7 @@ export class Ogchartpkd extends Component {
 
         this.setState({
           bgd: name,
-          loading: true,
+          loading: false,
         });
       });
     });

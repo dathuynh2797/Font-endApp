@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {StyleSheet, View} from 'react-native';
-import {firebaseApp} from '../pages/config';
+import {firebaseApp} from '../Components/config';
 import 'firebase/firestore';
 
 export class location extends Component {
@@ -9,6 +9,7 @@ export class location extends Component {
     super();
     this.state = {
       markers: [],
+      loading: false,
     };
   }
   componentDidMount() {
@@ -22,6 +23,7 @@ export class location extends Component {
         });
         this.setState({
           markers: marker1,
+          loading: false,
         });
       });
     });

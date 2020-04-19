@@ -26,7 +26,7 @@ export class LoginScreen extends React.Component {
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.navigate('HomeScreen'))
+      .then(() => this.props.navigation.replace('HomeScreen'))
       .catch(error =>
         this.setState({
           errorMessage:
@@ -42,10 +42,6 @@ export class LoginScreen extends React.Component {
   // componentWillUnmount() {
   //   this.backHandler.remove();
   // }
-
-  handleLogout() {
-    return this.props.navigation.navigate('LoginScreen');
-  }
   //
   render() {
     return (

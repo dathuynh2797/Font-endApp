@@ -20,6 +20,7 @@ export class HomeScreen extends Component {
       avatar: [],
     };
   }
+
   signOut() {
     firebaseApp
       .auth()
@@ -47,12 +48,13 @@ export class HomeScreen extends Component {
           });
           this.setState({
             avatar: marker1,
-            loading: true,
+            loading: false,
           });
         }
       });
     });
   }
+
   handleLogout() {
     return this.props.navigation.navigate('LoginScreen');
   }
@@ -105,7 +107,7 @@ export class HomeScreen extends Component {
           <View style={styles.Col}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('Infor');
+                this.props.navigation.navigate('InforScreen');
               }}
               style={styles.Row}>
               <View style={styles.BtnStyle}>
@@ -183,6 +185,7 @@ const styles = StyleSheet.create({
     // marginRight: 5,
   },
   Avatar: {
+    resizeMode: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
     height: 153,

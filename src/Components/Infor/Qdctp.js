@@ -6,8 +6,9 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
-// import {firebaseApp} from './config';
+import {firebaseApp} from '../config';
 const {width: WIDTH} = Dimensions.get('window');
 export class Qdctp extends Component {
   static navigationOptions = ({navigation}) => {
@@ -29,42 +30,57 @@ export class Qdctp extends Component {
       headerTitleAlign: 'center',
     };
   };
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     avatarSource: null,
-  //   };
-  // }
-  // pickImage() {
-  //   const ref = firebaseApp
-  //     .storage()
-  //     .ref('images')
-  //     .child('36aa1e16955e6c00354f.jpg');
-  //   ref.getDownloadURL().then(data => {
-  //     this.setState({
-  //       avatarSource: data,
-  //     });
-  //   });
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      avatarSource: [],
+    };
+  }
+  componentDidMount() {
+    const image = firebaseApp.firestore();
+    image
+      .collection('categories')
+      .where('categoryDetails', '==', 'qlctp')
+      .onSnapshot(querySnapshot => {
+        var anh = [];
+        querySnapshot.forEach(doc => {
+          anh.push({
+            hinh: doc.data().hinh,
+          });
+          this.setState({
+            avatarSource: anh,
+          });
+        });
+      });
+  }
   render() {
     return (
       <View>
         <Text style={styles.headerText}>Quản lý công tác phí </Text>
-        <Image
-          source={require('../../img/CHINHSACHMOITRUONG.jpg')}
-          style={styles.Proflie}
-        />
+        <View>
+          <FlatList
+            style={styles.Proflie}
+            data={this.state.avatarSource}
+            renderItem={({item}) => (
+              <View>
+                <Image style={styles.Proflie} source={{uri: item.hinh}} />
+              </View>
+            )}
+            keyExtractor={item => item.hinh}
+          />
+        </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   Proflie: {
-    width: 395,
-    height: 550,
     // resizeMode: 'contain',
+    flex: 1,
+    width: 350,
+    height: 500,
     alignItems: 'center',
-    marginTop: 30,
+    margin: 20,
   },
   headerText: {
     width: WIDTH - 10,

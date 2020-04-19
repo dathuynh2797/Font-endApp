@@ -9,7 +9,7 @@ export class CustomHeader extends Component {
         <TouchableOpacity
           style={styles.Left}
           onPress={() => navigation.goBack()}>
-          <Image source={require('../img/back.png')} style={styles.IconBack} />
+          <Image source={require('../img/exit.png')} style={styles.IconBack} />
         </TouchableOpacity>
         <View style={styles.Title}>
           <Text style={styles.Text}>{title}</Text>
