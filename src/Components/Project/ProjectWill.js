@@ -32,6 +32,8 @@ export class ProjectWill extends Component {
             vitri: doc.data().supplierLocation,
             hinhanh: doc.data().image,
             hinhanhtq: doc.data().imagetq,
+            latitude: doc.data().latitude,
+            longtitude: doc.data().longtitude,
           });
 
           this.setState({
@@ -53,6 +55,8 @@ export class ProjectWill extends Component {
                   id: item.id,
                   ten: item.ten,
                   hinhanhtq: item.hinhanhtq,
+                  latitude: item.latitude,
+                  longtitude: item.longtitude,
                 });
               }}>
               <View style={styles.items}>

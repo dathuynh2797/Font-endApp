@@ -15,6 +15,8 @@ export class DetailsNow extends Component {
     const {navigation} = this.props;
     const ten = navigation.getParam('ten', 'chưa có dữ liệu');
     const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const latitude = navigation.getParam('latitude', 'chưa có dữ liệu');
+    const longtitude = navigation.getParam('longtitude', 'chưa có dữ liệu');
     return (
       <SafeAreaView style={styles.MenuContainer}>
         <Header title={ten} navigation={navigation} />
@@ -123,7 +125,10 @@ export class DetailsNow extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('location');
+              this.props.navigation.navigate('location', {
+                latitude: latitude,
+                longtitude: longtitude,
+              });
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
