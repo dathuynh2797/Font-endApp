@@ -7,16 +7,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {CustomHeader} from '../CustomHeader';
-
 export class Policy extends Component {
   render() {
     return (
       <SafeAreaView style={styles.MenuContainer}>
-        <CustomHeader
-          title="Chính Sách Công Ty"
-          navigation={this.props.navigation}
-        />
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {

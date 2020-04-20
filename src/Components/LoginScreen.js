@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 import {firebaseApp} from './config';
 import bgImage from '../img/bgLogin.png';
-// import Icon from 'react-native-vector-icons/Ionicons';
 
 const {width: WIDTH} = Dimensions.get('window');
 
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     fontSize: 16,
     paddingLeft: 45,
-    backgroundColor: '#FFFEFE',
+    backgroundColor: 'rgba(255,255,255,0.5)',
     color: 'black',
     marginHorizontal: 25,
   },

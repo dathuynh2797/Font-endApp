@@ -12,7 +12,6 @@ import {firebaseApp} from '../config';
 import 'firebase/firestore';
 import {Table, Row} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
-import {CustomHeader} from '../CustomHeader';
 
 const {width: WIDTH} = Dimensions.get('window');
 //set time out
@@ -95,10 +94,6 @@ export class Personel extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CustomHeader
-          title="Danh Sách Nhân Sự"
-          navigation={this.props.navigation}
-        />
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
         <Table style={styles.borderStyle}>
           <Row

@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
-import {CustomHeader} from '../../Components/CustomHeader';
+import {
+  HeaderLeft,
+  Title,
+  HeaderRight,
+  Header,
+} from '../../Components/CustomHeader';
 export class DetailsNow extends Component {
+  static navigationOption = {
+    header: null,
+  };
   render() {
     const {navigation} = this.props;
-    const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
     const ten = navigation.getParam('ten', 'chưa có dữ liệu');
+    const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
     return (
       <SafeAreaView style={styles.MenuContainer}>
-        <CustomHeader title={ten} navigation={this.props.navigation} />
+        <Header title={ten} navigation={navigation} />
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {

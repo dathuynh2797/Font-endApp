@@ -7,13 +7,9 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import {CustomHeader} from '../CustomHeader';
+import CustomHeader from '../CustomHeader';
 
 export class InforScreen extends Component {
-  static navigationOptions = ({navigation}) => {
-    <CustomHeader title="Xem Thông Tin" navigation={navigation} />;
-  };
-
   render() {
     return (
       <SafeAreaView style={styles.MenuContainer}>

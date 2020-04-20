@@ -14,18 +14,21 @@ import {Ogchartbgd} from './src/Components/Infor/Ogchartbgd';
 import {Ogchartpkd} from './src/Components/Infor/Ogchartpkd';
 import {ForgotPassword} from './src/Components/ForgotPassword';
 
-import {CustomHeader} from './src/Components/CustomHeader';
+import {
+  HeaderRight,
+  Title,
+  HeaderLeft,
+  Header,
+} from './src/Components/CustomHeader';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBar,
 } from 'react-navigation-tabs';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, TouchableOpacity, Image} from 'react-native';
 import {ProjectNow} from './src/Components/Project/ProjectNow';
 import {ProjectWas} from './src/Components/Project/ProjectWas';
 import {ProjectWill} from './src/Components/Project/ProjectWill';
 import {DetailsNow} from './src/Components/Project/DetailsNow';
-import {DetailsWas} from './src/Components/Project/DetailsWas';
-import {DetailsWill} from './src/Components/Project/DetailsWill';
 
 import {location} from './src/Project/location';
 import {Qdctp} from './src/Components/Infor/Qdctp';
@@ -58,22 +61,52 @@ const navOptionHandler = () => ({
   header: null,
 });
 
+const navTabHandler = ({navigation}) => ({
+  headerLeft: () => <HeaderLeft navigation={navigation} />,
+  headerTitle: () => <Title title="Dự án Bất Động Sản" />,
+  headerRight: () => <HeaderRight navigation={navigation} />,
+});
+
 const InforStack = createStackNavigator({
   InforScreen: {
     screen: InforScreen,
-    navigationOptions: navOptionHandler,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Xem Thông Tin" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
   },
   Policy: {
     screen: Policy,
-    navigationOptions: navOptionHandler,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Chính Sách Công Ty" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
   },
   Personel: {
     screen: Personel,
-    navigationOptions: navOptionHandler,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Danh Sách Nhân Sự" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
   },
   Ogchart: {
     screen: Ogchart,
-    navigationOptions: navOptionHandler,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Sơ Đồ Tổ Chức" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
   },
 });
 
@@ -94,7 +127,6 @@ const WasStack = createStackNavigator({
   },
   DetailsWas: {
     screen: DetailsNow,
-    navigationOptions: navOptionHandler,
   },
 });
 const WillStack = createStackNavigator({
@@ -104,7 +136,6 @@ const WillStack = createStackNavigator({
   },
   DetailsWill: {
     screen: DetailsNow,
-    navigationOptions: navOptionHandler,
   },
 });
 
@@ -136,12 +167,12 @@ WillStack.navigationOptions = ({navigation}) => {
   };
 };
 
+DetailsNow.navigationOptions = () => {
+  Tab.navigationOptions = navOptionHandler;
+};
+
 const SafeAreaMaterialTopTabBar = ({...props}) => (
   <SafeAreaView>
-    <CustomHeader
-      title="Dự án Bất Động Sản"
-      // navigation={this.props.navigation}
-    />
     <MaterialTopTabBar
       {...props}
       tabStyle={{
@@ -182,8 +213,6 @@ const Tab = createMaterialTopTabNavigator(
   options,
 );
 
-Tab.navigationOptions = ({navigation}) => ({});
-
 const AuthStack = createStackNavigator({
   LoginScreen: {
     screen: LoginScreen,
@@ -206,7 +235,14 @@ const MainStack = createStackNavigator({
   },
   Project: {
     screen: Tab,
-    navigationOptions: navOptionHandler,
+    // navigationOptions: ({navigation}) => {
+    //   return {
+    //     headerLeft: () => <HeaderLeft navigation={navigation} />,
+    //     headerTitle: () => <Title title="Dự án Bất Động Sản" />,
+    //     headerRight: () => <HeaderRight navigation={navigation} />,
+    //   };
+    // },
+    navigationOptions: navTabHandler,
   },
   // ProjectDetails: ProjectDetails,
   Qdctp: Qdctp,
