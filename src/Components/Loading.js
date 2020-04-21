@@ -4,10 +4,8 @@ import {
   Text,
   ActivityIndicator,
   StyleSheet,
-  TextInput,
   ImageBackground,
   Image,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Dimensions,
 } from 'react-native';

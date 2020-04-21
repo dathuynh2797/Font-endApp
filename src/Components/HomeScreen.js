@@ -85,7 +85,8 @@ export class HomeScreen extends Component {
             data={this.state.avatar}
             renderItem={({item}) => (
               <View>
-                <Text
+                <Text style={styles.TxtAvatar}>Xin chào: {item.ten}</Text>
+                <TouchableOpacity
                   onPress={() => {
                     this.props.navigation.navigate('detail', {
                       id: item.id,
@@ -95,11 +96,9 @@ export class HomeScreen extends Component {
                       hinhanh: item.ava,
                       email: item.email,
                     });
-                  }}
-                  style={styles.TxtAvatar}>
-                  Xin chào: {item.ten}
-                </Text>
-                <Image style={styles.Avatar} source={{uri: item.ava}} />
+                  }}>
+                  <Image style={styles.Avatar} source={{uri: item.ava}} />
+                </TouchableOpacity>
               </View>
             )}
             keyExtractor={(item => item.ten, item => item.ava)}
