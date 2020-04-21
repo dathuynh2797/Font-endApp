@@ -56,7 +56,10 @@ export class HomeScreen extends Component {
   }
 
   handleLogout() {
-    return this.props.navigation.navigate('LoginScreen');
+    firebaseApp
+      .auth()
+      .signOut()
+      .then(() => this.props.navigation.navigate('LoginScreen'));
   }
   render() {
     return (
