@@ -5,6 +5,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {LoginScreen} from './src/Components/LoginScreen';
 import {HomeScreen} from './src/Components/HomeScreen';
 import {InforScreen} from './src/Components/Home/InforScreen';
+import {Loading} from './src/Components/Loading';
 import {Policy} from './src/Components/Infor/Policy';
 import {Personel} from './src/Components/Infor/Personel';
 import {Ogchart} from './src/Components/Infor/Ogchart';
@@ -213,6 +214,10 @@ Tab.navigationOptions = ({}) => ({
 });
 
 const AuthStack = createStackNavigator({
+  Loading: {
+    screen: Loading,
+    navigationOptions: navOptionHandler,
+  },
   LoginScreen: {
     screen: LoginScreen,
     navigationOptions: navOptionHandler,

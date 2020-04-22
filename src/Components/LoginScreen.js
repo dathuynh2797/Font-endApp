@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 import {firebaseApp} from './config';
 import bgImage from '../img/bgLogin.png';
-
 const {width: WIDTH} = Dimensions.get('window');
 
 export class LoginScreen extends React.Component {
@@ -35,6 +34,9 @@ export class LoginScreen extends React.Component {
   };
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false,
+    };
   }
   //xu ly phim back android
 
