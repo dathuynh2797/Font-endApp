@@ -167,10 +167,6 @@ WillStack.navigationOptions = ({navigation}) => {
   };
 };
 
-DetailsNow.navigationOptions = () => {
-  Tab.navigationOptions = navOptionHandler;
-};
-
 const SafeAreaMaterialTopTabBar = ({...props}) => (
   <SafeAreaView>
     <MaterialTopTabBar
@@ -191,7 +187,6 @@ const SafeAreaMaterialTopTabBar = ({...props}) => (
 
 const options = {
   tabBarComponent: props => <SafeAreaMaterialTopTabBar {...props} />,
-  initialRouteName: 'Now',
   tabBarOptions: {upperCaseLabel: false},
 };
 
@@ -212,6 +207,10 @@ const Tab = createMaterialTopTabNavigator(
   },
   options,
 );
+
+Tab.navigationOptions = ({}) => ({
+  headerShown: true,
+});
 
 const AuthStack = createStackNavigator({
   LoginScreen: {
