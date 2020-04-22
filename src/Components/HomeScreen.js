@@ -184,7 +184,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     width: 30,
     height: 30,
-    // marginRight: 5,
+    marginRight: 15,
+    marginTop: 15,
   },
   Avatar: {
     resizeMode: 'stretch',

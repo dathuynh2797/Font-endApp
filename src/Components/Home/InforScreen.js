@@ -7,16 +7,11 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import CustomHeader from '../CustomHeader';
 
 export class InforScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.MenuContainer}>
-        {/* <CustomHeader
-          title="Xem Thông Tin"
-          navigation={this.props.navigation}
-        /> */}
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {

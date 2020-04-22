@@ -15,17 +15,12 @@ import {Ogchartbgd} from './src/Components/Infor/Ogchartbgd';
 import {Ogchartpkd} from './src/Components/Infor/Ogchartpkd';
 import {ForgotPassword} from './src/Components/ForgotPassword';
 
-import {
-  HeaderRight,
-  Title,
-  HeaderLeft,
-  Header,
-} from './src/Components/CustomHeader';
+import {HeaderRight, Title, HeaderLeft} from './src/Components/CustomHeader';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBar,
 } from 'react-navigation-tabs';
-import {SafeAreaView, TouchableOpacity, Image} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {ProjectNow} from './src/Components/Project/ProjectNow';
 import {ProjectWas} from './src/Components/Project/ProjectWas';
 import {ProjectWill} from './src/Components/Project/ProjectWill';
@@ -66,49 +61,6 @@ const navTabHandler = ({navigation}) => ({
   headerLeft: () => <HeaderLeft navigation={navigation} />,
   headerTitle: () => <Title title="Dự án Bất Động Sản" />,
   headerRight: () => <HeaderRight navigation={navigation} />,
-});
-
-const InforStack = createStackNavigator({
-  InforScreen: {
-    screen: InforScreen,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Xem Thông Tin" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
-  Policy: {
-    screen: Policy,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Chính Sách Công Ty" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
-  Personel: {
-    screen: Personel,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Danh Sách Nhân Sự" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
-  Ogchart: {
-    screen: Ogchart,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Sơ Đồ Tổ Chức" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
 });
 
 const NowStack = createStackNavigator({
@@ -209,9 +161,9 @@ const Tab = createMaterialTopTabNavigator(
   options,
 );
 
-Tab.navigationOptions = ({}) => ({
-  headerShown: true,
-});
+// Tab.navigationOptions = ({}) => ({
+//   headerShown: true,
+// });
 
 const AuthStack = createStackNavigator({
   Loading: {
@@ -233,18 +185,56 @@ const MainStack = createStackNavigator({
     screen: HomeScreen,
     navigationOptions: navOptionHandler,
   },
-  Infor: {
-    screen: InforStack,
-    navigationOptions: navOptionHandler,
+
+  InforScreen: {
+    screen: InforScreen,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Xem Thông Tin" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
   },
+  Policy: {
+    screen: Policy,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Chính Sách Công Ty" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Personel: {
+    screen: Personel,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Danh Sách Nhân Sự" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Ogchart: {
+    screen: Ogchart,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Sơ Đồ Tổ Chức" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+
   Project: {
     screen: Tab,
     // navigationOptions: ({navigation}) => {
-    //   return {
-    //     headerLeft: () => <HeaderLeft navigation={navigation} />,
-    //     headerTitle: () => <Title title="Dự án Bất Động Sản" />,
-    //     headerRight: () => <HeaderRight navigation={navigation} />,
-    //   };
+    // return {
+    //   headerLeft: () => <HeaderLeft navigation={navigation} />,
+    //   headerTitle: () => <Title title="Dự án Bất Động Sản" />,
+    //   headerRight: () => <HeaderRight navigation={navigation} />,
+    // };
     // },
     navigationOptions: navTabHandler,
   },
