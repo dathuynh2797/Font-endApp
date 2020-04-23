@@ -139,7 +139,11 @@ export class HomeScreen extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.Col}>
-            <TouchableOpacity style={styles.Row}>
+            <TouchableOpacity
+              style={styles.Row}
+              onPress={() => {
+                this.props.navigation.navigate('baocao');
+              }}>
               <View style={styles.BtnStyle}>
                 <Image
                   source={require('../img/chart.png')}
@@ -147,7 +151,7 @@ export class HomeScreen extends Component {
                 />
               </View>
               <View>
-                <Text style={styles.Text}>Báo cáo - thông kê</Text>
+                <Text style={styles.Text}>Báo cáo - Thống kê</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.Row}>
@@ -182,9 +186,7 @@ const styles = StyleSheet.create({
   },
   btnLogut: {
     alignSelf: 'flex-end',
-    width: 30,
-    height: 30,
-    marginRight: 15,
+    marginRight: 10,
     marginTop: 15,
   },
   Avatar: {
@@ -246,12 +248,12 @@ const styles = StyleSheet.create({
     width: 50,
   },
   Text: {
-    fontStyle: 'normal',
+    // fontStyle: 'normal',
     fontFamily: 'Roboto',
-    fontWeight: '500',
-    fontSize: 20,
+    fontWeight: '700',
+    fontSize: 18,
     lineHeight: 25,
     textAlign: 'center',
-    padding: 10,
+    padding: 5,
   },
 });

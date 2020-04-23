@@ -25,7 +25,10 @@ export class InforScreen extends Component {
                 />
               </View>
               <Text style={styles.Text}>Chính sách công ty</Text>
-              <Text />
+              <Image
+                source={require('../../img/rightArrow.png')}
+                style={styles.Iconmove}
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -42,7 +45,10 @@ export class InforScreen extends Component {
                 />
               </View>
               <Text style={styles.Text}>Nhân sự</Text>
-              <Text />
+              <Image
+                source={require('../../img/rightArrow.png')}
+                style={styles.Iconmove}
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -50,17 +56,21 @@ export class InforScreen extends Component {
           <TouchableOpacity
             onPress={() => {
               this.props.navigation.navigate('Ogchart');
-            }}>
-            <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
-                <Image
-                  source={require('../../img/Inforicon/ogchart.png')}
-                  style={styles.Icon}
-                />
-              </View>
-              <Text style={styles.Text}>Sơ đồ tổ chức</Text>
-              <Text />
+            }}
+            style={styles.TabMenu}>
+            {/* <View style={styles.TabMenu}> */}
+            <View style={styles.Iconstyle}>
+              <Image
+                source={require('../../img/Inforicon/ogchart.png')}
+                style={styles.Icon}
+              />
             </View>
+            <Text style={styles.Text}>Sơ đồ tổ chức</Text>
+            <Image
+              source={require('../../img/rightArrow.png')}
+              style={styles.Iconmove}
+            />
+            {/* </View> */}
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -71,14 +81,8 @@ export class InforScreen extends Component {
 const styles = StyleSheet.create({
   MenuContainer: {
     flex: 1,
-    //justifyContent: 'center',
-    //flexDirection: 'column',
-    //alignItems: 'center',
-    //backgroundColor: 'grey',
   },
   Col: {
-    //flex: 1,
-    //flexDirection: 'row',
     height: 70,
     margin: 1,
     padding: 10,
@@ -88,43 +92,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   TabMenu: {
-    justifyContent: 'space-between',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  iconBack: {
-    width: 30,
-    height: 30,
   },
   Iconstyle: {
-    justifyContent: 'space-around',
-    alignItems: 'center',
     borderRadius: 50,
-    borderWidth: 1,
     height: 50,
     width: 50,
     backgroundColor: 'white',
-    // shadowColor: '#000',
-    // shadowOffset: {width: 0, height: 2},
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // elevation: 1,
+  },
+  Iconmove: {
+    marginTop: 10,
   },
   Icon: {
     height: 50,
     width: 50,
   },
   Text: {
+    flex: 3,
     color: 'white',
-    fontStyle: 'normal',
-    // fontFamily: 'Roboto',
-    fontWeight: '900',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
     fontSize: 20,
     lineHeight: 23,
     alignSelf: 'center',
-  },
-  btnGo: {
-    //color: 'white',
-    fontSize: 18,
+    marginLeft: 30,
   },
 });

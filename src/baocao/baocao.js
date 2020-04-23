@@ -1,22 +1,14 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
+import {Title, HeaderRight, HeaderLeft} from '../Components/CustomHeader';
 
 export class baocao extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'BÁO CÁO - THỐNG KÊ',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image source={require('../img/exit.png')} style={styles.iconBack} />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
+      headerLeft: () => <HeaderLeft navigation={navigation} />,
+      headerTitle: () => <Title title="Báo Cáo" />,
+      headerRight: () => <HeaderRight navigation={navigation} />,
     };
   };
 
@@ -31,12 +23,15 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../img/Inforicon/policy.png')}
+                  source={require('../img/Reporticon/saleresults.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>Kết quả kinh doanh tuần</Text>
-              <Text />
+              <Image
+                source={require('../img/rightArrow.png')}
+                style={styles.Iconmove}
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -48,12 +43,15 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../img/Inforicon/policy.png')}
+                  source={require('../img/Reporticon/chart.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>Đồ thị kết quả kinh doanh</Text>
-              <Text />
+              <Image
+                source={require('../img/rightArrow.png')}
+                style={styles.Iconmove}
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -65,12 +63,15 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../img/Inforicon/policy.png')}
+                  source={require('../img/Reporticon/chart2.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>So sánh kết quả kinh doanh</Text>
-              <Text />
+              <Image
+                source={require('../img/rightArrow.png')}
+                style={styles.Iconmove}
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -82,14 +83,8 @@ export class baocao extends Component {
 const styles = StyleSheet.create({
   MenuContainer: {
     flex: 1,
-    //justifyContent: 'center',
-    //flexDirection: 'column',
-    //alignItems: 'center',
-    //backgroundColor: 'grey',
   },
   Col: {
-    //flex: 1,
-    //flexDirection: 'row',
     height: 70,
     margin: 1,
     padding: 10,
@@ -99,43 +94,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   TabMenu: {
-    justifyContent: 'space-between',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  iconBack: {
-    width: 30,
-    height: 30,
   },
   Iconstyle: {
-    justifyContent: 'space-around',
-    alignItems: 'center',
     borderRadius: 50,
-    borderWidth: 1,
     height: 50,
     width: 50,
     backgroundColor: 'white',
-    // shadowColor: '#000',
-    // shadowOffset: {width: 0, height: 2},
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // elevation: 1,
+  },
+  Iconmove: {
+    marginTop: 10,
   },
   Icon: {
     height: 50,
     width: 50,
   },
   Text: {
+    flex: 3,
     color: 'white',
-    fontStyle: 'normal',
-    // fontFamily: 'Roboto',
-    fontWeight: '900',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
     fontSize: 20,
     lineHeight: 23,
     alignSelf: 'center',
-  },
-  btnGo: {
-    //color: 'white',
-    fontSize: 18,
+    marginLeft: 30,
   },
 });
