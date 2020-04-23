@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -6,11 +7,10 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  Image,
 } from 'react-native';
 import {firebaseApp} from '../config';
 import 'firebase/firestore';
-import {Table, Row} from 'react-native-table-component';
+import {Table, Row, Cols, Rows} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
 
 const {width: WIDTH} = Dimensions.get('window');
@@ -66,7 +66,6 @@ export class Personel extends Component {
       loading: true,
       tableHead: ['Tên', 'Năm sinh', 'Số điện thoại'],
       tableData: [],
-      tableData1: [],
     };
   }
 
@@ -93,49 +92,46 @@ export class Personel extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
-        <Table style={styles.borderStyle}>
-          <Row
-            data={this.state.tableHead}
-            style={styles.head}
-            textStyle={styles.text}
-          />
-        </Table>
-        <View style={styles.ngang}>
-          <FlatList
-            data={this.state.tableData}
-            renderItem={({item}) => (
-              <View>
-                <View style={styles.ngang}>
-                  <Text
-                    style={styles.data}
-                    onPress={() => {
-                      this.props.navigation.navigate('detail', {
-                        id: item.id,
-                        ten: item.ten,
-                        sdt: item.sdt,
-                        namsinh: item.namsinh,
-                        hinhanh: item.hinhanh,
-                      });
-                    }}>
-                    {item.ten}
-                  </Text>
-                  <Text style={styles.data}>{item.namsinh}</Text>
-                  <Text style={styles.data}>{item.sdt}</Text>
-                </View>
-              </View>
-            )}
-            keyExtractor={item => item.ten}
-          />
+        <View style={styles.container}>
+          <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+            <Row
+              data={this.state.tableHead}
+              style={styles.head}
+              textStyle={styles.text}
+            />
+            <FlatList
+              data={this.state.tableData}
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    this.props.navigation.navigate('detail', {
+                      id: item.id,
+                      ten: item.ten,
+                      sdt: item.sdt,
+                      namsinh: item.namsinh,
+                      hinhanh: item.hinhanh,
+                    });
+                  }}>
+                  <Cols
+                    data={[[item.ten], [item.namsinh], [item.sdt]]}
+                    textStyle={styles.text}
+                    // style={styles.boder}
+                  />
+                  {/* keyExtractor={item => item.ten} */}
+                </TouchableOpacity>
+              )}
+            />
+          </Table>
         </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {flex: 1, padding: 16, paddingTop: 30, backgroundColor: 'white'},
-  head: {height: 40, backgroundColor: '#f1f8ff', borderWidth: 1.5},
+  container: {padding: 16, paddingTop: 30, backgroundColor: 'white'},
+  head: {height: 40, backgroundColor: '#f1f8ff'},
   text: {margin: 10},
   headerText: {
     width: WIDTH - 10,
@@ -145,16 +141,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25,
     color: '#2D389C',
+    marginTop: 20,
   },
   iconBack: {
     width: 30,
     height: 30,
   },
-  ngang: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  data: {
-    padding: 8,
+  boder: {
+    // borderLeftWidth: 1.25,
+    // borderBottomWidth: 1,
+    // borderRightWidth: 1,
+    // borderColor: 'grey',
   },
 });
