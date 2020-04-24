@@ -101,6 +101,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   Iconmove: {
+    height: 20,
+    width: 20,
     marginTop: 10,
   },
   Icon: {

@@ -96,11 +96,13 @@ export class Personel extends Component {
       <View>
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
         <View style={styles.container}>
-          <Table style={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+          <Table>
             <Row
               data={this.state.tableHead}
               style={styles.head}
               textStyle={styles.text}
+              borderStyle={{borderWidth: 1, borderColor: '#000'}}
+              flexArr={[1.5, 1, 1]}
             />
 
             <FlatList
@@ -116,13 +118,13 @@ export class Personel extends Component {
                       hinhanh: item.hinhanh,
                     });
                   }}>
-                  <ScrollView horizontal={true}>
-                    <Cols
-                      data={[[item.ten], [item.namsinh], [item.sdt]]}
-                      textStyle={styles.text}
-                      // style={styles.boder}
-                    />
-                  </ScrollView>
+                  <Cols
+                    data={[[item.ten], [item.namsinh], [item.sdt]]}
+                    textStyle={styles.text}
+                    style={styles.boder}
+                    borderStyle={{borderWidth: 1, borderColor: '#000'}}
+                    flexArr={[1.5, 1, 1]}
+                  />
                   {/* keyExtractor={item => item.ten} */}
                 </TouchableOpacity>
               )}
@@ -134,9 +136,19 @@ export class Personel extends Component {
   }
 }
 const styles = StyleSheet.create({
-  container: {padding: 16, paddingTop: 30, backgroundColor: 'white'},
-  head: {height: 40, backgroundColor: '#f1f8ff'},
-  text: {margin: 10},
+  container: {
+    padding: 10,
+    paddingTop: 30,
+    backgroundColor: 'white',
+  },
+  head: {
+    height: 40,
+    backgroundColor: '#1787AB',
+  },
+  text: {
+    margin: 10,
+    // alignSelf: 'center',
+  },
   headerText: {
     width: WIDTH - 10,
     textAlign: 'center',
@@ -146,15 +158,5 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#2D389C',
     marginTop: 20,
-  },
-  iconBack: {
-    width: 30,
-    height: 30,
-  },
-  boder: {
-    // borderLeftWidth: 1.25,
-    // borderBottomWidth: 1,
-    // borderRightWidth: 1,
-    // borderColor: 'grey',
   },
 });
