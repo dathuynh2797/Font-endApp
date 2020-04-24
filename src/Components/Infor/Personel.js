@@ -12,6 +12,7 @@ import {firebaseApp} from '../config';
 import 'firebase/firestore';
 import {Table, Row, Cols, Rows} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const {width: WIDTH} = Dimensions.get('window');
 //set time out
@@ -95,12 +96,13 @@ export class Personel extends Component {
       <View>
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
         <View style={styles.container}>
-          <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+          <Table style={{borderWidth: 2, borderColor: '#c8e1ff'}}>
             <Row
               data={this.state.tableHead}
               style={styles.head}
               textStyle={styles.text}
             />
+
             <FlatList
               data={this.state.tableData}
               renderItem={({item}) => (
@@ -114,11 +116,13 @@ export class Personel extends Component {
                       hinhanh: item.hinhanh,
                     });
                   }}>
-                  <Cols
-                    data={[[item.ten], [item.namsinh], [item.sdt]]}
-                    textStyle={styles.text}
-                    // style={styles.boder}
-                  />
+                  <ScrollView horizontal={true}>
+                    <Cols
+                      data={[[item.ten], [item.namsinh], [item.sdt]]}
+                      textStyle={styles.text}
+                      // style={styles.boder}
+                    />
+                  </ScrollView>
                   {/* keyExtractor={item => item.ten} */}
                 </TouchableOpacity>
               )}
