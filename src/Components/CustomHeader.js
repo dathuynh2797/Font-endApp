@@ -11,8 +11,7 @@ function Title({title}) {
 
 function HeaderRight({navigation}) {
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
+    <TouchableOpacity onPress={() => navigation.popToTop()}>
       <Image source={require('../img/exit.png')} style={styles.IconExit} />
     </TouchableOpacity>
   );

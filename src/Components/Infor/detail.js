@@ -2,34 +2,22 @@
 import React, {Component} from 'react';
 import {
   Text,
-  FlatList,
-  TouchableOpacity,
   View,
   StyleSheet,
   Dimensions,
   Image,
+  ImageBackground,
 } from 'react-native';
 import 'firebase/firestore';
-const {width: WIDTH} = Dimensions.get('window');
+import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
+import bgAva from '../../img/bgAva.png';
 
 export class detail extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'THÔNG TIN CHI TIẾT',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image
-            source={require('../../img/exit.png')}
-            style={styles.iconBack}
-          />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
+      headerLeft: () => <HeaderLeft navigation={navigation} />,
+      headerTitle: () => <Title title="Hồ sơ cá nhân" />,
+      headerRight: () => <HeaderRight navigation={navigation} />,
     };
   };
   render() {
@@ -42,67 +30,91 @@ export class detail extends Component {
     const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
     const phong = navigation.getParam('phong', 'chưa có dữ liệu');
     return (
-      <View>
-        <Image
-          source={{
-            uri: hinhanh,
-          }}
-          style={{
-            marginLeft: 10,
-            alignItems: 'center',
-            width: 150,
-            height: 150,
-          }}
-        />
-        <Text>Họ tên: {ten}</Text>
-        <Text>Sinh nhật: {namsinh}</Text>
-        <Text>Số điện thoại: {sdt}</Text>
-        <Text>Email: {email}</Text>
-        <Text>Nhóm: {nhom}</Text>
-        <Text>Phòng: {phong}</Text>
-        {/* <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('Tq', {
-              hinhanh: hinhanh,
-            });
-          }}>
-          <View style={styles.TabMenu}>
-            <View style={styles.Iconstyle}>
-              <Image
-                source={{
-                  uri: hinhanh,
-                }}
-                style={styles.Icon}
-              />
-            </View>
-            <Text style={styles.Text}>Tổng quan</Text>
-            <Text />
+      <View style={{flex: 1}}>
+        <View style={{flex: 1 / 3}}>
+          <ImageBackground style={styles.Top} source={bgAva}>
+            <Image
+              source={{
+                uri: hinhanh,
+              }}
+              style={styles.AvatarImg}
+            />
+            <Text style={styles.AvatarTxt}>{ten}</Text>
+          </ImageBackground>
+        </View>
+        <View style={styles.Content}>
+          <View style={styles.Item}>
+            <Image source={require('../..//img/Profile/birthday.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Sinh nhật: {namsinh}</Text>
           </View>
-        </TouchableOpacity> */}
+          <View style={styles.Item}>
+            <Image source={require('../..//img/Profile/phone.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Số điện thoại: {sdt}</Text>
+          </View>
+          <View style={styles.Item}>
+            <Image source={require('../..//img/Profile/mail.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Email: {email}</Text>
+          </View>
+          <View style={styles.Item}>
+            <Image source={require('../..//img/Profile/team.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Nhóm: {nhom}</Text>
+          </View>
+          <View style={styles.Item}>
+            <Image source={require('../..//img/Profile/department.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Phòng: {phong}</Text>
+          </View>
+        </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {flex: 1, padding: 16, paddingTop: 30, backgroundColor: 'white'},
-  head: {height: 40, backgroundColor: '#f1f8ff', borderWidth: 1.5},
-  text: {margin: 10},
-  headerText: {
-    width: WIDTH - 10,
-    textAlign: 'center',
-    flexWrap: 'wrap',
-    lineHeight: 35,
+  Top: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  AvatarImg: {
+    width: 150,
+    height: 150,
+    borderRadius: 100,
+  },
+  AvatarTxt: {
+    fontSize: 18,
     fontWeight: 'bold',
-    fontSize: 25,
-    color: '#2D389C',
+    marginTop: 20,
   },
-  iconBack: {
-    width: 30,
-    height: 30,
+  Content: {
+    flex: 2 / 3,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  ngang: {
-    flex: 1,
+  Item: {
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+    borderRadius: 4,
+    padding: 10,
+    width: '90%',
     flexDirection: 'row',
-    borderWidth: 1.5,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  HorizonLine: {
+    borderWidth: 1,
+    height: '100%',
+    marginHorizontal: 10,
   },
 });

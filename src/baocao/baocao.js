@@ -18,19 +18,19 @@ export class baocao extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Tq');
+              this.props.navigation.navigate('SaleResultWeek');
             }}>
             <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
+              <View style={styles.IconStyle}>
                 <Image
-                  source={require('../img/Reporticon/saleresults.png')}
+                  source={require('../img/ReportIcon/saleresults.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>Kết quả kinh doanh tuần</Text>
               <Image
                 source={require('../img/rightArrow.png')}
-                style={styles.Iconmove}
+                style={styles.IconMove}
               />
             </View>
           </TouchableOpacity>
@@ -41,16 +41,16 @@ export class baocao extends Component {
               this.props.navigation.navigate('Pl');
             }}>
             <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
+              <View style={styles.IconStyle}>
                 <Image
-                  source={require('../img/Reporticon/chart.png')}
+                  source={require('../img/ReportIcon/chart.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>Đồ thị kết quả kinh doanh</Text>
               <Image
                 source={require('../img/rightArrow.png')}
-                style={styles.Iconmove}
+                style={styles.IconMove}
               />
             </View>
           </TouchableOpacity>
@@ -61,16 +61,16 @@ export class baocao extends Component {
               this.props.navigation.navigate('Bg');
             }}>
             <View style={styles.TabMenu}>
-              <View style={styles.Iconstyle}>
+              <View style={styles.IconStyle}>
                 <Image
-                  source={require('../img/Reporticon/chart2.png')}
+                  source={require('../img/ReportIcon/chart2.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>So sánh kết quả kinh doanh</Text>
               <Image
                 source={require('../img/rightArrow.png')}
-                style={styles.Iconmove}
+                style={styles.IconMove}
               />
             </View>
           </TouchableOpacity>
@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
   TabMenu: {
     flexDirection: 'row',
   },
-  Iconstyle: {
+  IconStyle: {
     borderRadius: 50,
     height: 50,
     width: 50,
     backgroundColor: 'white',
   },
-  Iconmove: {
+  IconMove: {
     height: 20,
     width: 20,
     marginTop: 10,

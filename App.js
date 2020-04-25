@@ -26,6 +26,8 @@ import {ProjectWas} from './src/Components/Project/ProjectWas';
 import {ProjectWill} from './src/Components/Project/ProjectWill';
 import {DetailsNow} from './src/Components/Project/DetailsNow';
 
+import {SaleResultWeek} from './src/baocao/SaleResultWeek';
+
 import {location} from './src/Project/location';
 import {Qdctp} from './src/Components/Infor/Qdctp';
 import {Lnl} from './src/Components/Infor/Lnl';
@@ -161,10 +163,6 @@ const Tab = createMaterialTopTabNavigator(
   options,
 );
 
-// Tab.navigationOptions = ({}) => ({
-//   headerShown: true,
-// });
-
 const AuthStack = createStackNavigator({
   Loading: {
     screen: Loading,
@@ -258,6 +256,7 @@ const MainStack = createStackNavigator({
   Ogchartpkd: Ogchartpkd,
   Ogchartptc: Ogchartptc,
   Ogchartbgd: Ogchartbgd,
+  SaleResultWeek: SaleResultWeek,
 });
 
 const MainApp = createSwitchNavigator(

@@ -64,9 +64,9 @@ export class HomeScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.body}>
-        <ImageBackground style={styles.Proflie} source={bgImage}>
+        <ImageBackground style={styles.Profile} source={bgImage}>
           <TouchableOpacity
-            style={styles.btnLogut}
+            style={styles.btnLogOut}
             onPress={() => {
               Alert.alert(
                 'Đăng xuất',
@@ -87,6 +87,7 @@ export class HomeScreen extends Component {
               <View>
                 <Text style={styles.TxtAvatar}>Xin chào: {item.ten}</Text>
                 <TouchableOpacity
+                  style={styles.Ava}
                   onPress={() => {
                     this.props.navigation.navigate('detail', {
                       id: item.id,
@@ -178,24 +179,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f1f1f1',
   },
-  Proflie: {
+  Profile: {
     flex: 1 / 2,
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'grey',
   },
-  btnLogut: {
+  btnLogOut: {
     alignSelf: 'flex-end',
     marginRight: 10,
     marginTop: 15,
   },
-  Avatar: {
-    resizeMode: 'stretch',
+  Ava: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 153,
-    width: 250,
+  },
+  Avatar: {
+    resizeMode: 'stretch',
+    height: 200,
+    width: 200,
+    borderRadius: 100,
     borderWidth: 1,
+    marginTop: 20,
   },
   TxtAvatar: {
     color: '#FFFFFF',
