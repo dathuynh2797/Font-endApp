@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
-import {Title, HeaderRight, HeaderLeft} from '../Components/CustomHeader';
+import {Title, HeaderRight, HeaderLeft} from '../CustomHeader';
 
 export class baocao extends Component {
   static navigationOptions = ({navigation}) => {
@@ -23,13 +23,13 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.IconStyle}>
                 <Image
-                  source={require('../img/ReportIcon/saleresults.png')}
+                  source={require('../../img/ReportIcon/saleresults.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>Kết quả kinh doanh tuần</Text>
               <Image
-                source={require('../img/rightArrow.png')}
+                source={require('../../img/rightArrow.png')}
                 style={styles.IconMove}
               />
             </View>
@@ -38,18 +38,18 @@ export class baocao extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Pl');
+              this.props.navigation.navigate('BusinessResult');
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.IconStyle}>
                 <Image
-                  source={require('../img/ReportIcon/chart.png')}
+                  source={require('../../img/ReportIcon/chart.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>Đồ thị kết quả kinh doanh</Text>
               <Image
-                source={require('../img/rightArrow.png')}
+                source={require('../../img/rightArrow.png')}
                 style={styles.IconMove}
               />
             </View>
@@ -63,13 +63,13 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.IconStyle}>
                 <Image
-                  source={require('../img/ReportIcon/chart2.png')}
+                  source={require('../../img/ReportIcon/chart2.png')}
                   style={styles.Icon}
                 />
               </View>
               <Text style={styles.Text}>So sánh kết quả kinh doanh</Text>
               <Image
-                source={require('../img/rightArrow.png')}
+                source={require('../../img/rightArrow.png')}
                 style={styles.IconMove}
               />
             </View>

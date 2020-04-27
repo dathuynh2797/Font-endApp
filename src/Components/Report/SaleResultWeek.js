@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
-import {HeaderLeft, HeaderRight, Title} from '../Components/CustomHeader';
+import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import {createAppContainer} from 'react-navigation';
 import {PersonalResult} from './PersonalResult';
 

@@ -26,7 +26,8 @@ import {ProjectWas} from './src/Components/Project/ProjectWas';
 import {ProjectWill} from './src/Components/Project/ProjectWill';
 import {DetailsNow} from './src/Components/Project/DetailsNow';
 
-import {SaleResultWeek} from './src/baocao/SaleResultWeek';
+import {SaleResultWeek} from './src/Components/Report/SaleResultWeek';
+import {BusinessResult} from './src/Components/Report/BusinessResult';
 
 import {location} from './src/Project/location';
 import {Qdctp} from './src/Components/Infor/Qdctp';
@@ -40,7 +41,7 @@ import {Csbhnv} from './src/Project/Csbhnv';
 import {Csbhkh} from './src/Project/Csbhkh';
 import {Qc} from './src/Project/Qc';
 import {Bg} from './src/Project/Bg';
-import {baocao} from './src/baocao/baocao';
+import {baocao} from './src/Components/Report/baocao';
 import {detail} from './src/Components/Infor/detail';
 // import {Platform} from 'react-native';
 // import {decode, encode} from 'base-64';
@@ -257,6 +258,7 @@ const MainStack = createStackNavigator({
   Ogchartptc: Ogchartptc,
   Ogchartbgd: Ogchartbgd,
   SaleResultWeek: SaleResultWeek,
+  BusinessResult: BusinessResult,
 });
 
 const MainApp = createSwitchNavigator(

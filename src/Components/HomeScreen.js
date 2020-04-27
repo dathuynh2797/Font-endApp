@@ -195,8 +195,8 @@ const styles = StyleSheet.create({
   },
   Avatar: {
     resizeMode: 'stretch',
-    height: 200,
-    width: 200,
+    height: 150,
+    width: 150,
     borderRadius: 100,
     borderWidth: 1,
     marginTop: 20,
