@@ -51,7 +51,7 @@ function Second() {
 function Third() {
   return (
     <View>
-      <Text> textInComponent </Text>
+      <Text> Hello </Text>
     </View>
   );
 }
