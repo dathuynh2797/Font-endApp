@@ -4,6 +4,7 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {LoginScreen} from './src/Components/LoginScreen';
 import {HomeScreen} from './src/Components/HomeScreen';
+import {Home} from './src/Components/Home';
 import {InforScreen} from './src/Components/Home/InforScreen';
 import {Loading} from './src/Components/Loading';
 import {Policy} from './src/Components/Infor/Policy';
@@ -67,7 +68,7 @@ const MainStack = createStackNavigator({
     navigationOptions: navOptionHandler,
   },
 
-  InforScreen: {
+  InfoScreen: {
     screen: InforScreen,
     navigationOptions: ({navigation}) => {
       return {
@@ -163,6 +164,10 @@ const MainStack = createStackNavigator({
   Ogchartpkd: Ogchartpkd,
   Ogchartptc: Ogchartptc,
   Ogchartbgd: Ogchartbgd,
+  Home: {
+    screen: Home,
+    navigationOptions: navOptionHandler,
+  },
 });
 
 const MainApp = createSwitchNavigator(
