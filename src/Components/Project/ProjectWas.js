@@ -30,7 +30,7 @@ export class ProjectWas extends Component {
             ten: doc.data().supplierNames,
             gia: doc.data().cost,
             vitri: doc.data().supplierLocation,
-            hinhanh: doc.data().image,
+            hinhanh: doc.data().supplierProfile[0].publicUrl,
             hinhanhtq: doc.data().imagetq,
           });
 

@@ -7,10 +7,12 @@ import {
   View,
   StyleSheet,
   Dimensions,
+  TextInput,
+  Image,
 } from 'react-native';
 import {firebaseApp} from '../config';
 import 'firebase/firestore';
-import {Table, Row, Cols, Rows} from 'react-native-table-component';
+import {Table, Row, Cols} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -59,7 +61,6 @@ if (Platform.OS === 'android') {
     _clearTimeout(id);
   };
 }
-
 export class Personel extends Component {
   constructor(props) {
     super(props);
@@ -67,9 +68,9 @@ export class Personel extends Component {
       loading: true,
       tableHead: ['Tên', 'Năm sinh', 'Số điện thoại'],
       tableData: [],
+      text: '',
     };
   }
-
   componentDidMount() {
     const abc = firebaseApp.firestore();
     abc.collection('staff').onSnapshot(querySnapshot => {
@@ -80,21 +81,42 @@ export class Personel extends Component {
           ten: doc.data().staffNames,
           sdt: doc.data().staffPhoneNumber,
           namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().hinhanh,
+          hinhanh: doc.data().staffProfile[0].publicUrl,
         });
 
         this.setState({
-          tableData: name,
+          tableData: name.sort((a, b) => {
+            return a.ten > b.ten;
+          }),
           loading: true,
         });
       });
     });
   }
-
+  filterSearch(text) {
+    var newdata = this.state.tableData.filter(function(item) {
+      var itemData = item.ten.toUppwerCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      tableData: newdata,
+      text: text,
+    });
+  }
   render() {
     return (
       <View>
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
+        <View style={{paddingHorizontal: 20, height: 40}}>
+          <TextInput
+            placeholder="Tìm kiếm"
+            placeholderTextColor="black"
+            style={styles.seachbar}
+            onChangeText={text => this.filterSearch(text)}
+            value={this.state.text}
+          />
+        </View>
         <View style={styles.container}>
           <Table>
             <Row
@@ -104,7 +126,6 @@ export class Personel extends Component {
               borderStyle={{borderWidth: 1, borderColor: '#000'}}
               flexArr={[1.5, 1, 1]}
             />
-
             <FlatList
               data={this.state.tableData}
               renderItem={({item}) => (
@@ -138,7 +159,7 @@ export class Personel extends Component {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    paddingTop: 30,
+    paddingTop: 5,
     backgroundColor: 'white',
   },
   head: {
@@ -157,6 +178,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25,
     color: '#2D389C',
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  seachbar: {
+    backgroundColor: 'rgba(78, 158, 237, 0.12)',
+    borderRadius: 30,
+    paddingLeft: 50,
   },
 });

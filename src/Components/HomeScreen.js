@@ -197,9 +197,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Avatar: {
-    resizeMode: 'stretch',
-    height: 150,
-    width: 150,
+    // resizeMode: 'cover',
+    height: 130,
+    width: 130,
     borderRadius: 100,
     borderWidth: 1,
     marginTop: 20,

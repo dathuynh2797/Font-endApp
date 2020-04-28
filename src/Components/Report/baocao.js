@@ -23,7 +23,7 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.IconStyle}>
                 <Image
-                  source={require('../../img/ReportIcon/saleresults.png')}
+                  // source={require('../../img/ReportIcon/saleresults.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -43,7 +43,7 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.IconStyle}>
                 <Image
-                  source={require('../../img/ReportIcon/chart.png')}
+                  // source={require('../../img/ReportIcon/chart.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -63,7 +63,7 @@ export class baocao extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.IconStyle}>
                 <Image
-                  source={require('../../img/ReportIcon/chart2.png')}
+                  // source={require('../../img/ReportIcon/chart2.png')}
                   style={styles.Icon}
                 />
               </View>
