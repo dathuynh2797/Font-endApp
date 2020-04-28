@@ -56,17 +56,6 @@ function Third() {
   );
 }
 
-export class SaleResultWeek extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      headerLeft: () => <HeaderLeft navigation={navigation} />,
-      headerTitle: () => <Title title="Kết quả kinh doanh tuần" />,
-      headerRight: () => <HeaderRight navigation={navigation} />,
-    };
-  };
-  render() {
-    return <SaleStack />;
-  }
-}
+const SaleResultWeek = createAppContainer(SaleTab);
 
-const SaleStack = createAppContainer(SaleTab);
+export {SaleResultWeek};

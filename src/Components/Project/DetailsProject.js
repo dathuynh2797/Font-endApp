@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
-import {Header} from '../../Components/CustomHeader';
+import {Header} from '../CustomHeader';
 
-export class DetailsNow extends Component {
+export class DetailsProject extends Component {
   static navigationOption = {
     header: null,
   };

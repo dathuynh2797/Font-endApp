@@ -9,9 +9,12 @@ import {
   ImageBackground,
   SafeAreaView,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import bgImage from '../img/bgprofile.png';
 import {firebaseApp} from './config';
+
+const {width: W, height: H} = Dimensions.get('window');
 
 export class HomeScreen extends Component {
   constructor() {

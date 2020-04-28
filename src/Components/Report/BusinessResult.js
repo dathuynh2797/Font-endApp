@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
-import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
+
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 import {PersonalBusiness} from './PersonalBusiness';
@@ -63,17 +63,6 @@ function Third() {
   );
 }
 
-export class BusinessResult extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      headerLeft: () => <HeaderLeft navigation={navigation} />,
-      headerTitle: () => <Title title="Đồ thị kết quả kinh doanh" />,
-      headerRight: () => <HeaderRight navigation={navigation} />,
-    };
-  };
-  render() {
-    return <BusinessStack />;
-  }
-}
+const BusinessResult = createAppContainer(BusinessTab);
 
-const BusinessStack = createAppContainer(BusinessTab);
+export {BusinessResult};

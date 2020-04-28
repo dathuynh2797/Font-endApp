@@ -51,7 +51,7 @@ export class ProjectWill extends Component {
           <View style={styles.scene}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('DetailsNow', {
+                this.props.navigation.navigate('DetailsProject', {
                   id: item.id,
                   ten: item.ten,
                   hinhanhtq: item.hinhanhtq,
