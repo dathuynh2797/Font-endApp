@@ -267,6 +267,6 @@ const styles = StyleSheet.create({
     elevation: 20,
   },
   menuTitleTxt: {
-    fontSize: 18,
+    fontSize: 16,
   },
 });

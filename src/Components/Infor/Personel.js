@@ -69,6 +69,7 @@ export class Personel extends Component {
       tableHead: ['Tên', 'Năm sinh', 'Số điện thoại'],
       tableData: [],
       text: '',
+      data: [],
     };
   }
   componentDidMount() {
@@ -89,32 +90,44 @@ export class Personel extends Component {
             return a.ten > b.ten;
           }),
           loading: true,
+          data: name,
         });
       });
     });
   }
   filterSearch(text) {
-    var newdata = this.state.tableData.filter(function(item) {
-      var itemData = item.ten.toUppwerCase();
-      const textData = text.toUpperCase();
+    this.setState({
+      value: text,
+    });
+    let newdata = this.state.data.filter(function(item) {
+      let itemData = item.ten.toUpperCase();
+      let textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
     this.setState({
       tableData: newdata,
-      text: text,
     });
   }
   render() {
     return (
       <View>
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
+        <Image
+          style={{
+            position: 'absolute',
+            height: 30,
+            width: 30,
+            top: 60,
+            left: 30,
+          }}
+          source={require('../../img/Profile/seach.png')}
+        />
         <View style={{paddingHorizontal: 20, height: 40}}>
           <TextInput
             placeholder="Tìm kiếm"
-            placeholderTextColor="black"
             style={styles.seachbar}
             onChangeText={text => this.filterSearch(text)}
-            value={this.state.text}
+            value={this.state.value}
           />
         </View>
         <View style={styles.container}>

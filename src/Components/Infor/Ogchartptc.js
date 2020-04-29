@@ -70,9 +70,9 @@ export class Ogchartptc extends Component {
                   <Image source={{uri: item.hinhanh}} />
                 </View>
                 <View style={styles.data}>
-                  <Text style={styles.title}>Họ tên: {item.ten}</Text>
-                  <Text style={styles.title}>Sinh nhật: {item.namsinh}</Text>
-                  <Text style={styles.title}>Số ĐT: {item.sdt}</Text>
+                  <Text style={styles.title}>{item.ten}</Text>
+                  <Text style={styles.title}>{item.namsinh}</Text>
+                  <Text style={styles.title}>{item.sdt}</Text>
                 </View>
               </View>
             </View>

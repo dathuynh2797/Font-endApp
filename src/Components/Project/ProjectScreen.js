@@ -15,6 +15,7 @@ const StyleTabBar = {
     indicatorStyle: {
       height: '100%',
       borderRadius: 5,
+      backgroundColor: '#95c1f0',
     },
     labelStyle: {
       fontWeight: 'bold',
