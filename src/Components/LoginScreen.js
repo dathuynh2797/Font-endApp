@@ -1,6 +1,5 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import {Alert, BackHandler} from 'react-native';
 import {
   View,
   Text,
@@ -12,38 +11,104 @@ import {
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import {firebaseApp} from './config';
 import bgImage from '../img/bgLogin.png';
+import {EMAIL, PASSWORD} from './Regex';
+
 const {width: WIDTH} = Dimensions.get('window');
 
 export class LoginScreen extends React.Component {
-  state = {email: '', password: '', errorMessage: null};
-  handleLogin = () => {
-    const {email, password} = this.state;
-    firebaseApp
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.navigate('HomeScreen'))
-      .catch(error =>
-        this.setState({
-          errorMessage:
-            'Tên đăng nhập hoặc mật khẩu không đúng, xin kiểm tra lại',
-        }),
-      );
-  };
+  //   state = {email: '', password: '', errorMessage: null};
+  //   handleLogin = () => {
+  //     const {email, password} = this.state;
+  //     firebaseApp
+  //       .auth()
+  //       .signInWithEmailAndPassword(email, password)
+  //       .then(() => this.props.navigation.navigate('HomeScreen'))
+  //       .catch(error =>
+  //         this.setState({
+  //           errorMessage:
+  //             'Tên đăng nhập hoặc mật khẩu không đúng, xin kiểm tra lại',
+  //         }),
+  //       );
+  //   };
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
+      email: '',
+      password: '',
+      emailValid: true,
+      passwordValid: true,
     };
   }
-  //xu ly phim back android
 
-  // componentWillUnmount() {
-  //   this.backHandler.remove();
-  // }
-  //
+  validate(type, value) {
+    if (type === 'email') {
+      this.setState({email: value});
+      if (value === '' || EMAIL.test(value)) {
+        this.setState({emailValid: true});
+      } else {
+        this.setState({emailValid: false});
+      }
+    } else if (type === 'password') {
+      this.setState({password: value});
+      if (value === '' || PASSWORD.test(value)) {
+        this.setState({passwordValid: true});
+      } else {
+        this.setState({passwordValid: false});
+      }
+    }
+  }
+
+  _login() {
+    if (
+      this.state.emailValid &&
+      this.state.passwordValid &&
+      this.state.email !== '' &&
+      this.state.password !== ''
+    ) {
+      firebaseApp
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+          const navigate = this.props.navigation;
+          navigate('HomeScreen');
+        })
+        .catch(function(error) {
+          var errorCode = error.code;
+          if (errorCode === 'auth/wrong-password') {
+            Alert.alert(
+              'Login fail',
+              'email or password invalid',
+              [
+                {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+                {text: 'OK', onPress: () => console.log('OK pressed')},
+              ],
+              {cancelable: false},
+            );
+          }
+        });
+    } else {
+      if (this.state.email === '' || this.state.password === '') {
+        Alert.alert(
+          'Login',
+          'Please enter email and password',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+            },
+            {text: 'OK', onPress: () => console.log('OK pressed')},
+          ],
+          {cancelable: false},
+        );
+      }
+    }
+  }
+
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
@@ -63,12 +128,17 @@ export class LoginScreen extends React.Component {
           {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
           <View style={styles.inputContainer}>
             <TextInput
-              style={styles.input}
+              style={[
+                styles.input,
+                !this.state.emailValid ? styles.error : null,
+              ]}
               placeholder="Tên Đăng Nhập"
               keyboardType="email-address"
               autoCapitalize="none"
               iconName="ios-mail"
-              onChangeText={email => this.setState({email})}
+              onChangeText={email => {
+                this.validate('email', email);
+              }}
               placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
               underlineColorAndroid="transparent"
               value={this.state.email}
@@ -77,17 +147,26 @@ export class LoginScreen extends React.Component {
 
           <View style={styles.inputContainer}>
             <TextInput
-              style={styles.input}
+              style={[
+                styles.input,
+                !this.state.passwordValid ? styles.error : null,
+              ]}
               placeholder="Mật Khẩu"
               autoCapitalize="none"
               secureTextEntry={true}
-              onChangeText={password => this.setState({password})}
+              onChangeText={password => {
+                this.validate('password', password);
+              }}
               placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
               underlineColorAndroid="transparent"
               value={this.state.password}
             />
           </View>
-          <TouchableOpacity style={styles.btnLogin} onPress={this.handleLogin}>
+          <TouchableOpacity
+            style={styles.btnLogin}
+            onPress={() => {
+              this._login();
+            }}>
             <Text style={styles.text}>Đăng Nhập</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -177,5 +256,9 @@ const styles = StyleSheet.create({
     color: '#E5E5E5',
     textAlign: 'center',
     fontSize: 16,
+  },
+  error: {
+    borderWidth: 2,
+    borderColor: 'red',
   },
 });
