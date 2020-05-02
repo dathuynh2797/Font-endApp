@@ -15,25 +15,13 @@ import {
 } from 'react-native';
 import {firebaseApp} from './config';
 import bgImage from '../img/bgLogin.png';
+import eye from '../img/eye.png';
+import eyeOff from '../img/eye-off.png';
 import {EMAIL, PASSWORD} from './Regex';
 
 const {width: WIDTH} = Dimensions.get('window');
 
 export class LoginScreen extends React.Component {
-  //   state = {email: '', password: '', errorMessage: null};
-  //   handleLogin = () => {
-  //     const {email, password} = this.state;
-  //     firebaseApp
-  //       .auth()
-  //       .signInWithEmailAndPassword(email, password)
-  //       .then(() => this.props.navigation.navigate('HomeScreen'))
-  //       .catch(error =>
-  //         this.setState({
-  //           errorMessage:
-  //             'Tên đăng nhập hoặc mật khẩu không đúng, xin kiểm tra lại',
-  //         }),
-  //       );
-  //   };
   constructor(props) {
     super(props);
     this.state = {
@@ -42,23 +30,37 @@ export class LoginScreen extends React.Component {
       password: '',
       emailValid: true,
       passwordValid: true,
+      loginBtn: false,
+      showPass: false,
     };
   }
+
+  showPass = () => {
+    if (this.state.press === false) {
+      this.setState({showPass: false, press: true});
+    } else {
+      this.setState({showPass: true, press: false});
+    }
+  };
 
   validate(type, value) {
     if (type === 'email') {
       this.setState({email: value});
       if (value === '' || EMAIL.test(value)) {
         this.setState({emailValid: true});
+        this.setState({loginBtn: false});
       } else {
         this.setState({emailValid: false});
+        this.setState({loginBtn: true});
       }
     } else if (type === 'password') {
       this.setState({password: value});
       if (value === '' || PASSWORD.test(value)) {
         this.setState({passwordValid: true});
+        this.setState({loginBtn: false});
       } else {
         this.setState({passwordValid: false});
+        this.setState({loginBtn: true});
       }
     }
   }
@@ -79,10 +81,20 @@ export class LoginScreen extends React.Component {
         })
         .catch(function(error) {
           var errorCode = error.code;
-          if (errorCode === 'auth/wrong-password') {
+          if (errorCode === 'auth/user-not-found') {
             Alert.alert(
               'Login fail',
-              'email or password invalid',
+              'email invalid',
+              [
+                {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+                {text: 'OK', onPress: () => console.log('OK pressed')},
+              ],
+              {cancelable: false},
+            );
+          } else if (errorCode === 'auth/wrong-password') {
+            Alert.alert(
+              'Login fail',
+              'password invalid',
               [
                 {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
                 {text: 'OK', onPress: () => console.log('OK pressed')},
@@ -127,6 +139,9 @@ export class LoginScreen extends React.Component {
           </View>
           {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
           <View style={styles.inputContainer}>
+            <View style={styles.inputIcon}>
+              <Image source={require('../img/user.png')} />
+            </View>
             <TextInput
               style={[
                 styles.input,
@@ -135,7 +150,6 @@ export class LoginScreen extends React.Component {
               placeholder="Tên Đăng Nhập"
               keyboardType="email-address"
               autoCapitalize="none"
-              iconName="ios-mail"
               onChangeText={email => {
                 this.validate('email', email);
               }}
@@ -146,6 +160,9 @@ export class LoginScreen extends React.Component {
           </View>
 
           <View style={styles.inputContainer}>
+            <View style={styles.inputIcon}>
+              <Image source={require('../img/lock.png')} />
+            </View>
             <TextInput
               style={[
                 styles.input,
@@ -153,7 +170,7 @@ export class LoginScreen extends React.Component {
               ]}
               placeholder="Mật Khẩu"
               autoCapitalize="none"
-              secureTextEntry={true}
+              secureTextEntry={this.state.showPass}
               onChangeText={password => {
                 this.validate('password', password);
               }}
@@ -161,8 +178,15 @@ export class LoginScreen extends React.Component {
               underlineColorAndroid="transparent"
               value={this.state.password}
             />
+            <TouchableOpacity style={styles.btnEye} onPress={this.showPass}>
+              <Image
+                style={styles.iconEye}
+                source={this.state.press === false ? eye : eyeOff}
+              />
+            </TouchableOpacity>
           </View>
           <TouchableOpacity
+            disabled={this.state.loginBtn}
             style={styles.btnLogin}
             onPress={() => {
               this._login();
@@ -205,7 +229,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
     marginTop: 10,
-    //opacity: 0.5,
+    // opacity: 0.5,
   },
   logo: {
     width: 238,
@@ -222,35 +246,56 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginTop: 20,
+    // justifyContent: 'center',
   },
   input: {
     width: WIDTH - 100,
-    height: 45,
-    borderRadius: 45,
+    height: 50,
+    borderRadius: 50,
     fontSize: 16,
-    paddingLeft: 45,
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    paddingLeft: 50,
+    backgroundColor: 'rgba(255,255,255,0.3)',
     color: 'black',
     marginHorizontal: 25,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
   },
   inputIcon: {
     position: 'absolute',
-    top: 8,
+    top: 7,
     left: 37,
   },
   btnEye: {
     position: 'absolute',
-    top: 8,
-    right: 37,
+    top: 15,
+    right: 40,
+  },
+  iconEye: {
+    height: 20,
+    width: 20,
   },
   btnLogin: {
     width: WIDTH - 270,
-    height: 45,
+    height: 50,
     borderRadius: 45,
     justifyContent: 'center',
     backgroundColor: '#1085B8',
     marginTop: 20,
     marginBottom: 20,
+    shadowColor: '#1085B8',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
   },
   text: {
     color: '#E5E5E5',
