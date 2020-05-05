@@ -122,7 +122,7 @@ export class Personel extends Component {
           }}
           source={require('../../img/Profile/seach.png')}
         />
-        <View style={{paddingHorizontal: 20, height: 40}}>
+        <View style={{paddingHorizontal: 20}}>
           <TextInput
             placeholder="Tìm kiếm"
             style={styles.seachbar}
@@ -197,8 +197,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   seachbar: {
-    backgroundColor: 'rgba(78, 158, 237, 0.12)',
+    backgroundColor: 'rgba(78, 158, 237, 0.3)',
     borderRadius: 30,
     paddingLeft: 50,
+    height: 40,
   },
 });

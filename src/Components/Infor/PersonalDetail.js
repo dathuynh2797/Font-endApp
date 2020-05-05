@@ -4,7 +4,7 @@ import {
   Text,
   View,
   StyleSheet,
-  Dimensions,
+  TouchableOpacity,
   Image,
   ImageBackground,
 } from 'react-native';
@@ -12,7 +12,7 @@ import 'firebase/firestore';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import bgAva from '../../img/bgAva.png';
 
-export class detail extends Component {
+export class PersonalDetail extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerLeft: () => <HeaderLeft navigation={navigation} />,
@@ -49,25 +49,34 @@ export class detail extends Component {
             <Text>Sinh nhật: {namsinh}</Text>
           </View>
           <View style={styles.Item}>
-            <Image source={require('../..//img/Profile/phone.png')} />
+            <Image source={require('../../img/Profile/phone.png')} />
             <View style={styles.HorizonLine} />
             <Text>Số điện thoại: {sdt}</Text>
           </View>
           <View style={styles.Item}>
-            <Image source={require('../..//img/Profile/mail.png')} />
+            <Image source={require('../../img/Profile/mail.png')} />
             <View style={styles.HorizonLine} />
             <Text>Email: {email}</Text>
           </View>
           <View style={styles.Item}>
-            <Image source={require('../..//img/Profile/team.png')} />
+            <Image source={require('../../img/Profile/team.png')} />
             <View style={styles.HorizonLine} />
             <Text>Nhóm: {nhom}</Text>
           </View>
           <View style={styles.Item}>
-            <Image source={require('../..//img/Profile/department.png')} />
+            <Image source={require('../../img/Profile/department.png')} />
             <View style={styles.HorizonLine} />
             <Text>Phòng: {phong}</Text>
           </View>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('ChangePassword');
+            }}
+            style={styles.Item}>
+            <Image source={require('../../img/lock.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Đổi mật Khẩu</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

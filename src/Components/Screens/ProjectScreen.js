@@ -1,6 +1,6 @@
-import {ProjectNow} from './ProjectNow';
-import {ProjectWas} from './ProjectWas';
-import {ProjectWill} from './ProjectWill';
+import {ProjectNow} from '../Project/ProjectNow';
+import {ProjectWas} from '../Project/ProjectWas';
+import {ProjectWill} from '../Project/ProjectWill';
 import {createAppContainer} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 

@@ -2,10 +2,13 @@
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {LoginScreen} from './src/Components/LoginScreen';
-import {HomeScreen} from './src/Components/HomeScreen';
-import {Home} from './src/Components/Home';
-import {InforScreen} from './src/Components/Home/InforScreen';
+import {LoginScreen} from './src/Components/Screens/LoginScreen';
+import {HomeScreen} from './src/Components//Screens/HomeScreen';
+import {InforScreen} from './src/Components/Screens/InforScreen';
+import {ProjectScreen} from './src/Components/Screens/ProjectScreen';
+import {ReportScreen} from './src/Components/Screens/ReportScreen';
+import {ChangePassword} from './src/Components/Screens/ChangePassword';
+
 import {Loading} from './src/Components/Loading';
 import {Policy} from './src/Components/Infor/Policy';
 import {Personel} from './src/Components/Infor/Personel';
@@ -18,11 +21,6 @@ import {ForgotPassword} from './src/Components/ForgotPassword';
 
 import {HeaderRight, Title, HeaderLeft} from './src/Components/CustomHeader';
 
-import {SafeAreaView} from 'react-native';
-import {ProjectScreen} from './src/Components/Project/ProjectScreen';
-import {ProjectNow} from './src/Components/Project/ProjectNow';
-import {ProjectWas} from './src/Components/Project/ProjectWas';
-import {ProjectWill} from './src/Components/Project/ProjectWill';
 import {DetailsProject} from './src/Components/Project/DetailsProject';
 
 import {SaleResultWeek} from './src/Components/Report/SaleResultWeek';
@@ -40,8 +38,7 @@ import {Csbhnv} from './src/Project/Csbhnv';
 import {Csbhkh} from './src/Project/Csbhkh';
 import {Qc} from './src/Project/Qc';
 import {Bg} from './src/Project/Bg';
-import {baocao} from './src/Components/Report/baocao';
-import {detail} from './src/Components/Infor/detail';
+import {PersonalDetail} from './src/Components/Infor/PersonalDetail';
 
 const navOptionHandler = () => ({
   header: null,
@@ -144,9 +141,9 @@ const MainStack = createStackNavigator({
       };
     },
   },
+  ChangePassword: ChangePassword,
 
   Qdctp: Qdctp,
-  // Project: Project,
   location: location,
   Cdlt: Cdlt,
   Bnns: Bnns,
@@ -158,16 +155,12 @@ const MainStack = createStackNavigator({
   Csbhnv: Csbhnv,
   Qc: Qc,
   Bg: Bg,
-  baocao: baocao,
-  detail: detail,
+  ReportScreen: ReportScreen,
+  detail: PersonalDetail,
   Ogchartpns: Ogchartpns,
   Ogchartpkd: Ogchartpkd,
   Ogchartptc: Ogchartptc,
   Ogchartbgd: Ogchartbgd,
-  Home: {
-    screen: Home,
-    navigationOptions: navOptionHandler,
-  },
 });
 
 const MainApp = createSwitchNavigator(

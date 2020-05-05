@@ -10,8 +10,8 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native';
-import bgImage from '../img/bgprofile.png';
-import {firebaseApp} from './config';
+import bgImage from '../../img/bgprofile.png';
+import {firebaseApp} from '../config';
 
 export class HomeScreen extends Component {
   constructor() {
@@ -81,7 +81,7 @@ export class HomeScreen extends Component {
                 );
                 return true;
               }}>
-              <Image source={require('../img/logout.png')} />
+              <Image source={require('../../img/logout.png')} />
             </TouchableOpacity>
             <FlatList
               data={this.state.avatar}
@@ -121,7 +121,7 @@ export class HomeScreen extends Component {
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>
                 <Image
-                  source={require('../img/information.png')}
+                  source={require('../../img/information.png')}
                   style={styles.menuImg}
                 />
               </View>
@@ -138,7 +138,7 @@ export class HomeScreen extends Component {
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>
                 <Image
-                  source={require('../img/project.png')}
+                  source={require('../../img/project.png')}
                   style={styles.menuImg}
                 />
               </View>
@@ -150,12 +150,12 @@ export class HomeScreen extends Component {
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
-              this.props.navigation.navigate('baocao');
+              this.props.navigation.navigate('ReportScreen');
             }}>
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>
                 <Image
-                  source={require('../img/chart.png')}
+                  source={require('../../img/chart.png')}
                   style={styles.menuImg}
                 />
               </View>
@@ -172,7 +172,7 @@ export class HomeScreen extends Component {
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>
                 <Image
-                  source={require('../img/trip.png')}
+                  source={require('../../img/trip.png')}
                   style={styles.menuImg}
                 />
               </View>
