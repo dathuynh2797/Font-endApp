@@ -14,11 +14,11 @@ import {
   KeyboardAvoidingView,
   Alert,
 } from 'react-native';
-import {firebaseApp} from './config';
-import bgImage from '../img/bgLogin.png';
-import eye from '../img/eye.png';
-import eyeOff from '../img/eye-off.png';
-import {EMAIL, PASSWORD} from './Regex';
+import {firebaseApp} from '../config';
+import bgImage from '../../img/bgLogin.png';
+import eye from '../../img/eye.png';
+import eyeOff from '../../img/eye-off.png';
+import {EMAIL, PASSWORD} from '../Regex';
 
 const {width: WIDTH} = Dimensions.get('window');
 
@@ -131,7 +131,7 @@ export class LoginScreen extends React.Component {
             <View style={styles.inputIcon}>
               <Image
                 style={{height: 30, width: 30}}
-                source={require('../img/user.png')}
+                source={require('../../img/user.png')}
               />
             </View>
             <TextInput
@@ -155,7 +155,7 @@ export class LoginScreen extends React.Component {
             <View style={styles.inputIcon}>
               <Image
                 style={{height: 30, width: 30}}
-                source={require('../img/lock.png')}
+                source={require('../../img/lock.png')}
               />
             </View>
             <TextInput

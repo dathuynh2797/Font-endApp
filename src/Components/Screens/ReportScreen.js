@@ -3,7 +3,7 @@ import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {Title, HeaderRight, HeaderLeft} from '../CustomHeader';
 
-export class baocao extends Component {
+export class ReportScreen extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerLeft: () => <HeaderLeft navigation={navigation} />,
