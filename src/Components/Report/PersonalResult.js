@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
@@ -7,20 +8,36 @@ import {
   Rows,
   Col,
 } from 'react-native-table-component';
+import {firebaseApp} from '../config';
 
 export class PersonalResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tableHead: ['', 'Head1', 'Head2', 'Head3'],
-      tableTitle: ['Title', 'Title2', 'Title3', 'Title4'],
-      tableData: [
-        ['1', '2', '3'],
-        ['a', 'b', 'c'],
-        ['1', '2', '3'],
-        ['a', 'b', 'c'],
-      ],
+      tableHead: ['Tên', 'Nhóm', 'Kết quả KD', 'Xếp hạng'],
+      tableData: [],
     };
+  }
+  componentDidMount() {
+    const abc = firebaseApp.firestore();
+    abc.collection('user').onSnapshot(querySnapshot => {
+      var name = [];
+      querySnapshot.forEach(doc => {
+        name.push({
+          id: doc.id,
+          ten: doc.data().staffNames,
+          nhom: doc.data().staffPhoneNumber,
+          doanhso: doc.data().doanhso[0].year.forEach(element => {
+            element.push;
+          }),
+        });
+
+        this.setState({
+          bgd: name,
+          loading: false,
+        });
+      });
+    });
   }
 
   render() {
@@ -35,12 +52,6 @@ export class PersonalResult extends Component {
             textStyle={styles.text}
           />
           <TableWrapper style={styles.wrapper}>
-            <Col
-              data={state.tableTitle}
-              style={styles.title}
-              heightArr={[28, 28]}
-              textStyle={styles.text}
-            />
             <Rows
               data={state.tableData}
               flexArr={[2, 1, 1]}

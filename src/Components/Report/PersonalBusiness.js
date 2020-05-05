@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component, Fragment} from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
