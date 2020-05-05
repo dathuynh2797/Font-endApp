@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   View,
@@ -26,48 +27,36 @@ export class Bg extends Component {
       headerTitleAlign: 'center',
     };
   };
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     avatarSource: null,
-  //   };
-  // }
-  // pickImage() {
-  //   const ref = firebaseApp
-  //     .storage()
-  //     .ref('images')
-  //     .child('36aa1e16955e6c00354f.jpg');
-  //   ref.getDownloadURL().then(data => {
-  //     this.setState({
-  //       avatarSource: data,
-  //     });
-  //   });
-  // }
   render() {
+    const {navigation} = this.props;
+    const hinhanhbg = navigation.getParam('hinhanhbg', 'chưa có dữ liệu');
     return (
-      <View>
-        <Text style={styles.headerText}>Bổ nhiệm nhân sự </Text>
-        <Image
-          source={require('../img/CHINHSACHMOITRUONG.jpg')}
-          style={styles.Proflie}
-        />
+      <View style={{flex: 1}}>
+        <View style={styles.child1}>
+          <Text style={styles.headerText}>Tổng quan</Text>
+        </View>
+        <View style={styles.child2}>
+          <Image
+            source={{
+              uri: hinhanhbg,
+            }}
+            style={styles.Proflie}
+          />
+        </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   Proflie: {
-    width: 395,
-    height: 550,
     // resizeMode: 'contain',
-    alignItems: 'center',
-    marginTop: 30,
+    flex: 1,
   },
   headerText: {
     width: WIDTH - 10,
     textAlign: 'center',
     flexWrap: 'wrap',
-    lineHeight: 35,
+    lineHeight: 40,
     fontWeight: 'bold',
     fontSize: 25,
     color: '#2D389C',
@@ -76,4 +65,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  child1: {flex: 1},
+  child2: {flex: 15, margin: 10},
 });

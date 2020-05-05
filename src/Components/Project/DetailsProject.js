@@ -11,6 +11,11 @@ export class DetailsProject extends Component {
     const {navigation} = this.props;
     const ten = navigation.getParam('ten', 'chưa có dữ liệu');
     const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const hinhanhpl = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const hinhanhbg = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const hinhanhnv = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const hinhanhkh = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const hinhanhqc = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
     const latitude = navigation.getParam('latitude', 'chưa có dữ liệu');
     const longtitude = navigation.getParam('longtitude', 'chưa có dữ liệu');
     return (
@@ -36,7 +41,7 @@ export class DetailsProject extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Pl');
+              this.props.navigation.navigate('Pl', {hinhanhpl});
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
@@ -53,7 +58,7 @@ export class DetailsProject extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Bg');
+              this.props.navigation.navigate('Bg', {hinhanhbg});
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
@@ -70,7 +75,7 @@ export class DetailsProject extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Csbhnv');
+              this.props.navigation.navigate('Csbhnv', {hinhanhnv});
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
@@ -87,7 +92,7 @@ export class DetailsProject extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Csbhkh');
+              this.props.navigation.navigate('Csbhkh', {hinhanhkh});
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
@@ -104,7 +109,7 @@ export class DetailsProject extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Qc');
+              this.props.navigation.navigate('Qc', {hinhanhqc});
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>

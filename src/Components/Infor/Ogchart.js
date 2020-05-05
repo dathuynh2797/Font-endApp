@@ -13,7 +13,6 @@ export class Ogchart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
       dodai: [],
     };
   }
@@ -22,17 +21,10 @@ export class Ogchart extends Component {
     abc.collection('staff').onSnapshot(querySnapshot => {
       var dodai1 = [];
       querySnapshot.forEach(doc => {
-        dodai1.push({
-          id: doc.id,
-          ten: doc.data().staffNames,
-          sdt: doc.data().staffPhoneNumber,
-          namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().hinhanh,
-        });
+        dodai1.push({});
         dodai1.length;
         this.setState({
           dodai: dodai1,
-          loading: false,
         });
       });
     });
@@ -107,17 +99,11 @@ const styles = StyleSheet.create({
     flex: 1 / 3,
     justifyContent: 'center',
     alignItems: 'center',
-    // width: 300,
-    // height: 50,
-    // marginLeft: 45,
   },
   Imgview1: {
-    // flex: 1 / 3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    resizeMode: 'cover',
     width: 333,
     height: 168,
-    // marginLeft: 45,
   },
   iconBack: {
     width: 30,
@@ -133,14 +119,8 @@ const styles = StyleSheet.create({
   },
   MenuContainer: {
     flex: 2 / 3,
-    //justifyContent: 'center',
-    //flexDirection: 'column',
-    //alignItems: 'center',
-    //backgroundColor: 'grey',
   },
   Col: {
-    //flex: 1,
-    //flexDirection: 'row',
     height: 70,
     margin: 1,
     padding: 10,
@@ -150,8 +130,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   TabMenu: {
-    //justifyContent: 'space-between',
-    //flexDirection: 'row',
     flexWrap: 'wrap',
   },
   Iconstyle: {
@@ -162,11 +140,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     backgroundColor: 'white',
-    // shadowColor: '#000',
-    // shadowOffset: {width: 0, height: 2},
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // elevation: 1,
   },
   Icon: {
     height: 50,

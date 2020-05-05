@@ -48,7 +48,7 @@ export class Ogchartptc extends Component {
           ten: doc.data().staffNames,
           sdt: doc.data().staffPhoneNumber,
           namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().hinhanh,
+          hinhanh: doc.data().staffProfile[0].publicUrl,
         });
 
         this.setState({
@@ -66,8 +66,8 @@ export class Ogchartptc extends Component {
           renderItem={({item}) => (
             <View style={styles.scene}>
               <View style={styles.items}>
-                <View style={styles.image}>
-                  <Image source={{uri: item.hinhanh}} />
+                <View>
+                  <Image style={styles.image} source={{uri: item.hinhanh}} />
                 </View>
                 <View style={styles.data}>
                   <Text style={styles.title}>{item.ten}</Text>
@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
-    backgroundColor: '#000',
   },
   data: {
     paddingHorizontal: 10,

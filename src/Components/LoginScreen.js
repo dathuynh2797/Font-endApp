@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import 'react-native-gesture-handler';
 import {
@@ -31,7 +32,8 @@ export class LoginScreen extends React.Component {
       emailValid: true,
       passwordValid: true,
       loginBtn: false,
-      showPass: false,
+      showPass: true,
+      press: false,
     };
   }
 
@@ -83,22 +85,16 @@ export class LoginScreen extends React.Component {
           var errorCode = error.code;
           if (errorCode === 'auth/user-not-found') {
             Alert.alert(
-              'Login fail',
-              'email invalid',
-              [
-                {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-                {text: 'OK', onPress: () => console.log('OK pressed')},
-              ],
+              'Đăng nhập thất bại',
+              'Vui lòng kiểm tra tên đăng nhập',
+              [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           } else if (errorCode === 'auth/wrong-password') {
             Alert.alert(
-              'Login fail',
-              'password invalid',
-              [
-                {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-                {text: 'OK', onPress: () => console.log('OK pressed')},
-              ],
+              'Đăng nhập thất bại',
+              'Vui lòng kiểm tra lại mật khẩu',
+              [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           }
@@ -106,15 +102,9 @@ export class LoginScreen extends React.Component {
     } else {
       if (this.state.email === '' || this.state.password === '') {
         Alert.alert(
-          'Login',
-          'Please enter email and password',
-          [
-            {
-              text: 'Cancel',
-              onPress: () => console.log('Cancel Pressed'),
-            },
-            {text: 'OK', onPress: () => console.log('OK pressed')},
-          ],
+          'Đăng nhập thất bại',
+          'Vui lòng kiểm tra lại tài khoản và mật khẩu',
+          [{text: 'OK', onPress: () => console.log('OK pressed')}],
           {cancelable: false},
         );
       }
@@ -137,10 +127,12 @@ export class LoginScreen extends React.Component {
               Ứng dụng quản lý công ty bất động sản
             </Text>
           </View>
-          {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
           <View style={styles.inputContainer}>
             <View style={styles.inputIcon}>
-              <Image source={require('../img/user.png')} />
+              <Image
+                style={{height: 30, width: 30}}
+                source={require('../img/user.png')}
+              />
             </View>
             <TextInput
               style={[
@@ -161,7 +153,10 @@ export class LoginScreen extends React.Component {
 
           <View style={styles.inputContainer}>
             <View style={styles.inputIcon}>
-              <Image source={require('../img/lock.png')} />
+              <Image
+                style={{height: 30, width: 30}}
+                source={require('../img/lock.png')}
+              />
             </View>
             <TextInput
               style={[
@@ -181,7 +176,7 @@ export class LoginScreen extends React.Component {
             <TouchableOpacity style={styles.btnEye} onPress={this.showPass}>
               <Image
                 style={styles.iconEye}
-                source={this.state.press === false ? eye : eyeOff}
+                source={this.state.press === false ? eyeOff : eye}
               />
             </TouchableOpacity>
           </View>
@@ -264,7 +259,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
-    elevation: 15,
+    // elevation: 15,
   },
   inputIcon: {
     position: 'absolute',

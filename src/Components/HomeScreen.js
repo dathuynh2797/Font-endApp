@@ -18,6 +18,7 @@ export class HomeScreen extends Component {
     super();
     this.state = {
       avatar: [],
+      loadingIndicatorSource: false,
     };
   }
 
@@ -98,7 +99,11 @@ export class HomeScreen extends Component {
                         email: item.email,
                       });
                     }}>
-                    <Image style={styles.avatar} source={{uri: item.ava}} />
+                    <Image
+                      loadingIndicatorSource="true"
+                      style={styles.avatar}
+                      source={{uri: item.ava}}
+                    />
                     <Text style={styles.avatarTxt}>500,000,000 VND</Text>
                   </TouchableOpacity>
                 </View>
@@ -202,6 +207,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatar: {
+    // resizeMode: 'stretch',
     width: 140,
     height: 140,
     borderRadius: 100,

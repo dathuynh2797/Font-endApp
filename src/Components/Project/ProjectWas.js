@@ -31,7 +31,12 @@ export class ProjectWas extends Component {
             gia: doc.data().cost,
             vitri: doc.data().supplierLocation,
             hinhanh: doc.data().supplierProfile[0].publicUrl,
-            hinhanhtq: doc.data().imagetq,
+            hinhanhtq: doc.data().supplierProfile1[0].publicUrl,
+            hinhanhpl: doc.data().supplierProfile2[0].publicUrl,
+            hinhanhbg: doc.data().supplierProfile3[0].publicUrl,
+            hinhanhnv: doc.data().supplierProfile4[0].publicUrl,
+            hinhanhkh: doc.data().supplierProfile5[0].publicUrl,
+            hinhanhqc: doc.data().supplierProfile6[0].publicUrl,
           });
 
           this.setState({
@@ -53,6 +58,11 @@ export class ProjectWas extends Component {
                   id: item.id,
                   ten: item.ten,
                   hinhanhtq: item.hinhanhtq,
+                  hinhanhpl: item.hinhanhpl,
+                  hinhanhbg: item.hinhanhbg,
+                  hinhanhnv: item.hinhanhnv,
+                  hinhanhkh: item.hinhanhkh,
+                  hinhanhqc: item.hinhanhqc,
                 });
               }}>
               <View style={styles.items}>

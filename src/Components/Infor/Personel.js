@@ -152,13 +152,15 @@ export class Personel extends Component {
                       hinhanh: item.hinhanh,
                     });
                   }}>
-                  <Cols
-                    data={[[item.ten], [item.namsinh], [item.sdt]]}
-                    textStyle={styles.text}
-                    style={styles.boder}
-                    borderStyle={{borderWidth: 1, borderColor: '#000'}}
-                    flexArr={[1.5, 1, 1]}
-                  />
+                  <ScrollView>
+                    <Cols
+                      data={[[item.ten], [item.namsinh], [item.sdt]]}
+                      textStyle={styles.text}
+                      style={styles.boder}
+                      borderStyle={{borderWidth: 1, borderColor: '#000'}}
+                      flexArr={[1.5, 1, 1]}
+                    />
+                  </ScrollView>
                   {/* keyExtractor={item => item.ten} */}
                 </TouchableOpacity>
               )}

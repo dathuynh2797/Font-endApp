@@ -48,7 +48,7 @@ export class Ogchartbgd extends Component {
           ten: doc.data().staffNames,
           sdt: doc.data().staffPhoneNumber,
           namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().hinhanh,
+          hinhanh: doc.data().staffProfile[0].publicUrl,
         });
 
         this.setState({
