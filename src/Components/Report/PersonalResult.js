@@ -9,6 +9,7 @@ import {
   Col,
 } from 'react-native-table-component';
 import {firebaseApp} from '../config';
+import {FlatList, Text} from 'react-native';
 
 export class PersonalResult extends Component {
   constructor(props) {
@@ -16,25 +17,28 @@ export class PersonalResult extends Component {
     this.state = {
       tableHead: ['Tên', 'Nhóm', 'Kết quả KD', 'Xếp hạng'],
       tableData: [],
+      tableData1: [],
     };
   }
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc.collection('user').onSnapshot(querySnapshot => {
+    abc.collection('demo').onSnapshot(querySnapshot => {
       var name = [];
+      var ds = [];
       querySnapshot.forEach(doc => {
         name.push({
-          id: doc.id,
-          ten: doc.data().staffNames,
-          nhom: doc.data().staffPhoneNumber,
+          // id: doc.id,
+          // ten: doc.data().staffNames,
+          // nhom: doc.data().staffPhoneNumber,
           doanhso: doc.data().doanhso[0].year.forEach(element => {
-            element.push;
+            ds.push({
+              doanhthu: element.week,
+            });
+            this.setState({
+              loading: false,
+              tableData1: ds,
+            });
           }),
-        });
-
-        this.setState({
-          bgd: name,
-          loading: false,
         });
       });
     });
@@ -60,6 +64,10 @@ export class PersonalResult extends Component {
             />
           </TableWrapper>
         </Table>
+        <FlatList
+          data={this.state.tableData1}
+          renderItem={({item}) => <Text>{item.doanhthu}</Text>}
+        />
       </View>
     );
   }

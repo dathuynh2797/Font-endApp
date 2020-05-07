@@ -27,11 +27,7 @@ import {SaleResultWeek} from './src/Components/Report/SaleResultWeek';
 import {BusinessResult} from './src/Components/Report/BusinessResult';
 
 import {location} from './src/Project/location';
-import {Qdctp} from './src/Components/Infor/Qdctp';
-import {Lnl} from './src/Components/Infor/Lnl';
-import {Cdlt} from './src/Components/Infor/Cdlt';
-import {Bnns} from './src/Components/Infor/Bnns';
-import {Hdtb} from './src/Components/Infor/Hdtb';
+import {detailPolicy} from './src/Components/Infor/detailPolicy';
 import {Tq} from './src/Project/Tq';
 import {Pl} from './src/Project/Pl';
 import {Csbhnv} from './src/Project/Csbhnv';
@@ -143,12 +139,8 @@ const MainStack = createStackNavigator({
   },
   ChangePassword: ChangePassword,
 
-  Qdctp: Qdctp,
+  detailPolicy: detailPolicy,
   location: location,
-  Cdlt: Cdlt,
-  Bnns: Bnns,
-  Hdtb: Hdtb,
-  Lnl: Lnl,
   Tq: Tq,
   Pl: Pl,
   Csbhkh: Csbhkh,

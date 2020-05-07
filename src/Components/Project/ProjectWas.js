@@ -37,6 +37,8 @@ export class ProjectWas extends Component {
             hinhanhnv: doc.data().supplierProfile4[0].publicUrl,
             hinhanhkh: doc.data().supplierProfile5[0].publicUrl,
             hinhanhqc: doc.data().supplierProfile6[0].publicUrl,
+            latitude: doc.data().lat,
+            longtitude: doc.data().long,
           });
 
           this.setState({
@@ -63,6 +65,8 @@ export class ProjectWas extends Component {
                   hinhanhnv: item.hinhanhnv,
                   hinhanhkh: item.hinhanhkh,
                   hinhanhqc: item.hinhanhqc,
+                  latitude: item.latitude,
+                  longtitude: item.longtitude,
                 });
               }}>
               <View style={styles.items}>

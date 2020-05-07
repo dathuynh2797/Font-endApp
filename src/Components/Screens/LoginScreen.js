@@ -34,6 +34,7 @@ export class LoginScreen extends React.Component {
       loginBtn: false,
       showPass: true,
       press: false,
+      infor: [],
     };
   }
 
@@ -66,7 +67,20 @@ export class LoginScreen extends React.Component {
       }
     }
   }
-
+  componentDidMount() {
+    const data = firebaseApp.firestore();
+    data.collection('user').onSnapshot(querySnapshot => {
+      var info = [];
+      querySnapshot.forEach(doc => {
+        info.push({
+          disabled: doc.data().disabled,
+        });
+        this.setState({
+          infor: info,
+        });
+      });
+    });
+  }
   _login() {
     if (
       this.state.emailValid &&
