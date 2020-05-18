@@ -35,6 +35,7 @@ import {Csbhkh} from './src/Project/Csbhkh';
 import {Qc} from './src/Project/Qc';
 import {Bg} from './src/Project/Bg';
 import {PersonalDetail} from './src/Components/Infor/PersonalDetail';
+import {userDetail} from './src/Components/Screens/userDetail';
 
 const navOptionHandler = () => ({
   header: null,
@@ -153,6 +154,7 @@ const MainStack = createStackNavigator({
   Ogchartpkd: Ogchartpkd,
   Ogchartptc: Ogchartptc,
   Ogchartbgd: Ogchartbgd,
+  userDetail: userDetail,
 });
 
 const MainApp = createSwitchNavigator(

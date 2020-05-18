@@ -68,15 +68,6 @@ export class PersonalDetail extends Component {
             <View style={styles.HorizonLine} />
             <Text>Phòng: {phong}</Text>
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('ChangePassword');
-            }}
-            style={styles.Item}>
-            <Image source={require('../../img/lock.png')} />
-            <View style={styles.HorizonLine} />
-            <Text>Đổi mật Khẩu</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );

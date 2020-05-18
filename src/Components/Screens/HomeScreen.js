@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -9,6 +10,7 @@ import {
   ImageBackground,
   SafeAreaView,
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import bgImage from '../../img/bgprofile.png';
 import {firebaseApp} from '../config';
@@ -18,10 +20,11 @@ export class HomeScreen extends Component {
     super();
     this.state = {
       avatar: [],
-      loadingIndicatorSource: false,
+      loading: true,
     };
   }
 
+  birthday() {}
   signOut() {
     firebaseApp
       .auth()
@@ -46,10 +49,12 @@ export class HomeScreen extends Component {
             ava: doc.data().hinhanh,
             email: doc.data().email,
             sdt: doc.data().phoneNumber,
+            doanhso: [
+              doc.data().doanhso[0].year[doc.data().doanhso[0].year.length - 1],
+            ],
           });
           this.setState({
             avatar: marker1,
-            loading: false,
           });
         }
       });
@@ -90,7 +95,7 @@ export class HomeScreen extends Component {
                   <Text style={styles.avatarTxt}>Xin chào: {item.ten}</Text>
                   <TouchableOpacity
                     onPress={() => {
-                      this.props.navigation.navigate('detail', {
+                      this.props.navigation.navigate('userDetail', {
                         id: item.id,
                         ten: item.ten,
                         sdt: item.sdt,
@@ -99,12 +104,11 @@ export class HomeScreen extends Component {
                         email: item.email,
                       });
                     }}>
-                    <Image
-                      loadingIndicatorSource="true"
-                      style={styles.avatar}
-                      source={{uri: item.ava}}
+                    <Image style={styles.avatar} source={{uri: item.ava}} />
+                    <ActivityIndicator
+                      animating={this.state.loading === false}
                     />
-                    <Text style={styles.avatarTxt}>500,000,000 VND</Text>
+                    <Text style={styles.avatarTxt}>{item.doanhso} VND</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -218,6 +222,7 @@ const styles = StyleSheet.create({
   avatarTxt: {
     fontSize: 20,
     textAlign: 'center',
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   menuContainer: {
     height: '60%',

@@ -67,20 +67,7 @@ export class LoginScreen extends React.Component {
       }
     }
   }
-  componentDidMount() {
-    const data = firebaseApp.firestore();
-    data.collection('user').onSnapshot(querySnapshot => {
-      var info = [];
-      querySnapshot.forEach(doc => {
-        info.push({
-          disabled: doc.data().disabled,
-        });
-        this.setState({
-          infor: info,
-        });
-      });
-    });
-  }
+
   _login() {
     if (
       this.state.emailValid &&
@@ -97,6 +84,14 @@ export class LoginScreen extends React.Component {
         })
         .catch(function(error) {
           var errorCode = error.code;
+          if (errorCode === 'auth/user-disabled') {
+            Alert.alert(
+              'Đăng nhập thất bại',
+              'Tài khoản đã bị khóa, vui lòng liên hệ duanbatdongsanteam3@gmail.com để biết thêm chi tiết ',
+              [{text: 'OK', onPress: () => console.log('OK pressed')}],
+              {cancelable: false},
+            );
+          }
           if (errorCode === 'auth/user-not-found') {
             Alert.alert(
               'Đăng nhập thất bại',
@@ -117,7 +112,7 @@ export class LoginScreen extends React.Component {
       if (this.state.email === '' || this.state.password === '') {
         Alert.alert(
           'Đăng nhập thất bại',
-          'Vui lòng kiểm tra lại tài khoản và mật khẩu',
+          'Vui lòng không để trống tài khoản và mật khẩu',
           [{text: 'OK', onPress: () => console.log('OK pressed')}],
           {cancelable: false},
         );

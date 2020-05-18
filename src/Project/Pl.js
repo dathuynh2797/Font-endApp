@@ -33,7 +33,7 @@ export class Pl extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={styles.child1}>
-          <Text style={styles.headerText}>Tổng quan</Text>
+          <Text style={styles.headerText}>Pháp lý</Text>
         </View>
         <View style={styles.child2}>
           <Image

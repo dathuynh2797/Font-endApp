@@ -4,6 +4,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import {createAppContainer} from 'react-navigation';
 import {PersonalResult} from './PersonalResult';
+import {TeamResult} from './TeamResult';
 
 const StyleTabBar = {
   tabBarOptions: {
@@ -31,7 +32,7 @@ const SaleTab = createMaterialTopTabNavigator(
       navigationOptions: {tabBarLabel: 'Nhân Sự'},
     },
     Second: {
-      screen: Second,
+      screen: TeamResult,
       navigationOptions: {tabBarLabel: 'Nhóm'},
     },
     Third: {

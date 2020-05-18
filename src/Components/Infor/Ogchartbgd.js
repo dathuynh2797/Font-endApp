@@ -40,15 +40,15 @@ export class Ogchartbgd extends Component {
 
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc.collection('staff').onSnapshot(querySnapshot => {
+    abc.collection('user').onSnapshot(querySnapshot => {
       var name = [];
       querySnapshot.forEach(doc => {
         name.push({
           id: doc.id,
-          ten: doc.data().staffNames,
-          sdt: doc.data().staffPhoneNumber,
+          ten: doc.data().fullName,
+          sdt: doc.data().phoneNumber,
           namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().staffProfile[0].publicUrl,
+          hinhanh: doc.data().avatars[0].publicUrl,
         });
 
         this.setState({

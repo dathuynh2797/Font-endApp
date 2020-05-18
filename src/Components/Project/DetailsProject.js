@@ -11,11 +11,11 @@ export class DetailsProject extends Component {
     const {navigation} = this.props;
     const ten = navigation.getParam('ten', 'chưa có dữ liệu');
     const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
-    const hinhanhpl = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
-    const hinhanhbg = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
-    const hinhanhnv = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
-    const hinhanhkh = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
-    const hinhanhqc = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
+    const hinhanhpl = navigation.getParam('hinhanhpl', 'chưa có dữ liệu');
+    const hinhanhbg = navigation.getParam('hinhanhbg', 'chưa có dữ liệu');
+    const hinhanhnv = navigation.getParam('hinhanhnv', 'chưa có dữ liệu');
+    const hinhanhkh = navigation.getParam('hinhanhkh', 'chưa có dữ liệu');
+    const hinhanhqc = navigation.getParam('hinhanhqc', 'chưa có dữ liệu');
     const latitude = navigation.getParam('latitude', 'chưa có dữ liệu');
     const longtitude = navigation.getParam('longtitude', 'chưa có dữ liệu');
     return (
