@@ -7,6 +7,7 @@ import {HomeScreen} from './src/Components//Screens/HomeScreen';
 import {InforScreen} from './src/Components/Screens/InforScreen';
 import {ProjectScreen} from './src/Components/Screens/ProjectScreen';
 import {ReportScreen} from './src/Components/Screens/ReportScreen';
+import {ImgPickker} from './src/Components/Screens/ImgPickker';
 import {ChangePassword} from './src/Components/Screens/ChangePassword';
 
 import {Loading} from './src/Components/Loading';
@@ -130,6 +131,16 @@ const MainStack = createStackNavigator({
   },
   BusinessResult: {
     screen: BusinessResult,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Đồ thị kết quả kinh doanh" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  ImgPickker: {
+    screen: ImgPickker,
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,

@@ -108,7 +108,9 @@ export class HomeScreen extends Component {
                     <ActivityIndicator
                       animating={this.state.loading === false}
                     />
-                    <Text style={styles.avatarTxt}>{item.doanhso} VND</Text>
+                    <Text style={styles.avatarTxt}>
+                      {item.doanhso.toLocaleString()} VND
+                    </Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -171,7 +173,7 @@ export class HomeScreen extends Component {
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
-              this.props.navigation.navigate('Home');
+              this.props.navigation.navigate('ImgPickker');
             }}>
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>
