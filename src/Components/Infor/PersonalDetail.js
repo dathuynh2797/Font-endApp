@@ -13,6 +13,13 @@ import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import bgAva from '../../img/bgAva.png';
 
 export class PersonalDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDirect: false,
+    };
+  }
+
   static navigationOptions = ({navigation}) => {
     return {
       headerLeft: () => <HeaderLeft navigation={navigation} />,
@@ -29,6 +36,7 @@ export class PersonalDetail extends Component {
     const hinhanh = navigation.getParam('hinhanh', 'chưa có dữ liệu');
     const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
     const phong = navigation.getParam('phong', 'chưa có dữ liệu');
+    const role = navigation.getParam('role', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1 / 3}}>
@@ -58,15 +66,24 @@ export class PersonalDetail extends Component {
             <View style={styles.HorizonLine} />
             <Text>Email: {email}</Text>
           </View>
+          {this.state.isDirect && (
+            <View style={styles.Item}>
+              <Image source={require('../../img/Profile/team.png')} />
+              <View style={styles.HorizonLine} />
+              <Text>Nhóm: {nhom}</Text>
+            </View>
+          )}
+          {this.state.isDirect && (
+            <View style={styles.Item}>
+              <Image source={require('../../img/Profile/department.png')} />
+              <View style={styles.HorizonLine} />
+              <Text>Phòng: {phong}</Text>
+            </View>
+          )}
           <View style={styles.Item}>
-            <Image source={require('../../img/Profile/team.png')} />
+            <Image source={require('../../img/Profile/mail.png')} />
             <View style={styles.HorizonLine} />
-            <Text>Nhóm: {nhom}</Text>
-          </View>
-          <View style={styles.Item}>
-            <Image source={require('../../img/Profile/department.png')} />
-            <View style={styles.HorizonLine} />
-            <Text>Phòng: {phong}</Text>
+            <Text>Chức vụ: {role}</Text>
           </View>
         </View>
       </View>

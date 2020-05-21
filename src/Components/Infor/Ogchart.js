@@ -18,16 +18,19 @@ export class Ogchart extends Component {
   }
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc.collection('staff').onSnapshot(querySnapshot => {
-      var dodai1 = [];
-      querySnapshot.forEach(doc => {
-        dodai1.push({});
-        dodai1.length;
-        this.setState({
-          dodai: dodai1,
+    abc
+      .collection('user')
+
+      .onSnapshot(querySnapshot => {
+        var dodai1 = [];
+        querySnapshot.forEach(doc => {
+          dodai1.push({});
+          dodai1.length;
+          this.setState({
+            dodai: dodai1,
+          });
         });
       });
-    });
   }
   render() {
     return (

@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -39,12 +38,12 @@ export class HomeScreen extends Component {
   componentDidMount() {
     const vitri = firebaseApp.firestore().collection('user');
     vitri.onSnapshot(querySnapshot => {
-      var marker1 = [];
+      var marker = [];
       querySnapshot.forEach(doc => {
         if (
           firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
         ) {
-          marker1.push({
+          marker.push({
             ten: doc.data().fullName,
             ava: doc.data().hinhanh,
             email: doc.data().email,
@@ -54,7 +53,7 @@ export class HomeScreen extends Component {
             ],
           });
           this.setState({
-            avatar: marker1,
+            avatar: marker,
           });
         }
       });
