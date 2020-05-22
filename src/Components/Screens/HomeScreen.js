@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -39,22 +38,28 @@ export class HomeScreen extends Component {
   componentDidMount() {
     const vitri = firebaseApp.firestore().collection('user');
     vitri.onSnapshot(querySnapshot => {
-      var marker1 = [];
+      var marker = [];
       querySnapshot.forEach(doc => {
         if (
           firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
         ) {
-          marker1.push({
+          let arr = [];
+          let dataDoanhSo = doc.data().doanhso[0].year;
+          for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
+            if (dataDoanhSo[i] !== null) {
+              arr.push(dataDoanhSo[i]);
+            }
+          }
+          marker.push({
             ten: doc.data().fullName,
-            ava: doc.data().hinhanh,
+            ava: doc.data().avatars[0].publicUrl,
             email: doc.data().email,
             sdt: doc.data().phoneNumber,
-            doanhso: [
-              doc.data().doanhso[0].year[doc.data().doanhso[0].year.length - 1],
-            ],
+            doanhso: [arr[arr.length - 1]],
           });
           this.setState({
-            avatar: marker1,
+            avatar: marker,
+            loading: false,
           });
         }
       });
@@ -88,36 +93,48 @@ export class HomeScreen extends Component {
               }}>
               <Image source={require('../../img/logout.png')} />
             </TouchableOpacity>
-            <FlatList
-              data={this.state.avatar}
-              renderItem={({item}) => (
-                <View style={styles.avatarContainer}>
-                  <Text style={styles.avatarTxt}>Xin chào: {item.ten}</Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.props.navigation.navigate('userDetail', {
-                        id: item.id,
-                        ten: item.ten,
-                        sdt: item.sdt,
-                        namsinh: item.namsinh,
-                        hinhanh: item.ava,
-                        email: item.email,
-                      });
-                    }}>
-                    <Image style={styles.avatar} source={{uri: item.ava}} />
-                    <ActivityIndicator
-                      animating={this.state.loading === false}
-                    />
-                    <Text style={styles.avatarTxt}>
-                      {item.doanhso.toLocaleString()} VND
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-              keyExtractor={(item => item.ten, item => item.ava)}
-            />
+            {this.state.loading && (
+              <ActivityIndicator
+                size="large"
+                color="#CBF7FD"
+                animating={true}
+                style={styles.avatarContainer}
+              />
+            )}
+            {!this.state.loading && (
+              <FlatList
+                data={this.state.avatar}
+                renderItem={({item}) => (
+                  <View style={styles.avatarContainer}>
+                    <Text style={styles.avatarTxt}>Xin chào: {item.ten}</Text>
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.props.navigation.navigate('userDetail', {
+                          id: item.id,
+                          ten: item.ten,
+                          sdt: item.sdt,
+                          namsinh: item.namsinh,
+                          hinhanh: item.ava,
+                          email: item.email,
+                        });
+                      }}>
+                      <Image style={styles.avatar} source={{uri: item.ava}} />
+
+                      <Text style={styles.avatarTxt}>
+                        {item.doanhso
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                        VND
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+                keyExtractor={(item => item.ten, item => item.ava)}
+              />
+            )}
           </ImageBackground>
         </View>
+
         <View style={styles.menuContainer}>
           <TouchableOpacity
             style={styles.menuItem}

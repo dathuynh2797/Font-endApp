@@ -74,15 +74,15 @@ export class Personel extends Component {
   }
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc.collection('staff').onSnapshot(querySnapshot => {
+    abc.collection('user').onSnapshot(querySnapshot => {
       var name = [];
       querySnapshot.forEach(doc => {
         name.push({
           id: doc.id,
-          ten: doc.data().staffNames,
-          sdt: doc.data().staffPhoneNumber,
+          ten: doc.data().fullName,
+          sdt: doc.data().phoneNumber,
           namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().staffProfile[0].publicUrl,
+          hinhanh: doc.data().avatars[0].publicUrl,
         });
 
         this.setState({
@@ -152,16 +152,13 @@ export class Personel extends Component {
                       hinhanh: item.hinhanh,
                     });
                   }}>
-                  <ScrollView>
-                    <Cols
-                      data={[[item.ten], [item.namsinh], [item.sdt]]}
-                      textStyle={styles.text}
-                      style={styles.boder}
-                      borderStyle={{borderWidth: 1, borderColor: '#000'}}
-                      flexArr={[1.5, 1, 1]}
-                    />
-                  </ScrollView>
-                  {/* keyExtractor={item => item.ten} */}
+                  <Cols
+                    data={[[item.ten], [item.namsinh], [item.sdt]]}
+                    textStyle={styles.text}
+                    style={styles.boder}
+                    borderStyle={{borderWidth: 1, borderColor: '#000'}}
+                    flexArr={[1.5, 1, 1]}
+                  />
                 </TouchableOpacity>
               )}
             />
