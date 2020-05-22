@@ -38,12 +38,18 @@ export class PersonalResult extends Component {
     business.collection('user').onSnapshot(querySnapshot => {
       var name = [];
       querySnapshot.forEach(doc => {
+        let arr = [];
+        // let dataDoanhSo = doc.data().doanhso[0].year;
+        // for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
+        //   if (dataDoanhSo[i] !== null) {
+        //     arr.push(dataDoanhSo[i]);
+        //   }
+        // }
+
         name.push({
           id: doc.id,
           ten: doc.data().fullName,
-          doanhso: [
-            doc.data().doanhso[0].year[doc.data().doanhso[0].year.length - 1],
-          ],
+          // doanhso: [arr[arr.length - 1]],
         });
 
         this.setState({
@@ -57,10 +63,18 @@ export class PersonalResult extends Component {
 
   render() {
     const state = this.state;
+    const moment = require('moment');
     return (
       <View style={styles.container}>
         <Text style={styles.titles}>
-          kết quả kinh doanh tuần của nhân viên từ {Date()}
+          kết quả kinh doanh tuần của nhân viên từ{' '}
+          {moment()
+            .weekday(0)
+            .format('DD/MM')}{' '}
+          đến{' '}
+          {moment()
+            .weekday(6)
+            .format('DD/MM')}
         </Text>
         <Table>
           <Row
@@ -91,7 +105,13 @@ export class PersonalResult extends Component {
               renderItem={({item}) => (
                 <View>
                   <Cols
-                    data={[[item.doanhso]]}
+                    data={[
+                      [
+                        item.doanhso
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+                      ],
+                    ]}
                     textStyle={styles.text}
                     style={styles.row}
                     borderStyle={{borderWidth: 1, borderColor: '#000'}}

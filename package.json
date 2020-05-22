@@ -12,6 +12,7 @@
   "dependencies": {
     "base-64": "^0.1.0",
     "firebase": "^7.6.1",
+    "moment": "^2.26.0",
     "react": "16.9.0",
     "react-native": "^0.61.5",
     "react-native-geocoding": "^0.4.0",

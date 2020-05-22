@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../config';
 import 'firebase/firestore';
-import {Table, Row, Rows, Cols} from 'react-native-table-component';
+import {Table, Row, Cols} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -70,7 +70,6 @@ export class Personel extends Component {
       tableData: [],
       text: '',
       data: [],
-      roll: [],
     };
   }
   componentDidMount() {
@@ -84,7 +83,6 @@ export class Personel extends Component {
           sdt: doc.data().phoneNumber,
           namsinh: doc.data().staffDateOfBirth,
           hinhanh: doc.data().avatars[0].publicUrl,
-          chucvu: doc.data().roles,
         });
 
         this.setState({
@@ -132,17 +130,15 @@ export class Personel extends Component {
             value={this.state.value}
           />
         </View>
-        <ScrollView>
-          <View style={styles.container}>
-            <Table>
-              <Row
-                data={this.state.tableHead}
-                style={styles.head}
-                textStyle={styles.text}
-                borderStyle={{borderWidth: 1, borderColor: '#000'}}
-                flexArr={[1.5, 1, 1]}
-              />
-            </Table>
+        <View style={styles.container}>
+          <Table>
+            <Row
+              data={this.state.tableHead}
+              style={styles.head}
+              textStyle={styles.text}
+              borderStyle={{borderWidth: 1, borderColor: '#000'}}
+              flexArr={[1.5, 1, 1]}
+            />
             <FlatList
               data={this.state.tableData}
               renderItem={({item}) => (
@@ -154,27 +150,27 @@ export class Personel extends Component {
                       sdt: item.sdt,
                       namsinh: item.namsinh,
                       hinhanh: item.hinhanh,
-                      role: item.chucvu,
                     });
                   }}>
                   <Cols
                     data={[[item.ten], [item.namsinh], [item.sdt]]}
                     textStyle={styles.text}
+                    style={styles.boder}
                     borderStyle={{borderWidth: 1, borderColor: '#000'}}
                     flexArr={[1.5, 1, 1]}
                   />
                 </TouchableOpacity>
               )}
             />
-          </View>
-        </ScrollView>
+          </Table>
+        </View>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    padding: 5,
+    padding: 10,
     paddingTop: 5,
     backgroundColor: 'white',
   },
@@ -182,7 +178,6 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#1787AB',
   },
-
   text: {
     margin: 10,
     // alignSelf: 'center',
