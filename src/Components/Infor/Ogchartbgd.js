@@ -1,35 +1,9 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  FlatList,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  Image,
-} from 'react-native';
+import {Text, FlatList, View, StyleSheet, Image} from 'react-native';
 import {firebaseApp} from '../config';
 import 'firebase/firestore';
 
 export class Ogchartbgd extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'THÔNG TIN CHI TIẾT',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image
-            source={require('../../img/exit.png')}
-            style={styles.iconBack}
-          />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
-    };
-  };
   constructor(props) {
     super(props);
     this.state = {
@@ -40,23 +14,26 @@ export class Ogchartbgd extends Component {
 
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc.collection('user').onSnapshot(querySnapshot => {
-      var name = [];
-      querySnapshot.forEach(doc => {
-        name.push({
-          id: doc.id,
-          ten: doc.data().fullName,
-          sdt: doc.data().phoneNumber,
-          namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().avatars[0].publicUrl,
-        });
+    abc
+      .collection('user')
+      .where('productVariation.label', '==', 'Ban Giám Đốc')
+      .onSnapshot(querySnapshot => {
+        var name = [];
+        querySnapshot.forEach(doc => {
+          name.push({
+            id: doc.id,
+            ten: doc.data().firstName,
+            sdt: doc.data().phoneNumber,
+            namsinh: doc.data().staffDateOfBirth,
+            hinhanh: doc.data().avatars[0].publicUrl,
+          });
 
-        this.setState({
-          bgd: name,
-          loading: false,
+          this.setState({
+            bgd: name,
+            loading: false,
+          });
         });
       });
-    });
   }
   render() {
     return (

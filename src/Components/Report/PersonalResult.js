@@ -8,10 +8,9 @@ import {
   Rows,
   Col,
   Cols,
-  TouchableOpacity,
 } from 'react-native-table-component';
 import {firebaseApp} from '../config';
-import {FlatList, Text} from 'react-native';
+import {FlatList, Text, TouchableOpacity} from 'react-native';
 
 export class PersonalResult extends Component {
   constructor(props) {
@@ -39,17 +38,21 @@ export class PersonalResult extends Component {
       var name = [];
       querySnapshot.forEach(doc => {
         let arr = [];
-        // let dataDoanhSo = doc.data().doanhso[0].year;
-        // for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
-        //   if (dataDoanhSo[i] !== null) {
-        //     arr.push(dataDoanhSo[i]);
-        //   }
-        // }
-
+        let dataDoanhSo = doc.data().doanhso[0].year;
+        for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
+          if (dataDoanhSo[i] !== null) {
+            arr.push(dataDoanhSo[i]);
+          }
+        }
         name.push({
           id: doc.id,
-          ten: doc.data().fullName,
-          // doanhso: [arr[arr.length - 1]],
+          ten: doc.data().firstName,
+          doanhso: [arr[arr.length - 1]],
+          sdt: doc.data().phoneNumber,
+          namsinh: doc.data().staffDateOfBirth,
+          hinhanh: doc.data().avatars[0].publicUrl,
+          email: doc.data().email,
+          chucvu: doc.data().roles[0],
         });
 
         this.setState({
@@ -69,7 +72,7 @@ export class PersonalResult extends Component {
         <Text style={styles.titles}>
           kết quả kinh doanh tuần của nhân viên từ{' '}
           {moment()
-            .weekday(0)
+            .weekday(1)
             .format('DD/MM')}{' '}
           đến{' '}
           {moment()
@@ -81,25 +84,34 @@ export class PersonalResult extends Component {
             data={state.tableHead}
             flexArr={[1, 1, 1]}
             style={styles.head}
-            textStyle={styles.text}
+            textStyle={styles.textHead}
             borderStyle={{borderWidth: 1, borderColor: '#000'}}
           />
-
           <TableWrapper style={styles.wrapper}>
             <FlatList
               data={this.state.tableData.slice(0, 10)}
               renderItem={({item}) => (
-                <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.props.navigation.navigate('PersonalDetail', {
+                      sdt: item.sdt,
+                      ten: item.ten,
+                      namsinh: item.namsinh,
+                      hinhanh: item.hinhanh,
+                      email: item.email,
+                      chucvu: item.chucvu,
+                    });
+                  }}>
                   <Cols
                     data={[[item.ten]]}
                     textStyle={styles.text}
-                    windowSize={10}
                     style={styles.row}
                     borderStyle={{borderWidth: 1, borderColor: '#000'}}
                   />
-                </View>
+                </TouchableOpacity>
               )}
             />
+
             <FlatList
               data={this.state.tableData.slice(0, 10)}
               renderItem={({item}) => (
@@ -135,10 +147,16 @@ export class PersonalResult extends Component {
 
 const styles = StyleSheet.create({
   container: {flex: 1, padding: 5, paddingTop: 20, backgroundColor: '#fff'},
-  head: {height: 45, backgroundColor: '#f1f8ff'},
+  head: {height: 45, backgroundColor: '#1787AB'},
   wrapper: {flexDirection: 'row'},
   title: {flex: 1, backgroundColor: '#f6f8fa'},
   row: {height: 45},
+  textHead: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: '#FFFFFF',
+  },
   text: {textAlign: 'center'},
   titles: {fontSize: 15},
 });

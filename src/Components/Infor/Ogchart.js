@@ -13,34 +13,84 @@ export class Ogchart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dodai: [],
+      lengthbgd: [],
+      lengthpkd: [],
+      lengthptc: [],
+      lengthpns: [],
+      image: '',
     };
   }
   componentDidMount() {
     const abc = firebaseApp.firestore();
     abc
       .collection('user')
-
+      .where('productVariation.label', '==', 'Ban Giám Đốc')
       .onSnapshot(querySnapshot => {
-        var dodai1 = [];
+        var bgd = [];
         querySnapshot.forEach(doc => {
-          dodai1.push({});
-          dodai1.length;
+          bgd.push({});
+          bgd.length;
           this.setState({
-            dodai: dodai1,
+            lengthbgd: bgd,
           });
         });
       });
+    abc
+      .collection('user')
+      .where('productVariation.label', '==', 'Phòng kinh doanh')
+      .onSnapshot(querySnapshot => {
+        var pkd = [];
+        querySnapshot.forEach(doc => {
+          pkd.push({});
+          pkd.length;
+          this.setState({
+            lengthpkd: pkd,
+          });
+        });
+      });
+    abc
+      .collection('user')
+      .where('productVariation.label', '==', 'Phòng nhân sự')
+      .onSnapshot(querySnapshot => {
+        var pns = [];
+        querySnapshot.forEach(doc => {
+          pns.push({});
+          pns.length;
+          this.setState({
+            lengthpns: pns,
+          });
+        });
+      });
+    abc
+      .collection('user')
+      .where('productVariation.label', '==', 'Phòng tài chính')
+      .onSnapshot(querySnapshot => {
+        var ptc = [];
+        querySnapshot.forEach(doc => {
+          ptc.push({});
+          ptc.length;
+          this.setState({
+            lengthptc: ptc,
+          });
+        });
+      });
+    abc.collection('brands').onSnapshot(querySnapshot => {
+      var hinhanh = '';
+      querySnapshot.forEach(doc => {
+        hinhanh = doc.data().brandCover[0].publicUrl;
+      });
+      this.setState({
+        image: hinhanh,
+      });
+    });
   }
   render() {
+    let {image} = this.state;
     return (
       <SafeAreaView style={styles.body}>
         <SafeAreaView style={styles.Imgview}>
           <View style={styles.Chart}>
-            <Image
-              source={require('../../img/4a4d35e88fc1749f2dd0.jpg')}
-              style={styles.Imgview1}
-            />
+            <Image source={{uri: image}} style={styles.Imgview1} />
           </View>
         </SafeAreaView>
         <SafeAreaView style={styles.MenuContainer}>
@@ -51,7 +101,7 @@ export class Ogchart extends Component {
               }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>BAN GIÁM ĐỐC</Text>
-                <Text>{this.state.dodai.length} nhân sự</Text>
+                <Text>{this.state.lengthbgd.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -62,7 +112,7 @@ export class Ogchart extends Component {
               }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>PHÒNG KINH DOANH</Text>
-                <Text>{this.state.dodai.length} nhân sự</Text>
+                <Text>{this.state.lengthpkd.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -73,7 +123,7 @@ export class Ogchart extends Component {
               }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>PHÒNG TÀI CHÍNH</Text>
-                <Text>{this.state.dodai.length} nhân sự</Text>
+                <Text>{this.state.lengthptc.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -84,7 +134,7 @@ export class Ogchart extends Component {
               }}>
               <View style={styles.TabMenu}>
                 <Text style={styles.Text}>PHÒNG NHÂN SỰ</Text>
-                <Text>{this.state.dodai.length} nhân sự</Text>
+                <Text>{this.state.lengthpns.length} nhân sự</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -104,9 +154,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Imgview1: {
-    resizeMode: 'cover',
-    width: 333,
-    height: 168,
+    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
   },
   iconBack: {
     width: 30,
@@ -117,8 +167,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 170,
     width: 329,
-    borderWidth: 1,
-    backgroundColor: 'grey',
   },
   MenuContainer: {
     flex: 2 / 3,

@@ -129,6 +129,7 @@ export class DetailsProject extends Component {
               this.props.navigation.navigate('location', {
                 latitude: latitude,
                 longtitude: longtitude,
+                title: ten,
               });
             }}>
             <View style={styles.TabMenu}>

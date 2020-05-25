@@ -14,7 +14,6 @@ import {firebaseApp} from '../config';
 import 'firebase/firestore';
 import {Table, Row, Cols} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 
 const {width: WIDTH} = Dimensions.get('window');
 //set time out
@@ -70,30 +69,46 @@ export class Personel extends Component {
       tableData: [],
       text: '',
       data: [],
+      roles: '',
     };
+  }
+  compare() {
+    const dataCompare = firebaseApp.firestore();
+    dataCompare.collection('units').onSnapshot(querySnapshot => {
+      var role = '';
+      role = querySnapshot.data().id;
+      this.setState({
+        roles: role,
+      });
+    });
   }
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc.collection('user').onSnapshot(querySnapshot => {
-      var name = [];
-      querySnapshot.forEach(doc => {
-        name.push({
-          id: doc.id,
-          ten: doc.data().fullName,
-          sdt: doc.data().phoneNumber,
-          namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().avatars[0].publicUrl,
-        });
+    abc
+      .collection('user')
+      .where('disabled', '==', false)
+      .onSnapshot(querySnapshot => {
+        var name = [];
+        querySnapshot.forEach(doc => {
+          name.push({
+            id: doc.id,
+            ten: doc.data().firstName,
+            sdt: doc.data().phoneNumber,
+            namsinh: doc.data().staffDateOfBirth,
+            hinhanh: doc.data().avatars[0].publicUrl,
+            email: doc.data().email,
+            chucvu: doc.data().roles[0],
+          });
 
-        this.setState({
-          tableData: name.sort((a, b) => {
-            return a.ten > b.ten;
-          }),
-          loading: true,
-          data: name,
+          this.setState({
+            tableData: name.sort((a, b) => {
+              return a.ten > b.ten;
+            }),
+            loading: true,
+            data: name,
+          });
         });
       });
-    });
   }
   filterSearch(text) {
     this.setState({
@@ -131,7 +146,7 @@ export class Personel extends Component {
           />
         </View>
         <View style={styles.container}>
-          <Table>
+          <Table style={{maxHeight: '90%'}}>
             <Row
               data={this.state.tableHead}
               style={styles.head}
@@ -144,12 +159,14 @@ export class Personel extends Component {
               renderItem={({item}) => (
                 <TouchableOpacity
                   onPress={() => {
-                    this.props.navigation.navigate('detail', {
+                    this.props.navigation.navigate('PersonalDetail', {
                       id: item.id,
                       ten: item.ten,
                       sdt: item.sdt,
                       namsinh: item.namsinh,
                       hinhanh: item.hinhanh,
+                      email: item.email,
+                      chucvu: item.chucvu,
                     });
                   }}>
                   <Cols

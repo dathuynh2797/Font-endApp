@@ -118,14 +118,15 @@ export class HomeScreen extends Component {
                           email: item.email,
                         });
                       }}>
-                      <Image style={styles.avatar} source={{uri: item.ava}} />
-
-                      <Text style={styles.avatarTxt}>
-                        {item.doanhso
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                        VND
-                      </Text>
+                      <View style={{alignItems: 'center'}}>
+                        <Image style={styles.avatar} source={{uri: item.ava}} />
+                        <Text style={styles.avatarTxt}>
+                          {item.doanhso
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                          VND
+                        </Text>
+                      </View>
                     </TouchableOpacity>
                   </View>
                 )}
@@ -230,13 +231,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatar: {
-    // resizeMode: 'stretch',
+    resizeMode: 'cover',
     width: 140,
     height: 140,
     borderRadius: 100,
     borderWidth: 4,
     borderColor: '#fff',
-    margin: 20,
+    margin: 10,
   },
   avatarTxt: {
     fontSize: 20,

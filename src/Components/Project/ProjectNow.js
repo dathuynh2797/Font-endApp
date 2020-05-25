@@ -37,8 +37,8 @@ export class ProjectNow extends Component {
             hinhanhnv: doc.data().supplierProfile4[0].publicUrl,
             hinhanhkh: doc.data().supplierProfile5[0].publicUrl,
             hinhanhqc: doc.data().supplierProfile6[0].publicUrl,
-            latitude: doc.data().lat,
-            longtitude: doc.data().long,
+            latitude: doc.data().latitude,
+            longtitude: doc.data().longtitude,
           });
 
           this.setState({

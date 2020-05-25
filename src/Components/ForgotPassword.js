@@ -1,14 +1,22 @@
-import {firebaseApp} from './config';
 import React from 'react';
+import 'react-native-gesture-handler';
 import {
-  Text,
-  TextInput,
-  SafeAreaView,
-  TouchableOpacity,
   View,
+  Text,
   StyleSheet,
+  ImageBackground,
+  Image,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
   Alert,
 } from 'react-native';
+import {firebaseApp} from '../Components/config';
+import bgImage from '../img/bgLogin.png';
+
+const {width: WIDTH} = Dimensions.get('window');
 
 export class ForgotPassword extends React.Component {
   state = {email: ''};
@@ -18,54 +26,181 @@ export class ForgotPassword extends React.Component {
       .auth()
       .sendPasswordResetEmail(email)
       .then(function(user) {
-        Alert.alert('Please check your email...');
+        Alert.alert('Vui lòng kiểm tra Email');
       })
-      .catch(function(e) {
-        console.log(e);
+      .catch(function(error) {
+        var errorCode = error.code;
+        if (errorCode === 'auth/invalid-email') {
+          Alert.alert(
+            'Thất bại',
+            'Không tìm thấy tài khoản email',
+            [{text: 'OK', onPress: () => console.log('OK pressed')}],
+            {cancelable: false},
+          );
+        }
       });
   };
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View>
-          <Text style={styles.text}>Quên mật khẩu?</Text>
-        </View>
-        <View
-          initialValues={{email: ''}}
-          onSubmit={(values, actions) => {
-            this.handlePasswordReset(values, actions);
-          }}>
+      <ImageBackground source={bgImage} style={styles.ImageBackground}>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : null}>
+          <View style={styles.logoContainer}>
+            <Image style={styles.logo} />
+            <Text style={styles.logoText}>Logo</Text>
+          </View>
+
           <View>
+            <Text style={styles.headerText}>Quên Mật Khẩu</Text>
+          </View>
+
+          <View style={styles.input}>
             <TextInput
               name="email"
-              placeholder="Enter email"
+              placeholder="Nhập email"
               value={this.state.email}
               onChangeText={email => this.setState({email})}
               autoCapitalize="none"
-              iconName="ios-mail"
-              iconColor="#2C384A"
             />
-            <TouchableOpacity onPress={this.handlePasswordReset}>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity
+              onPress={this.handlePasswordReset}
+              style={styles.btnLogin}>
               <Text style={styles.text}>Xác nhận</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btnCancel}
+              onPress={() => this.props.navigation.goBack()}>
+              <Text style={styles.text}>Quay về</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      </SafeAreaView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     );
   }
 }
+
 const styles = StyleSheet.create({
+  ImageBackground: {
+    flex: 1,
+    width: null,
+    height: null,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'grey',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+    backgroundColor: 'white',
+  },
+  logoText: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: '500',
+    marginTop: 10,
+    // opacity: 0.5,
+  },
+  logo: {
+    width: 238,
+    height: 98,
+  },
+  headerText: {
+    width: WIDTH - 10,
+    textAlign: 'center',
+    flexWrap: 'wrap',
+    lineHeight: 35,
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#2D389C',
+  },
+  inputContainer: {
+    marginTop: 20,
+    // justifyContent: 'center',
+  },
+  input: {
+    width: WIDTH - 100,
+    height: 50,
+    borderRadius: 50,
+    fontSize: 16,
+    paddingLeft: 50,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+    color: 'black',
+    marginHorizontal: 25,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    // elevation: 15,
+    marginTop: 20,
+  },
+  inputIcon: {
+    position: 'absolute',
+    top: 7,
+    left: 37,
+  },
+  btnEye: {
+    position: 'absolute',
+    top: 15,
+    right: 40,
+  },
+  iconEye: {
+    height: 20,
+    width: 20,
+  },
+  btnLogin: {
+    width: WIDTH - 270,
+    height: 50,
+    borderRadius: 45,
+    justifyContent: 'center',
+    backgroundColor: '#1085B8',
+    marginTop: 10,
+    marginBottom: 20,
+    shadowColor: '#1085B8',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
+    alignItems: 'center',
+  },
+  btnCancel: {
+    width: WIDTH - 270,
+    height: 50,
+    borderRadius: 45,
+    justifyContent: 'center',
+    backgroundColor: '#D0B369',
+    marginBottom: 20,
+    shadowColor: '#1085B8',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    marginTop: 10,
+    shadowRadius: 9.51,
+    elevation: 15,
+    alignItems: 'center',
   },
   text: {
-    color: '#333',
-    fontSize: 24,
-    marginLeft: 25,
+    color: '#E5E5E5',
+    textAlign: 'center',
+    fontSize: 16,
   },
-  buttonContainer: {
-    margin: 25,
+  error: {
+    borderWidth: 2,
+    borderColor: 'red',
   },
 });

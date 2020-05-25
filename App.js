@@ -9,7 +9,6 @@ import {ProjectScreen} from './src/Components/Screens/ProjectScreen';
 import {ReportScreen} from './src/Components/Screens/ReportScreen';
 import {ChangePassword} from './src/Components/Screens/ChangePassword';
 
-import {Loading} from './src/Components/Loading';
 import {Policy} from './src/Components/Infor/Policy';
 import {Personel} from './src/Components/Infor/Personel';
 import {Ogchart} from './src/Components/Infor/Ogchart';
@@ -42,10 +41,6 @@ const navOptionHandler = () => ({
 });
 
 const AuthStack = createStackNavigator({
-  Loading: {
-    screen: Loading,
-    navigationOptions: navOptionHandler,
-  },
   LoginScreen: {
     screen: LoginScreen,
     navigationOptions: navOptionHandler,
@@ -138,22 +133,121 @@ const MainStack = createStackNavigator({
       };
     },
   },
-  ChangePassword: ChangePassword,
+  ChangePassword: {screen: ChangePassword, navigationOptions: navOptionHandler},
 
-  detailPolicy: detailPolicy,
+  detailPolicy: {
+    screen: detailPolicy,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Chi Tiết" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
   location: location,
-  Tq: Tq,
-  Pl: Pl,
-  Csbhkh: Csbhkh,
-  Csbhnv: Csbhnv,
-  Qc: Qc,
-  Bg: Bg,
+  Tq: {
+    screen: Tq,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Pl: {
+    screen: Pl,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Csbhkh: {
+    screen: Csbhkh,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Csbhnv: {
+    screen: Csbhnv,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Qc: {
+    screen: Qc,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Bg: {
+    screen: Bg,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
   ReportScreen: ReportScreen,
-  detail: PersonalDetail,
-  Ogchartpns: Ogchartpns,
-  Ogchartpkd: Ogchartpkd,
-  Ogchartptc: Ogchartptc,
-  Ogchartbgd: Ogchartbgd,
+  PersonalDetail: PersonalDetail,
+  Ogchartpns: {
+    screen: Ogchartpns,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Phòng Nhân Sự" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Ogchartpkd: {
+    screen: Ogchartpkd,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Phòng Kinh Doanh" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Ogchartptc: {
+    screen: Ogchartptc,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Phòng Tài Chính" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  Ogchartbgd: {
+    screen: Ogchartbgd,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="Ban Giám Đốc" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
   userDetail: userDetail,
 });
 

@@ -1,13 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground} from 'react-native';
 import 'firebase/firestore';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import bgAva from '../../img/bgAva.png';
@@ -36,7 +29,7 @@ export class PersonalDetail extends Component {
     const hinhanh = navigation.getParam('hinhanh', 'chưa có dữ liệu');
     const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
     const phong = navigation.getParam('phong', 'chưa có dữ liệu');
-    const role = navigation.getParam('role', 'chưa có dữ liệu');
+    const role = navigation.getParam('chucvu', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1 / 3}}>
@@ -98,8 +91,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   AvatarImg: {
-    width: 150,
-    height: 150,
+    width: 160,
+    height: 160,
     borderRadius: 100,
   },
   AvatarTxt: {
