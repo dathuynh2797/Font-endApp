@@ -191,7 +191,7 @@ export class HomeScreen extends Component {
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
-              this.props.navigation.navigate('Home');
+              this.props.navigation.navigate('ImgPickker');
             }}>
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>
