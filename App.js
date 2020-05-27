@@ -134,21 +134,7 @@ const MainStack = createStackNavigator({
       };
     },
   },
-<<<<<<< HEAD
-  ImgPickker: {
-    screen: ImgPickker,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Đồ thị kết quả kinh doanh" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
-  ChangePassword: ChangePassword,
-=======
   ChangePassword: {screen: ChangePassword, navigationOptions: navOptionHandler},
->>>>>>> ca7ecdfe9f7f4aec3ad6cb35e7738de7754bd0a1
 
   detailPolicy: {
     screen: detailPolicy,
