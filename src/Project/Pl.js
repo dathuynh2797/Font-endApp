@@ -1,32 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
 // import {firebaseApp} from './config';
 const {width: WIDTH} = Dimensions.get('window');
 export class Pl extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'XEM THÔNG TIN',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image source={require('../img/exit.png')} style={styles.iconBack} />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
-    };
-  };
   render() {
     const {navigation} = this.props;
     const hinhanhpl = navigation.getParam('hinhanhpl', 'chưa có dữ liệu');

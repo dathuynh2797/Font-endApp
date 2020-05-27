@@ -6,18 +6,48 @@ import {
   Text,
   TouchableOpacity,
   Alert,
+  Platform,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Dimensions,
 } from 'react-native';
 import {firebaseApp} from '../config';
 import * as firebase from 'firebase';
+const {width: WIDTH} = Dimensions.get('window');
+import bgImage from '../../img/bgLogin.png';
+import {EMAIL, PASSWORD} from '../Regex';
 export class ChangePassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPassword: '',
       newPassword: '',
+      passwordOldValid: true,
+      passwordNewValid: true,
+      loginBtn: false,
     };
   }
-
+  validate(type, value) {
+    if (type === 'currentPassword') {
+      this.setState({currentPassword: value});
+      if (value === '' || PASSWORD.test(value)) {
+        this.setState({currentPassword: true});
+        this.setState({loginBtn: false});
+      } else {
+        this.setState({passwordOldValid: false});
+        this.setState({loginBtn: true});
+      }
+    } else if (type === 'newPassword') {
+      this.setState({newPassword: value});
+      if (value === '' || PASSWORD.test(value)) {
+        this.setState({passwordNewValid: true});
+        this.setState({loginBtn: true});
+      } else {
+        this.setState({passwordNewValid: false});
+        this.setState({loginBtn: true});
+      }
+    }
+  }
   reAuthenticate = currentPassword => {
     var user = firebaseApp.auth().currentUser;
     var cred = firebase.auth.EmailAuthProvider.credential(
@@ -30,7 +60,7 @@ export class ChangePassword extends Component {
   onChangePassword = () => {
     this.reAuthenticate(this.state.currentPassword)
       .then(() => {
-        var user = firebase.auth().currentUser;
+        var user = firebaseApp.auth().currentUser;
         user
           .updatePassword(this.state.newPassword)
           .then(() => {
@@ -47,58 +77,127 @@ export class ChangePassword extends Component {
 
   render() {
     return (
-      <View style={styles.Container}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Current Password"
-          value={this.state.currentPassword}
-          autoCapitalize="none"
-          secureTextEntry={true}
-          onChangeText={text => {
-            this.setState({currentPassword: text});
-          }}
-        />
-        <TextInput
-          style={styles.textInput}
-          placeholder="New Password"
-          value={this.state.newPassword}
-          autoCapitalize="none"
-          secureTextEntry={true}
-          onChangeText={text => {
-            this.setState({newPassword: text});
-          }}
-        />
-        <TouchableOpacity
-          onPress={this.onChangePassword}
-          style={styles.btnChangePass}>
-          <Text>Change Password</Text>
-        </TouchableOpacity>
-      </View>
+      <ImageBackground source={bgImage} style={styles.ImageBackground}>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : null}>
+          <View style={styles.logoContainer}>
+            <Text style={styles.logoText}>Đổi Mật Khẩu</Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={[
+                styles.textInput,
+                !this.state.passwordOldValid ? styles.error : null,
+              ]}
+              placeholder="Mật Khẩu Hiện Tại"
+              value={this.state.currentPassword}
+              autoCapitalize="none"
+              secureTextEntry={true}
+              onChangeText={text => {
+                this.validate('currentPassword', text);
+              }}
+            />
+            <TextInput
+              style={[
+                styles.textInput,
+                !this.state.passwordNewValid ? styles.error : null,
+              ]}
+              placeholder="Mật Khẩu Mới"
+              value={this.state.newPassword}
+              autoCapitalize="none"
+              secureTextEntry={true}
+              onChangeText={text => {
+                this.validate('newPassword', text);
+              }}
+            />
+          </View>
+          <View style={styles.button}>
+            <TouchableOpacity
+              disabled={this.state.loginBtn}
+              onPress={this.onChangePassword}
+              style={styles.btnChangePass}>
+              <Text>Thay đổi mật khẩu</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.goBack()}
+              style={styles.btnChangePass1}>
+              <Text>Quay về</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  Container: {
+  ImageBackground: {
     flex: 1,
-    paddingVertical: 50,
-    paddingHorizontal: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  container: {
+    justifyContent: 'center',
+    flex: 1,
+    // paddingVertical: 50,
+    // paddingHorizontal: 20,
+  },
+  inputContainer: {
+    marginTop: 20,
+    // justifyContent: 'center',
   },
   textInput: {
+    width: WIDTH - 80,
     borderWidth: 1,
     borderColor: 'gray',
-    marginVertical: 20,
+    marginVertical: 10,
+
     padding: 10,
+    backgroundColor: 'rgba(255,255,255,0.3)',
     height: 40,
-    alignSelf: 'stretch',
+    // alignSelf: 'stretch',
     fontSize: 18,
+    borderRadius: 30,
   },
+  logoContainer: {marginTop: 20},
+  logoText: {
+    textAlign: 'center',
+    flexWrap: 'wrap',
+    lineHeight: 35,
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#2D389C',
+  },
+
   btnChangePass: {
     borderWidth: 1,
     borderColor: 'gray',
+    backgroundColor: '#1085B8',
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    marginHorizontal: 100,
+    width: 130,
+  },
+  btnChangePass1: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    backgroundColor: '#D0B369',
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 130,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginTop: 30,
+  },
+  error: {
+    borderWidth: 2,
+    borderColor: 'red',
   },
 });

@@ -40,23 +40,26 @@ export class Ogchartpns extends Component {
 
   componentDidMount() {
     const abc = firebaseApp.firestore();
-    abc.collection('staff').onSnapshot(querySnapshot => {
-      var name = [];
-      querySnapshot.forEach(doc => {
-        name.push({
-          id: doc.id,
-          ten: doc.data().staffNames,
-          sdt: doc.data().staffPhoneNumber,
-          namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().staffProfile[0].publicUrl,
-        });
+    abc
+      .collection('user')
+      .where('productVariation.label', '==', 'Phòng nhân sự')
+      .onSnapshot(querySnapshot => {
+        var name = [];
+        querySnapshot.forEach(doc => {
+          name.push({
+            id: doc.id,
+            ten: doc.data().firstName,
+            sdt: doc.data().phoneNumber,
+            namsinh: doc.data().staffDateOfBirth,
+            hinhanh: doc.data().avatars[0].publicUrl,
+          });
 
-        this.setState({
-          bgd: name,
-          loading: false,
+          this.setState({
+            bgd: name,
+            loading: false,
+          });
         });
       });
-    });
   }
   render() {
     return (
