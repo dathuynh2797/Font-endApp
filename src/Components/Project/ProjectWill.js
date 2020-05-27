@@ -28,7 +28,7 @@ export class ProjectWill extends Component {
           name.push({
             id: doc.id,
             ten: doc.data().supplierNames,
-            gia: doc.data().cost,
+            gia: doc.data().soTien,
             vitri: doc.data().supplierLocation,
             hinhanh: doc.data().supplierProfile[0].publicUrl,
             hinhanhtq: doc.data().supplierProfile1[0].publicUrl,
@@ -37,8 +37,8 @@ export class ProjectWill extends Component {
             hinhanhnv: doc.data().supplierProfile4[0].publicUrl,
             hinhanhkh: doc.data().supplierProfile5[0].publicUrl,
             hinhanhqc: doc.data().supplierProfile6[0].publicUrl,
-            latitude: doc.data().latitude,
-            longtitude: doc.data().longtitude,
+            latitude: doc.data().supplierLat,
+            longtitude: doc.data().supplierLong,
           });
 
           this.setState({
@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
+    marginRight: 5,
     color: '#888',
     fontWeight: '300',
   },
