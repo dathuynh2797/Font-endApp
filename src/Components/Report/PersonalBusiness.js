@@ -57,7 +57,6 @@ export class PersonalBusiness extends Component {
   render() {
     return (
       <Fragment>
-        {/* Multi */}
         <SearchableDropdown
           multi={true}
           selectedItems={this.state.selectedItems}
@@ -102,7 +101,6 @@ export class PersonalBusiness extends Component {
             nestedScrollEnabled: true,
           }}
         />
-        {/* Single */}
         <SearchableDropdown
           onItemSelect={item => {
             const items = this.state.selectedItems;
@@ -145,7 +143,7 @@ export class PersonalBusiness extends Component {
           }}
         />
         <View style={styles.container}>
-          <BarChart
+          <LineChart
             style={styles.chart}
             data={{
               dataSets: [{label: 'demo', values: [{y: 1}, {y: 2}, {y: 1}]}],

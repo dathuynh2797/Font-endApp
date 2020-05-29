@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React, {Component,useState} from 'react';
+import { Dialog } from 'react-native-simple-dialogs';
 import {
   Text,
   StyleSheet,
@@ -23,6 +24,7 @@ export class HomeScreen extends Component {
       data: [],
       ngaysinh: '',
       loading: true,
+      dialogVisible: false,
     };
   }
   signOut() {
@@ -70,10 +72,13 @@ export class HomeScreen extends Component {
     });
     const {navigation} = this.props;
    const sinhnhat = navigation.getParam('birth', 'chưa có dữ liệu');
+   const birthday = navigation.getParam('birthday', 'chua co du lieu');
     let day = null;
     day = moment().format('DD-MM');
-    if (day === sinhnhat) {
-      Alert.alert('chuc mung sinh nhat');
+    if (day === birthday || day === sinhnhat) { 
+     this.setState({
+       dialogVisible: true
+     })
     }
   }
 
@@ -97,6 +102,20 @@ export class HomeScreen extends Component {
     return (
       <SafeAreaView style={styles.Container}>
         <View style={styles.top}>
+        <Dialog
+        visible={this.state.dialogVisible}
+        title="Chúc Mừng Sinh Nhật"
+        titleStyle={{color: 'rgba(240, 36, 63, 0.65)'}}
+        overlayStyle={{backgroundColor:'rgba(0,0,0,.1)'}}
+        dialogStyle={{borderRadius:20, height: 300, backgroundColor:'rgba(180, 191, 233, 0.9)'}}
+        onTouchOutside={() => this.setState({dialogVisible: false})} >
+        <View>
+        <Text></Text>
+        <TouchableOpacity onPress={()=>{this.setState({dialogVisible: false})}} style={{borderRadius: 45,
+         justifyContent: 'center',
+         backgroundColor: '#1085B8', height: 30,width: 30}}></TouchableOpacity>
+        </View>
+        </Dialog>
           <ImageBackground style={styles.backgroundImg} source={bgImage}>
             <TouchableOpacity
               style={styles.buttonLogout}
