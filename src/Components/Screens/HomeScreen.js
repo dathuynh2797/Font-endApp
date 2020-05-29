@@ -69,7 +69,7 @@ export class HomeScreen extends Component {
       });
     });
     const {navigation} = this.props;
-   const sinhnhat = navigation.getParam('birth', 'chưa có dữ liệu');
+    const sinhnhat = navigation.getParam('birth', 'chưa có dữ liệu');
     let day = null;
     day = moment().format('DD-MM');
     if (day === sinhnhat) {
@@ -216,7 +216,7 @@ export class HomeScreen extends Component {
             activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
-              this.props.navigation.navigate('ImgPickker');
+              this.props.navigation.navigate('BarChartScreen');
             }}>
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>

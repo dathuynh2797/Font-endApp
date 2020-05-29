@@ -96,7 +96,7 @@ export class LoginScreen extends React.Component {
         this.setState({
           data: ngaysinh,
         });
-        console.log(this.state.data);
+        // console.log(this.state.data);
       });
   }
   _login() {
@@ -110,7 +110,9 @@ export class LoginScreen extends React.Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-          this.props.navigation.navigate('HomeScreen',{birth: this.state.data});
+          this.props.navigation.navigate('HomeScreen', {
+            birth: this.state.data,
+          });
         })
         .catch(function(error) {
           var errorCode = error.code;
@@ -118,7 +120,7 @@ export class LoginScreen extends React.Component {
             Alert.alert(
               'Đăng nhập thất bại',
               'Tài khoản đã bị khóa, vui lòng liên hệ duanbatdongsanteam3@gmail.com để biết thêm chi tiết ',
-              [{text: 'OK', onPress: () => console.log('OK pressed')}],
+              //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           }
@@ -126,14 +128,14 @@ export class LoginScreen extends React.Component {
             Alert.alert(
               'Đăng nhập thất bại',
               'Vui lòng kiểm tra tên đăng nhập',
-              [{text: 'OK', onPress: () => console.log('OK pressed')}],
+              //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           } else if (errorCode === 'auth/wrong-password') {
             Alert.alert(
               'Đăng nhập thất bại',
               'Vui lòng kiểm tra lại mật khẩu',
-              [{text: 'OK', onPress: () => console.log('OK pressed')}],
+              //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           }
@@ -143,7 +145,7 @@ export class LoginScreen extends React.Component {
         Alert.alert(
           'Đăng nhập thất bại',
           'Vui lòng không để trống tài khoản và mật khẩu',
-          [{text: 'OK', onPress: () => console.log('OK pressed')}],
+          //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
           {cancelable: false},
         );
       }

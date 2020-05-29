@@ -36,6 +36,16 @@ import {Bg} from './src/Project/Bg';
 import {PersonalDetail} from './src/Components/Infor/PersonalDetail';
 import {userDetail} from './src/Components/Screens/userDetail';
 
+import {decode, encode} from 'base-64';
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+
+if (!global.atob) {
+  global.atob = decode;
+}
+
 const navOptionHandler = () => ({
   header: null,
 });
