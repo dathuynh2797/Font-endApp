@@ -37,13 +37,10 @@ target 'newDemoRNN' do
 
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
-  
 
+   
+  pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
 
-
-  
-
-  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
 
   target 'newDemoRNNTests' do
     inherit! :search_paths

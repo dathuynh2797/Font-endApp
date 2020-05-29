@@ -21,6 +21,7 @@
 		882D093EDFA5458A982C03DF /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67F29A52F9348E9960E7E8C /* Roboto.ttf */; };
 		9996FC1B703E7BB2ACD4F645 /* libPods-newDemoRNNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9B83E3B50E2903973A8314 /* libPods-newDemoRNNTests.a */; };
 		AE66981F45EF9C7EBC987EBD /* libPods-newDemoRNN-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D78BDC547B37BE257F4EF9 /* libPods-newDemoRNN-tvOSTests.a */; };
+		C692CDA4248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,10 @@
 		5DD421329F56F8CCA04D4EFD /* libPods-newDemoRNN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67F29A52F9348E9960E7E8C /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = ../assets/fonts/Roboto.ttf; sourceTree = "<group>"; };
 		C18CEC325ABEFE3AABBFC50B /* Pods-newDemoRNNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNNTests.debug.xcconfig"; path = "Target Support Files/Pods-newDemoRNNTests/Pods-newDemoRNNTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C692CC222480E117006E37E4 /* libCharts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCharts.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C692CC242480E11F006E37E4 /* libSwiftyJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSwiftyJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "newDemoRNN-Bridging-Header.swift"; sourceTree = "<group>"; };
+		C692CDA52481010D006E37E4 /* newDemoRNN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "newDemoRNN-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F3A85226E31D668585487FB1 /* Pods-newDemoRNNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNNTests.release.xcconfig"; path = "Target Support Files/Pods-newDemoRNNTests/Pods-newDemoRNNTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +146,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C692CC242480E11F006E37E4 /* libSwiftyJSON.a */,
+				C692CC222480E117006E37E4 /* libCharts.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				5DD421329F56F8CCA04D4EFD /* libPods-newDemoRNN.a */,
@@ -161,6 +168,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C692CDA52481010D006E37E4 /* newDemoRNN-Bridging-Header.h */,
+				C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */,
 				13B07FAE1A68108700A75B9A /* newDemoRNN */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* newDemoRNNTests */,
@@ -240,7 +249,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				3F00DA69708A06B2A335B36F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,6 +310,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1130;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -399,26 +410,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		3F00DA69708A06B2A335B36F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-newDemoRNN/Pods-newDemoRNN-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker/QBImagePicker.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-newDemoRNN/Pods-newDemoRNN-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		474BFDA654F8F1DBC96779EF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -562,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				C692CDA4248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +607,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C18CEC325ABEFE3AABBFC50B /* Pods-newDemoRNNTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -638,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3A85226E31D668585487FB1 /* Pods-newDemoRNNTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = newDemoRNNTests/Info.plist;
@@ -659,6 +653,7 @@
 			baseConfigurationReference = 3C47D888618895A9B5430FCE /* Pods-newDemoRNN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = newDemoRNN/Info.plist;
@@ -670,6 +665,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = newDemoRNN;
+				SWIFT_OBJC_BRIDGING_HEADER = "newDemoRNN-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -679,6 +677,7 @@
 			baseConfigurationReference = 503477793CDFC46306C560C8 /* Pods-newDemoRNN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = newDemoRNN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -689,6 +688,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = newDemoRNN;
+				SWIFT_OBJC_BRIDGING_HEADER = "newDemoRNN-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

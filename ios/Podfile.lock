@@ -1,5 +1,8 @@
 PODS:
   - boost-for-react-native (1.63.0)
+  - Charts (3.3.0):
+    - Charts/Core (= 3.3.0)
+  - Charts/Core (3.3.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.61.5)
   - FBReactNativeSpec (0.61.5):
@@ -219,22 +222,17 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - RNGestureHandler (1.6.0):
+  - RNCharts (0.5.7):
+    - Charts (= 3.3.0)
     - React
-  - RNImageCropPicker (0.31.1):
-    - React-Core
-    - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.31.1)
-    - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.31.1):
-    - React-Core
-    - React-RCTImage
-    - TOCropViewController
+    - SwiftyJSON (= 5.0)
+  - RNGestureHandler (1.6.1):
+    - React
   - RNReanimated (1.4.0):
     - React
   - RNScreens (2.0.0-alpha.22):
     - React
-  - TOCropViewController (2.5.2)
+  - SwiftyJSON (5.0.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -266,8 +264,8 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNCharts (from `../node_modules/react-native-charts-wrapper`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -275,7 +273,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - TOCropViewController
+    - Charts
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -328,10 +327,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCharts:
+    :path: "../node_modules/react-native-charts-wrapper"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNImageCropPicker:
-    :path: "../node_modules/react-native-image-crop-picker"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -341,6 +340,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
@@ -366,13 +366,13 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
-  RNImageCropPicker: 38865ab4af1b0b2146ad66061196bc0184946855
+  RNCharts: d364ca2085e24edb9ee0390d3fb7209257daa44c
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNScreens: 6adf01eb4080f44af6cca551207c6b0505066857
-  TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: da62544630fb2b510d0fc15a13c43ecce0fb1d97
+PODFILE CHECKSUM: 27e7333d51d333721a53da7aa09eb6399ef61afc
 
 COCOAPODS: 1.9.1
