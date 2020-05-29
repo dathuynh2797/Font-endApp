@@ -89,8 +89,8 @@ export class LoginScreen extends React.Component {
       .onSnapshot(querySnapshot => {
         var ngaysinh = '';
         querySnapshot.forEach(doc => {
-          if (this.email === doc.data().email) {
-            ngaysinh = doc.data().staffDateOfBirth;
+          if (this.state.email === doc.data().email) {
+            ngaysinh = doc.data().staffDateOfBirth.slice(0, 5);
           }
         });
         this.setState({
@@ -110,9 +110,7 @@ export class LoginScreen extends React.Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-          
-
-          this.props.navigation.navigate('HomeScreen');
+          this.props.navigation.navigate('HomeScreen',{birth: this.state.data});
         })
         .catch(function(error) {
           var errorCode = error.code;

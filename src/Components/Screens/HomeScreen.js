@@ -68,9 +68,11 @@ export class HomeScreen extends Component {
         }
       });
     });
+    const {navigation} = this.props;
+   const sinhnhat = navigation.getParam('birth', 'chưa có dữ liệu');
     let day = null;
     day = moment().format('DD-MM');
-    if (day === this.days) {
+    if (day === sinhnhat) {
       Alert.alert('chuc mung sinh nhat');
     }
   }
