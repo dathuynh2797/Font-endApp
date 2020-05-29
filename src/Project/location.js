@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
@@ -11,7 +12,6 @@ export class location extends Component {
     this.switchMapType = this.switchMapType.bind(this);
   }
   switchMapType = () => {
-    console.log('changing');
     this.setState({
       mapType: this.state.mapType === 'hybrid' ? 'standard' : 'hybrid',
     });
@@ -31,9 +31,8 @@ export class location extends Component {
             latitude: parseFloat(latitude),
             longitude: parseFloat(longtitude),
             latitudeDelta: 0,
-            longitudeDelta: 0.003,
-          }}
-          keyExtractor={(item => item.lati, item => item.longi)}>
+            longitudeDelta: 0.004,
+          }}>
           <MapView.Marker
             coordinate={{
               latitude: parseFloat(latitude),
@@ -45,7 +44,7 @@ export class location extends Component {
         </MapView>
         <TouchableOpacity
           style={{
-            backgroundColor: '#fff',
+            backgroundColor: 'rgba(255,255,255,0.45)',
             borderRadius: 50,
             position: 'absolute',
             bottom: 10,
@@ -54,7 +53,6 @@ export class location extends Component {
           onPress={this.switchMapType.bind(this)}>
           <Image source={require('../img/Inforicon/maps.png')} />
         </TouchableOpacity>
-        {/* )} */}
       </View>
     );
   }

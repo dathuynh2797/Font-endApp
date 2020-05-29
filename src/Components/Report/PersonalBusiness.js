@@ -1,6 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component, Fragment} from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
+import {LineChart, BarChart} from 'react-native-charts-wrapper';
+import {View, StyleSheet} from 'react-native';
 
 var items = [
   {
@@ -142,7 +144,24 @@ export class PersonalBusiness extends Component {
             nestedScrollEnabled: true,
           }}
         />
+        <View style={styles.container}>
+          <BarChart
+            style={styles.chart}
+            data={{
+              dataSets: [{label: 'demo', values: [{y: 1}, {y: 2}, {y: 1}]}],
+            }}
+          />
+        </View>
       </Fragment>
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  chart: {
+    flex: 1,
+  },
+});

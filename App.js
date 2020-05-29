@@ -7,7 +7,10 @@ import {HomeScreen} from './src/Components//Screens/HomeScreen';
 import {InforScreen} from './src/Components/Screens/InforScreen';
 import {ProjectScreen} from './src/Components/Screens/ProjectScreen';
 import {ReportScreen} from './src/Components/Screens/ReportScreen';
+<<<<<<< HEAD
 
+=======
+>>>>>>> df6d11705dc06f5c49286efd75897138c79053db
 import {ChangePassword} from './src/Components/Screens/ChangePassword';
 
 import {Policy} from './src/Components/Infor/Policy';

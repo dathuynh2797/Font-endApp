@@ -15,10 +15,17 @@
     "moment": "^2.26.0",
     "react": "16.9.0",
     "react-native": "^0.61.5",
+<<<<<<< HEAD
     "react-native-geocoding": "^0.4.0",
     "react-native-geolocation-service": "^4.0.0",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-loading-spinner-overlay": "^1.1.0",
+=======
+    "react-native-charts-wrapper": "^0.5.7",
+    "react-native-geocoding": "^0.4.0",
+    "react-native-geolocation-service": "^4.0.0",
+    "react-native-gesture-handler": "^1.6.0",
+>>>>>>> df6d11705dc06f5c49286efd75897138c79053db
     "react-native-maps": "0.27.1",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.22",
