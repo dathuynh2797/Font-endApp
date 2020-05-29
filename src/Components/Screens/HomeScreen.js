@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -13,17 +14,17 @@ import {
 } from 'react-native';
 import bgImage from '../../img/bgprofile.png';
 import {firebaseApp} from '../config';
+const moment = require('moment');
 
 export class HomeScreen extends Component {
   constructor() {
     super();
     this.state = {
-      avatar: [],
+      data: [],
+      ngaysinh: '',
       loading: true,
     };
   }
-
-  birthday() {}
   signOut() {
     firebaseApp
       .auth()
@@ -36,9 +37,10 @@ export class HomeScreen extends Component {
       });
   }
   componentDidMount() {
-    const vitri = firebaseApp.firestore().collection('user');
-    vitri.onSnapshot(querySnapshot => {
+    const dulieu = firebaseApp.firestore().collection('user');
+    dulieu.onSnapshot(querySnapshot => {
       var marker = [];
+      var days = '';
       querySnapshot.forEach(doc => {
         if (
           firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
@@ -50,6 +52,7 @@ export class HomeScreen extends Component {
               arr.push(dataDoanhSo[i]);
             }
           }
+          days = doc.data().staffDateOfBirth;
           marker.push({
             ten: doc.data().fullName,
             ava: doc.data().avatars[0].publicUrl,
@@ -58,12 +61,18 @@ export class HomeScreen extends Component {
             doanhso: [arr[arr.length - 1]],
           });
           this.setState({
-            avatar: marker,
+            data: marker,
             loading: false,
+            ngaysinh: days,
           });
         }
       });
     });
+    let day = null;
+    day = moment().format('DD-MM');
+    if (day === this.days) {
+      Alert.alert('chuc mung sinh nhat');
+    }
   }
 
   handleLogout() {
@@ -72,6 +81,16 @@ export class HomeScreen extends Component {
       .signOut()
       .then(() => this.props.navigation.navigate('LoginScreen'));
   }
+  // birthday() {
+  //   const {navigation} = this.props;
+  //   const sinhnhat = navigation.getParam('sinhnhat', 'chưa có dữ liệu');
+  //   // let day = null;
+  //   // day = moment().format('DD-MM');
+  //   console.log(this.state.ngaysinh);
+  //   if (sinhnhat === this.state.ngaysinh) {
+  //     Alert.alert('chuc mung sinh nhat');
+  //   }
+  // }
   render() {
     return (
       <SafeAreaView style={styles.Container}>
@@ -103,7 +122,7 @@ export class HomeScreen extends Component {
             )}
             {!this.state.loading && (
               <FlatList
-                data={this.state.avatar}
+                data={this.state.data}
                 renderItem={({item}) => (
                   <View style={styles.avatarContainer}>
                     <Text style={styles.avatarTxt}>Xin chào: {item.ten}</Text>
@@ -138,6 +157,7 @@ export class HomeScreen extends Component {
 
         <View style={styles.menuContainer}>
           <TouchableOpacity
+            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('InfoScreen');
@@ -155,6 +175,7 @@ export class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('Project');
@@ -172,6 +193,7 @@ export class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('ReportScreen');
@@ -189,6 +211,7 @@ export class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('ImgPickker');

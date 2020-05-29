@@ -7,7 +7,6 @@ import {HomeScreen} from './src/Components//Screens/HomeScreen';
 import {InforScreen} from './src/Components/Screens/InforScreen';
 import {ProjectScreen} from './src/Components/Screens/ProjectScreen';
 import {ReportScreen} from './src/Components/Screens/ReportScreen';
-import {ImgPickker} from './src/Components/Screens/ImgPickker';
 import {ChangePassword} from './src/Components/Screens/ChangePassword';
 
 import {Policy} from './src/Components/Infor/Policy';

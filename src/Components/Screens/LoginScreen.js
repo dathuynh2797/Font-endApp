@@ -35,8 +35,10 @@ export class LoginScreen extends React.Component {
       loginBtn: false,
       showPass: true,
       press: false,
+      data: '',
       infor: [],
     };
+    this.compare();
   }
 
   showPass = () => {
@@ -80,6 +82,23 @@ export class LoginScreen extends React.Component {
       });
     });
   }
+  compare() {
+    firebaseApp
+      .firestore()
+      .collection('user')
+      .onSnapshot(querySnapshot => {
+        var ngaysinh = '';
+        querySnapshot.forEach(doc => {
+          if (this.email === doc.data().email) {
+            ngaysinh = doc.data().staffDateOfBirth;
+          }
+        });
+        this.setState({
+          data: ngaysinh,
+        });
+        console.log(this.state.data);
+      });
+  }
   _login() {
     if (
       this.state.emailValid &&
@@ -91,8 +110,9 @@ export class LoginScreen extends React.Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-          const navigate = this.props.navigation;
-          navigate('HomeScreen');
+          
+
+          this.props.navigation.navigate('HomeScreen');
         })
         .catch(function(error) {
           var errorCode = error.code;
@@ -173,6 +193,7 @@ export class LoginScreen extends React.Component {
                 autoCapitalize="none"
                 onChangeText={email => {
                   this.validate('email', email);
+                  this.compare('email', email);
                 }}
                 placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
                 underlineColorAndroid="transparent"
