@@ -35,9 +35,9 @@ export class LoginScreen extends React.Component {
       loginBtn: false,
       showPass: true,
       press: false,
-      data: '',
+      data: [],
       infor: [],
-      day: '',
+      day: [],
     };
     this.compare();
     this.section();
@@ -75,16 +75,14 @@ export class LoginScreen extends React.Component {
   section() {
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
-        var email = user.email;
         firebaseApp
           .firestore()
           .collection('user')
           .onSnapshot(querySnapshot => {
-            var date = '';
+            var date = [];
+            var day2 = [];
             querySnapshot.forEach(doc => {
-              if (email === doc.data().email) {
-                date = doc.data().staffDateOfBirth.slice(0, 5);
-              }
+              date.push(doc.data().staffDateOfBirth.slice(0, 5));
             });
             this.props.navigation.navigate('HomeScreen', {
               birthday: date,
@@ -103,11 +101,10 @@ export class LoginScreen extends React.Component {
       .firestore()
       .collection('user')
       .onSnapshot(querySnapshot => {
-        var ngaysinh = '';
+        var ngaysinh = [];
+        var day = null;
         querySnapshot.forEach(doc => {
-          if (this.state.email === doc.data().email) {
-            ngaysinh = doc.data().staffDateOfBirth.slice(0, 5);
-          }
+          ngaysinh.push(doc.data().staffDateOfBirth.slice(0, 5));
         });
         this.setState({
           data: ngaysinh,

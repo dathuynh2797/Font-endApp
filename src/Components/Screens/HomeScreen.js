@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import {Dialog} from 'react-native-simple-dialogs';
 import {
   Text,
@@ -25,6 +25,7 @@ export class HomeScreen extends Component {
       ngaysinh: '',
       loading: true,
       dialogVisible: false,
+      nameBirth: [],
     };
   }
   signOut() {
@@ -43,6 +44,7 @@ export class HomeScreen extends Component {
     dulieu.onSnapshot(querySnapshot => {
       var marker = [];
       var days = '';
+
       querySnapshot.forEach(doc => {
         if (
           firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
@@ -56,7 +58,7 @@ export class HomeScreen extends Component {
           }
           days = doc.data().staffDateOfBirth;
           marker.push({
-            ten: doc.data().fullName,
+            ten: doc.data().firstName,
             ava: doc.data().avatars[0].publicUrl,
             email: doc.data().email,
             sdt: doc.data().phoneNumber,
@@ -73,12 +75,57 @@ export class HomeScreen extends Component {
     const {navigation} = this.props;
     const sinhnhat = navigation.getParam('birth', 'chưa có dữ liệu');
     const birthday = navigation.getParam('birthday', 'chua co du lieu');
-    let day = null;
-    day = moment().format('DD-MM');
-    if (day === birthday || day === sinhnhat) {
-      this.setState({
-        dialogVisible: true,
-      });
+    console.log(birthday);
+
+    let day = moment().format('DD-MM');
+    if (sinhnhat !== 'chưa có dữ liệu') {
+      let index2 = sinhnhat.findIndex((dayS, index) => dayS === day);
+      if (index2 !== -1) {
+        firebaseApp
+          .firestore()
+          .collection('user')
+          .onSnapshot(querySnapshot => {
+            var name = [];
+            querySnapshot.forEach(doc => {
+              if (doc.data().staffDateOfBirth.slice(0, 5) === day) {
+                doc.data().staffDateOfBirth.slice(0, 5);
+
+                name.push({
+                  id: doc.id,
+                  nameBD: doc.data().fullName,
+                });
+              }
+            });
+            this.setState({nameBirth: name});
+          });
+        this.setState({
+          dialogVisible: true,
+        });
+      }
+    }
+    if (birthday !== 'chua co du lieu') {
+      let index = birthday.findIndex((dayS, index) => dayS === day);
+      if (index !== -1) {
+        firebaseApp
+          .firestore()
+          .collection('user')
+          .onSnapshot(querySnapshot => {
+            var name = [];
+            querySnapshot.forEach(doc => {
+              if (doc.data().staffDateOfBirth.slice(0, 5) === day) {
+                doc.data().staffDateOfBirth.slice(0, 5);
+                name.push({
+                  nameBD: doc.data().firstName,
+                  id: doc.id,
+                });
+              }
+            });
+            this.setState({nameBirth: name});
+          });
+        this.setState({
+          dialogVisible: true,
+        });
+      }
     }
   }
 
@@ -88,16 +135,7 @@ export class HomeScreen extends Component {
       .signOut()
       .then(() => this.props.navigation.navigate('LoginScreen'));
   }
-  // birthday() {
-  //   const {navigation} = this.props;
-  //   const sinhnhat = navigation.getParam('sinhnhat', 'chưa có dữ liệu');
-  //   // let day = null;
-  //   // day = moment().format('DD-MM');
-  //   console.log(this.state.ngaysinh);
-  //   if (sinhnhat === this.state.ngaysinh) {
-  //     Alert.alert('chuc mung sinh nhat');
-  //   }
-  // }
+
   render() {
     return (
       <SafeAreaView style={styles.Container}>
@@ -105,27 +143,62 @@ export class HomeScreen extends Component {
           <Dialog
             visible={this.state.dialogVisible}
             title="Chúc Mừng Sinh Nhật"
-            titleStyle={{color: 'rgba(240, 36, 63, 0.65)'}}
+            titleStyle={{
+              color: 'rgba(240, 36, 63, 0.65)',
+              fontSize: 25,
+              fontWeight: 'bold',
+              textAlign: 'center',
+              marginTop: 5,
+            }}
             overlayStyle={{backgroundColor: 'rgba(0,0,0,.1)'}}
             dialogStyle={{
               borderRadius: 20,
-              height: 300,
               backgroundColor: 'rgba(180, 191, 233, 0.9)',
             }}
             onTouchOutside={() => this.setState({dialogVisible: false})}>
-            <View>
-              <Text />
-              <TouchableOpacity
-                onPress={() => {
-                  this.setState({dialogVisible: false});
-                }}
+            <View
+              style={{
+                alignItems: 'center',
+                marginBottom: 0,
+              }}>
+              <Image
+                source={require('../../img/birthday.gif')}
                 style={{
-                  borderRadius: 45,
-                  justifyContent: 'center',
-                  backgroundColor: '#1085B8',
-                  height: 30,
-                  width: 30,
+                  width: 300,
+                  height: 200,
+                  resizeMode: 'contain',
                 }}
+              />
+              <FlatList
+                data={this.state.nameBirth}
+                style={{marginTop: 0}}
+                renderItem={({item}) => (
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontStyle: 'italic',
+                      color: 'rgb(16,54,153)',
+                    }}>
+                    {item.nameBD}
+                  </Text>
+                )}
+                keyExtractor={item => item.id}
+                ListFooterComponent={
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setState({dialogVisible: false});
+                    }}
+                    style={{
+                      borderRadius: 45,
+                      justifyContent: 'center',
+                      backgroundColor: '#1085B8',
+                      height: 40,
+                      width: 80,
+                      alignItems: 'center',
+                    }}>
+                    <Text style={{fontSize: 20}}>OK</Text>
+                  </TouchableOpacity>
+                }
               />
             </View>
           </Dialog>
