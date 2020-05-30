@@ -37,8 +37,10 @@ export class LoginScreen extends React.Component {
       press: false,
       data: '',
       infor: [],
+      day: '',
     };
     this.compare();
+    this.section();
   }
 
   showPass = () => {
@@ -70,16 +72,30 @@ export class LoginScreen extends React.Component {
       }
     }
   }
-  componentDidMount() {
+  section() {
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
-        this.props.navigation.navigate('HomeScreen');
+        var email = user.email;
+        firebaseApp
+          .firestore()
+          .collection('user')
+          .onSnapshot(querySnapshot => {
+            var date = '';
+            querySnapshot.forEach(doc => {
+              if (email === doc.data().email) {
+                date = doc.data().staffDateOfBirth.slice(0, 5);
+              }
+            });
+            this.props.navigation.navigate('HomeScreen', {
+              birthday: date,
+            });
+          });
       } else {
         this.props.navigation.navigate('LoginScreen');
+        this.setState({
+          loading: false,
+        });
       }
-      this.setState({
-        loading: false,
-      });
     });
   }
   compare() {
@@ -96,7 +112,6 @@ export class LoginScreen extends React.Component {
         this.setState({
           data: ngaysinh,
         });
-        // console.log(this.state.data);
       });
   }
   _login() {
@@ -120,7 +135,7 @@ export class LoginScreen extends React.Component {
             Alert.alert(
               'Đăng nhập thất bại',
               'Tài khoản đã bị khóa, vui lòng liên hệ duanbatdongsanteam3@gmail.com để biết thêm chi tiết ',
-              //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
+              [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           }
@@ -128,14 +143,14 @@ export class LoginScreen extends React.Component {
             Alert.alert(
               'Đăng nhập thất bại',
               'Vui lòng kiểm tra tên đăng nhập',
-              //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
+              [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           } else if (errorCode === 'auth/wrong-password') {
             Alert.alert(
               'Đăng nhập thất bại',
               'Vui lòng kiểm tra lại mật khẩu',
-              //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
+              [{text: 'OK', onPress: () => console.log('OK pressed')}],
               {cancelable: false},
             );
           }
@@ -145,7 +160,7 @@ export class LoginScreen extends React.Component {
         Alert.alert(
           'Đăng nhập thất bại',
           'Vui lòng không để trống tài khoản và mật khẩu',
-          //   [{text: 'OK', onPress: () => console.log('OK pressed')}],
+          [{text: 'OK', onPress: () => console.log('OK pressed')}],
           {cancelable: false},
         );
       }
