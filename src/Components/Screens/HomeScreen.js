@@ -109,7 +109,6 @@ export class HomeScreen extends Component {
                 doc.data().staffDateOfBirth.slice(0, 5);
 
                 name.push({
-                  id: doc.id,
                   nameBD: doc.data().firstName,
                 });
               }
@@ -185,30 +184,8 @@ export class HomeScreen extends Component {
     // Loop indefinitely until stop() is called
     whoosh.setNumberOfLoops(-1);
 
-    // Get properties of the player instance
-    console.log('volume: ' + whoosh.getVolume());
-    console.log('pan: ' + whoosh.getPan());
-    console.log('loops: ' + whoosh.getNumberOfLoops());
-
-    // // Seek to a specific point in seconds
-    // whoosh.setCurrentTime(2.5);
-
-    // // Get the current playback point in seconds
-    // whoosh.getCurrentTime(seconds => console.log('at ' + seconds));
-
-    // Pause the sound
     this.setState({stop: whoosh});
     whoosh.pause();
-
-    // // Stop the sound and rewind to the beginning
-    // whoosh.stop(() => {
-    //   // Note: If you want to play a sound after stopping and rewinding it,
-    //   // it is important to call play() in a callback.
-    //   whoosh.play();
-    // });
-
-    // // Release the audio player resource
-    // whoosh.release();
   }
 
   handleLogout() {
@@ -256,21 +233,6 @@ export class HomeScreen extends Component {
                   marginBottom: 10,
                 }}
               />
-              {/* <FlatList
-                data={this.state.nameBirth}
-                style={{marginTop: 0}}
-                renderItem={({item}) => (
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      fontStyle: 'italic',
-                      color: 'rgb(16,54,153)',
-                    }}>
-                    {item.nameBD}
-                  </Text>
-                )}
-                keyExtractor={item => item.id}
-              /> */}
               {this.renderStaffName()}
               <TouchableOpacity
                 onPress={() => {
@@ -474,11 +436,12 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.7,
     shadowRadius: 5,
     elevation: 20,
   },
   menuIconCircle: {
+    marginTop: 20,
     padding: 20,
     borderWidth: 1,
     borderRadius: 100,
@@ -488,7 +451,7 @@ const styles = StyleSheet.create({
     width: 70,
   },
   menuTitleTxt: {
-    paddingTop: 15,
+    margin: 15,
     fontSize: 16,
   },
 });
