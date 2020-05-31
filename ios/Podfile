@@ -42,6 +42,9 @@ target 'newDemoRNN' do
   pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
 
 
+
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   target 'newDemoRNNTests' do
     inherit! :search_paths
     # Pods for testing

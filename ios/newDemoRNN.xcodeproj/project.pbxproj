@@ -21,6 +21,7 @@
 		882D093EDFA5458A982C03DF /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67F29A52F9348E9960E7E8C /* Roboto.ttf */; };
 		9996FC1B703E7BB2ACD4F645 /* libPods-newDemoRNNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9B83E3B50E2903973A8314 /* libPods-newDemoRNNTests.a */; };
 		AE66981F45EF9C7EBC987EBD /* libPods-newDemoRNN-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D78BDC547B37BE257F4EF9 /* libPods-newDemoRNN-tvOSTests.a */; };
+		C602AAA32483658300E2991B /* sinhnhat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C602AAA22483658300E2991B /* sinhnhat.mp3 */; };
 		C692CDA4248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		5DD421329F56F8CCA04D4EFD /* libPods-newDemoRNN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67F29A52F9348E9960E7E8C /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = ../assets/fonts/Roboto.ttf; sourceTree = "<group>"; };
 		C18CEC325ABEFE3AABBFC50B /* Pods-newDemoRNNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNNTests.debug.xcconfig"; path = "Target Support Files/Pods-newDemoRNNTests/Pods-newDemoRNNTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C602AAA22483658300E2991B /* sinhnhat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sinhnhat.mp3; path = ../../../sinhnhat.mp3; sourceTree = "<group>"; };
 		C692CC222480E117006E37E4 /* libCharts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCharts.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C692CC242480E11F006E37E4 /* libSwiftyJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSwiftyJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "newDemoRNN-Bridging-Header.swift"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C602AAA22483658300E2991B /* sinhnhat.mp3 */,
 				C692CDA52481010D006E37E4 /* newDemoRNN-Bridging-Header.h */,
 				C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */,
 				13B07FAE1A68108700A75B9A /* newDemoRNN */,
@@ -362,6 +365,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				882D093EDFA5458A982C03DF /* Roboto.ttf in Resources */,
+				C602AAA32483658300E2991B /* sinhnhat.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,6 +40,24 @@ export class HomeScreen extends Component {
         // An error happened.
       });
   }
+
+  renderStaffName = () => {
+    return this.state.nameBirth.map((name, index) => {
+      return (
+        <Text
+          style={{
+            marginHorizontal: 20,
+            fontSize: 20,
+            fontStyle: 'italic',
+            color: 'rgb(16,54,153)',
+          }}
+          key={index}>
+          {name.nameBD}
+        </Text>
+      );
+    });
+  };
+
   componentDidMount(value) {
     const dulieu = firebaseApp.firestore().collection('user');
     dulieu.onSnapshot(querySnapshot => {
@@ -220,21 +238,25 @@ export class HomeScreen extends Component {
               borderRadius: 20,
               backgroundColor: 'rgba(180, 191, 233, 0.9)',
             }}
-            onTouchOutside={() => this.setState({dialogVisible: false})}>
+            onTouchOutside={() => {
+              this.setState({dialogVisible: false});
+              this.state.stop.pause();
+            }}>
             <View
               style={{
                 alignItems: 'center',
-                marginBottom: 0,
               }}>
               <Image
                 source={require('../../img/birthday.gif')}
+                borderRadius={20}
+                resizeMode="cover"
                 style={{
-                  width: 300,
-                  height: 200,
-                  resizeMode: 'contain',
+                  width: 200,
+                  height: 150,
+                  marginBottom: 10,
                 }}
               />
-              <FlatList
+              {/* <FlatList
                 data={this.state.nameBirth}
                 style={{marginTop: 0}}
                 renderItem={({item}) => (
@@ -248,7 +270,8 @@ export class HomeScreen extends Component {
                   </Text>
                 )}
                 keyExtractor={item => item.id}
-              />
+              /> */}
+              {this.renderStaffName()}
               <TouchableOpacity
                 onPress={() => {
                   this.setState({dialogVisible: false});
@@ -258,12 +281,10 @@ export class HomeScreen extends Component {
                   borderRadius: 45,
                   justifyContent: 'center',
                   backgroundColor: '#1085B8',
-                  height: 40,
-                  width: 80,
-                  marginTop: 3,
+                  marginTop: 10,
                   alignItems: 'center',
                 }}>
-                <Text style={{fontSize: 20}}>OK</Text>
+                <Text style={{padding: 10}}>Chúc Mừng !!!</Text>
               </TouchableOpacity>
             </View>
           </Dialog>
@@ -341,8 +362,6 @@ export class HomeScreen extends Component {
                   style={styles.menuImg}
                 />
               </View>
-            </View>
-            <View style={styles.menuTitle}>
               <Text style={styles.menuTitleTxt}>Thông tin công ty</Text>
             </View>
           </TouchableOpacity>
@@ -359,8 +378,6 @@ export class HomeScreen extends Component {
                   style={styles.menuImg}
                 />
               </View>
-            </View>
-            <View style={styles.menuTitle}>
               <Text style={styles.menuTitleTxt}>Dự án bất động sản</Text>
             </View>
           </TouchableOpacity>
@@ -377,8 +394,6 @@ export class HomeScreen extends Component {
                   style={styles.menuImg}
                 />
               </View>
-            </View>
-            <View style={styles.menuTitle}>
               <Text style={styles.menuTitleTxt}>Báo cáo - Thống kê</Text>
             </View>
           </TouchableOpacity>
@@ -395,8 +410,6 @@ export class HomeScreen extends Component {
                   style={styles.menuImg}
                 />
               </View>
-            </View>
-            <View style={styles.menuTitle}>
               <Text style={styles.menuTitleTxt}>Công tác</Text>
             </View>
           </TouchableOpacity>
@@ -451,20 +464,18 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   menuIcon: {
-    height: '80%',
+    height: '100%',
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+    borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 0,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
     elevation: 20,
   },
   menuIconCircle: {
@@ -476,23 +487,8 @@ const styles = StyleSheet.create({
     height: 70,
     width: 70,
   },
-  menuTitle: {
-    height: '20%',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    borderBottomStartRadius: 20,
-    borderBottomEndRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 25,
-    },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
-
-    elevation: 20,
-  },
   menuTitleTxt: {
+    paddingTop: 15,
     fontSize: 16,
   },
 });
