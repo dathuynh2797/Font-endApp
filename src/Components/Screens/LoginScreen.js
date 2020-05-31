@@ -205,7 +205,6 @@ export class LoginScreen extends React.Component {
                 autoCapitalize="none"
                 onChangeText={email => {
                   this.validate('email', email);
-                  this.compare('email', email);
                 }}
                 placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
                 underlineColorAndroid="transparent"

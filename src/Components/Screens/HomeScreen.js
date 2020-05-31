@@ -15,8 +15,8 @@ import {
 } from 'react-native';
 import bgImage from '../../img/bgprofile.png';
 import {firebaseApp} from '../config';
+var Sound = require('react-native-sound');
 const moment = require('moment');
-
 export class HomeScreen extends Component {
   constructor() {
     super();
@@ -26,6 +26,7 @@ export class HomeScreen extends Component {
       loading: true,
       dialogVisible: false,
       nameBirth: [],
+      stop: null,
     };
   }
   signOut() {
@@ -39,7 +40,7 @@ export class HomeScreen extends Component {
         // An error happened.
       });
   }
-  componentDidMount() {
+  componentDidMount(value) {
     const dulieu = firebaseApp.firestore().collection('user');
     dulieu.onSnapshot(querySnapshot => {
       var marker = [];
@@ -75,11 +76,10 @@ export class HomeScreen extends Component {
     const {navigation} = this.props;
     const sinhnhat = navigation.getParam('birth', 'chưa có dữ liệu');
     const birthday = navigation.getParam('birthday', 'chua co du lieu');
-    console.log(birthday);
 
     let day = moment().format('DD-MM');
     if (sinhnhat !== 'chưa có dữ liệu') {
-      let index2 = sinhnhat.findIndex((dayS, index) => dayS === day);
+      let index2 = sinhnhat.findIndex(dayS => dayS === day);
       if (index2 !== -1) {
         firebaseApp
           .firestore()
@@ -92,7 +92,7 @@ export class HomeScreen extends Component {
 
                 name.push({
                   id: doc.id,
-                  nameBD: doc.data().fullName,
+                  nameBD: doc.data().firstName,
                 });
               }
             });
@@ -127,6 +127,70 @@ export class HomeScreen extends Component {
         });
       }
     }
+
+    // Enable playback in silence mode
+    Sound.setCategory('Playback');
+
+    // Load the sound file 'whoosh.mp3' from the app bundle
+    // See notes below about preloading sounds within initialization code below.
+    var whoosh = new Sound('sinhnhat.mp3', Sound.MAIN_BUNDLE, error => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+      // loaded successfully
+      console.log(
+        'duration in seconds: ' +
+          whoosh.getDuration() +
+          'number of channels: ' +
+          whoosh.getNumberOfChannels(),
+      );
+
+      // Play the sound with an onEnd callback
+      if (this.state.dialogVisible === true) {
+        whoosh.play(success => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+          }
+        });
+      }
+    });
+
+    // Reduce the volume by half
+    whoosh.setVolume(0.5);
+
+    // Position the sound to the full right in a stereo field
+    whoosh.setPan(1);
+
+    // Loop indefinitely until stop() is called
+    whoosh.setNumberOfLoops(-1);
+
+    // Get properties of the player instance
+    console.log('volume: ' + whoosh.getVolume());
+    console.log('pan: ' + whoosh.getPan());
+    console.log('loops: ' + whoosh.getNumberOfLoops());
+
+    // // Seek to a specific point in seconds
+    // whoosh.setCurrentTime(2.5);
+
+    // // Get the current playback point in seconds
+    // whoosh.getCurrentTime(seconds => console.log('at ' + seconds));
+
+    // Pause the sound
+    this.setState({stop: whoosh});
+    whoosh.pause();
+
+    // // Stop the sound and rewind to the beginning
+    // whoosh.stop(() => {
+    //   // Note: If you want to play a sound after stopping and rewinding it,
+    //   // it is important to call play() in a callback.
+    //   whoosh.play();
+    // });
+
+    // // Release the audio player resource
+    // whoosh.release();
   }
 
   handleLogout() {
@@ -143,6 +207,7 @@ export class HomeScreen extends Component {
           <Dialog
             visible={this.state.dialogVisible}
             title="Chúc Mừng Sinh Nhật"
+            animationType="slide"
             titleStyle={{
               color: 'rgba(240, 36, 63, 0.65)',
               fontSize: 25,
@@ -183,23 +248,23 @@ export class HomeScreen extends Component {
                   </Text>
                 )}
                 keyExtractor={item => item.id}
-                ListFooterComponent={
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.setState({dialogVisible: false});
-                    }}
-                    style={{
-                      borderRadius: 45,
-                      justifyContent: 'center',
-                      backgroundColor: '#1085B8',
-                      height: 40,
-                      width: 80,
-                      alignItems: 'center',
-                    }}>
-                    <Text style={{fontSize: 20}}>OK</Text>
-                  </TouchableOpacity>
-                }
               />
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({dialogVisible: false});
+                  this.state.stop.pause();
+                }}
+                style={{
+                  borderRadius: 45,
+                  justifyContent: 'center',
+                  backgroundColor: '#1085B8',
+                  height: 40,
+                  width: 80,
+                  marginTop: 3,
+                  alignItems: 'center',
+                }}>
+                <Text style={{fontSize: 20}}>OK</Text>
+              </TouchableOpacity>
             </View>
           </Dialog>
           <ImageBackground style={styles.backgroundImg} source={bgImage}>
