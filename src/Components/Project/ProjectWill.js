@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -6,6 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../../Components/config';
 export class ProjectWill extends Component {
@@ -70,15 +72,31 @@ export class ProjectWill extends Component {
                 });
               }}>
               <View style={styles.items}>
-                <Text />
-                <View style={styles.image}>
+                <View style={styles.imgContent}>
                   <Image style={styles.image} source={{uri: item.hinhanh}} />
                 </View>
-                <View style={styles.data}>
-                  <View>
+                <View style={styles.dataContent}>
+                  <View style={styles.titleContent}>
                     <Text style={styles.title}>{item.ten}</Text>
-                    <Text style={styles.description}>{item.vitri}</Text>
-                    <Text style={styles.price}>{item.gia}</Text>
+                  </View>
+                  <View style={styles.locationContent}>
+                    <Image
+                      source={require('../../img/ProjectIcon/pin.png')}
+                      style={styles.icon}
+                    />
+                    <Text style={styles.location}>{item.vitri}</Text>
+                  </View>
+                  <View style={styles.priceContent}>
+                    <Image
+                      source={require('../../img/ProjectIcon/payment.png')}
+                      style={styles.icon}
+                    />
+                    <Text style={styles.price}>
+                      {item.gia
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      VND
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -99,38 +117,48 @@ const styles = StyleSheet.create({
   },
   items: {
     flexDirection: 'row',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    justifyContent: 'flex-start',
+    marginVertical: 10,
+    marginHorizontal: 10,
+    backgroundColor: 'rgb(255,255,255)',
+    height: 150,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    elevation: 6,
+  },
+  imgContent: {
+    width: '40%',
     alignItems: 'center',
-    margin: 5,
-    backgroundColor: '#ddd',
-    borderWidth: 0.5,
-    borderRadius: 3,
+    justifyContent: 'center',
   },
   image: {
-    height: 100,
-    width: 100,
+    height: 140,
+    width: 140,
   },
-  data: {
-    paddingHorizontal: 10,
-    marginTop: 5,
-    marginLeft: 15,
+  dataContent: {width: '60%'},
+  titleContent: {
+    flex: 1 / 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  title: {
-    color: '#444',
-    fontSize: 18,
-    fontWeight: '700',
+  title: {fontSize: 20, fontWeight: 'bold'},
+  icon: {
+    marginHorizontal: 5,
+    width: 25,
+    height: 25,
   },
-  description: {
-    fontSize: 16,
-    marginRight: 5,
-    color: '#888',
-    fontWeight: '300',
+  locationContent: {
+    flex: 1 / 2,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  price: {
-    fontSize: 16,
-    color: '#ff0000',
-    fontWeight: '300',
+  location: {width: '80%', color: '#1273EB'},
+  priceContent: {
+    backgroundColor: 'white',
+    flex: 1 / 4,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
+  price: {color: '#ff0000'},
 });
