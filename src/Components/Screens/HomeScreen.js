@@ -27,6 +27,8 @@ export class HomeScreen extends Component {
       dialogVisible: false,
       nameBirth: [],
       stop: null,
+      phong: '',
+      team: '',
     };
   }
   signOut() {
@@ -58,39 +60,66 @@ export class HomeScreen extends Component {
     });
   };
 
-  componentDidMount(value) {
-    const dulieu = firebaseApp.firestore().collection('user');
-    dulieu.onSnapshot(querySnapshot => {
-      var marker = [];
-      var days = '';
-
-      querySnapshot.forEach(doc => {
-        if (
-          firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
-        ) {
-          let arr = [];
-          let dataDoanhSo = doc.data().doanhso[0].year;
-          for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
-            if (dataDoanhSo[i] !== null) {
-              arr.push(dataDoanhSo[i]);
+  componentDidMount() {
+    firebaseApp
+      .firestore()
+      .collection('user')
+      .onSnapshot(querySnapshot => {
+        var data = [];
+        var days = '';
+        var tenphong = '';
+        var tennhom = '';
+        querySnapshot.forEach(doc => {
+          if (
+            firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
+          ) {
+            var idphonguser = doc.data().productUnit;
+            var idteamuser = doc.data().iamTeam;
+            firebaseApp
+              .firestore()
+              .collection('stall')
+              .onSnapshot(querySnapshot1 => {
+                querySnapshot1.forEach(doc1 => {
+                  if (idteamuser === doc1.data().id) {
+                    tennhom = doc1.data().teamName;
+                  }
+                });
+                this.setState({team: tennhom});
+              });
+            firebaseApp
+              .firestore()
+              .collection('units')
+              .onSnapshot(querySnapshot1 => {
+                querySnapshot1.forEach(doc1 => {
+                  if (idphonguser === doc1.data().id) {
+                    tenphong = doc1.data().unitsTitle;
+                  }
+                });
+                this.setState({phong: tenphong});
+              });
+            let arr = [];
+            let dataDoanhSo = doc.data().doanhso[0].year;
+            for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
+              if (dataDoanhSo[i] !== null) {
+                arr.push(dataDoanhSo[i]);
+              }
             }
+            days = doc.data().staffDateOfBirth;
+            data.push({
+              ten: doc.data().firstName,
+              ava: doc.data().avatars[0].publicUrl,
+              email: doc.data().email,
+              sdt: doc.data().phoneNumber,
+              doanhso: [arr[arr.length - 1]],
+            });
           }
-          days = doc.data().staffDateOfBirth;
-          marker.push({
-            ten: doc.data().firstName,
-            ava: doc.data().avatars[0].publicUrl,
-            email: doc.data().email,
-            sdt: doc.data().phoneNumber,
-            doanhso: [arr[arr.length - 1]],
-          });
           this.setState({
-            data: marker,
+            data: data,
             loading: false,
             ngaysinh: days,
           });
-        }
+        });
       });
-    });
     const {navigation} = this.props;
     const sinhnhat = navigation.getParam('birth', 'chưa có dữ liệu');
     const birthday = navigation.getParam('birthday', 'chua co du lieu');
@@ -289,7 +318,9 @@ export class HomeScreen extends Component {
                           sdt: item.sdt,
                           namsinh: item.namsinh,
                           hinhanh: item.ava,
+                          phong: this.state.phong,
                           email: item.email,
+                          nhom: this.state.team,
                         });
                       }}>
                       <View style={{alignItems: 'center'}}>

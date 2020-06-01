@@ -70,6 +70,8 @@ export class Personel extends Component {
       text: '',
       data: [],
       roles: '',
+      tenphong: '',
+      tennhom: '',
     };
   }
   compare() {
@@ -83,19 +85,45 @@ export class Personel extends Component {
     });
   }
   componentDidMount() {
-    const abc = firebaseApp.firestore();
-    abc
+    var name = [];
+    var tenphong = '';
+    var tennhom = '';
+    firebaseApp
+      .firestore()
       .collection('user')
       .where('disabled', '==', false)
       .onSnapshot(querySnapshot => {
-        var name = [];
         querySnapshot.forEach(doc => {
+          var idphong = doc.data().productUnit;
+          var idteam = doc.data().iamTeam;
+          firebaseApp
+            .firestore()
+            .collection('units')
+            .onSnapshot(querySnapshot => {
+              querySnapshot.forEach(doc => {
+                if (idphong === doc.data().id) {
+                  tenphong = doc.data().unitsTitle;
+                }
+              });
+              this.setState({tenphong: tenphong});
+            });
+          firebaseApp
+            .firestore()
+            .collection('stall')
+            .onSnapshot(querySnapshot => {
+              querySnapshot.forEach(doc => {
+                if (idteam === doc.data().id) {
+                  tennhom = doc.data().teamName;
+                }
+              });
+              this.setState({tennhom: tennhom});
+            });
           name.push({
             id: doc.id,
             ten: doc.data().firstName,
             sdt: doc.data().phoneNumber,
             namsinh: doc.data().staffDateOfBirth,
-            hinhanh: doc.data().avatars[0].publicUrl,
+            // hinhanh: doc.data().avatars[0].publicUrl,
             email: doc.data().email,
             chucvu: doc.data().roles[0],
           });
@@ -167,6 +195,8 @@ export class Personel extends Component {
                       hinhanh: item.hinhanh,
                       email: item.email,
                       chucvu: item.chucvu,
+                      phong: this.state.tenphong,
+                      nhom: this.state.tennhom,
                     });
                   }}>
                   <Cols

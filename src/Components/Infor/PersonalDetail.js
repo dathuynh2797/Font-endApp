@@ -59,14 +59,14 @@ export class PersonalDetail extends Component {
             <View style={styles.HorizonLine} />
             <Text>Email: {email}</Text>
           </View>
-          {this.state.isDirect && (
+          {!this.state.isDirect && (
             <View style={styles.Item}>
               <Image source={require('../../img/Profile/team.png')} />
               <View style={styles.HorizonLine} />
               <Text>Nhóm: {nhom}</Text>
             </View>
           )}
-          {this.state.isDirect && (
+          {!this.state.isDirect && (
             <View style={styles.Item}>
               <Image source={require('../../img/Profile/department.png')} />
               <View style={styles.HorizonLine} />
