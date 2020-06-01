@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import bgImage from '../../img/bgprofile.png';
 import {firebaseApp} from '../config';
+import {RFValue} from 'react-native-responsive-fontsize';
 var Sound = require('react-native-sound');
 const moment = require('moment');
 export class HomeScreen extends Component {
@@ -185,22 +186,16 @@ export class HomeScreen extends Component {
         return;
       }
       // loaded successfully
-      console.log(
-        'duration in seconds: ' +
-          whoosh.getDuration() +
-          'number of channels: ' +
-          whoosh.getNumberOfChannels(),
-      );
+      //   console.log(
+      //     'duration in seconds: ' +
+      //       whoosh.getDuration() +
+      //       'number of channels: ' +
+      //       whoosh.getNumberOfChannels(),
+      //   );
 
       // Play the sound with an onEnd callback
       if (this.state.dialogVisible === true) {
-        whoosh.play(success => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
-            console.log('playback failed due to audio decoding errors');
-          }
-        });
+        whoosh.play();
       }
     });
 
@@ -482,7 +477,10 @@ const styles = StyleSheet.create({
     width: 70,
   },
   menuTitleTxt: {
-    margin: 15,
-    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: RFValue(15, 680),
+    // fontSize: RFPercentage(2),
+    textAlign: 'center',
   },
 });
