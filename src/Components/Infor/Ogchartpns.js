@@ -35,45 +35,48 @@ export class Ogchartpns extends Component {
     this.state = {
       loading: false,
       bgd: [],
+      tennv: [],
     };
   }
 
   componentDidMount() {
-    const abc = firebaseApp.firestore();
-    abc
+    var name = [];
+    const {navigation} = this.props;
+    const idPhong = navigation.getParam('ten', 'chưa có dữ liệu');
+    // console.log(idPhong);
+    firebaseApp
+      .firestore()
       .collection('user')
-      .where('productVariation.label', '==', 'Phòng nhân sự')
       .onSnapshot(querySnapshot => {
-        var name = [];
         querySnapshot.forEach(doc => {
-          name.push({
-            id: doc.id,
-            ten: doc.data().firstName,
-            sdt: doc.data().phoneNumber,
-            namsinh: doc.data().staffDateOfBirth,
-            hinhanh: doc.data().avatars[0].publicUrl,
-          });
-
-          this.setState({
-            bgd: name,
-            loading: false,
-          });
+          if (idPhong === doc.data().productUnit) {
+            name.push({
+              ten1: doc.data().fullName,
+              image: doc.data().avatars[0].publicUrl,
+              namsinh: doc.data().staffDateOfBirth,
+              sdt: doc.data().phoneNumber,
+            });
+            this.setState({
+              tennv: name,
+            });
+          }
         });
       });
   }
+
   render() {
     return (
       <View>
         <FlatList
-          data={this.state.bgd}
+          data={this.state.tennv}
           renderItem={({item}) => (
             <View style={styles.scene}>
               <View style={styles.items}>
                 <View>
-                  <Image style={styles.image} source={{uri: item.hinhanh}} />
+                  <Image style={styles.image} source={{uri: item.image}} />
                 </View>
                 <View style={styles.data}>
-                  <Text style={styles.title}>{item.ten}</Text>
+                  <Text style={styles.title}>{item.ten1}</Text>
                   <Text style={styles.title}>{item.namsinh}</Text>
                   <Text style={styles.title}>{item.sdt}</Text>
                 </View>

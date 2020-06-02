@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Image,
+  FlatList,
 } from 'react-native';
 import {firebaseApp} from '../config';
 
@@ -13,131 +14,69 @@ export class Ogchart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lengthbgd: [],
-      lengthpkd: [],
-      lengthptc: [],
-      lengthpns: [],
+      tenphong: [],
+      tennv: [],
       image: '',
     };
   }
   componentDidMount() {
-    const abc = firebaseApp.firestore();
-    abc
-      .collection('user')
-      .where('productVariation.label', '==', 'Ban Giám Đốc')
+    firebaseApp
+      .firestore()
+      .collection('brands')
       .onSnapshot(querySnapshot => {
-        var bgd = [];
+        var image = '';
         querySnapshot.forEach(doc => {
-          bgd.push({});
-          bgd.length;
-          this.setState({
-            lengthbgd: bgd,
-          });
+          image = doc.data().brandCover[0].publicUrl;
+        });
+        this.setState({
+          image: image,
         });
       });
-    abc
-      .collection('user')
-      .where('productVariation.label', '==', 'Phòng kinh doanh')
+
+    firebaseApp
+      .firestore()
+      .collection('units')
       .onSnapshot(querySnapshot => {
-        var pkd = [];
+        var name = [];
         querySnapshot.forEach(doc => {
-          pkd.push({});
-          pkd.length;
-          this.setState({
-            lengthpkd: pkd,
+          name.push({
+            ten: doc.data().unitsTitle,
+            idP: doc.data().id,
           });
         });
-      });
-    abc
-      .collection('user')
-      .where('productVariation.label', '==', 'Phòng nhân sự')
-      .onSnapshot(querySnapshot => {
-        var pns = [];
-        querySnapshot.forEach(doc => {
-          pns.push({});
-          pns.length;
-          this.setState({
-            lengthpns: pns,
-          });
+        this.setState({
+          tenphong: name,
         });
       });
-    abc
-      .collection('user')
-      .where('productVariation.label', '==', 'Phòng tài chính')
-      .onSnapshot(querySnapshot => {
-        var ptc = [];
-        querySnapshot.forEach(doc => {
-          ptc.push({});
-          ptc.length;
-          this.setState({
-            lengthptc: ptc,
-          });
-        });
-      });
-    abc.collection('brands').onSnapshot(querySnapshot => {
-      var hinhanh = '';
-      querySnapshot.forEach(doc => {
-        hinhanh = doc.data().brandCover[0].publicUrl;
-      });
-      this.setState({
-        image: hinhanh,
-      });
-    });
   }
   render() {
-    let {image} = this.state;
     return (
       <SafeAreaView style={styles.body}>
         <SafeAreaView style={styles.Imgview}>
           <View style={styles.Chart}>
-            <Image source={{uri: image}} style={styles.Imgview1} />
+            <Image source={{uri: this.state.image}} style={styles.Imgview1} />
           </View>
         </SafeAreaView>
         <SafeAreaView style={styles.MenuContainer}>
-          <View style={styles.Col}>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('Ogchartbgd');
-              }}>
-              <View style={styles.TabMenu}>
-                <Text style={styles.Text}>BAN GIÁM ĐỐC</Text>
-                <Text>{this.state.lengthbgd.length} nhân sự</Text>
+          <FlatList
+            data={this.state.tenphong}
+            renderItem={({item}) => (
+              <View style={styles.Col}>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.props.navigation.navigate('Ogchartpns', {
+                      ten: item.idP,
+                    });
+                  }}>
+                  <View style={styles.TabMenu}>
+                    <Text style={styles.Text}>{item.ten}</Text>
+                    {/* <Text>{this.state.lengthbgd.length} nhân sự</Text> */}
+                  </View>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.Col}>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('Ogchartpkd');
-              }}>
-              <View style={styles.TabMenu}>
-                <Text style={styles.Text}>PHÒNG KINH DOANH</Text>
-                <Text>{this.state.lengthpkd.length} nhân sự</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.Col}>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('Ogchartptc');
-              }}>
-              <View style={styles.TabMenu}>
-                <Text style={styles.Text}>PHÒNG TÀI CHÍNH</Text>
-                <Text>{this.state.lengthptc.length} nhân sự</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.Col}>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('Ogchartpns');
-              }}>
-              <View style={styles.TabMenu}>
-                <Text style={styles.Text}>PHÒNG NHÂN SỰ</Text>
-                <Text>{this.state.lengthpns.length} nhân sự</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+            )}
+            keyExtractor={item => item.ten}
+          />
         </SafeAreaView>
       </SafeAreaView>
     );

@@ -46,7 +46,7 @@ export class PersonalResult extends Component {
         }
         name.push({
           id: doc.id,
-          ten: doc.data().firstName,
+          ten: doc.data().fullName,
           doanhso: [arr[arr.length - 1]],
           sdt: doc.data().phoneNumber,
           namsinh: doc.data().staffDateOfBirth,

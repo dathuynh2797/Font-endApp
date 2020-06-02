@@ -71,62 +71,26 @@ export class Personel extends Component {
       text: '',
       data: [],
       roles: '',
-      tenphong: '',
-      tennhom: '',
     };
-  }
-  compare() {
-    const dataCompare = firebaseApp.firestore();
-    dataCompare.collection('units').onSnapshot(querySnapshot => {
-      var role = '';
-      role = querySnapshot.data().id;
-      this.setState({
-        roles: role,
-      });
-    });
   }
   componentDidMount() {
     var name = [];
-    var tenphong = '';
-    var tennhom = '';
     firebaseApp
       .firestore()
       .collection('user')
       .where('disabled', '==', false)
       .onSnapshot(querySnapshot => {
         querySnapshot.forEach(doc => {
-          var idphong = doc.data().productUnit;
-          var idteam = doc.data().iamTeam;
-          firebaseApp
-            .firestore()
-            .collection('units')
-            .onSnapshot(queryUnit => {
-              queryUnit.forEach(docUnit => {
-                if (idphong === docUnit.data().id) {
-                  tenphong = docUnit.data().unitsTitle;
-                }
-              });
-              this.setState({tenphong: tenphong});
-            });
-          firebaseApp
-            .firestore()
-            .collection('stall')
-            .onSnapshot(queryStall => {
-              queryStall.forEach(docStall => {
-                if (idteam === docStall.data().id) {
-                  tennhom = docStall.data().teamName;
-                }
-              });
-              this.setState({tennhom: tennhom});
-            });
           name.push({
             id: doc.id,
-            ten: doc.data().firstName,
+            ten: doc.data().fullName,
             sdt: doc.data().phoneNumber,
             namsinh: doc.data().staffDateOfBirth,
             // hinhanh: doc.data().avatars[0].publicUrl,
             email: doc.data().email,
             chucvu: doc.data().roles[0],
+            idphong: doc.data().productUnit,
+            idnhom: doc.data().iamTeam,
           });
 
           this.setState({
@@ -200,9 +164,10 @@ export class Personel extends Component {
                       hinhanh: item.hinhanh,
                       email: item.email,
                       chucvu: item.chucvu,
-                      phong: this.state.tenphong,
-                      nhom: this.state.tennhom,
+                      idphong: item.idphong,
+                      idnhom: item.idnhom,
                     });
+                    console.log(item.email);
                   }}>
                   <Cols
                     data={[[item.ten], [item.namsinh], [item.sdt]]}

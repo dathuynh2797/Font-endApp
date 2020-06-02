@@ -4,15 +4,46 @@ import {Text, View, StyleSheet, Image, ImageBackground} from 'react-native';
 import 'firebase/firestore';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import bgAva from '../../img/bgAva.png';
+import {firebaseApp} from '../config';
 
 export class PersonalDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isDirect: false,
+      tenphong: '',
+      tennhom: '',
     };
   }
-
+  componentDidMount() {
+    const {navigation} = this.props;
+    const idphong = navigation.getParam('idphong', 'chưa có dữ liệu');
+    const idnhom = navigation.getParam('idnhom', 'chưa có dữ liệu');
+    var tenphong = '';
+    var tennhom = '';
+    firebaseApp
+      .firestore()
+      .collection('units')
+      .onSnapshot(query => {
+        query.forEach(doc1 => {
+          if (idphong === doc1.data().id) {
+            tenphong = doc1.data().unitsTitle;
+          }
+        });
+        this.setState({tenphong: tenphong});
+      });
+    firebaseApp
+      .firestore()
+      .collection('stall')
+      .onSnapshot(querySnapshot1 => {
+        querySnapshot1.forEach(doc2 => {
+          if (idnhom === doc2.data().id) {
+            tennhom = doc2.data().teamName;
+          }
+        });
+        this.setState({tennhom: tennhom});
+      });
+  }
   static navigationOptions = ({navigation}) => {
     return {
       headerLeft: () => <HeaderLeft navigation={navigation} />,
@@ -27,8 +58,8 @@ export class PersonalDetail extends Component {
     const sdt = navigation.getParam('sdt');
     const email = navigation.getParam('email', 'chưa có dữ liệu');
     const hinhanh = navigation.getParam('hinhanh', 'chưa có dữ liệu');
-    const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
-    const phong = navigation.getParam('phong', 'chưa có dữ liệu');
+    // const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
+    // const phong = navigation.getParam('phong', 'chưa có dữ liệu');
     const role = navigation.getParam('chucvu', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
@@ -63,14 +94,14 @@ export class PersonalDetail extends Component {
             <View style={styles.Item}>
               <Image source={require('../../img/Profile/team.png')} />
               <View style={styles.HorizonLine} />
-              <Text>Nhóm: {nhom}</Text>
+              <Text>Nhóm: {this.state.tennhom}</Text>
             </View>
           )}
           {!this.state.isDirect && (
             <View style={styles.Item}>
               <Image source={require('../../img/Profile/department.png')} />
               <View style={styles.HorizonLine} />
-              <Text>Phòng: {phong}</Text>
+              <Text>Phòng: {this.state.tenphong}</Text>
             </View>
           )}
           <View style={styles.Item}>
