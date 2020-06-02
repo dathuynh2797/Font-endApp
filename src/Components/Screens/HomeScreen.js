@@ -107,7 +107,7 @@ export class HomeScreen extends Component {
             }
             days = doc.data().staffDateOfBirth;
             data.push({
-              ten: doc.data().firstName,
+              ten: doc.data().fullName,
               ava: doc.data().avatars[0].publicUrl,
               email: doc.data().email,
               sdt: doc.data().phoneNumber,
@@ -139,7 +139,7 @@ export class HomeScreen extends Component {
                 doc.data().staffDateOfBirth.slice(0, 5);
 
                 name.push({
-                  nameBD: doc.data().firstName,
+                  nameBD: doc.data().fullName,
                 });
               }
             });
@@ -162,7 +162,7 @@ export class HomeScreen extends Component {
               if (doc.data().staffDateOfBirth.slice(0, 5) === day) {
                 doc.data().staffDateOfBirth.slice(0, 5);
                 name.push({
-                  nameBD: doc.data().firstName,
+                  nameBD: doc.data().fullName,
                   id: doc.id,
                 });
               }

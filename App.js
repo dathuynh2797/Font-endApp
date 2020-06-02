@@ -13,9 +13,6 @@ import {Policy} from './src/Components/Infor/Policy';
 import {Personel} from './src/Components/Infor/Personel';
 import {Ogchart} from './src/Components/Infor/Ogchart';
 import {Ogchartpns} from './src/Components/Infor/Ogchartpns';
-import {Ogchartptc} from './src/Components/Infor/Ogchartptc';
-import {Ogchartbgd} from './src/Components/Infor/Ogchartbgd';
-import {Ogchartpkd} from './src/Components/Infor/Ogchartpkd';
 import {ForgotPassword} from './src/Components/ForgotPassword';
 
 import {HeaderRight, Title, HeaderLeft} from './src/Components/CustomHeader';
@@ -145,16 +142,7 @@ const MainStack = createStackNavigator({
   },
   ChangePassword: {screen: ChangePassword, navigationOptions: navOptionHandler},
 
-  detailPolicy: {
-    screen: detailPolicy,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Chi Tiết" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
+  detailPolicy: detailPolicy,
   location: location,
   Tq: {
     screen: Tq,
@@ -228,36 +216,7 @@ const MainStack = createStackNavigator({
       };
     },
   },
-  Ogchartpkd: {
-    screen: Ogchartpkd,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Phòng Kinh Doanh" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
-  Ogchartptc: {
-    screen: Ogchartptc,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Phòng Tài Chính" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
-  Ogchartbgd: {
-    screen: Ogchartbgd,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Ban Giám Đốc" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
+
   userDetail: userDetail,
 });
 

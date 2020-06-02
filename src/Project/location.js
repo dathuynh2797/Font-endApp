@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
+import {HeaderLeft, HeaderRight, Title} from '.././Components/CustomHeader';
 
 export class location extends Component {
   constructor(props) {
@@ -11,6 +12,15 @@ export class location extends Component {
     };
     this.switchMapType = this.switchMapType.bind(this);
   }
+
+  static navigationOptions = ({navigation}) => {
+    const title = navigation.getParam('title', 'chưa có dữ liệu');
+    return {
+      headerLeft: () => <HeaderLeft navigation={navigation} />,
+      headerTitle: () => <Title title={'Dự án' + ' ' + title} />,
+      headerRight: () => <HeaderRight navigation={navigation} />,
+    };
+  };
   switchMapType = () => {
     this.setState({
       mapType: this.state.mapType === 'hybrid' ? 'standard' : 'hybrid',
