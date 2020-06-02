@@ -9,6 +9,7 @@ import {
   Dimensions,
   TextInput,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import {firebaseApp} from '../config';
 import 'firebase/firestore';
@@ -99,10 +100,10 @@ export class Personel extends Component {
           firebaseApp
             .firestore()
             .collection('units')
-            .onSnapshot(querySnapshot => {
-              querySnapshot.forEach(doc => {
-                if (idphong === doc.data().id) {
-                  tenphong = doc.data().unitsTitle;
+            .onSnapshot(queryUnit => {
+              queryUnit.forEach(docUnit => {
+                if (idphong === docUnit.data().id) {
+                  tenphong = docUnit.data().unitsTitle;
                 }
               });
               this.setState({tenphong: tenphong});
@@ -110,10 +111,10 @@ export class Personel extends Component {
           firebaseApp
             .firestore()
             .collection('stall')
-            .onSnapshot(querySnapshot => {
-              querySnapshot.forEach(doc => {
-                if (idteam === doc.data().id) {
-                  tennhom = doc.data().teamName;
+            .onSnapshot(queryStall => {
+              queryStall.forEach(docStall => {
+                if (idteam === docStall.data().id) {
+                  tennhom = docStall.data().teamName;
                 }
               });
               this.setState({tennhom: tennhom});
@@ -153,7 +154,7 @@ export class Personel extends Component {
   }
   render() {
     return (
-      <View>
+      <SafeAreaView>
         <Text style={styles.headerText}>Thông tin nhân viên</Text>
         <Image
           style={{
@@ -161,11 +162,11 @@ export class Personel extends Component {
             height: 30,
             width: 30,
             top: 60,
-            left: 30,
+            left: 20,
           }}
           source={require('../../img/Profile/seach.png')}
         />
-        <View style={{paddingHorizontal: 20}}>
+        <View style={{paddingHorizontal: 10, marginBottom: 10}}>
           <TextInput
             placeholder="Tìm kiếm"
             style={styles.seachbar}
@@ -174,7 +175,11 @@ export class Personel extends Component {
           />
         </View>
         <View style={styles.container}>
-          <Table style={{maxHeight: '90%'}}>
+          <Table
+            style={{
+              maxHeight: '90%',
+              marginHorizontal: 10,
+            }}>
             <Row
               data={this.state.tableHead}
               style={styles.head}
@@ -211,14 +216,17 @@ export class Personel extends Component {
             />
           </Table>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    paddingTop: 5,
+    // padding: 10,
+    // paddingTop: 5,
+    // justifyContent: 'center',
+    // alignSelf: 'center',
+    // alignItems: 'center',
     backgroundColor: 'white',
   },
   head: {

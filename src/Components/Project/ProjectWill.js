@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   Text,
@@ -7,7 +6,6 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../../Components/config';
 export class ProjectWill extends Component {
