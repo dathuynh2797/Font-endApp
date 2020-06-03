@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, StyleSheet, Dimensions} from 'react-native';
 // import {firebaseApp} from './config';
 const {width: WIDTH} = Dimensions.get('window');
 export class Tq extends Component {
@@ -9,9 +9,6 @@ export class Tq extends Component {
     const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
-        <View style={styles.child1}>
-          <Text style={styles.headerText}>Tổng quan</Text>
-        </View>
         <View style={styles.child2}>
           <Image
             source={{

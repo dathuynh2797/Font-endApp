@@ -3,6 +3,7 @@ import React, {Component, Fragment} from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import {LineChart, BarChart} from 'react-native-charts-wrapper';
 import {View, StyleSheet, SafeAreaView, processColor} from 'react-native';
+import {firebaseApp} from '../config';
 
 var items = [
   {
@@ -52,6 +53,8 @@ export class PersonalBusiness extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      toggleChart: true,
+      item: [],
       marker: {
         enabled: true,
         digits: 2,
@@ -79,7 +82,33 @@ export class PersonalBusiness extends Component {
         granularityEnabled: true,
         granularity: 1,
       },
+      dataChart: {x: 1, y: 0},
     };
+  }
+
+  handleSelect = e => {
+    console.log(e);
+  };
+
+  componentDidMount() {
+    const data = firebaseApp.firestore().collection('user');
+    const newData = [];
+    data.onSnapshot(query =>
+      query.forEach(doc => {
+        if (doc.data().fullName !== null && doc.data().fullName !== undefined) {
+          newData.push({
+            id: doc.id,
+            name: doc.data().fullName,
+          });
+        }
+      }),
+    );
+    this.setState(
+      {
+        item: newData,
+      },
+      () => console.log(this.state.item),
+    );
   }
 
   render() {
@@ -88,8 +117,8 @@ export class PersonalBusiness extends Component {
         <View style={{flex: 2 / 3, backgroundColor: 'red'}}>
           <SearchableDropdown
             onTextChange={text => text}
-            onItemSelect={item => item}
-            items={items}
+            onItemSelect={item => this.handleSelect(item)}
+            items={this.state.item}
             containerStyle={{marginTop: 20, marginHorizontal: 20}}
             textInputStyle={{
               padding: 10,
@@ -189,20 +218,19 @@ export class PersonalBusiness extends Component {
             />
           </View>
         </View>
-        <View style={styles.container}>
-          <LineChart
-            style={styles.chart}
-            marker={this.state.marker}
-            data={{
-              dataSets: [
-                {
-                  label: 'demo',
-                  values: [{x: 1, y: 0}, {x: 2, y: 10}, {x: 10, y: 5}],
-                },
-              ],
-            }}
-          />
-        </View>
+        {this.state.toggleChart ? (
+          <View style={styles.container}>
+            <LineChart
+              style={styles.chart}
+              marker={this.state.marker}
+              data={{
+                dataSets: [{label: 'demo', values: [this.state.dataChart]}],
+              }}
+            />
+          </View>
+        ) : (
+          <View style={styles.container} />
+        )}
       </SafeAreaView>
     );
   }
