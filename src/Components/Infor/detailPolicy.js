@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 
-const {width: WIDTH} = Dimensions.get('window');
+// const {width: WIDTH} = Dimensions.get('window');
 export class detailPolicy extends Component {
   static navigationOptions = ({navigation}) => {
     const name = navigation.getParam('name', 'chưa có dữ liệu');
@@ -15,7 +15,6 @@ export class detailPolicy extends Component {
   };
   render() {
     const {navigation} = this.props;
-
     const image = navigation.getParam('image', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
@@ -36,19 +35,14 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     flex: 1,
   },
-  headerText: {
-    width: WIDTH - 10,
-    textAlign: 'center',
-    flexWrap: 'wrap',
-    lineHeight: 40,
-    fontWeight: 'bold',
-    fontSize: 25,
-    color: '#2D389C',
-  },
-  iconBack: {
-    width: 30,
-    height: 30,
-  },
-  child1: {flex: 1},
-  child2: {flex: 15, margin: 10},
+  // headerText: {
+  //   // width: WIDTH - 10,
+  //   // textAlign: 'center',
+  //   // flexWrap: 'wrap',
+  //   // lineHeight: 40,
+  //   // fontWeight: 'bold',
+  //   // fontSize: 25,
+  //   color: '#2D389C',
+  // },
+  child2: {flex: 1, margin: 10},
 });

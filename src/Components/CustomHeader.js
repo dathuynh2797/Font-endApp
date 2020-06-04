@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     // paddingLeft: 10,
     fontWeight: '700',
     fontSize: 20,
+    color: '#2D389C',
   },
   IconBack: {
     marginLeft: 10,

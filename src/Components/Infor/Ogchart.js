@@ -16,8 +16,12 @@ export class Ogchart extends Component {
     this.state = {
       tenphong: [],
       tennv: [],
-      image: '',
+      image: null,
+      length: [],
+      idG: null,
+      lengthnv: [],
     };
+    // console.log(this.state.idG);
   }
   componentDidMount() {
     firebaseApp
@@ -38,17 +42,51 @@ export class Ogchart extends Component {
       .collection('units')
       .onSnapshot(querySnapshot => {
         var name = [];
+        var idGroup = [];
         querySnapshot.forEach(doc => {
+          idGroup.push(doc.data().id);
+          // console.log(idGroup);
           name.push({
             ten: doc.data().unitsTitle,
             idP: doc.data().id,
           });
-        });
-        this.setState({
-          tenphong: name,
+          this.setState({
+            tenphong: name,
+            idG: idGroup,
+          });
+          // console.log(this.state.idG);
         });
       });
+
+    firebaseApp
+      .firestore()
+      .collection('user')
+      .onSnapshot(querySnapshot => {
+        var name = [];
+        var b = [];
+        var countStaff = [];
+        let count = 0;
+        querySnapshot.forEach(doc => name.push(doc.data().productUnit));
+        for (let j = 0; j < this.state.idG.length; j++) {
+          for (let i = 0; i < name.length; i++) {
+            if (name[i] === this.state.idG[j]) {
+              count++;
+            }
+          }
+          countStaff.push({length: count});
+          count = 0;
+        }
+        console.log(countStaff[0]);
+        for (let i = 0; i < countStaff.length; i++) {
+          var a = Object.assign({}, this.state.tenphong[i], countStaff[i]);
+          console.log(a);
+          b.push(a);
+        }
+        this.setState({tenphong: b});
+        console.log(this.state.tenphong);
+      });
   }
+
   render() {
     return (
       <SafeAreaView style={styles.body}>
@@ -66,11 +104,12 @@ export class Ogchart extends Component {
                   onPress={() => {
                     this.props.navigation.navigate('Ogchartpns', {
                       ten: item.idP,
+                      name: item.ten,
                     });
                   }}>
                   <View style={styles.TabMenu}>
                     <Text style={styles.Text}>{item.ten}</Text>
-                    {/* <Text>{this.state.lengthbgd.length} nhân sự</Text> */}
+                    <Text>{item.length} nhân sự</Text>
                   </View>
                 </TouchableOpacity>
               </View>

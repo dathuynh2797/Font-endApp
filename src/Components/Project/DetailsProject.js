@@ -20,7 +20,7 @@ export class DetailsProject extends Component {
     const longtitude = navigation.getParam('longtitude', 'chưa có dữ liệu');
     return (
       <SafeAreaView style={styles.MenuContainer}>
-        <Header title={ten} navigation={navigation} />
+        <Header title={'Dự Án' + ' ' + ten} navigation={navigation} />
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {

@@ -149,7 +149,7 @@ const MainStack = createStackNavigator({
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-
+        headerTitle: () => <Title title="Tổng Quan Dự Án" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
@@ -159,7 +159,7 @@ const MainStack = createStackNavigator({
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-
+        headerTitle: () => <Title title="Pháp Lý" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
@@ -169,7 +169,7 @@ const MainStack = createStackNavigator({
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-
+        headerTitle: () => <Title title="C/S Bán Hàng Cho Khách Hàng" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
@@ -179,7 +179,7 @@ const MainStack = createStackNavigator({
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-
+        headerTitle: () => <Title title="C/S Bán Hàng Cho Nhân Viên" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
@@ -189,7 +189,7 @@ const MainStack = createStackNavigator({
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-
+        headerTitle: () => <Title title="Quảng Cáo" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
@@ -199,23 +199,14 @@ const MainStack = createStackNavigator({
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-
+        headerTitle: () => <Title title="Bảng Giá" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
   },
   ReportScreen: ReportScreen,
   PersonalDetail: PersonalDetail,
-  Ogchartpns: {
-    screen: Ogchartpns,
-    navigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Phòng Nhân Sự" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
-  },
+  Ogchartpns: Ogchartpns,
 
   userDetail: userDetail,
 });

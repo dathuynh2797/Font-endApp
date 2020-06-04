@@ -151,7 +151,7 @@ export class HomeScreen extends Component {
       }
     }
     if (birthday !== 'chua co du lieu') {
-      let index = birthday.findIndex((dayS, index) => dayS === day);
+      let index = birthday.findIndex(dayS => dayS === day);
       if (index !== -1) {
         firebaseApp
           .firestore()

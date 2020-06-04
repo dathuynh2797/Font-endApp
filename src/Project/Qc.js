@@ -9,9 +9,6 @@ export class Qc extends Component {
     const hinhanhqc = navigation.getParam('hinhanhqc', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
-        <View style={styles.child1}>
-          <Text style={styles.headerText}>Tổng quan</Text>
-        </View>
         <View style={styles.child2}>
           <Image
             source={{

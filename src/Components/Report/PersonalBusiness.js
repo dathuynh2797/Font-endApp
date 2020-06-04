@@ -2,7 +2,16 @@
 import React, {Component, Fragment} from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import {LineChart, BarChart} from 'react-native-charts-wrapper';
-import {View, StyleSheet, SafeAreaView, processColor} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  processColor,
+  TouchableOpacity,
+  Text,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
 import {firebaseApp} from '../config';
 
 var items = [
@@ -58,7 +67,7 @@ export class PersonalBusiness extends Component {
       marker: {
         enabled: true,
         digits: 2,
-        backgroundTint: processColor('red'),
+        backgroundTint: processColor('yellow'),
         markerColor: processColor('#F0C0FF8C'),
         textColor: processColor('white'),
       },
@@ -78,9 +87,15 @@ export class PersonalBusiness extends Component {
           labels: ['REFER', 'USER'],
         },
       },
-      xAxis: {
-        granularityEnabled: true,
-        granularity: 1,
+      yAxis: {
+        left: {
+          enabled: true,
+          drawGridLines: true,
+        },
+        right: {
+          enabled: false,
+          drawGridLines: false,
+        },
       },
       dataChart: {x: 1, y: 0},
     };
@@ -113,38 +128,14 @@ export class PersonalBusiness extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: 'grey'}}>
-        <View style={{flex: 2 / 3, backgroundColor: 'red'}}>
-          <SearchableDropdown
-            onTextChange={text => text}
-            onItemSelect={item => this.handleSelect(item)}
-            items={this.state.item}
-            containerStyle={{marginTop: 20, marginHorizontal: 20}}
-            textInputStyle={{
-              padding: 10,
-              borderWidth: 1,
-              borderColor: '#ccc',
-              backgroundColor: '#FAF7F6',
-            }}
-            itemStyle={{
-              padding: 10,
-              marginTop: 4,
-              backgroundColor: '#FAF9F8',
-              borderColor: '#bbb',
-              borderWidth: 1,
-            }}
-            itemsContainerStyle={{
-              //items container style you can pass maxHeight
-              //to restrict the items dropdown hieght
-              maxHeight: 90,
-            }}
-          />
-          <View style={{flexDirection: 'row'}}>
+      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1}}>
+          <View style={{flex: 1 / 3}}>
             <SearchableDropdown
               onTextChange={text => text}
-              onItemSelect={item => item}
-              items={year}
-              containerStyle={{marginTop: 20, marginLeft: 20, flex: 1 / 3}}
+              onItemSelect={item => this.handleSelect(item)}
+              items={this.state.item}
+              containerStyle={{marginTop: 20, marginHorizontal: 20}}
               textInputStyle={{
                 padding: 10,
                 borderWidth: 1,
@@ -164,74 +155,111 @@ export class PersonalBusiness extends Component {
                 maxHeight: 90,
               }}
             />
-            <SearchableDropdown
-              onTextChange={text => text}
-              onItemSelect={item => item}
-              items={year}
-              containerStyle={{
-                marginTop: 20,
-                marginHorizontal: 5,
-                flex: 1 / 3,
-              }}
-              textInputStyle={{
+            <View style={{flexDirection: 'row'}}>
+              <SearchableDropdown
+                onTextChange={text => text}
+                onItemSelect={item => item}
+                items={year}
+                containerStyle={{marginTop: 20, marginLeft: 20, flex: 1 / 3}}
+                textInputStyle={{
+                  padding: 10,
+                  borderWidth: 1,
+                  borderColor: '#ccc',
+                  backgroundColor: '#FAF7F6',
+                }}
+                itemStyle={{
+                  padding: 10,
+                  marginTop: 4,
+                  backgroundColor: '#FAF9F8',
+                  borderColor: '#bbb',
+                  borderWidth: 1,
+                }}
+                itemsContainerStyle={{
+                  //items container style you can pass maxHeight
+                  //to restrict the items dropdown hieght
+                  maxHeight: 90,
+                }}
+              />
+              <SearchableDropdown
+                onTextChange={text => text}
+                onItemSelect={item => item}
+                items={year}
+                containerStyle={{
+                  marginTop: 20,
+                  marginHorizontal: 5,
+                  flex: 1 / 3,
+                }}
+                textInputStyle={{
+                  padding: 10,
+                  borderWidth: 1,
+                  borderColor: '#ccc',
+                  backgroundColor: '#FAF7F6',
+                }}
+                itemStyle={{
+                  padding: 10,
+                  marginTop: 4,
+                  backgroundColor: '#FAF9F8',
+                  borderColor: '#bbb',
+                  borderWidth: 1,
+                }}
+                itemsContainerStyle={{
+                  //items container style you can pass maxHeight
+                  //to restrict the items dropdown hieght
+                  maxHeight: 90,
+                }}
+              />
+              <SearchableDropdown
+                onTextChange={text => text}
+                onItemSelect={item => item}
+                items={year}
+                containerStyle={{marginTop: 20, marginRight: 20, flex: 1 / 3}}
+                textInputStyle={{
+                  padding: 10,
+                  borderWidth: 1,
+                  borderColor: '#ccc',
+                  backgroundColor: '#FAF7F6',
+                }}
+                itemStyle={{
+                  padding: 10,
+                  marginTop: 4,
+                  backgroundColor: '#FAF9F8',
+                  borderColor: '#bbb',
+                  borderWidth: 1,
+                }}
+                itemsContainerStyle={{
+                  //items container style you can pass maxHeight
+                  //to restrict the items dropdown hieght
+                  maxHeight: 90,
+                }}
+              />
+            </View>
+            <TouchableOpacity
+              style={{
+                alignItems: 'center',
+                backgroundColor: 'yellow',
+                alignSelf: 'center',
+                marginVertical: 10,
                 padding: 10,
-                borderWidth: 1,
-                borderColor: '#ccc',
-                backgroundColor: '#FAF7F6',
-              }}
-              itemStyle={{
-                padding: 10,
-                marginTop: 4,
-                backgroundColor: '#FAF9F8',
-                borderColor: '#bbb',
-                borderWidth: 1,
-              }}
-              itemsContainerStyle={{
-                //items container style you can pass maxHeight
-                //to restrict the items dropdown hieght
-                maxHeight: 90,
-              }}
-            />
-            <SearchableDropdown
-              onTextChange={text => text}
-              onItemSelect={item => item}
-              items={year}
-              containerStyle={{marginTop: 20, marginRight: 20, flex: 1 / 3}}
-              textInputStyle={{
-                padding: 10,
-                borderWidth: 1,
-                borderColor: '#ccc',
-                backgroundColor: '#FAF7F6',
-              }}
-              itemStyle={{
-                padding: 10,
-                marginTop: 4,
-                backgroundColor: '#FAF9F8',
-                borderColor: '#bbb',
-                borderWidth: 1,
-              }}
-              itemsContainerStyle={{
-                //items container style you can pass maxHeight
-                //to restrict the items dropdown hieght
-                maxHeight: 90,
-              }}
-            />
+              }}>
+              <Text>Tìm Kiếm</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-        {this.state.toggleChart ? (
-          <View style={styles.container}>
-            <LineChart
-              style={styles.chart}
-              marker={this.state.marker}
-              data={{
-                dataSets: [{label: 'demo', values: [this.state.dataChart]}],
-              }}
-            />
-          </View>
-        ) : (
-          <View style={styles.container} />
-        )}
-      </SafeAreaView>
+          {this.state.toggleChart ? (
+            <View style={styles.container}>
+              <LineChart
+                style={styles.chart}
+                marker={this.state.marker}
+                data={{
+                  dataSets: [{label: 'demo', values: [this.state.dataChart]}],
+                }}
+                yAxis={this.state.yAxis}
+              />
+            </View>
+          ) : (
+            <View style={styles.container} />
+          )}
+        </SafeAreaView>
+      </KeyboardAvoidingView>
     );
   }
 }

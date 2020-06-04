@@ -8,26 +8,16 @@ import {
   Image,
 } from 'react-native';
 import {firebaseApp} from '../config';
+import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import 'firebase/firestore';
 
 export class Ogchartpns extends Component {
   static navigationOptions = ({navigation}) => {
+    const name = navigation.getParam('name', 'chưa có dữ liệu');
     return {
-      title: 'THÔNG TIN CHI TIẾT',
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate({routeName: 'HomeScreen'})}>
-          <Image
-            source={require('../../img/exit.png')}
-            style={styles.iconBack}
-          />
-        </TouchableOpacity>
-      ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerTintColor: '#0A053F',
-      headerTitleAlign: 'center',
+      headerLeft: () => <HeaderLeft navigation={navigation} />,
+      headerTitle: () => <Title title={name} />,
+      headerRight: () => <HeaderRight navigation={navigation} />,
     };
   };
   constructor(props) {
@@ -72,18 +62,32 @@ export class Ogchartpns extends Component {
           renderItem={({item}) => (
             <View style={styles.scene}>
               <View style={styles.items}>
-                <View>
+                <View style={styles.imgContent}>
                   <Image style={styles.image} source={{uri: item.image}} />
                 </View>
-                <View style={styles.data}>
-                  <Text style={styles.title}>{item.ten1}</Text>
-                  <Text style={styles.title}>{item.namsinh}</Text>
-                  <Text style={styles.title}>{item.sdt}</Text>
+                <View style={styles.dataContent}>
+                  <View style={styles.titleContent}>
+                    <Text style={styles.title}>{item.ten1}</Text>
+                  </View>
+                  <View style={styles.locationContent}>
+                    <Image
+                      source={require('../../img/food.png')}
+                      style={styles.icon}
+                    />
+                    <Text style={styles.location}>{item.namsinh}</Text>
+                  </View>
+                  <View style={styles.priceContent}>
+                    <Image
+                      source={require('../../img/phone.png')}
+                      style={styles.icon}
+                    />
+                    <Text style={styles.price}>{item.sdt}</Text>
+                  </View>
                 </View>
               </View>
             </View>
           )}
-          keyExtractor={item => item.ten}
+          keyExtractor={item => item.sdt}
         />
       </View>
     );
@@ -98,41 +102,49 @@ const styles = StyleSheet.create({
   },
   items: {
     flexDirection: 'row',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    justifyContent: 'flex-start',
+    marginVertical: 10,
+    marginHorizontal: 10,
+    backgroundColor: 'rgb(255,255,255)',
+    height: 110,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    elevation: 6,
+  },
+  imgContent: {
+    width: '40%',
     alignItems: 'center',
-    margin: 5,
-    backgroundColor: '#ddd',
-    borderWidth: 0.5,
-    borderRadius: 5,
+    justifyContent: 'center',
   },
   image: {
     height: 100,
     width: 100,
   },
-  data: {
-    paddingHorizontal: 10,
-    marginTop: 5,
-    marginLeft: 15,
+  dataContent: {width: '60%'},
+  titleContent: {
+    flex: 1 / 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  title: {
-    color: '#444',
-    fontSize: 18,
-    fontWeight: '600',
+  title: {fontSize: 20, fontWeight: 'bold'},
+  icon: {
+    marginHorizontal: 5,
+    width: 20,
+    // backgroundColor: 'red',
+    height: 20,
   },
-  description: {
-    fontSize: 16,
-    color: '#888',
-    fontWeight: '300',
+  locationContent: {
+    flex: 1 / 2,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  price: {
-    fontSize: 16,
-    color: '#ff0000',
-    fontWeight: '300',
+  location: {width: '80%', color: '#1273EB'},
+  priceContent: {
+    backgroundColor: 'white',
+    flex: 1 / 4,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  iconBack: {
-    width: 30,
-    height: 30,
-  },
+  price: {color: '#ff0000'},
 });

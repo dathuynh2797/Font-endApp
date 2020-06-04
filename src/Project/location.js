@@ -17,7 +17,7 @@ export class location extends Component {
     const title = navigation.getParam('title', 'chưa có dữ liệu');
     return {
       headerLeft: () => <HeaderLeft navigation={navigation} />,
-      headerTitle: () => <Title title={'Dự án' + ' ' + title} />,
+      headerTitle: () => <Title title={'Dự Án' + ' ' + title} />,
       headerRight: () => <HeaderRight navigation={navigation} />,
     };
   };

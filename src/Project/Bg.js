@@ -9,9 +9,6 @@ export class Bg extends Component {
     const hinhanhbg = navigation.getParam('hinhanhbg', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
-        <View style={styles.child1}>
-          <Text style={styles.headerText}>Tổng quan</Text>
-        </View>
         <View style={styles.child2}>
           <Image
             source={{
