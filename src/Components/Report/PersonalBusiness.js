@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Text,
   KeyboardAvoidingView,
+  Platform,
   ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../config';
@@ -128,8 +129,10 @@ export class PersonalBusiness extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
-        <SafeAreaView style={{flex: 1}}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
           <View style={{flex: 1 / 3}}>
             <SearchableDropdown
               onTextChange={text => text}
@@ -246,6 +249,9 @@ export class PersonalBusiness extends Component {
           </View>
           {this.state.toggleChart ? (
             <View style={styles.container}>
+              <View>
+                <Text>Đồ thị kết quả kinh doanh</Text>
+              </View>
               <LineChart
                 style={styles.chart}
                 marker={this.state.marker}
@@ -265,7 +271,7 @@ export class PersonalBusiness extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1 / 3,
+    flex: 1 / 2,
     backgroundColor: '#F5FCFF',
   },
   chart: {
