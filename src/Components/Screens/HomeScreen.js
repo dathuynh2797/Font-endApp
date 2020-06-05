@@ -32,17 +32,6 @@ export class HomeScreen extends Component {
       team: '',
     };
   }
-  signOut() {
-    firebaseApp
-      .auth()
-      .signOut()
-      .then(function() {
-        // Sign-out successful.
-      })
-      .catch(function(error) {
-        // An error happened.
-      });
-  }
 
   renderStaffName = () => {
     return this.state.nameBirth.map((name, index) => {
@@ -211,7 +200,6 @@ export class HomeScreen extends Component {
     this.setState({stop: whoosh});
     whoosh.pause();
   }
-
   handleLogout() {
     firebaseApp
       .auth()
