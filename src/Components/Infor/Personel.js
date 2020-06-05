@@ -17,6 +17,7 @@ import {Table, Row, Cols} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
 
 const {width: WIDTH} = Dimensions.get('window');
+
 //set time out
 const _setTimeout = global.setTimeout;
 const _clearTimeout = global.clearTimeout;

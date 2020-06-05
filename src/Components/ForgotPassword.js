@@ -47,8 +47,7 @@ export class ForgotPassword extends React.Component {
           style={styles.container}
           behavior={Platform.OS === 'ios' ? 'padding' : null}>
           <View style={styles.logoContainer}>
-            <Image style={styles.logo} />
-            <Text style={styles.logoText}>Logo</Text>
+            <Image style={styles.logo} source={require('../img/LOGO.png')} />
           </View>
 
           <View>
@@ -99,7 +98,6 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: 'center',
     marginBottom: 20,
-    backgroundColor: 'white',
   },
   logoText: {
     color: 'black',
@@ -109,8 +107,8 @@ const styles = StyleSheet.create({
     // opacity: 0.5,
   },
   logo: {
-    width: 238,
-    height: 98,
+    width: 160,
+    height: 160,
   },
   headerText: {
     width: WIDTH - 10,

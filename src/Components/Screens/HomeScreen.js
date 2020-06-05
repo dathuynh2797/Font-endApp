@@ -18,6 +18,11 @@ import {firebaseApp} from '../config';
 import {RFValue} from 'react-native-responsive-fontsize';
 var Sound = require('react-native-sound');
 const moment = require('moment');
+var x = setTimeout(100000); //It is very low probability that after 100 seconds x timeout will not be cleared
+for (var i = 0; i <= x; i++) {
+  clearTimeout(i);
+}
+
 export class HomeScreen extends Component {
   constructor() {
     super();
@@ -32,17 +37,17 @@ export class HomeScreen extends Component {
       team: '',
     };
   }
-  signOut() {
-    firebaseApp
-      .auth()
-      .signOut()
-      .then(function() {
-        // Sign-out successful.
-      })
-      .catch(function(error) {
-        // An error happened.
-      });
-  }
+  // signOut() {
+  //   firebaseApp
+  //     .auth()
+  //     .signOut()
+  //     .then(function() {
+  //       // Sign-out successful.
+  //     })
+  //     .catch(function(error) {
+  //       // An error happened.
+  //     });
+  // }
 
   renderStaffName = () => {
     return this.state.nameBirth.map((name, index) => {
@@ -74,35 +79,11 @@ export class HomeScreen extends Component {
           if (
             firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
           ) {
-            var idphonguser = doc.data().productUnit;
-            var idteamuser = doc.data().iamTeam;
-            firebaseApp
-              .firestore()
-              .collection('stall')
-              .onSnapshot(querySnapshot1 => {
-                querySnapshot1.forEach(doc1 => {
-                  if (idteamuser === doc1.data().id) {
-                    tennhom = doc1.data().teamName;
-                  }
-                });
-                this.setState({team: tennhom});
-              });
-            firebaseApp
-              .firestore()
-              .collection('units')
-              .onSnapshot(querySnapshot1 => {
-                querySnapshot1.forEach(doc1 => {
-                  if (idphonguser === doc1.data().id) {
-                    tenphong = doc1.data().unitsTitle;
-                  }
-                });
-                this.setState({phong: tenphong});
-              });
             let arr = [];
             let dataDoanhSo = doc.data().doanhso[0].year;
-            for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
-              if (dataDoanhSo[i] !== null) {
-                arr.push(dataDoanhSo[i]);
+            for (let j = 0; j <= dataDoanhSo.length - 1; j++) {
+              if (dataDoanhSo[j] !== null) {
+                arr.push(dataDoanhSo[j]);
               }
             }
             days = doc.data().staffDateOfBirth;
@@ -111,7 +92,8 @@ export class HomeScreen extends Component {
               ava: doc.data().avatars[0].publicUrl,
               email: doc.data().email,
               sdt: doc.data().phoneNumber,
-              doanhso: [arr[arr.length - 1]],
+              idphong: doc.data().productUnit,
+              idnhom: doc.data().iamTeam,
             });
           }
           this.setState({
@@ -313,19 +295,19 @@ export class HomeScreen extends Component {
                           sdt: item.sdt,
                           namsinh: item.namsinh,
                           hinhanh: item.ava,
-                          phong: this.state.phong,
+                          phong: item.idphong,
                           email: item.email,
-                          nhom: this.state.team,
+                          nhom: item.idnhom,
                         });
                       }}>
                       <View style={{alignItems: 'center'}}>
                         <Image style={styles.avatar} source={{uri: item.ava}} />
-                        <Text style={styles.avatarTxt}>
+                        {/* <Text style={styles.avatarTxt}>
                           {item.doanhso
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
                           VND
-                        </Text>
+                        </Text> */}
                       </View>
                     </TouchableOpacity>
                   </View>

@@ -33,7 +33,6 @@ export class Ogchartpns extends Component {
     var name = [];
     const {navigation} = this.props;
     const idPhong = navigation.getParam('ten', 'chưa có dữ liệu');
-    // console.log(idPhong);
     firebaseApp
       .firestore()
       .collection('user')

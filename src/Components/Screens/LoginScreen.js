@@ -39,7 +39,7 @@ export class LoginScreen extends React.Component {
       infor: [],
       day: [],
     };
-    this.compare();
+    // this.compare();
     this.section();
   }
 
@@ -75,19 +75,18 @@ export class LoginScreen extends React.Component {
   section() {
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
-        firebaseApp
-          .firestore()
-          .collection('user')
-          .onSnapshot(querySnapshot => {
-            var date = [];
-            var day2 = [];
-            querySnapshot.forEach(doc => {
-              date.push(doc.data().staffDateOfBirth.slice(0, 5));
-            });
-            this.props.navigation.navigate('HomeScreen', {
-              birthday: date,
-            });
-          });
+        // firebaseApp
+        //   .firestore()
+        //   .collection('user')
+        //   .onSnapshot(querySnapshot => {
+        //     var date = [];
+        //     querySnapshot.forEach(doc => {
+        //       date.push(doc.data().staffDateOfBirth.slice(0, 5));
+        //     });
+        this.props.navigation.navigate('HomeScreen');
+        //       birthday: date,
+        //     });
+        //   });
       } else {
         this.props.navigation.navigate('LoginScreen');
         this.setState({
@@ -96,21 +95,20 @@ export class LoginScreen extends React.Component {
       }
     });
   }
-  compare() {
-    firebaseApp
-      .firestore()
-      .collection('user')
-      .onSnapshot(querySnapshot => {
-        var ngaysinh = [];
-        var day = null;
-        querySnapshot.forEach(doc => {
-          ngaysinh.push(doc.data().staffDateOfBirth.slice(0, 5));
-        });
-        this.setState({
-          data: ngaysinh,
-        });
-      });
-  }
+  // compare() {
+  //   firebaseApp
+  //     .firestore()
+  //     .collection('user')
+  //     .onSnapshot(querySnapshot => {
+  //       var ngaysinh = [];
+  //       querySnapshot.forEach(doc => {
+  //         ngaysinh.push(doc.data().staffDateOfBirth.slice(0, 5));
+  //       });
+  //       this.setState({
+  //         data: ngaysinh,
+  //       });
+  //     });
+  // }
   _login() {
     if (
       this.state.emailValid &&
@@ -122,9 +120,7 @@ export class LoginScreen extends React.Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-          this.props.navigation.navigate('HomeScreen', {
-            birth: this.state.data,
-          });
+          this.props.navigation.navigate('HomeScreen');
         })
         .catch(function(error) {
           var errorCode = error.code;
@@ -244,26 +240,27 @@ export class LoginScreen extends React.Component {
               </TouchableOpacity>
             </View>
           )}
-
-          {!this.state.loading && (
-            <TouchableOpacity
-              disabled={this.state.loginBtn}
-              style={styles.btnLogin}
-              onPress={() => {
-                this._login();
-              }}>
-              <Text style={styles.text}>Đăng Nhập</Text>
-            </TouchableOpacity>
-          )}
-          {!this.state.loading && (
-            <TouchableOpacity
-              style={styles.btnforgot}
-              onPress={() => {
-                this.props.navigation.navigate('ForgotScreen');
-              }}>
-              <Text style={styles.text}>Quên mật khẩu</Text>
-            </TouchableOpacity>
-          )}
+          <View style={{flexDirection: 'row'}}>
+            {!this.state.loading && (
+              <TouchableOpacity
+                disabled={this.state.loginBtn}
+                style={styles.btnLogin}
+                onPress={() => {
+                  this._login();
+                }}>
+                <Text style={styles.text}>Đăng Nhập</Text>
+              </TouchableOpacity>
+            )}
+            {!this.state.loading && (
+              <TouchableOpacity
+                style={styles.btnforgot}
+                onPress={() => {
+                  this.props.navigation.navigate('ForgotScreen');
+                }}>
+                <Text style={styles.text}>Quên mật khẩu</Text>
+              </TouchableOpacity>
+            )}
+          </View>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
@@ -286,7 +283,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   logoText: {
     color: 'black',
@@ -296,8 +293,8 @@ const styles = StyleSheet.create({
     // opacity: 0.5,
   },
   logo: {
-    width: 238,
-    height: 210,
+    width: 160,
+    height: 160,
   },
   headerText: {
     width: WIDTH - 10,
