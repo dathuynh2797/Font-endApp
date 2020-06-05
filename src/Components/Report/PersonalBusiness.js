@@ -15,56 +15,90 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../config';
 
-var items = [
+var thang = [
   {
     id: 1,
-    name: 'JavaScript',
+    name: 'Tháng 1',
   },
   {
     id: 2,
-    name: 'Java',
+    name: 'Tháng 2',
   },
   {
     id: 3,
-    name: 'Ruby',
+    name: 'Tháng 3',
   },
   {
     id: 4,
-    name: 'React Native',
+    name: 'Tháng 4',
   },
   {
     id: 5,
-    name: 'PHP',
+    name: 'Tháng 5',
   },
   {
     id: 6,
-    name: 'Python',
+    name: 'Tháng 6',
   },
   {
     id: 7,
-    name: 'Go',
+    name: 'Tháng 7',
   },
   {
     id: 8,
-    name: 'Swift',
+    name: 'Tháng 8',
+  },
+  {
+    id: 9,
+    name: 'Tháng 9',
+  },
+  {
+    id: 9,
+    name: 'Tháng 9',
+  },
+  {
+    id: 10,
+    name: 'Tháng 10',
+  },
+  {
+    id: 11,
+    name: 'Tháng 11',
+  },
+  {
+    id: 12,
+    name: 'Tháng 12',
   },
 ];
-var year = [
+
+var quy = [
   {
     id: 1,
-    name: '2019',
+    name: 'Quý I',
   },
   {
     id: 2,
-    name: '2020',
+    name: 'Quý II',
+  },
+  {
+    id: 3,
+    name: 'Quý III',
+  },
+  {
+    id: 4,
+    name: 'Quý IV',
   },
 ];
+
 export class PersonalBusiness extends Component {
   constructor(props) {
     super(props);
     this.state = {
       toggleChart: true,
       item: [],
+      doanhSo: [],
+      year: [],
+      quy: [],
+      yearChart: [],
       marker: {
         enabled: true,
         digits: 2,
@@ -103,15 +137,63 @@ export class PersonalBusiness extends Component {
   }
 
   handleSelect = e => {
-    console.log(e);
+    const dataY = firebaseApp.firestore().collection('taxClass');
+    const dataYear = [];
+    const dataArrYear = [];
+    dataY.onSnapshot(queryY =>
+      queryY.forEach(doc => {
+        if (e.id === doc.id) {
+          const arr = Object.entries(doc.data());
+          for (let i = 0; i < arr.length - 1; i++) {
+            dataYear.push({
+              id: i,
+              name: arr[i][0],
+            });
+            dataArrYear.push({
+              id: i,
+              name: arr[i][0],
+              doanhSo: arr[i][1],
+            });
+            // console.log(dataArrYear);
+          }
+          this.setState({
+            year: dataYear,
+            quy: quy,
+            doanhSo: dataArrYear,
+          });
+          //   console.log(
+          //     arr[0][1].quy01,
+          //     arr[0][1].quy02,
+          //     arr[0][1].quy03,
+          //     arr[0][1].quy04,
+          //   );
+        }
+      }),
+    );
   };
+
+  handleSelectYear = e => {
+    if (e.id === this.state.doanhSo[e.id].id) {
+      console.log(this.state.doanhSo);
+    }
+  };
+
+  handleSelectQuy = e => {
+    // console.log(e);
+  };
+
+  handleSubmit() {}
 
   componentDidMount() {
     const data = firebaseApp.firestore().collection('user');
     const newData = [];
     data.onSnapshot(query =>
       query.forEach(doc => {
-        if (doc.data().fullName !== null && doc.data().fullName !== undefined) {
+        if (
+          doc.data().fullName !== null &&
+          doc.data().fullName !== undefined &&
+          doc.data().roles[0] !== 'Admin'
+        ) {
           newData.push({
             id: doc.id,
             name: doc.data().fullName,
@@ -123,7 +205,7 @@ export class PersonalBusiness extends Component {
       {
         item: newData,
       },
-      () => console.log(this.state.item),
+      //   () => console.log(this.state.item),
     );
   }
 
@@ -161,8 +243,8 @@ export class PersonalBusiness extends Component {
             <View style={{flexDirection: 'row'}}>
               <SearchableDropdown
                 onTextChange={text => text}
-                onItemSelect={item => item}
-                items={year}
+                onItemSelect={item => this.handleSelectYear(item)}
+                items={this.state.year}
                 containerStyle={{marginTop: 20, marginLeft: 20, flex: 1 / 3}}
                 textInputStyle={{
                   padding: 10,
@@ -185,8 +267,8 @@ export class PersonalBusiness extends Component {
               />
               <SearchableDropdown
                 onTextChange={text => text}
-                onItemSelect={item => item}
-                items={year}
+                onItemSelect={item => this.handleSelectQuy(item)}
+                items={this.state.quy}
                 containerStyle={{
                   marginTop: 20,
                   marginHorizontal: 5,
@@ -214,7 +296,7 @@ export class PersonalBusiness extends Component {
               <SearchableDropdown
                 onTextChange={text => text}
                 onItemSelect={item => item}
-                items={year}
+                items={this.state.year}
                 containerStyle={{marginTop: 20, marginRight: 20, flex: 1 / 3}}
                 textInputStyle={{
                   padding: 10,
@@ -237,6 +319,7 @@ export class PersonalBusiness extends Component {
               />
             </View>
             <TouchableOpacity
+              onPress={this.handleSubmit()}
               style={{
                 alignItems: 'center',
                 backgroundColor: 'yellow',
