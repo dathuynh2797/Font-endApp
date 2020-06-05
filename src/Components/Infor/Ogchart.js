@@ -16,7 +16,7 @@ export class Ogchart extends Component {
     this.state = {
       tenphong: [],
       tennv: [],
-      image: null,
+      image: '',
       length: [],
       idG: null,
       lengthnv: [],

@@ -17,7 +17,11 @@ export class ProjectWill extends Component {
     };
   }
 
-  componentDidMount() {
+  onRefresh = () => {
+    this.setState({loading: true}, () => this.getData());
+  };
+
+  getData = () => {
     const abc = firebaseApp.firestore();
     abc
       .collection('suppliers')
@@ -47,11 +51,17 @@ export class ProjectWill extends Component {
           });
         });
       });
+  };
+
+  componentDidMount() {
+    this.getData();
   }
   render() {
     return (
       <FlatList
         data={this.state.Project}
+        refreshing={this.state.loading}
+        onRefresh={() => this.onRefresh()}
         renderItem={({item}) => (
           <View style={styles.scene}>
             <TouchableOpacity

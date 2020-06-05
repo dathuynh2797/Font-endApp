@@ -15,11 +15,13 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
+
 import {firebaseApp} from '../config';
 import bgImage from '../../img/bgLogin.png';
 import eye from '../../img/eye.png';
 import eyeOff from '../../img/eye-off.png';
 import {EMAIL, PASSWORD} from '../Regex';
+import {DismissKeyboardView} from '../DismissKeyBroad';
 
 const {width: WIDTH} = Dimensions.get('window');
 
@@ -75,40 +77,39 @@ export class LoginScreen extends React.Component {
   section() {
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
-        // firebaseApp
-        //   .firestore()
-        //   .collection('user')
-        //   .onSnapshot(querySnapshot => {
-        //     var date = [];
-        //     querySnapshot.forEach(doc => {
-        //       date.push(doc.data().staffDateOfBirth.slice(0, 5));
-        //     });
-        this.props.navigation.navigate('HomeScreen');
-        //       birthday: date,
-        //     });
-        //   });
+        firebaseApp
+          .firestore()
+          .collection('user')
+          .onSnapshot(querySnapshot => {
+            var date = [];
+            querySnapshot.forEach(doc => {
+              date.push(doc.data().staffDateOfBirth.slice(0, 5));
+            });
+            this.props.navigation.navigate('HomeScreen', {
+              birthday: date,
+            });
+          });
       } else {
-        this.props.navigation.navigate('LoginScreen');
         this.setState({
           loading: false,
         });
       }
     });
   }
-  // compare() {
-  //   firebaseApp
-  //     .firestore()
-  //     .collection('user')
-  //     .onSnapshot(querySnapshot => {
-  //       var ngaysinh = [];
-  //       querySnapshot.forEach(doc => {
-  //         ngaysinh.push(doc.data().staffDateOfBirth.slice(0, 5));
-  //       });
-  //       this.setState({
-  //         data: ngaysinh,
-  //       });
-  //     });
-  // }
+  compare() {
+    firebaseApp
+      .firestore()
+      .collection('user')
+      .onSnapshot(querySnapshot => {
+        var ngaysinh = [];
+        querySnapshot.forEach(doc => {
+          ngaysinh.push(doc.data().staffDateOfBirth.slice(0, 5));
+        });
+        this.setState({
+          data: ngaysinh,
+        });
+      });
+  }
   _login() {
     if (
       this.state.emailValid &&
@@ -163,84 +164,88 @@ export class LoginScreen extends React.Component {
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior={Platform.OS === 'ios' ? 'padding' : null}>
-          <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require('../../img/LOGO.png')} />
-          </View>
-
-          <View>
-            <Text style={styles.headerText}>
-              Ứng dụng quản lý công ty bất động sản
-            </Text>
-          </View>
-          {this.state.loading && (
-            <ActivityIndicator
-              size="large"
-              color="#CBF7FD"
-              animating={true}
-              style={styles.avatarContainer}
-            />
-          )}
-          {!this.state.loading && (
-            <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}>
-                <Image
-                  style={{height: 30, width: 30}}
-                  source={require('../../img/user.png')}
-                />
-              </View>
-              <TextInput
-                style={[
-                  styles.input,
-                  !this.state.emailValid ? styles.error : null,
-                ]}
-                placeholder="Tên Đăng Nhập"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                onChangeText={email => {
-                  this.validate('email', email);
-                }}
-                placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
-                underlineColorAndroid="transparent"
-                value={this.state.email}
+        <DismissKeyboardView>
+          <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === 'ios' ? 'padding' : null}>
+            <View style={styles.logoContainer}>
+              <Image
+                style={styles.logo}
+                source={require('../../img/LOGO.png')}
               />
             </View>
-          )}
 
-          {!this.state.loading && (
-            <View style={styles.inputContainer}>
-              <View style={styles.inputIcon}>
-                <Image
-                  style={{height: 30, width: 30}}
-                  source={require('../../img/lock.png')}
+            <View>
+              <Text style={styles.headerText}>
+                Ứng dụng quản lý công ty bất động sản
+              </Text>
+            </View>
+            {this.state.loading && (
+              <ActivityIndicator
+                size="large"
+                color="#CBF7FD"
+                animating={true}
+                style={styles.avatarContainer}
+              />
+            )}
+            {!this.state.loading && (
+              <View style={styles.inputContainer}>
+                <View style={styles.inputIcon}>
+                  <Image
+                    style={{height: 30, width: 30}}
+                    source={require('../../img/user.png')}
+                  />
+                </View>
+                <TextInput
+                  style={[
+                    styles.input,
+                    !this.state.emailValid ? styles.error : null,
+                  ]}
+                  placeholder="Tên Đăng Nhập"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  onChangeText={email => {
+                    this.validate('email', email);
+                  }}
+                  placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
+                  underlineColorAndroid="transparent"
+                  value={this.state.email}
                 />
               </View>
-              <TextInput
-                style={[
-                  styles.input,
-                  !this.state.passwordValid ? styles.error : null,
-                ]}
-                placeholder="Mật Khẩu"
-                autoCapitalize="none"
-                secureTextEntry={this.state.showPass}
-                onChangeText={password => {
-                  this.validate('password', password);
-                }}
-                placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
-                underlineColorAndroid="transparent"
-                value={this.state.password}
-              />
-              <TouchableOpacity style={styles.btnEye} onPress={this.showPass}>
-                <Image
-                  style={styles.iconEye}
-                  source={this.state.press === false ? eyeOff : eye}
+            )}
+
+            {!this.state.loading && (
+              <View style={styles.inputContainer}>
+                <View style={styles.inputIcon}>
+                  <Image
+                    style={{height: 30, width: 30}}
+                    source={require('../../img/lock.png')}
+                  />
+                </View>
+                <TextInput
+                  style={[
+                    styles.input,
+                    !this.state.passwordValid ? styles.error : null,
+                  ]}
+                  placeholder="Mật Khẩu"
+                  autoCapitalize="none"
+                  secureTextEntry={this.state.showPass}
+                  onChangeText={password => {
+                    this.validate('password', password);
+                  }}
+                  placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
+                  underlineColorAndroid="transparent"
+                  value={this.state.password}
                 />
-              </TouchableOpacity>
-            </View>
-          )}
-          <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity style={styles.btnEye} onPress={this.showPass}>
+                  <Image
+                    style={styles.iconEye}
+                    source={this.state.press === false ? eyeOff : eye}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+
             {!this.state.loading && (
               <TouchableOpacity
                 disabled={this.state.loginBtn}
@@ -260,8 +265,8 @@ export class LoginScreen extends React.Component {
                 <Text style={styles.text}>Quên mật khẩu</Text>
               </TouchableOpacity>
             )}
-          </View>
-        </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+        </DismissKeyboardView>
       </ImageBackground>
     );
   }

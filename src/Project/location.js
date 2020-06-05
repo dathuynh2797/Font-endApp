@@ -59,9 +59,13 @@ export class location extends Component {
             position: 'absolute',
             bottom: 10,
             right: 10,
+            padding: 10,
           }}
           onPress={this.switchMapType.bind(this)}>
-          <Image source={require('../img/Inforicon/maps.png')} />
+          <Image
+            source={require('../img/Inforicon/maps.png')}
+            style={{height: 30, width: 30}}
+          />
         </TouchableOpacity>
       </View>
     );

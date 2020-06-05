@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../Components/config';
 import bgImage from '../img/bgLogin.png';
+import {DismissKeyboardView} from './DismissKeyBroad';
 
 const {width: WIDTH} = Dimensions.get('window');
 
@@ -50,32 +51,33 @@ export class ForgotPassword extends React.Component {
             <Image style={styles.logo} source={require('../img/LOGO.png')} />
           </View>
 
-          <View>
-            <Text style={styles.headerText}>Quên Mật Khẩu</Text>
-          </View>
+            <View>
+              <Text style={styles.headerText}>Quên Mật Khẩu</Text>
+            </View>
 
-          <View style={styles.input}>
-            <TextInput
-              name="email"
-              placeholder="Nhập email"
-              value={this.state.email}
-              onChangeText={email => this.setState({email})}
-              autoCapitalize="none"
-            />
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity
-              onPress={this.handlePasswordReset}
-              style={styles.btnLogin}>
-              <Text style={styles.text}>Xác nhận</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.btnCancel}
-              onPress={() => this.props.navigation.goBack()}>
-              <Text style={styles.text}>Quay về</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
+            <View style={styles.input}>
+              <TextInput
+                name="email"
+                placeholder="Nhập email"
+                value={this.state.email}
+                onChangeText={email => this.setState({email})}
+                autoCapitalize="none"
+              />
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity
+                onPress={this.handlePasswordReset}
+                style={styles.btnLogin}>
+                <Text style={styles.text}>Xác nhận</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.btnCancel}
+                onPress={() => this.props.navigation.goBack()}>
+                <Text style={styles.text}>Quay về</Text>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </DismissKeyboardView>
       </ImageBackground>
     );
   }
@@ -139,8 +141,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
+    justifyContent: 'center',
     // elevation: 15,
-    marginTop: 20,
+    marginVertical: 10,
   },
   inputIcon: {
     position: 'absolute',
