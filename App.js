@@ -34,6 +34,7 @@ import {PersonalDetail} from './src/Components/Infor/PersonalDetail';
 import {userDetail} from './src/Components/Screens/userDetail';
 
 import {decode, encode} from 'base-64';
+import {CompareResult} from './src/Components/Report/CompareResult';
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -136,6 +137,16 @@ const MainStack = createStackNavigator({
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
         headerTitle: () => <Title title="Đồ thị kết quả kinh doanh" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
+      };
+    },
+  },
+  CompareResult: {
+    screen: CompareResult,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <Title title="So sánh kết quả kinh doanh" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
