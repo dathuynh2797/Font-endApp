@@ -14,7 +14,7 @@ import {
 import {firebaseApp} from '../config';
 import * as firebase from 'firebase';
 const {width: WIDTH} = Dimensions.get('window');
-import bgImage from '../../img/bgLogin.png';
+import bgImage from '../../img/bgLogin.jpg';
 import {EMAIL, PASSWORD} from '../Regex';
 export class ChangePassword extends Component {
   constructor(props) {

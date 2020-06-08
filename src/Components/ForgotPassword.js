@@ -14,7 +14,7 @@ import {
   Alert,
 } from 'react-native';
 import {firebaseApp} from '../Components/config';
-import bgImage from '../img/bgLogin.png';
+import bgImage from '../img/bgLogin.jpg';
 import {DismissKeyboardView} from './DismissKeyBroad';
 
 const {width: WIDTH} = Dimensions.get('window');

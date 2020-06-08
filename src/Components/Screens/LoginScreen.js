@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 
 import {firebaseApp} from '../config';
-import bgImage from '../../img/bgLogin.png';
+import bgImage from '../../img/bgLogin.jpg';
 import eye from '../../img/eye.png';
 import eyeOff from '../../img/eye-off.png';
 import {EMAIL, PASSWORD} from '../Regex';
@@ -171,6 +171,11 @@ export class LoginScreen extends React.Component {
             // keyboardVerticalOffset={Platform.select({ios: 0, android: 500})}
             style={styles.container}
             behavior="padding">
+            <View>
+              <Text style={styles.headerText}>
+                Ứng dụng quản lý công ty bất động sản
+              </Text>
+            </View>
             <View style={styles.logoContainer}>
               <Image
                 style={styles.logo}
@@ -178,94 +183,86 @@ export class LoginScreen extends React.Component {
               />
             </View>
 
-            <View>
-              <Text style={styles.headerText}>
-                Ứng dụng quản lý công ty bất động sản
-              </Text>
-            </View>
-            {this.state.loading && (
+            {this.state.loading ? (
               <ActivityIndicator
                 size="large"
                 color="#CBF7FD"
                 animating={true}
                 style={styles.avatarContainer}
               />
-            )}
-            {!this.state.loading && (
-              <View style={styles.inputContainer}>
-                <View style={styles.inputIcon}>
-                  <Image
-                    style={{height: 30, width: 30}}
-                    source={require('../../img/user.png')}
+            ) : (
+              <View>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={[
+                      styles.input,
+                      !this.state.emailValid ? styles.error : null,
+                    ]}
+                    placeholder="Tên Đăng Nhập"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    onChangeText={email => {
+                      this.validate('email', email);
+                    }}
+                    placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
+                    underlineColorAndroid="transparent"
+                    value={this.state.email}
                   />
+                  <View style={styles.inputIcon}>
+                    <Image
+                      style={{height: 30, width: 30}}
+                      source={require('../../img/user.png')}
+                    />
+                  </View>
                 </View>
-                <TextInput
-                  style={[
-                    styles.input,
-                    !this.state.emailValid ? styles.error : null,
-                  ]}
-                  placeholder="Tên Đăng Nhập"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  onChangeText={email => {
-                    this.validate('email', email);
-                  }}
-                  placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
-                  underlineColorAndroid="transparent"
-                  value={this.state.email}
-                />
-              </View>
-            )}
-
-            {!this.state.loading && (
-              <View style={styles.inputContainer}>
-                <View style={styles.inputIcon}>
-                  <Image
-                    style={{height: 30, width: 30}}
-                    source={require('../../img/lock.png')}
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={[
+                      styles.input,
+                      !this.state.passwordValid ? styles.error : null,
+                    ]}
+                    placeholder="Mật Khẩu"
+                    autoCapitalize="none"
+                    secureTextEntry={this.state.showPass}
+                    onChangeText={password => {
+                      this.validate('password', password);
+                    }}
+                    placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
+                    underlineColorAndroid="transparent"
+                    value={this.state.password}
                   />
+                  <View style={styles.inputIcon}>
+                    <Image
+                      style={{height: 30, width: 30}}
+                      source={require('../../img/lock.png')}
+                    />
+                  </View>
+                  <TouchableOpacity
+                    style={styles.btnEye}
+                    onPress={this.showPass}>
+                    <Image
+                      style={styles.iconEye}
+                      source={this.state.press === false ? eyeOff : eye}
+                    />
+                  </TouchableOpacity>
                 </View>
-                <TextInput
-                  style={[
-                    styles.input,
-                    !this.state.passwordValid ? styles.error : null,
-                  ]}
-                  placeholder="Mật Khẩu"
-                  autoCapitalize="none"
-                  secureTextEntry={this.state.showPass}
-                  onChangeText={password => {
-                    this.validate('password', password);
-                  }}
-                  placeholderTextColor={'rgba(0 , 0 , 0 , 0.5)'}
-                  underlineColorAndroid="transparent"
-                  value={this.state.password}
-                />
-                <TouchableOpacity style={styles.btnEye} onPress={this.showPass}>
-                  <Image
-                    style={styles.iconEye}
-                    source={this.state.press === false ? eyeOff : eye}
-                  />
-                </TouchableOpacity>
-              </View>
-            )}
-
-            {!this.state.loading && (
-              <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity
-                  disabled={this.state.loginBtn}
-                  style={styles.btnLogin}
-                  onPress={() => {
-                    this._login();
-                  }}>
-                  <Text style={styles.text}>Đăng Nhập</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.btnLogin, styles.btnforgot]}
-                  onPress={() => {
-                    this.props.navigation.navigate('ForgotScreen');
-                  }}>
-                  <Text style={styles.text}>Quên mật khẩu</Text>
-                </TouchableOpacity>
+                <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity
+                    disabled={this.state.loginBtn}
+                    style={styles.btnLogin}
+                    onPress={() => {
+                      this._login();
+                    }}>
+                    <Text style={styles.text}>Đăng Nhập</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.btnLogin, styles.btnforgot]}
+                    onPress={() => {
+                      this.props.navigation.navigate('ForgotScreen');
+                    }}>
+                    <Text style={styles.text}>Quên mật khẩu</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             )}
           </KeyboardAvoidingView>
@@ -307,11 +304,12 @@ const styles = StyleSheet.create({
   headerText: {
     width: WIDTH - 10,
     textAlign: 'center',
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     lineHeight: 35,
     fontWeight: 'bold',
     fontSize: 30,
-    color: '#2D389C',
+    color: '#000080',
+    // backgroundColor: 'rgba(255,255,255,.0)',
   },
   inputContainer: {
     marginTop: 20,
@@ -323,8 +321,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     fontSize: 16,
     paddingLeft: 50,
-    backgroundColor: 'rgba(255,255,255,0.3)',
-    color: 'black',
+    // backgroundColor: 'rgba(255,255,255,0.7)',
+    backgroundColor: 'rgb(197, 218, 250)',
+    // color: 'black',
     marginHorizontal: 25,
     shadowColor: '#000',
     shadowOffset: {
@@ -350,21 +349,22 @@ const styles = StyleSheet.create({
     width: 20,
   },
   btnLogin: {
-    width: WIDTH - 260,
-    height: 50,
-    marginHorizontal: 3,
+    width: WIDTH - 265,
+    padding: 15,
+    marginLeft: 22,
     borderRadius: 45,
     justifyContent: 'center',
     backgroundColor: '#1085B8',
     marginTop: 10,
-    shadowColor: '#1085B8',
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    elevation: 15,
+
+    // shadowColor: '#1085B8',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 7,
+    // },
+    // shadowOpacity: 0.43,
+    // shadowRadius: 9.51,
+    // elevation: 15,
   },
   btnforgot: {
     backgroundColor: '#D0B369',
