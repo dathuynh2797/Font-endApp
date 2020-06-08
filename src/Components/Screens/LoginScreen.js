@@ -80,7 +80,8 @@ export class LoginScreen extends React.Component {
         firebaseApp
           .firestore()
           .collection('user')
-          .onSnapshot(querySnapshot => {
+          .get()
+          .then(querySnapshot => {
             var date = [];
             querySnapshot.forEach(doc => {
               date.push(doc.data().staffDateOfBirth.slice(0, 5));
@@ -100,7 +101,8 @@ export class LoginScreen extends React.Component {
     firebaseApp
       .firestore()
       .collection('user')
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         var ngaysinh = [];
         querySnapshot.forEach(doc => {
           ngaysinh.push(doc.data().staffDateOfBirth.slice(0, 5));
@@ -166,8 +168,9 @@ export class LoginScreen extends React.Component {
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
         <DismissKeyboardView>
           <KeyboardAvoidingView
+            // keyboardVerticalOffset={Platform.select({ios: 0, android: 500})}
             style={styles.container}
-            behavior={Platform.OS === 'ios' ? 'padding' : null}>
+            behavior="padding">
             <View style={styles.logoContainer}>
               <Image
                 style={styles.logo}

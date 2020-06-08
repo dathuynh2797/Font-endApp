@@ -44,12 +44,14 @@ export class ForgotPassword extends React.Component {
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior={Platform.OS === 'ios' ? 'padding' : null}>
-          <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require('../img/LOGO.png')} />
-          </View>
+        <DismissKeyboardView>
+          <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === 'ios' ? 'padding' : null}>
+            <View style={styles.logoContainer}>
+              <Image style={styles.logo} />
+              <Text style={styles.logoText}>Logo</Text>
+            </View>
 
             <View>
               <Text style={styles.headerText}>Quên Mật Khẩu</Text>

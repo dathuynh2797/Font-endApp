@@ -2,6 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import {LineChart, BarChart} from 'react-native-charts-wrapper';
+import {Header} from 'react-navigation-stack';
 import {
   View,
   StyleSheet,
@@ -151,22 +152,15 @@ export class PersonalBusiness extends Component {
             });
             dataArrYear.push({
               id: i,
-              name: arr[i][0],
+              // name: arr[i][0],
               doanhSo: arr[i][1],
             });
-            // console.log(dataArrYear);
           }
           this.setState({
             year: dataYear,
             quy: quy,
             doanhSo: dataArrYear,
           });
-          //   console.log(
-          //     arr[0][1].quy01,
-          //     arr[0][1].quy02,
-          //     arr[0][1].quy03,
-          //     arr[0][1].quy04,
-          //   );
         }
       }),
     );
@@ -174,7 +168,7 @@ export class PersonalBusiness extends Component {
 
   handleSelectYear = e => {
     if (e.id === this.state.doanhSo[e.id].id) {
-      console.log(this.state.doanhSo);
+      console.log(this.state.doanhSo[e.id].doanhSo);
     }
   };
 
@@ -205,7 +199,7 @@ export class PersonalBusiness extends Component {
       {
         item: newData,
       },
-      //   () => console.log(this.state.item),
+      // () => console.log('state', this.state.item),
     );
   }
 
@@ -213,6 +207,7 @@ export class PersonalBusiness extends Component {
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
+        keyboardVerticalOffset={-500}
         style={{flex: 1}}>
         <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
           <View style={{flex: 1 / 3}}>

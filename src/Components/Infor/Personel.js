@@ -179,6 +179,7 @@ export class Personel extends Component {
                   />
                 </TouchableOpacity>
               )}
+              keyExtractor={item => item.id}
             />
           </Table>
         </View>

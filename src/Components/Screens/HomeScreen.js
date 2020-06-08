@@ -68,13 +68,13 @@ export class HomeScreen extends Component {
           if (
             firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
           ) {
-            let arr = [];
-            let dataDoanhSo = doc.data().doanhso[0].year;
-            for (let j = 0; j <= dataDoanhSo.length - 1; j++) {
-              if (dataDoanhSo[j] !== null) {
-                arr.push(dataDoanhSo[j]);
-              }
-            }
+            // let arr = [];
+            // let dataDoanhSo = doc.data().doanhso[0].year;
+            // for (let j = 0; j <= dataDoanhSo.length - 1; j++) {
+            //   if (dataDoanhSo[j] !== null) {
+            //     arr.push(dataDoanhSo[j]);
+            //   }
+            // }
             days = doc.data().staffDateOfBirth;
             data.push({
               ten: doc.data().fullName,

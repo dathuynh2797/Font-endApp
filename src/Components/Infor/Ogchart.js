@@ -18,7 +18,7 @@ export class Ogchart extends Component {
       tennv: [],
       image: '',
       length: [],
-      idG: null,
+      idG: [],
       lengthnv: [],
     };
     // console.log(this.state.idG);
@@ -76,14 +76,13 @@ export class Ogchart extends Component {
           countStaff.push({length: count});
           count = 0;
         }
-        console.log(countStaff[0]);
+        // console.log(countStaff[0]);
         for (let i = 0; i < countStaff.length; i++) {
           var a = Object.assign({}, this.state.tenphong[i], countStaff[i]);
-          console.log(a);
+          // console.log(a);
           b.push(a);
         }
         this.setState({tenphong: b});
-        console.log(this.state.tenphong);
       });
   }
 

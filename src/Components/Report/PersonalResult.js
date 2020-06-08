@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
+const moment = require('moment');
 import {
   Table,
   TableWrapper,
@@ -18,55 +19,128 @@ export class PersonalResult extends Component {
     this.state = {
       tableHead: ['Tên', 'Kết quả KD', 'Xếp hạng'],
       tableData: [],
-      tableTitle: [
-        ['1'],
-        ['2'],
-        ['3'],
-        ['4'],
-        ['5'],
-        ['6'],
-        ['7'],
-        ['8'],
-        ['9'],
-        ['10'],
-      ],
+      idNV: [],
+      user: [],
+      dS: [],
+      dataArrWeek: [],
+      dtNameDs: [],
+      dtLastWeek: [],
     };
   }
+
   componentDidMount() {
     const business = firebaseApp.firestore();
     business.collection('user').onSnapshot(querySnapshot => {
       var name = [];
+      var idNV = [];
+      var idNv = [];
+      tenNV = [];
       querySnapshot.forEach(doc => {
-        let arr = [];
-        let dataDoanhSo = doc.data().doanhso[0].year;
-        for (let i = 0; i <= dataDoanhSo.length - 1; i++) {
-          if (dataDoanhSo[i] !== null) {
-            arr.push(dataDoanhSo[i]);
-          }
-        }
+        idNV.push(doc.data().id);
         name.push({
-          id: doc.id,
+          id: doc.data().id,
           ten: doc.data().fullName,
-          doanhso: [arr[arr.length - 1]],
-          sdt: doc.data().phoneNumber,
-          namsinh: doc.data().staffDateOfBirth,
-          hinhanh: doc.data().avatars[0].publicUrl,
-          email: doc.data().email,
-          chucvu: doc.data().roles[0],
         });
-
         this.setState({
-          tableData: name.sort((a, b) => {
-            return b.doanhso - a.doanhso;
-          }),
+          userDetial: name,
+          idNV: idNV,
         });
       });
     });
+    const dataY = firebaseApp.firestore().collection('taxClass');
+    var idDS = [];
+    var dataArrWeek = [];
+    var arrDS = [];
+    var arr = [];
+    var tenNV = [];
+    dataY.onSnapshot(queryY => {
+      queryY.forEach(doc => idDS.push({id: doc.data().id, value: doc.data()}));
+      for (let j = 0; j < this.state.idNV.length; j++) {
+        for (let k = 0; k < idDS.length; k++) {
+          if (this.state.idNV[j] === idDS[k].id) {
+            arr = Object.entries(idDS[k].value);
+            // console.log(arr);
+          }
+        }
+        var seconds = arr[arr.length - 1];
+        // console.log(seconds);
+        for (let i = 0; i < arr.length; i++) {
+          if (moment().year() === parseInt(arr[i][0], 0)) {
+            // console.log(dataArrWeek);
+            dataArrWeek.push({
+              id: seconds[1],
+              doanhso: arr[i][1],
+            });
+            // console.log(dataArrWeek);
+          }
+        }
+        arr = [];
+      }
+      this.setState({
+        dataArrWeek: dataArrWeek,
+      });
+      for (let i = 0; i < this.state.dataArrWeek.length; i++) {
+        arrDS.push({
+          ds: Object.values(dataArrWeek[i].doanhso).slice(16, 77),
+          id: dataArrWeek[i].id,
+        });
+      }
+      this.setState({
+        dS: arrDS,
+      });
+      // console.log(this.state.dS);
+      var dt = this.state.dS;
+      var datalastweek = [];
+      for (let z = 0; z < dt.length; z++) {
+        for (let t = 0; t < dt[z].ds.length; t++) {
+          if (dt[z].ds[t] !== 0) {
+          }
+        }
+        datalastweek.push({
+          ds: [dt[z].ds[dt[z].ds.length - 1]],
+          id: dt[z].id,
+        });
+      }
+      this.setState({
+        dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
+      });
+    });
+    firebaseApp
+      .firestore()
+      .collection('user')
+      .onSnapshot(querySnapshot => {
+        tenNV = [];
+        for (let v = 0; v < this.state.dtLastWeek.length; v++) {
+          querySnapshot.forEach(doc => {
+            if (this.state.dtLastWeek[v].id === doc.id) {
+              tenNV.push({
+                id: this.state.dtLastWeek[v].id,
+                doanhso: this.state.dtLastWeek[v].ds,
+                ten: doc.data().fullName,
+              });
+            }
+          });
+          this.setState({
+            dtNameDs: tenNV,
+            tableTitle: [
+              ['1'],
+              ['2'],
+              ['3'],
+              ['4'],
+              ['5'],
+              ['6'],
+              ['7'],
+              ['8'],
+              ['9'],
+              ['10'],
+            ],
+          });
+        }
+      });
   }
 
   render() {
     const state = this.state;
-    const moment = require('moment');
     return (
       <View style={styles.container}>
         <Text style={styles.titles}>
@@ -89,19 +163,20 @@ export class PersonalResult extends Component {
           />
           <TableWrapper style={styles.wrapper}>
             <FlatList
-              data={this.state.tableData.slice(0, 10)}
+              data={this.state.dtNameDs}
               renderItem={({item}) => (
                 <TouchableOpacity
-                  onPress={() => {
-                    this.props.navigation.navigate('PersonalDetail', {
-                      sdt: item.sdt,
-                      ten: item.ten,
-                      namsinh: item.namsinh,
-                      hinhanh: item.hinhanh,
-                      email: item.email,
-                      chucvu: item.chucvu,
-                    });
-                  }}>
+                // onPress={() => {
+                //   this.props.navigation.navigate('PersonalDetail', {
+                //     sdt: item.sdt,
+                //     ten: item.ten,
+                //     namsinh: item.namsinh,
+                //     hinhanh: item.hinhanh,
+                //     email: item.email,
+                //     chucvu: item.chucvu,
+                //   });
+                // }}
+                >
                   <Cols
                     data={[[item.ten]]}
                     textStyle={styles.text}
@@ -113,16 +188,15 @@ export class PersonalResult extends Component {
             />
 
             <FlatList
-              data={this.state.tableData.slice(0, 10)}
+              data={this.state.dtNameDs}
               renderItem={({item}) => (
                 <View>
                   <Cols
                     data={[
-                      [
-                        item.doanhso
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-                      ],
+                      item.doanhso,
+                      // item.ds[
+                      //   item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                      // ],
                     ]}
                     textStyle={styles.text}
                     style={styles.row}
