@@ -1,4 +1,3 @@
-/* eslint-disable react/no-did-mount-set-state */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
@@ -35,7 +34,7 @@ var quarter = [
   },
 ];
 
-export class PersonalBusiness extends Component {
+export class TeamBusiness extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,7 +47,6 @@ export class PersonalBusiness extends Component {
       mounth: [],
       marker: {
         enabled: true,
-
         backgroundTint: processColor('#000'),
         markerColor: processColor('yellow'),
         textColor: processColor('#000'),
@@ -64,28 +62,42 @@ export class PersonalBusiness extends Component {
         formToTextSpace: 5,
         wordWrapEnabled: true,
         maxSizePercent: 0.5,
-        custom: {
-          colors: [processColor('red'), processColor('red')],
-          labels: ['REFER', 'USER'],
-        },
-      },
-      xAxis: {
-        drawGridLines: false,
-        avoidFirstLastClipping: true,
       },
       yAxis: {
-        right: {
-          enabled: false,
-          drawGridLines: false,
-        },
         left: {
           enabled: true,
           drawGridLines: true,
+        },
+        right: {
+          enabled: false,
+          drawGridLines: false,
         },
       },
       dataChart: [],
     };
   }
+
+  handleSelectGroup = item => {
+    const arrTeam = [];
+    const dataTeam = firebaseApp.firestore().collection('stall');
+
+    dataTeam.onSnapshot(
+      query =>
+        query.forEach(doc => {
+          for (let i = 0; i < this.state.listTeam[item.idI].list.length; i++) {
+            if (doc.id === this.state.listTeam[item.idI].list[i]) {
+              arrTeam.push({
+                id: doc.id,
+                name: doc.data().teamName,
+              });
+            }
+          }
+        }),
+      this.setState({teamItem: arrTeam}),
+    );
+
+    //ss doc.id === list[] ? push
+  };
 
   handleSelectStaff = e => {
     const dataY = firebaseApp.firestore().collection('taxClass');
@@ -108,7 +120,6 @@ export class PersonalBusiness extends Component {
           this.setState({
             year: dataYear,
             doanhSo: dataArrYear,
-            staffChartName: e.name,
           });
         }
       }),
@@ -498,72 +509,85 @@ export class PersonalBusiness extends Component {
       case 'year':
         this.setState({
           dataChart: this.state.yearChart,
-          xAxis: {
-            valueFormatter: ['Quý I', 'Quý II', 'Quý III', 'Quý IV'],
-          },
           toggleChart: true,
         });
         break;
       case 'quarter':
         this.setState({
           dataChart: this.state.quarterChart,
-          xAxis: {
-            valueFormatter: ['Tháng 1', 'Tháng 2', 'Tháng 3'],
-          },
           toggleChart: true,
         });
         break;
       case 'mounth':
         this.setState({
-          xAxis: {
-            valueFormatter: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4', 'Tuần 5'],
-          },
           dataChart: this.state.mounthChart,
           toggleChart: true,
         });
         break;
 
       default:
-        this.setState({dialogVisible: true});
+        this.setState({dialogVisible: true}, () => {});
     }
   }
 
   componentDidMount() {
-    const data = firebaseApp.firestore().collection('user');
+    const data = firebaseApp.firestore().collection('units');
     const newData = [];
-    data.onSnapshot(query =>
-      query.forEach(doc => {
-        if (
-          doc.data().fullName !== null &&
-          doc.data().fullName !== undefined &&
-          doc.data().roles[0] !== 'Admin'
-        ) {
-          newData.push({
-            id: doc.id,
-            name: doc.data().fullName,
-          });
-        }
+    const listTeam = [];
+    let i = -1;
+    data.onSnapshot(
+      query =>
+        query.forEach(doc => {
+          i++;
+          newData.push({id: doc.id, name: doc.data().unitsTitle, idI: i});
+          listTeam.push({list: doc.data().productStall});
+        }),
+
+      this.setState({
+        groupName: newData,
+        listTeam: listTeam,
       }),
     );
-    this.setState({
-      staffName: newData,
-    });
   }
 
   render() {
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
-        keyboardVerticalOffset={-500}
         style={{flex: 1}}>
         <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
           {this.renderAlert()}
           <View style={{flex: 1 / 3}}>
             <SearchableDropdown
-              placeholder="Tên nhân viên"
+              placeholder="Phòng"
+              onTextChange={text => text}
+              onItemSelect={item => this.handleSelectGroup(item)}
+              items={this.state.groupName}
+              containerStyle={{marginTop: 20, marginHorizontal: 20}}
+              textInputStyle={{
+                padding: 10,
+                borderWidth: 1,
+                borderColor: '#ccc',
+                backgroundColor: '#FAF7F6',
+              }}
+              itemStyle={{
+                padding: 10,
+                marginTop: 4,
+                backgroundColor: '#FAF9F8',
+                borderColor: '#bbb',
+                borderWidth: 1,
+              }}
+              itemsContainerStyle={{
+                //items container style you can pass maxHeight
+                //to restrict the items dropdown hieght
+                maxHeight: 90,
+              }}
+            />
+            <SearchableDropdown
+              placeholder="Nhóm"
               onTextChange={text => text}
               onItemSelect={item => this.handleSelectStaff(item)}
-              items={this.state.staffName}
+              items={this.state.teamItem}
               containerStyle={{marginTop: 20, marginHorizontal: 20}}
               textInputStyle={{
                 padding: 10,
@@ -680,28 +704,16 @@ export class PersonalBusiness extends Component {
           </View>
           {this.state.toggleChart ? (
             <View style={[styles.container, styles.bgChart]}>
+              <View>
+                <Text>Đồ thị kết quả kinh doanh</Text>
+              </View>
               <LineChart
                 style={styles.chart}
                 marker={this.state.marker}
-                xAxis={this.state.xAxis}
-                drawGridBackground={true}
-                drawBorders={true}
-                touchEnabled={true}
-                dragEnabled={true}
-                scaleEnabled={true}
-                scaleXEnabled={true}
-                scaleYEnabled={true}
-                pinchZoom={true}
-                doubleTapToZoomEnabled={true}
-                dragDecelerationEnabled={true}
-                dragDecelerationFrictionCoef={0.99}
-                keepPositionOnRotation={false}
                 data={{
                   dataSets: [
                     {
-                      label:
-                        'Đồ thị kết quả kinh doanh của ' +
-                        `${this.state.staffChartName}`,
+                      label: 'demo',
                       values: this.state.dataChart,
                       config: {
                         lineWidth: 1,

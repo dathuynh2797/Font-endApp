@@ -1,8 +1,9 @@
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
-import {PersonalBusiness} from './PersonalBusiness';
-import {TeamBusiness} from './TeamBusiness';
-import {GroupBusiness} from './GroupBusiness';
+
+import {PersonalCompare} from './PersonalCompare';
+import {TeamCompare} from './TeamCompare';
+import {GroupCompare} from './GroupCompare';
 
 const StyleTabBar = {
   tabBarOptions: {
@@ -22,24 +23,24 @@ const StyleTabBar = {
     style: {backgroundColor: '#f8f8ff'},
   },
 };
-const BusinessTab = createMaterialTopTabNavigator(
+const CompareTab = createMaterialTopTabNavigator(
   {
     First: {
-      screen: PersonalBusiness,
+      screen: PersonalCompare,
       navigationOptions: {tabBarLabel: 'Nhân Sự'},
     },
     Second: {
-      screen: TeamBusiness,
+      screen: TeamCompare,
       navigationOptions: {tabBarLabel: 'Nhóm'},
     },
     Third: {
-      screen: GroupBusiness,
+      screen: GroupCompare,
       navigationOptions: {tabBarLabel: 'Phòng'},
     },
   },
   StyleTabBar,
 );
 
-const BusinessResult = createAppContainer(BusinessTab);
+const CompareResult = createAppContainer(CompareTab);
 
-export {BusinessResult};
+export {CompareResult};

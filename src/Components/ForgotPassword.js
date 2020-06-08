@@ -49,8 +49,7 @@ export class ForgotPassword extends React.Component {
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : null}>
             <View style={styles.logoContainer}>
-              <Image style={styles.logo} />
-              <Text style={styles.logoText}>Logo</Text>
+              <Image style={styles.logo} source={require('../img/LOGO.png')} />
             </View>
 
             <View>

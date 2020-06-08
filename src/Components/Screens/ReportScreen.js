@@ -58,7 +58,7 @@ export class ReportScreen extends Component {
         <View style={styles.Col}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('Bg');
+              this.props.navigation.navigate('CompareResult');
             }}>
             <View style={styles.TabMenu}>
               <View style={styles.IconStyle}>

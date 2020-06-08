@@ -250,23 +250,23 @@ export class LoginScreen extends React.Component {
             )}
 
             {!this.state.loading && (
-              <TouchableOpacity
-                disabled={this.state.loginBtn}
-                style={styles.btnLogin}
-                onPress={() => {
-                  this._login();
-                }}>
-                <Text style={styles.text}>Đăng Nhập</Text>
-              </TouchableOpacity>
-            )}
-            {!this.state.loading && (
-              <TouchableOpacity
-                style={styles.btnforgot}
-                onPress={() => {
-                  this.props.navigation.navigate('ForgotScreen');
-                }}>
-                <Text style={styles.text}>Quên mật khẩu</Text>
-              </TouchableOpacity>
+              <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity
+                  disabled={this.state.loginBtn}
+                  style={styles.btnLogin}
+                  onPress={() => {
+                    this._login();
+                  }}>
+                  <Text style={styles.text}>Đăng Nhập</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.btnLogin, styles.btnforgot]}
+                  onPress={() => {
+                    this.props.navigation.navigate('ForgotScreen');
+                  }}>
+                  <Text style={styles.text}>Quên mật khẩu</Text>
+                </TouchableOpacity>
+              </View>
             )}
           </KeyboardAvoidingView>
         </DismissKeyboardView>
@@ -352,6 +352,7 @@ const styles = StyleSheet.create({
   btnLogin: {
     width: WIDTH - 260,
     height: 50,
+    marginHorizontal: 3,
     borderRadius: 45,
     justifyContent: 'center',
     backgroundColor: '#1085B8',
@@ -366,20 +367,7 @@ const styles = StyleSheet.create({
     elevation: 15,
   },
   btnforgot: {
-    width: WIDTH - 260,
-    height: 50,
-    borderRadius: 45,
-    justifyContent: 'center',
     backgroundColor: '#D0B369',
-    marginTop: 10,
-    shadowColor: '#1085B8',
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-    elevation: 15,
   },
   text: {
     color: '#E5E5E5',
