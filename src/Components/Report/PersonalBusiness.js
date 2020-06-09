@@ -103,7 +103,7 @@ export class PersonalBusiness extends Component {
     const dataY = firebaseApp.firestore().collection('taxClass');
     const dataYear = [];
     const dataArrYear = [];
-    dataY.onSnapshot(queryY =>
+    dataY.get().then(queryY =>
       queryY.forEach(doc => {
         if (e.id === doc.id) {
           const arr = Object.entries(doc.data());
@@ -566,7 +566,7 @@ export class PersonalBusiness extends Component {
   componentDidMount() {
     const data = firebaseApp.firestore().collection('user');
     const newData = [];
-    data.onSnapshot(query =>
+    data.get().then(query =>
       query.forEach(doc => {
         if (
           doc.data().fullName !== null &&
@@ -728,6 +728,7 @@ export class PersonalBusiness extends Component {
                 scaleEnabled={true}
                 scaleXEnabled={true}
                 scaleYEnabled={true}
+                chartDescription={{text: ''}}
                 pinchZoom={true}
                 doubleTapToZoomEnabled={true}
                 dragDecelerationEnabled={true}

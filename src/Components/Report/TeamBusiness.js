@@ -102,7 +102,7 @@ export class TeamBusiness extends Component {
     const arrTeam = [];
     const dataTeam = firebaseApp.firestore().collection('stall');
 
-    dataTeam.onSnapshot(
+    dataTeam.get().then(
       query =>
         query.forEach(doc => {
           for (let i = 0; i < this.state.listTeam[item.idI].list.length; i++) {
@@ -124,7 +124,7 @@ export class TeamBusiness extends Component {
     const dataY = firebaseApp.firestore().collection('stall');
     const dataYear = [];
     const dataArrYear = [];
-    dataY.onSnapshot(queryY =>
+    dataY.get().then(queryY =>
       queryY.forEach(doc => {
         if (e.id === doc.id) {
           const arr = Object.entries(doc.data());
@@ -584,7 +584,7 @@ export class TeamBusiness extends Component {
     const newData = [];
     const listTeam = [];
     let i = -1;
-    data.onSnapshot(
+    data.get().then(
       query =>
         query.forEach(doc => {
           i++;
@@ -765,6 +765,7 @@ export class TeamBusiness extends Component {
                 dragEnabled={true}
                 scaleEnabled={true}
                 scaleXEnabled={true}
+                chartDescription={{text: ''}}
                 scaleYEnabled={true}
                 pinchZoom={true}
                 doubleTapToZoomEnabled={true}

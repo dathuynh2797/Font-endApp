@@ -80,19 +80,22 @@ export class Personel extends Component {
       .firestore()
       .collection('user')
       .where('disabled', '==', false)
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          name.push({
-            id: doc.id,
-            ten: doc.data().fullName,
-            sdt: doc.data().phoneNumber,
-            namsinh: doc.data().staffDateOfBirth,
-            // hinhanh: doc.data().avatars[0].publicUrl,
-            email: doc.data().email,
-            chucvu: doc.data().roles[0],
-            idphong: doc.data().productUnit,
-            idnhom: doc.data().iamTeam,
-          });
+          if (doc.data().roles[0] !== 'Admin') {
+            name.push({
+              id: doc.id,
+              ten: doc.data().fullName,
+              sdt: doc.data().phoneNumber,
+              namsinh: doc.data().staffDateOfBirth,
+              hinhanh: doc.data().avatars[0].publicUrl,
+              email: doc.data().email,
+              chucvu: doc.data().roles[0],
+              idphong: doc.data().productUnit,
+              idnhom: doc.data().iamTeam,
+            });
+          }
 
           this.setState({
             tableData: name.sort((a, b) => {

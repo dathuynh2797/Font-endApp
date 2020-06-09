@@ -90,6 +90,7 @@ export class HomeScreen extends Component {
               sdt: doc.data().phoneNumber,
               idphong: doc.data().productUnit,
               idnhom: doc.data().iamTeam,
+              ngaysinh: doc.data().staffDateOfBirth,
             });
           }
         });
@@ -356,7 +357,7 @@ export class HomeScreen extends Component {
                           id: item.id,
                           ten: item.ten,
                           sdt: item.sdt,
-                          namsinh: item.namsinh,
+                          namsinh: item.ngaysinh,
                           hinhanh: item.ava,
                           phong: this.state.phong,
                           email: item.email,

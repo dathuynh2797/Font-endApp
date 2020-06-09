@@ -41,7 +41,7 @@ export class LoginScreen extends React.Component {
       infor: [],
       day: [],
     };
-    // this.compare();
+    this.compare();
     this.section();
   }
 
@@ -123,7 +123,9 @@ export class LoginScreen extends React.Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-          this.props.navigation.navigate('HomeScreen');
+          this.props.navigation.navigate('HomeScreen', {
+            birth: this.state.data,
+          });
         })
         .catch(function(error) {
           var errorCode = error.code;

@@ -46,7 +46,7 @@ export class DetailsProject extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../../img/Inforicon/policy.png')}
+                  source={require('../../img/phaply.png')}
                   style={styles.Icon}
                 />
               </View>

@@ -103,7 +103,7 @@ export class GroupBusiness extends Component {
     const dataY = firebaseApp.firestore().collection('units');
     const dataYear = [];
     const dataArrYear = [];
-    dataY.onSnapshot(queryY =>
+    dataY.get().then(queryY =>
       queryY.forEach(doc => {
         if (e.id === doc.id) {
           const arr = Object.entries(doc.data());
@@ -549,7 +549,7 @@ export class GroupBusiness extends Component {
   componentDidMount() {
     const data = firebaseApp.firestore().collection('units');
     const newData = [];
-    data.onSnapshot(
+    data.get().then(
       query =>
         query.forEach(doc =>
           newData.push({id: doc.id, name: doc.data().unitsTitle}),
@@ -701,6 +701,7 @@ export class GroupBusiness extends Component {
                 dragEnabled={true}
                 scaleEnabled={true}
                 scaleXEnabled={true}
+                chartDescription={{text: ''}}
                 scaleYEnabled={true}
                 pinchZoom={true}
                 doubleTapToZoomEnabled={true}
