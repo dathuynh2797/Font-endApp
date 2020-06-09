@@ -246,7 +246,11 @@ export class LoginScreen extends React.Component {
                     />
                   </TouchableOpacity>
                 </View>
-                <View style={{flexDirection: 'row'}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                  }}>
                   <TouchableOpacity
                     disabled={this.state.loginBtn}
                     style={styles.btnLogin}
@@ -316,7 +320,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
   input: {
-    width: WIDTH - 100,
+    width: WIDTH - 60,
     height: 50,
     borderRadius: 50,
     fontSize: 16,
@@ -350,8 +354,8 @@ const styles = StyleSheet.create({
   },
   btnLogin: {
     width: WIDTH - 265,
-    padding: 15,
-    marginLeft: 22,
+    paddingVertical: 15,
+    // marginLeft: 22,
     borderRadius: 45,
     justifyContent: 'center',
     backgroundColor: '#1085B8',

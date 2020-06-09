@@ -39,7 +39,7 @@ export class GroupCompare extends Component {
     super(props);
     this.state = {
       checkSelect: null,
-      toggleChart: false,
+      toggleChart: true,
       staffName: [],
       doanhSo: [],
       year: [],
@@ -54,7 +54,7 @@ export class GroupCompare extends Component {
       },
       legend: {
         enabled: true,
-        textColor: processColor('red'),
+
         textSize: 12,
         form: 'SQUARE',
         formSize: 14,
@@ -63,10 +63,6 @@ export class GroupCompare extends Component {
         formToTextSpace: 5,
         wordWrapEnabled: true,
         maxSizePercent: 0.5,
-        custom: {
-          colors: [processColor('red'), processColor('red')],
-          labels: ['REFER', 'USER'],
-        },
       },
       yAxis: {
         left: {
@@ -474,8 +470,7 @@ export class GroupCompare extends Component {
           borderRadius: 45,
           justifyContent: 'center',
           borderWidth: 1,
-          //   backgroundColor: '#1085B8',
-          backgroundColor: 'yellow',
+          backgroundColor: '#95c1f0',
           marginTop: 10,
           padding: 10,
         }}
@@ -646,7 +641,9 @@ export class GroupCompare extends Component {
               onPress={() => this.handleSubmit()}
               style={{
                 alignItems: 'center',
-                backgroundColor: 'yellow',
+                backgroundColor: '#95c1f0',
+                borderWidth: 0.5,
+                borderRadius: 5,
                 alignSelf: 'center',
                 marginVertical: 10,
                 padding: 10,

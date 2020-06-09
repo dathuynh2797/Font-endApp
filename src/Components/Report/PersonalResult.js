@@ -28,116 +28,129 @@ export class PersonalResult extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     const business = firebaseApp.firestore();
     business.collection('user').onSnapshot(querySnapshot => {
       var name = [];
       var idNV = [];
       var idNv = [];
-      tenNV = [];
+      //   tenNV = [];
       querySnapshot.forEach(doc => {
         idNV.push(doc.data().id);
         name.push({
           id: doc.data().id,
           ten: doc.data().fullName,
         });
-        this.setState({
-          userDetial: name,
-          idNV: idNV,
-        });
       });
+      let promise = new Promise(
+        () => {
+          this.setState(
+            {
+              userDetial: name,
+              idNV: idNV,
+            },
+            () => {
+              //   console.log(this.state.userDetial);
+            },
+          );
+        },
+        () => {},
+      );
     });
-    const dataY = firebaseApp.firestore().collection('taxClass');
-    var idDS = [];
-    var dataArrWeek = [];
-    var arrDS = [];
-    var arr = [];
-    var tenNV = [];
-    dataY.onSnapshot(queryY => {
-      queryY.forEach(doc => idDS.push({id: doc.data().id, value: doc.data()}));
-      for (let j = 0; j < this.state.idNV.length; j++) {
-        for (let k = 0; k < idDS.length; k++) {
-          if (this.state.idNV[j] === idDS[k].id) {
-            arr = Object.entries(idDS[k].value);
-            // console.log(arr);
-          }
-        }
-        var seconds = arr[arr.length - 1];
-        // console.log(seconds);
-        for (let i = 0; i < arr.length; i++) {
-          if (moment().year() === parseInt(arr[i][0], 0)) {
-            // console.log(dataArrWeek);
-            dataArrWeek.push({
-              id: seconds[1],
-              doanhso: arr[i][1],
-            });
-            // console.log(dataArrWeek);
-          }
-        }
-        arr = [];
-      }
-      this.setState({
-        dataArrWeek: dataArrWeek,
-      });
-      for (let i = 0; i < this.state.dataArrWeek.length; i++) {
-        arrDS.push({
-          ds: Object.values(dataArrWeek[i].doanhso).slice(16, 77),
-          id: dataArrWeek[i].id,
-        });
-      }
-      this.setState({
-        dS: arrDS,
-      });
-      // console.log(this.state.dS);
-      var dt = this.state.dS;
-      var datalastweek = [];
-      for (let z = 0; z < dt.length; z++) {
-        for (let t = 0; t < dt[z].ds.length; t++) {
-          if (dt[z].ds[t] !== 0) {
-          }
-        }
-        datalastweek.push({
-          ds: [dt[z].ds[dt[z].ds.length - 1]],
-          id: dt[z].id,
-        });
-      }
-      this.setState({
-        dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
-      });
-    });
-    firebaseApp
-      .firestore()
-      .collection('user')
-      .onSnapshot(querySnapshot => {
-        tenNV = [];
-        for (let v = 0; v < this.state.dtLastWeek.length; v++) {
-          querySnapshot.forEach(doc => {
-            if (this.state.dtLastWeek[v].id === doc.id) {
-              tenNV.push({
-                id: this.state.dtLastWeek[v].id,
-                doanhso: this.state.dtLastWeek[v].ds,
-                ten: doc.data().fullName,
-              });
-            }
-          });
-          this.setState({
-            dtNameDs: tenNV,
-            tableTitle: [
-              ['1'],
-              ['2'],
-              ['3'],
-              ['4'],
-              ['5'],
-              ['6'],
-              ['7'],
-              ['8'],
-              ['9'],
-              ['10'],
-            ],
-          });
-        }
-      });
-  }
+
+    // console.log(this.state.userDetial);
+
+    // const dataY = firebaseApp.firestore().collection('taxClass');
+    // var idDS = [];
+    // var dataArrWeek = [];
+    // var arrDS = [];
+    // var arr = [];
+    // var tenNV = [];
+    // dataY.onSnapshot(queryY => {
+    //   queryY.forEach(doc => idDS.push({id: doc.data().id, value: doc.data()}));
+    //   for (let j = 0; j < this.state.idNV.length; j++) {
+    //     for (let k = 0; k < idDS.length; k++) {
+    //       if (this.state.idNV[j] === idDS[k].id) {
+    //         arr = Object.entries(idDS[k].value);
+    //         // console.log(arr);
+    //       }
+    //     }
+    //     var seconds = arr[arr.length - 1];
+    //     // console.log(seconds);
+    //     for (let i = 0; i < arr.length; i++) {
+    //       if (moment().year() === parseInt(arr[i][0], 0)) {
+    //         // console.log(dataArrWeek);
+    //         dataArrWeek.push({
+    //           id: seconds[1],
+    //           doanhso: arr[i][1],
+    //         });
+    //         // console.log(dataArrWeek);
+    //       }
+    //     }
+    //     arr = [];
+    //   }
+    //   this.setState({
+    //     dataArrWeek: dataArrWeek,
+    //   });
+    //   for (let i = 0; i < this.state.dataArrWeek.length; i++) {
+    //     arrDS.push({
+    //       ds: Object.values(dataArrWeek[i].doanhso).slice(16, 77),
+    //       id: dataArrWeek[i].id,
+    //     });
+    //   }
+    //   this.setState({
+    //     dS: arrDS,
+    //   });
+    //   // console.log(this.state.dS);
+    //   var dt = this.state.dS;
+    //   var datalastweek = [];
+    //   for (let z = 0; z < dt.length; z++) {
+    //     for (let t = 0; t < dt[z].ds.length; t++) {
+    //       if (dt[z].ds[t] !== 0) {
+    //       }
+    //     }
+    //     datalastweek.push({
+    //       ds: [dt[z].ds[dt[z].ds.length - 1]],
+    //       id: dt[z].id,
+    //     });
+    //   }
+    //   this.setState({
+    //     dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
+    //   });
+    // });
+    // firebaseApp
+    //   .firestore()
+    //   .collection('user')
+    //   .onSnapshot(querySnapshot => {
+    //     tenNV = [];
+    //     for (let v = 0; v < this.state.dtLastWeek.length; v++) {
+    //       querySnapshot.forEach(doc => {
+    //         if (this.state.dtLastWeek[v].id === doc.id) {
+    //           tenNV.push({
+    //             id: this.state.dtLastWeek[v].id,
+    //             doanhso: this.state.dtLastWeek[v].ds,
+    //             ten: doc.data().fullName,
+    //           });
+    //         }
+    //       });
+    //       this.setState({
+    //         dtNameDs: tenNV,
+    //         tableTitle: [
+    //           ['1'],
+    //           ['2'],
+    //           ['3'],
+    //           ['4'],
+    //           ['5'],
+    //           ['6'],
+    //           ['7'],
+    //           ['8'],
+    //           ['9'],
+    //           ['10'],
+    //         ],
+    //       });
+    //     }
+    //   });
+  };
 
   render() {
     const state = this.state;
