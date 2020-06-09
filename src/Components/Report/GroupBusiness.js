@@ -120,6 +120,7 @@ export class GroupBusiness extends Component {
           this.setState({
             year: dataYear,
             doanhSo: dataArrYear,
+            staffChartName: e.name,
           });
         }
       }),

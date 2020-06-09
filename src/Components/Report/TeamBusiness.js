@@ -121,8 +121,6 @@ export class TeamBusiness extends Component {
   };
 
   handleSelectStaff = e => {
-    console.log(e);
-
     const dataY = firebaseApp.firestore().collection('stall');
     const dataYear = [];
     const dataArrYear = [];

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Text, StyleSheet, View, Image, TouchableOpacity} from 'react-native';
 
@@ -11,14 +12,30 @@ function Title({title}) {
 
 function HeaderRight({navigation}) {
   return (
-    <TouchableOpacity onPress={() => navigation.popToTop()}>
+    <TouchableOpacity
+      style={{
+        // backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        height: '100%',
+        width: '100%',
+        marginRight: 40,
+      }}
+      onPress={() => navigation.popToTop()}>
       <Image source={require('../img/exit.png')} style={styles.IconExit} />
     </TouchableOpacity>
   );
 }
 function HeaderLeft({navigation}) {
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
+    <TouchableOpacity
+      style={{
+        // backgroundColor: 'red',
+        height: '100%',
+        width: '250%',
+        justifyContent: 'center',
+      }}
+      onPress={() => navigation.goBack()}>
       <Image source={require('../img/back.png')} style={styles.IconBack} />
     </TouchableOpacity>
   );
@@ -79,7 +96,7 @@ const styles = StyleSheet.create({
   Text: {
     // paddingLeft: 10,
     fontWeight: '700',
-    fontSize: 20,
+    fontSize: 18,
     color: '#2D389C',
   },
   IconBack: {
