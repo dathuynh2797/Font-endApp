@@ -80,23 +80,53 @@ export class PersonalCompare extends Component {
   handleSelectGroup = item => {
     const arrTeam = [];
     const dataTeam = firebaseApp.firestore().collection('stall');
-
-    dataTeam.onSnapshot(
-      query =>
-        query.forEach(doc => {
-          for (let i = 0; i < this.state.listTeam[item.idI].list.length; i++) {
-            if (doc.id === this.state.listTeam[item.idI].list[i]) {
-              arrTeam.push({
-                id: doc.id,
-                name: doc.data().teamName,
-              });
-            }
+    dataTeam.onSnapshot(query => {
+      query.forEach(doc => {
+        for (let i = 0; i < this.state.listTeam[item.idI].list.length; i++) {
+          //ss doc.id === list[] ? push
+          if (doc.id === this.state.listTeam[item.idI].list[i]) {
+            arrTeam.push({
+              id: doc.id,
+              name: doc.data().teamName,
+            });
           }
-        }),
-      this.setState({teamItem: arrTeam}),
-    );
+        }
+      });
+      this.setState({teamItem: arrTeam});
+    });
+  };
 
-    //ss doc.id === list[] ? push
+  handleSelectTeam = item => {
+    // console.log(item);
+    var userData = [];
+    const user = firebaseApp.firestore().collection('user');
+    const dataY = firebaseApp.firestore().collection('taxClass');
+    user.onSnapshot(query => {
+      query.forEach(doc => {
+        if (item.id === doc.data().iamTeam) {
+          userData.push({
+            id: doc.id,
+            name: doc.data().fullName,
+          });
+        }
+      });
+      for (let i = 0; i < userData.length; i++) {
+        console.log(userData[i].id);
+
+        dataY
+          .doc(userData[i].id)
+          .get()
+          .then(doc => {
+            console.log('Document data:', doc.data());
+          });
+        //   .catch(err => {
+        //     console.log('Error getting document', err);
+        //   });
+      }
+      //   console.log(dataY.doc('0c55e38d8624d59be320d4b4beb678e4'));
+
+      //   console.log(dataY.doc(userData[i].id));
+    });
   };
 
   handleSelectStaff = e => {
@@ -586,7 +616,7 @@ export class PersonalCompare extends Component {
             <SearchableDropdown
               placeholder="Nhóm"
               onTextChange={text => text}
-              onItemSelect={item => this.handleSelectStaff(item)}
+              onItemSelect={item => this.handleSelectTeam(item)}
               items={this.state.teamItem}
               containerStyle={{marginTop: 20, marginHorizontal: 20}}
               textInputStyle={{

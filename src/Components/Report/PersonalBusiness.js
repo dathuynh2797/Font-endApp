@@ -40,7 +40,7 @@ export class PersonalBusiness extends Component {
     super(props);
     this.state = {
       checkSelect: null,
-      toggleChart: false,
+      toggleChart: true,
       staffName: [],
       doanhSo: [],
       year: [],
@@ -48,10 +48,21 @@ export class PersonalBusiness extends Component {
       mounth: [],
       marker: {
         enabled: true,
-
         backgroundTint: processColor('#000'),
         markerColor: processColor('yellow'),
         textColor: processColor('#000'),
+      },
+      config: {
+        lineWidth: 1,
+        drawCubicIntensity: 0.4,
+        circleRadius: 5,
+        drawHighlightIndicators: false,
+        color: processColor('blue'),
+        drawFilled: true,
+        fillColor: processColor('blue'),
+        fillAlpha: 45,
+        circleColor: processColor('blue'),
+        textColor: processColor('cyan'),
       },
       legend: {
         enabled: true,
@@ -64,19 +75,20 @@ export class PersonalBusiness extends Component {
         formToTextSpace: 5,
         wordWrapEnabled: true,
         maxSizePercent: 0.5,
-        custom: {
-          colors: [processColor('red'), processColor('red')],
-          labels: ['REFER', 'USER'],
-        },
       },
       xAxis: {
-        drawGridLines: false,
-        avoidFirstLastClipping: true,
+        // valueFormatter: ['Quý I', 'Quý II', 'Quý III', 'Quý IV'],
+        // axisMaximum: 4,
+        granularityEnabled: true,
+        granularity: 1,
+        axisMinimum: 0,
+        textSize: 12,
+        // centerAxisLabels: true,
       },
       yAxis: {
         right: {
-          enabled: false,
-          drawGridLines: false,
+          enabled: true,
+          drawGridLines: true,
         },
         left: {
           enabled: true,
@@ -95,7 +107,7 @@ export class PersonalBusiness extends Component {
       queryY.forEach(doc => {
         if (e.id === doc.id) {
           const arr = Object.entries(doc.data());
-          for (let i = 0; i < arr.length; i++) {
+          for (let i = 0; i < arr.length - 1; i++) {
             dataYear.push({
               id: i,
               name: arr[i][0],
@@ -178,6 +190,10 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 1', 'Tháng 2', 'Tháng 3'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 1,
@@ -205,6 +221,10 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 4', 'Tháng 5', 'Tháng 6'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 4,
@@ -232,6 +252,10 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 7', 'Tháng 8', 'Tháng 9'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 7,
@@ -259,6 +283,10 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 1', 'Tháng 11', 'Tháng 12'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 10,
@@ -480,8 +508,7 @@ export class PersonalBusiness extends Component {
           borderRadius: 45,
           justifyContent: 'center',
           borderWidth: 1,
-          //   backgroundColor: '#1085B8',
-          backgroundColor: 'yellow',
+          backgroundColor: '#95c1f0',
           marginTop: 10,
           padding: 10,
         }}
@@ -500,6 +527,7 @@ export class PersonalBusiness extends Component {
           dataChart: this.state.yearChart,
           xAxis: {
             valueFormatter: ['Quý I', 'Quý II', 'Quý III', 'Quý IV'],
+            axisMaximum: 3,
           },
           toggleChart: true,
         });
@@ -508,7 +536,12 @@ export class PersonalBusiness extends Component {
         this.setState({
           dataChart: this.state.quarterChart,
           xAxis: {
-            valueFormatter: ['Tháng 1', 'Tháng 2', 'Tháng 3'],
+            valueFormatter: [
+              `${this.state.mounth[0].name}`,
+              `${this.state.mounth[1].name}`,
+              `${this.state.mounth[2].name}`,
+            ],
+            axisMaximum: 2,
           },
           toggleChart: true,
         });
@@ -517,6 +550,7 @@ export class PersonalBusiness extends Component {
         this.setState({
           xAxis: {
             valueFormatter: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4', 'Tuần 5'],
+            axisMaximum: 4,
           },
           dataChart: this.state.mounthChart,
           toggleChart: true,
@@ -526,6 +560,7 @@ export class PersonalBusiness extends Component {
       default:
         this.setState({dialogVisible: true});
     }
+    console.log(this.state.xAxis);
   }
 
   componentDidMount() {
@@ -670,7 +705,9 @@ export class PersonalBusiness extends Component {
               onPress={() => this.handleSubmit()}
               style={{
                 alignItems: 'center',
-                backgroundColor: 'yellow',
+                backgroundColor: '#95c1f0',
+                borderWidth: 0.5,
+                borderRadius: 5,
                 alignSelf: 'center',
                 marginVertical: 10,
                 padding: 10,
@@ -684,7 +721,7 @@ export class PersonalBusiness extends Component {
                 style={styles.chart}
                 marker={this.state.marker}
                 xAxis={this.state.xAxis}
-                drawGridBackground={true}
+                // drawGridBackground={true}
                 drawBorders={true}
                 touchEnabled={true}
                 dragEnabled={true}
@@ -696,6 +733,7 @@ export class PersonalBusiness extends Component {
                 dragDecelerationEnabled={true}
                 dragDecelerationFrictionCoef={0.99}
                 keepPositionOnRotation={false}
+                legend={this.state.legend}
                 data={{
                   dataSets: [
                     {
@@ -703,27 +741,21 @@ export class PersonalBusiness extends Component {
                         'Đồ thị kết quả kinh doanh của ' +
                         `${this.state.staffChartName}`,
                       values: this.state.dataChart,
-                      config: {
-                        lineWidth: 1,
-                        drawCubicIntensity: 0.4,
-                        circleRadius: 5,
-                        drawHighlightIndicators: false,
-                        color: processColor('blue'),
-                        drawFilled: true,
-                        fillColor: processColor('blue'),
-                        fillAlpha: 45,
-                        circleColor: processColor('blue'),
-                        textColor: processColor('cyan'),
-                      },
+                      //   values: [
+                      //     {x: 0, y: 1000},
+                      //     {x: 1, y: 2000},
+                      //     {x: 2, y: 3000},
+                      //     {x: 3, y: 2000},
+                      //     {x: 4, y: 4000},
+                      //   ],
+                      config: this.state.config,
                     },
                   ],
                 }}
                 yAxis={this.state.yAxis}
               />
             </View>
-          ) : (
-            <View style={styles.container} />
-          )}
+          ) : null}
         </SafeAreaView>
       </KeyboardAvoidingView>
     );

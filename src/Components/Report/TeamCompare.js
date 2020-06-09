@@ -474,8 +474,7 @@ export class TeamCompare extends Component {
           borderRadius: 45,
           justifyContent: 'center',
           borderWidth: 1,
-          //   backgroundColor: '#1085B8',
-          backgroundColor: 'yellow',
+          backgroundColor: '#95c1f0',
           marginTop: 10,
           padding: 10,
         }}
@@ -646,7 +645,9 @@ export class TeamCompare extends Component {
               onPress={() => this.handleSubmit()}
               style={{
                 alignItems: 'center',
-                backgroundColor: 'yellow',
+                backgroundColor: '#95c1f0',
+                borderWidth: 0.5,
+                borderRadius: 5,
                 alignSelf: 'center',
                 marginVertical: 10,
                 padding: 10,

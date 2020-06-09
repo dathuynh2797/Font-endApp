@@ -39,7 +39,7 @@ export class TeamBusiness extends Component {
     super(props);
     this.state = {
       checkSelect: null,
-      toggleChart: false,
+      toggleChart: true,
       staffName: [],
       doanhSo: [],
       year: [],
@@ -50,6 +50,15 @@ export class TeamBusiness extends Component {
         backgroundTint: processColor('#000'),
         markerColor: processColor('yellow'),
         textColor: processColor('#000'),
+      },
+      xAxis: {
+        // valueFormatter: ['Quý I', 'Quý II', 'Quý III', 'Quý IV'],
+        // axisMaximum: 4,
+        granularityEnabled: true,
+        granularity: 1,
+        axisMinimum: 0,
+        textSize: 12,
+        // centerAxisLabels: true,
       },
       legend: {
         enabled: true,
@@ -63,14 +72,26 @@ export class TeamBusiness extends Component {
         wordWrapEnabled: true,
         maxSizePercent: 0.5,
       },
+      config: {
+        lineWidth: 1,
+        drawCubicIntensity: 0.4,
+        circleRadius: 5,
+        drawHighlightIndicators: false,
+        color: processColor('blue'),
+        drawFilled: true,
+        fillColor: processColor('blue'),
+        fillAlpha: 45,
+        circleColor: processColor('blue'),
+        textColor: processColor('cyan'),
+      },
       yAxis: {
         left: {
           enabled: true,
           drawGridLines: true,
         },
         right: {
-          enabled: false,
-          drawGridLines: false,
+          enabled: true,
+          drawGridLines: true,
         },
       },
       dataChart: [],
@@ -100,14 +121,16 @@ export class TeamBusiness extends Component {
   };
 
   handleSelectStaff = e => {
-    const dataY = firebaseApp.firestore().collection('taxClass');
+    console.log(e);
+
+    const dataY = firebaseApp.firestore().collection('stall');
     const dataYear = [];
     const dataArrYear = [];
     dataY.onSnapshot(queryY =>
       queryY.forEach(doc => {
         if (e.id === doc.id) {
           const arr = Object.entries(doc.data());
-          for (let i = 0; i < arr.length; i++) {
+          for (let i = 0; i < arr.length - 1; i++) {
             dataYear.push({
               id: i,
               name: arr[i][0],
@@ -120,6 +143,7 @@ export class TeamBusiness extends Component {
           this.setState({
             year: dataYear,
             doanhSo: dataArrYear,
+            staffChartName: e.name,
           });
         }
       }),
@@ -216,6 +240,10 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          xAxis: {
+            valueFormatter: ['Tháng 4', 'Tháng 5', 'Tháng 6'],
+            axisMaximum: 2,
+          },
           mounth: [
             {
               id: 4,
@@ -243,6 +271,10 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          xAxis: {
+            valueFormatter: ['Tháng 7', 'Tháng 8', 'Tháng 9'],
+            axisMaximum: 2,
+          },
           mounth: [
             {
               id: 7,
@@ -270,6 +302,10 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          xAxis: {
+            valueFormatter: ['Tháng 10', 'Tháng 11', 'Tháng 12'],
+            axisMaximum: 2,
+          },
           mounth: [
             {
               id: 10,
@@ -491,8 +527,7 @@ export class TeamBusiness extends Component {
           borderRadius: 45,
           justifyContent: 'center',
           borderWidth: 1,
-          //   backgroundColor: '#1085B8',
-          backgroundColor: 'yellow',
+          backgroundColor: '#95c1f0',
           marginTop: 10,
           padding: 10,
         }}
@@ -509,24 +544,40 @@ export class TeamBusiness extends Component {
       case 'year':
         this.setState({
           dataChart: this.state.yearChart,
+          xAxis: {
+            valueFormatter: ['Quý I', 'Quý II', 'Quý III', 'Quý IV'],
+            axisMaximum: 3,
+          },
           toggleChart: true,
         });
         break;
       case 'quarter':
         this.setState({
           dataChart: this.state.quarterChart,
+          xAxis: {
+            valueFormatter: [
+              `${this.state.mounth[0].name}`,
+              `${this.state.mounth[1].name}`,
+              `${this.state.mounth[2].name}`,
+            ],
+            axisMaximum: 2,
+          },
           toggleChart: true,
         });
         break;
       case 'mounth':
         this.setState({
+          xAxis: {
+            valueFormatter: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4', 'Tuần 5'],
+            axisMaximum: 4,
+          },
           dataChart: this.state.mounthChart,
           toggleChart: true,
         });
         break;
 
       default:
-        this.setState({dialogVisible: true}, () => {});
+        this.setState({dialogVisible: true});
     }
   }
 
@@ -694,7 +745,9 @@ export class TeamBusiness extends Component {
               onPress={() => this.handleSubmit()}
               style={{
                 alignItems: 'center',
-                backgroundColor: 'yellow',
+                backgroundColor: '#95c1f0',
+                borderWidth: 0.5,
+                borderRadius: 5,
                 alignSelf: 'center',
                 marginVertical: 10,
                 padding: 10,
@@ -704,32 +757,41 @@ export class TeamBusiness extends Component {
           </View>
           {this.state.toggleChart ? (
             <View style={[styles.container, styles.bgChart]}>
-              <View>
-                <Text>Đồ thị kết quả kinh doanh</Text>
-              </View>
               <LineChart
                 style={styles.chart}
                 marker={this.state.marker}
+                legend={this.state.legend}
+                // drawGridBackground={true}
+                drawBorders={true}
+                touchEnabled={true}
+                dragEnabled={true}
+                scaleEnabled={true}
+                scaleXEnabled={true}
+                scaleYEnabled={true}
+                pinchZoom={true}
+                doubleTapToZoomEnabled={true}
+                dragDecelerationEnabled={true}
+                dragDecelerationFrictionCoef={0.99}
+                keepPositionOnRotation={false}
                 data={{
                   dataSets: [
                     {
-                      label: 'demo',
+                      label:
+                        'Đồ thị kết quả kinh doanh của ' +
+                        `${this.state.staffChartName}`,
                       values: this.state.dataChart,
-                      config: {
-                        lineWidth: 1,
-                        drawCubicIntensity: 0.4,
-                        circleRadius: 5,
-                        drawHighlightIndicators: false,
-                        color: processColor('blue'),
-                        drawFilled: true,
-                        fillColor: processColor('blue'),
-                        fillAlpha: 45,
-                        circleColor: processColor('blue'),
-                        textColor: processColor('cyan'),
-                      },
+                      //   values: [
+                      //     {x: 0, y: 1000},
+                      //     {x: 1, y: 2000},
+                      //     {x: 2, y: 3000},
+                      //     {x: 3, y: 2000},
+                      //     {x: 4, y: 4000},
+                      //   ],
+                      config: this.state.config,
                     },
                   ],
                 }}
+                xAxis={this.state.xAxis}
                 yAxis={this.state.yAxis}
               />
             </View>

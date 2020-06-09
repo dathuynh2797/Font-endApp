@@ -28,7 +28,7 @@ export class PersonalResult extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     const business = firebaseApp.firestore();
     business
       .collection('user')
@@ -148,7 +148,7 @@ export class PersonalResult extends Component {
           });
         }
       });
-  }
+  };
 
   render() {
     const state = this.state;
