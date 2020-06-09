@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* newDemoRNNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* newDemoRNNTests.m */; };
+		00E356F31AD99517003FC87E /* BDSAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BDSAppTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -15,14 +15,14 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* newDemoRNNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* newDemoRNNTests.m */; };
-		36F8DD39A9579EAF2B2E4443 /* libPods-newDemoRNN-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09562451C56FDB8597334E5B /* libPods-newDemoRNN-tvOS.a */; };
-		5756F705C5D4EBDB6B22820F /* libPods-newDemoRNN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD421329F56F8CCA04D4EFD /* libPods-newDemoRNN.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* BDSAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BDSAppTests.m */; };
+		36F8DD39A9579EAF2B2E4443 /* libPods-BDSApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09562451C56FDB8597334E5B /* libPods-BDSApp-tvOS.a */; };
+		5756F705C5D4EBDB6B22820F /* libPods-BDSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD421329F56F8CCA04D4EFD /* libPods-BDSApp.a */; };
 		882D093EDFA5458A982C03DF /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67F29A52F9348E9960E7E8C /* Roboto.ttf */; };
-		9996FC1B703E7BB2ACD4F645 /* libPods-newDemoRNNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9B83E3B50E2903973A8314 /* libPods-newDemoRNNTests.a */; };
-		AE66981F45EF9C7EBC987EBD /* libPods-newDemoRNN-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D78BDC547B37BE257F4EF9 /* libPods-newDemoRNN-tvOSTests.a */; };
+		9996FC1B703E7BB2ACD4F645 /* libPods-BDSAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9B83E3B50E2903973A8314 /* libPods-BDSAppTests.a */; };
+		AE66981F45EF9C7EBC987EBD /* libPods-BDSApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D78BDC547B37BE257F4EF9 /* libPods-BDSApp-tvOSTests.a */; };
 		C64E9AA624877CB000CC56F3 /* sinhnhat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C64E9AA524877CB000CC56F3 /* sinhnhat.mp3 */; };
-		C692CDA4248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */; };
+		C6886A8C248FC1600070EC3D /* BDSApp-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6886A8B248FC1600070EC3D /* BDSApp-Bridging-Header.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,51 +31,51 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = newDemoRNN;
+			remoteInfo = BDSApp;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "newDemoRNN-tvOS";
+			remoteInfo = "BDSApp-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* newDemoRNNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = newDemoRNNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* BDSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BDSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* newDemoRNNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newDemoRNNTests.m; sourceTree = "<group>"; };
-		09562451C56FDB8597334E5B /* libPods-newDemoRNN-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNN-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B9B83E3B50E2903973A8314 /* libPods-newDemoRNNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* newDemoRNN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newDemoRNN.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = newDemoRNN/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = newDemoRNN/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* BDSAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDSAppTests.m; sourceTree = "<group>"; };
+		09562451C56FDB8597334E5B /* libPods-BDSApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BDSApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B9B83E3B50E2903973A8314 /* libPods-BDSAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BDSAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* BDSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BDSApp/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BDSApp/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = newDemoRNN/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = newDemoRNN/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = newDemoRNN/main.m; sourceTree = "<group>"; };
-		2AEF1653CFDA3C42F32F6BCD /* Pods-newDemoRNN-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNN-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-newDemoRNN-tvOS/Pods-newDemoRNN-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* newDemoRNN-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "newDemoRNN-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* newDemoRNN-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "newDemoRNN-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		32D78BDC547B37BE257F4EF9 /* libPods-newDemoRNN-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNN-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C47D888618895A9B5430FCE /* Pods-newDemoRNN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNN.debug.xcconfig"; path = "Target Support Files/Pods-newDemoRNN/Pods-newDemoRNN.debug.xcconfig"; sourceTree = "<group>"; };
-		4C611BE65BEADC44E95B3D41 /* Pods-newDemoRNN-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNN-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-newDemoRNN-tvOSTests/Pods-newDemoRNN-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		503477793CDFC46306C560C8 /* Pods-newDemoRNN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNN.release.xcconfig"; path = "Target Support Files/Pods-newDemoRNN/Pods-newDemoRNN.release.xcconfig"; sourceTree = "<group>"; };
-		5D22CBE3D3EE41569048E54E /* Pods-newDemoRNN-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNN-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-newDemoRNN-tvOSTests/Pods-newDemoRNN-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DA4620D1165BD19F351B292 /* Pods-newDemoRNN-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNN-tvOS.release.xcconfig"; path = "Target Support Files/Pods-newDemoRNN-tvOS/Pods-newDemoRNN-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		5DD421329F56F8CCA04D4EFD /* libPods-newDemoRNN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newDemoRNN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BDSApp/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BDSApp/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BDSApp/main.m; sourceTree = "<group>"; };
+		2AEF1653CFDA3C42F32F6BCD /* Pods-BDSApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BDSApp-tvOS/Pods-BDSApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* BDSApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BDSApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* BDSApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BDSApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32D78BDC547B37BE257F4EF9 /* libPods-BDSApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BDSApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C47D888618895A9B5430FCE /* Pods-BDSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSApp.debug.xcconfig"; path = "Target Support Files/Pods-BDSApp/Pods-BDSApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4C611BE65BEADC44E95B3D41 /* Pods-BDSApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BDSApp-tvOSTests/Pods-BDSApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		503477793CDFC46306C560C8 /* Pods-BDSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSApp.release.xcconfig"; path = "Target Support Files/Pods-BDSApp/Pods-BDSApp.release.xcconfig"; sourceTree = "<group>"; };
+		5D22CBE3D3EE41569048E54E /* Pods-BDSApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BDSApp-tvOSTests/Pods-BDSApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DA4620D1165BD19F351B292 /* Pods-BDSApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BDSApp-tvOS/Pods-BDSApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		5DD421329F56F8CCA04D4EFD /* libPods-BDSApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BDSApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67F29A52F9348E9960E7E8C /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = ../assets/fonts/Roboto.ttf; sourceTree = "<group>"; };
-		C18CEC325ABEFE3AABBFC50B /* Pods-newDemoRNNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNNTests.debug.xcconfig"; path = "Target Support Files/Pods-newDemoRNNTests/Pods-newDemoRNNTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C18CEC325ABEFE3AABBFC50B /* Pods-BDSAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSAppTests.debug.xcconfig"; path = "Target Support Files/Pods-BDSAppTests/Pods-BDSAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C64E9AA524877CB000CC56F3 /* sinhnhat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sinhnhat.mp3; sourceTree = "<group>"; };
+		C6886A8A248FC1380070EC3D /* BDSApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDSApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		C6886A8B248FC1600070EC3D /* BDSApp-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BDSApp-Bridging-Header.swift"; sourceTree = "<group>"; };
 		C692CC222480E117006E37E4 /* libCharts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCharts.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C692CC242480E11F006E37E4 /* libSwiftyJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSwiftyJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "newDemoRNN-Bridging-Header.swift"; sourceTree = "<group>"; };
-		C692CDA52481010D006E37E4 /* newDemoRNN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "newDemoRNN-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F3A85226E31D668585487FB1 /* Pods-newDemoRNNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newDemoRNNTests.release.xcconfig"; path = "Target Support Files/Pods-newDemoRNNTests/Pods-newDemoRNNTests.release.xcconfig"; sourceTree = "<group>"; };
+		F3A85226E31D668585487FB1 /* Pods-BDSAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSAppTests.release.xcconfig"; path = "Target Support Files/Pods-BDSAppTests/Pods-BDSAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9996FC1B703E7BB2ACD4F645 /* libPods-newDemoRNNTests.a in Frameworks */,
+				9996FC1B703E7BB2ACD4F645 /* libPods-BDSAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5756F705C5D4EBDB6B22820F /* libPods-newDemoRNN.a in Frameworks */,
+				5756F705C5D4EBDB6B22820F /* libPods-BDSApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36F8DD39A9579EAF2B2E4443 /* libPods-newDemoRNN-tvOS.a in Frameworks */,
+				36F8DD39A9579EAF2B2E4443 /* libPods-BDSApp-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,20 +107,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE66981F45EF9C7EBC987EBD /* libPods-newDemoRNN-tvOSTests.a in Frameworks */,
+				AE66981F45EF9C7EBC987EBD /* libPods-BDSApp-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* newDemoRNNTests */ = {
+		00E356EF1AD99517003FC87E /* BDSAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* newDemoRNNTests.m */,
+				00E356F21AD99517003FC87E /* BDSAppTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = newDemoRNNTests;
+			path = BDSAppTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -131,7 +131,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* newDemoRNN */ = {
+		13B07FAE1A68108700A75B9A /* BDSApp */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -142,7 +142,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = newDemoRNN;
+			name = BDSApp;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -152,10 +152,10 @@
 				C692CC222480E117006E37E4 /* libCharts.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				5DD421329F56F8CCA04D4EFD /* libPods-newDemoRNN.a */,
-				09562451C56FDB8597334E5B /* libPods-newDemoRNN-tvOS.a */,
-				32D78BDC547B37BE257F4EF9 /* libPods-newDemoRNN-tvOSTests.a */,
-				0B9B83E3B50E2903973A8314 /* libPods-newDemoRNNTests.a */,
+				5DD421329F56F8CCA04D4EFD /* libPods-BDSApp.a */,
+				09562451C56FDB8597334E5B /* libPods-BDSApp-tvOS.a */,
+				32D78BDC547B37BE257F4EF9 /* libPods-BDSApp-tvOSTests.a */,
+				0B9B83E3B50E2903973A8314 /* libPods-BDSAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,12 +170,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C6886A8B248FC1600070EC3D /* BDSApp-Bridging-Header.swift */,
+				C6886A8A248FC1380070EC3D /* BDSApp-Bridging-Header.h */,
 				C64E9AA524877CB000CC56F3 /* sinhnhat.mp3 */,
-				C692CDA52481010D006E37E4 /* newDemoRNN-Bridging-Header.h */,
-				C692CDA3248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift */,
-				13B07FAE1A68108700A75B9A /* newDemoRNN */,
+				13B07FAE1A68108700A75B9A /* BDSApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* newDemoRNNTests */,
+				00E356EF1AD99517003FC87E /* BDSAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				DCB305DE9EF5599322639754 /* Pods */,
@@ -189,10 +189,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* newDemoRNN.app */,
-				00E356EE1AD99517003FC87E /* newDemoRNNTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* newDemoRNN-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* newDemoRNN-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* BDSApp.app */,
+				00E356EE1AD99517003FC87E /* BDSAppTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* BDSApp-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* BDSApp-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,14 +208,14 @@
 		DCB305DE9EF5599322639754 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3C47D888618895A9B5430FCE /* Pods-newDemoRNN.debug.xcconfig */,
-				503477793CDFC46306C560C8 /* Pods-newDemoRNN.release.xcconfig */,
-				2AEF1653CFDA3C42F32F6BCD /* Pods-newDemoRNN-tvOS.debug.xcconfig */,
-				5DA4620D1165BD19F351B292 /* Pods-newDemoRNN-tvOS.release.xcconfig */,
-				5D22CBE3D3EE41569048E54E /* Pods-newDemoRNN-tvOSTests.debug.xcconfig */,
-				4C611BE65BEADC44E95B3D41 /* Pods-newDemoRNN-tvOSTests.release.xcconfig */,
-				C18CEC325ABEFE3AABBFC50B /* Pods-newDemoRNNTests.debug.xcconfig */,
-				F3A85226E31D668585487FB1 /* Pods-newDemoRNNTests.release.xcconfig */,
+				3C47D888618895A9B5430FCE /* Pods-BDSApp.debug.xcconfig */,
+				503477793CDFC46306C560C8 /* Pods-BDSApp.release.xcconfig */,
+				2AEF1653CFDA3C42F32F6BCD /* Pods-BDSApp-tvOS.debug.xcconfig */,
+				5DA4620D1165BD19F351B292 /* Pods-BDSApp-tvOS.release.xcconfig */,
+				5D22CBE3D3EE41569048E54E /* Pods-BDSApp-tvOSTests.debug.xcconfig */,
+				4C611BE65BEADC44E95B3D41 /* Pods-BDSApp-tvOSTests.release.xcconfig */,
+				C18CEC325ABEFE3AABBFC50B /* Pods-BDSAppTests.debug.xcconfig */,
+				F3A85226E31D668585487FB1 /* Pods-BDSAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -223,9 +223,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* newDemoRNNTests */ = {
+		00E356ED1AD99517003FC87E /* BDSAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "newDemoRNNTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BDSAppTests" */;
 			buildPhases = (
 				7C398E256762F8F2BB44B248 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -237,14 +237,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = newDemoRNNTests;
-			productName = newDemoRNNTests;
-			productReference = 00E356EE1AD99517003FC87E /* newDemoRNNTests.xctest */;
+			name = BDSAppTests;
+			productName = BDSAppTests;
+			productReference = 00E356EE1AD99517003FC87E /* BDSAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* newDemoRNN */ = {
+		13B07F861A680F5B00A75B9A /* BDSApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "newDemoRNN" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BDSApp" */;
 			buildPhases = (
 				FF8486CCCE7F577BED3E9E6F /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -258,14 +258,14 @@
 			);
 			dependencies = (
 			);
-			name = newDemoRNN;
-			productName = newDemoRNN;
-			productReference = 13B07F961A680F5B00A75B9A /* newDemoRNN.app */;
+			name = BDSApp;
+			productName = BDSApp;
+			productReference = 13B07F961A680F5B00A75B9A /* BDSApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* newDemoRNN-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* BDSApp-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newDemoRNN-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BDSApp-tvOS" */;
 			buildPhases = (
 				E2A4414866A6A03C32D5FAAC /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -278,14 +278,14 @@
 			);
 			dependencies = (
 			);
-			name = "newDemoRNN-tvOS";
-			productName = "newDemoRNN-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* newDemoRNN-tvOS.app */;
+			name = "BDSApp-tvOS";
+			productName = "BDSApp-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* BDSApp-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* newDemoRNN-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* BDSApp-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newDemoRNN-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BDSApp-tvOSTests" */;
 			buildPhases = (
 				474BFDA654F8F1DBC96779EF /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -297,9 +297,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "newDemoRNN-tvOSTests";
-			productName = "newDemoRNN-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* newDemoRNN-tvOSTests.xctest */;
+			name = "BDSApp-tvOSTests";
+			productName = "BDSApp-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* BDSApp-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -329,7 +329,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "newDemoRNN" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BDSApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -343,10 +343,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* newDemoRNN */,
-				00E356ED1AD99517003FC87E /* newDemoRNNTests */,
-				2D02E47A1E0B4A5D006451C7 /* newDemoRNN-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* newDemoRNN-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* BDSApp */,
+				00E356ED1AD99517003FC87E /* BDSAppTests */,
+				2D02E47A1E0B4A5D006451C7 /* BDSApp-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* BDSApp-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -431,7 +431,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newDemoRNN-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BDSApp-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -453,7 +453,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newDemoRNNTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BDSAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -466,7 +466,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-newDemoRNN/Pods-newDemoRNN-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BDSApp/Pods-BDSApp-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -475,7 +475,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-newDemoRNN/Pods-newDemoRNN-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BDSApp/Pods-BDSApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2A4414866A6A03C32D5FAAC /* [CP] Check Pods Manifest.lock */ = {
@@ -493,7 +493,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newDemoRNN-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BDSApp-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -553,7 +553,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newDemoRNN-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BDSApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -567,7 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* newDemoRNNTests.m in Sources */,
+				00E356F31AD99517003FC87E /* BDSAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				C692CDA4248100F2006E37E4 /* newDemoRNN-Bridging-Header.swift in Sources */,
+				C6886A8C248FC1600070EC3D /* BDSApp-Bridging-Header.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,7 +594,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* newDemoRNNTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* BDSAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,12 +603,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* newDemoRNN */;
+			target = 13B07F861A680F5B00A75B9A /* BDSApp */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* newDemoRNN-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* BDSApp-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -620,7 +620,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = newDemoRNN;
+			path = BDSApp;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -628,7 +628,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C18CEC325ABEFE3AABBFC50B /* Pods-newDemoRNNTests.debug.xcconfig */;
+			baseConfigurationReference = C18CEC325ABEFE3AABBFC50B /* Pods-BDSAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -636,7 +636,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = newDemoRNNTests/Info.plist;
+				INFOPLIST_FILE = BDSAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -646,18 +646,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newDemoRNN.app/newDemoRNN";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDSApp.app/BDSApp";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3A85226E31D668585487FB1 /* Pods-newDemoRNNTests.release.xcconfig */;
+			baseConfigurationReference = F3A85226E31D668585487FB1 /* Pods-BDSAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = newDemoRNNTests/Info.plist;
+				INFOPLIST_FILE = BDSAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -667,13 +667,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newDemoRNN.app/newDemoRNN";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDSApp.app/BDSApp";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C47D888618895A9B5430FCE /* Pods-newDemoRNN.debug.xcconfig */;
+			baseConfigurationReference = 3C47D888618895A9B5430FCE /* Pods-BDSApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -684,7 +684,7 @@
 					"COCOAPODS=1",
 					"HAVE_GOOGLE_MAPS=1",
 				);
-				INFOPLIST_FILE = newDemoRNN/Info.plist;
+				INFOPLIST_FILE = BDSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -692,8 +692,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = newDemoRNN;
-				SWIFT_OBJC_BRIDGING_HEADER = "newDemoRNN-Bridging-Header.h";
+				PRODUCT_NAME = BDSApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "BDSApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -702,7 +702,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 503477793CDFC46306C560C8 /* Pods-newDemoRNN.release.xcconfig */;
+			baseConfigurationReference = 503477793CDFC46306C560C8 /* Pods-BDSApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -712,7 +712,7 @@
 					"COCOAPODS=1",
 					"HAVE_GOOGLE_MAPS=1",
 				);
-				INFOPLIST_FILE = newDemoRNN/Info.plist;
+				INFOPLIST_FILE = BDSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -720,8 +720,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = newDemoRNN;
-				SWIFT_OBJC_BRIDGING_HEADER = "newDemoRNN-Bridging-Header.h";
+				PRODUCT_NAME = BDSApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "BDSApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -729,7 +729,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AEF1653CFDA3C42F32F6BCD /* Pods-newDemoRNN-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 2AEF1653CFDA3C42F32F6BCD /* Pods-BDSApp-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -740,14 +740,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newDemoRNN-tvOS/Info.plist";
+				INFOPLIST_FILE = "BDSApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newDemoRNN-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BDSApp-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -757,7 +757,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DA4620D1165BD19F351B292 /* Pods-newDemoRNN-tvOS.release.xcconfig */;
+			baseConfigurationReference = 5DA4620D1165BD19F351B292 /* Pods-BDSApp-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -768,14 +768,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newDemoRNN-tvOS/Info.plist";
+				INFOPLIST_FILE = "BDSApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newDemoRNN-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BDSApp-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -785,7 +785,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D22CBE3D3EE41569048E54E /* Pods-newDemoRNN-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 5D22CBE3D3EE41569048E54E /* Pods-BDSApp-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -795,24 +795,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newDemoRNN-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "BDSApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newDemoRNN-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BDSApp-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newDemoRNN-tvOS.app/newDemoRNN-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDSApp-tvOS.app/BDSApp-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C611BE65BEADC44E95B3D41 /* Pods-newDemoRNN-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 4C611BE65BEADC44E95B3D41 /* Pods-BDSApp-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -822,17 +822,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newDemoRNN-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "BDSApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newDemoRNN-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BDSApp-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newDemoRNN-tvOS.app/newDemoRNN-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDSApp-tvOS.app/BDSApp-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -939,7 +939,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "newDemoRNNTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BDSAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -948,7 +948,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "newDemoRNN" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BDSApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -957,7 +957,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newDemoRNN-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BDSApp-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -966,7 +966,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newDemoRNN-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BDSApp-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -975,7 +975,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "newDemoRNN" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BDSApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

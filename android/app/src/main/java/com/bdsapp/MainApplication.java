@@ -1,4 +1,4 @@
-package com.newdemornn;
+package com.bdsapp;
 
 import android.app.Application;
 import android.content.Context;
