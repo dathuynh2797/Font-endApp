@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import 'react-native-gesture-handler';
 import {
@@ -65,7 +66,11 @@ export class ForgotPassword extends React.Component {
                 autoCapitalize="none"
               />
             </View>
-            <View style={{flexDirection: 'row'}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+              }}>
               <TouchableOpacity
                 onPress={this.handlePasswordReset}
                 style={styles.btnLogin}>
@@ -132,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     fontSize: 16,
     paddingLeft: 50,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: 'rgb(197, 218, 250)',
     color: 'black',
     marginHorizontal: 25,
     shadowColor: '#000',

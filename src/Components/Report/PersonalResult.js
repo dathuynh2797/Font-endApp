@@ -30,23 +30,26 @@ export class PersonalResult extends Component {
 
   componentDidMount() {
     const business = firebaseApp.firestore();
-    business.collection('user').onSnapshot(querySnapshot => {
-      var name = [];
-      var idNV = [];
-      var idNv = [];
-      tenNV = [];
-      querySnapshot.forEach(doc => {
-        idNV.push(doc.data().id);
-        name.push({
-          id: doc.data().id,
-          ten: doc.data().fullName,
-        });
-        this.setState({
-          userDetial: name,
-          idNV: idNV,
+    business
+      .collection('user')
+      .get()
+      .then(querySnapshot => {
+        var name = [];
+        var idNV = [];
+        var idNv = [];
+        tenNV = [];
+        querySnapshot.forEach(doc => {
+          idNV.push(doc.data().id);
+          name.push({
+            id: doc.data().id,
+            ten: doc.data().fullName,
+          });
+          this.setState({
+            userDetial: name,
+            idNV: idNV,
+          });
         });
       });
-    });
     const dataY = firebaseApp.firestore().collection('taxClass');
     var idDS = [];
     var dataArrWeek = [];
@@ -55,27 +58,25 @@ export class PersonalResult extends Component {
     var tenNV = [];
     dataY.onSnapshot(queryY => {
       queryY.forEach(doc => idDS.push({id: doc.data().id, value: doc.data()}));
+      console.log(idDS);
       for (let j = 0; j < this.state.idNV.length; j++) {
         for (let k = 0; k < idDS.length; k++) {
           if (this.state.idNV[j] === idDS[k].id) {
             arr = Object.entries(idDS[k].value);
-            // console.log(arr);
           }
         }
         var seconds = arr[arr.length - 1];
-        // console.log(seconds);
         for (let i = 0; i < arr.length; i++) {
           if (moment().year() === parseInt(arr[i][0], 0)) {
-            // console.log(dataArrWeek);
             dataArrWeek.push({
               id: seconds[1],
               doanhso: arr[i][1],
             });
-            // console.log(dataArrWeek);
           }
         }
         arr = [];
       }
+      console.log(dataArrWeek);
       this.setState({
         dataArrWeek: dataArrWeek,
       });
@@ -88,18 +89,27 @@ export class PersonalResult extends Component {
       this.setState({
         dS: arrDS,
       });
-      // console.log(this.state.dS);
       var dt = this.state.dS;
       var datalastweek = [];
       for (let z = 0; z < dt.length; z++) {
-        for (let t = 0; t < dt[z].ds.length; t++) {
-          if (dt[z].ds[t] !== 0) {
+        // for (let t = 0; t < dt[z].ds.length; t++) {
+        //   if (dt[z].ds[t] !== 0) {
+        //     datalastweek.push({
+        //       ds: dt[z].ds[t],
+        //       id: dt[z].id,
+        //     });
+        //   }
+        // }
+        // dt[z] = [];
+        for (let y = dt[z].ds.length - 1; y > -1; y--) {
+          if (dt[z].ds[y] !== 0) {
+            datalastweek.push({
+              ds: [dt[z].ds[y]],
+              id: dt[z].id,
+            });
+            break;
           }
         }
-        datalastweek.push({
-          ds: [dt[z].ds[dt[z].ds.length - 1]],
-          id: dt[z].id,
-        });
       }
       this.setState({
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
@@ -108,7 +118,8 @@ export class PersonalResult extends Component {
     firebaseApp
       .firestore()
       .collection('user')
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         tenNV = [];
         for (let v = 0; v < this.state.dtLastWeek.length; v++) {
           querySnapshot.forEach(doc => {

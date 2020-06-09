@@ -11,7 +11,6 @@ import {
 import 'firebase/firestore';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import bgAva from '../../img/bgAva.png';
-import {firebaseApp} from '../config';
 
 export class userDetail extends Component {
   constructor() {
@@ -34,36 +33,36 @@ export class userDetail extends Component {
       headerRight: () => <HeaderRight navigation={navigation} />,
     };
   };
-  componentDidMount() {
-    const {navigation} = this.props;
-    const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
-    const phong = navigation.getParam('phong', 'chưa có dữ liệu');
-    console.log(nhom);
-    var tennhom = '';
-    var tenphong = '';
-    firebaseApp
-      .firestore()
-      .collection('stall')
-      .onSnapshot(querySnapshot1 => {
-        querySnapshot1.forEach(doc1 => {
-          if (nhom === doc1.data().id) {
-            tennhom = doc1.data().teamName;
-          }
-        });
-        this.setState({team: tennhom});
-      });
-    firebaseApp
-      .firestore()
-      .collection('units')
-      .onSnapshot(querySnapshot1 => {
-        querySnapshot1.forEach(doc1 => {
-          if (phong === doc1.data().id) {
-            tenphong = doc1.data().unitsTitle;
-          }
-        });
-        this.setState({phong: tenphong});
-      });
-  }
+  // componentDidMount() {
+  //   const {navigation} = this.props;
+  //   const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
+  //   const phong = navigation.getParam('phong', 'chưa có dữ liệu');
+  //   console.log(nhom);
+  //   var tennhom = '';
+  //   var tenphong = '';
+  //   firebaseApp
+  //     .firestore()
+  //     .collection('stall')
+  //     .onSnapshot(querySnapshot1 => {
+  //       querySnapshot1.forEach(doc1 => {
+  //         if (nhom === doc1.data().id) {
+  //           tennhom = doc1.data().teamName;
+  //         }
+  //       });
+  //       this.setState({team: tennhom});
+  //     });
+  //   firebaseApp
+  //     .firestore()
+  //     .collection('units')
+  //     .onSnapshot(querySnapshot1 => {
+  //       querySnapshot1.forEach(doc1 => {
+  //         if (phong === doc1.data().id) {
+  //           tenphong = doc1.data().unitsTitle;
+  //         }
+  //       });
+  //       this.setState({phong: tenphong});
+  //     });
+  // }
   render() {
     const {navigation} = this.props;
     const namsinh = navigation.getParam('namsinh', 'chưa có dữ liệu');
@@ -71,6 +70,8 @@ export class userDetail extends Component {
     const sdt = navigation.getParam('sdt');
     const email = navigation.getParam('email', 'chưa có dữ liệu');
     const hinhanh = navigation.getParam('hinhanh', 'chưa có dữ liệu');
+    const phong = navigation.getParam('phong', 'chưa có dữ liệu');
+    const nhom = navigation.getParam('nhom', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1 / 3}}>
@@ -103,12 +104,12 @@ export class userDetail extends Component {
           <View style={styles.Item}>
             <Image source={require('../../img/Profile/team.png')} />
             <View style={styles.HorizonLine} />
-            <Text>Nhóm: {this.state.team}</Text>
+            <Text>Nhóm: {nhom}</Text>
           </View>
           <View style={styles.Item}>
             <Image source={require('../../img/Profile/department.png')} />
             <View style={styles.HorizonLine} />
-            <Text>Phòng: {this.state.phong}</Text>
+            <Text>Phòng: {phong}</Text>
           </View>
           <TouchableOpacity
             onPress={() => {

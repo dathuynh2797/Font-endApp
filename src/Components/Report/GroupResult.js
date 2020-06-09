@@ -13,7 +13,7 @@ import {
 import {firebaseApp} from '../config';
 import {FlatList, Text, TouchableOpacity} from 'react-native';
 
-export class TeamResult extends Component {
+export class GroupResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ export class TeamResult extends Component {
   }
 
   componentDidMount() {
-    const dataY = firebaseApp.firestore().collection('stall');
+    const dataY = firebaseApp.firestore().collection('units');
     var idDS = [];
     var dataArrWeek = [];
     var arrDS = [];
@@ -129,6 +129,7 @@ export class TeamResult extends Component {
                   borderStyle={{borderWidth: 1, borderColor: '#000'}}
                 />
               )}
+              keyExtractor={item => item.name}
             />
 
             <FlatList
@@ -148,6 +149,7 @@ export class TeamResult extends Component {
                   />
                 </View>
               )}
+              keyExtractor={item => item.id}
             />
             <Col
               data={state.tableTitle}

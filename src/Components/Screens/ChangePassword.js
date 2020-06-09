@@ -31,7 +31,7 @@ export class ChangePassword extends Component {
     if (type === 'currentPassword') {
       this.setState({currentPassword: value});
       if (value === '' || PASSWORD.test(value)) {
-        this.setState({currentPassword: true});
+        this.setState({passwordOldValid: true});
         this.setState({loginBtn: false});
       } else {
         this.setState({passwordOldValid: false});
@@ -41,7 +41,7 @@ export class ChangePassword extends Component {
       this.setState({newPassword: value});
       if (value === '' || PASSWORD.test(value)) {
         this.setState({passwordNewValid: true});
-        this.setState({loginBtn: true});
+        this.setState({loginBtn: false});
       } else {
         this.setState({passwordNewValid: false});
         this.setState({loginBtn: true});
@@ -64,7 +64,7 @@ export class ChangePassword extends Component {
         user
           .updatePassword(this.state.newPassword)
           .then(() => {
-            Alert.alert('Password was change');
+            Alert.alert('Mật Khẩu Thay Đổi Thành Công');
           })
           .catch(error => {
             Alert.alert(error.message);
@@ -94,8 +94,8 @@ export class ChangePassword extends Component {
               value={this.state.currentPassword}
               autoCapitalize="none"
               secureTextEntry={true}
-              onChangeText={text => {
-                this.validate('currentPassword', text);
+              onChangeText={currentPassword => {
+                this.validate('currentPassword', currentPassword);
               }}
             />
             <TextInput
@@ -107,8 +107,8 @@ export class ChangePassword extends Component {
               value={this.state.newPassword}
               autoCapitalize="none"
               secureTextEntry={true}
-              onChangeText={text => {
-                this.validate('newPassword', text);
+              onChangeText={newPassword => {
+                this.validate('newPassword', newPassword);
               }}
             />
           </View>
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
 
     padding: 10,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: 'rgb(197, 218, 250)',
     height: 40,
     // alignSelf: 'stretch',
     fontSize: 18,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     marginTop: 30,
   },
   error: {

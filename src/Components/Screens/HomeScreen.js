@@ -35,6 +35,9 @@ export class HomeScreen extends Component {
       stop: null,
       phong: '',
       team: '',
+      dataArrWeek: [],
+      dtNameDs: [],
+      dtLastWeek: [],
     };
   }
 
@@ -64,17 +67,21 @@ export class HomeScreen extends Component {
         var days = '';
         var tenphong = '';
         var tennhom = '';
+        var idNV = '';
+        var idDS = [];
+        var dataArrWeek = [];
+        var arrDS = [];
+        var arr = [];
+        var tenNV = [];
+        var idphonguser = '';
+        var idteamuser = '';
         querySnapshot.forEach(doc => {
           if (
             firebaseApp.auth().currentUser.uid === doc.data().authenticationUid
           ) {
-            // let arr = [];
-            // let dataDoanhSo = doc.data().doanhso[0].year;
-            // for (let j = 0; j <= dataDoanhSo.length - 1; j++) {
-            //   if (dataDoanhSo[j] !== null) {
-            //     arr.push(dataDoanhSo[j]);
-            //   }
-            // }
+            idphonguser = doc.data().productUnit;
+            idteamuser = doc.data().iamTeam;
+            idNV = doc.data().id;
             days = doc.data().staffDateOfBirth;
             data.push({
               ten: doc.data().fullName,
@@ -85,11 +92,79 @@ export class HomeScreen extends Component {
               idnhom: doc.data().iamTeam,
             });
           }
+        });
+
+        //queryDoanhSo
+        const dataY = firebaseApp.firestore().collection('taxClass');
+        dataY.onSnapshot(queryY => {
+          queryY.forEach(doc =>
+            idDS.push({id: doc.data().id, value: doc.data()}),
+          );
+          for (let k = 0; k < idDS.length; k++) {
+            if (idDS[k].id === idNV) {
+              arr = Object.entries(idDS[k].value);
+              break;
+            }
+          }
+          for (let l = 0; l < arr.length; l++) {
+            if (moment().year() === parseInt(arr[l][0], 0)) {
+              dataArrWeek.push({
+                doanhso: arr[l][1],
+              });
+            }
+          }
+          arr = [];
+
           this.setState({
-            data: data,
-            loading: false,
-            ngaysinh: days,
+            dataArrWeek: dataArrWeek,
           });
+          for (let a = 0; a < this.state.dataArrWeek.length; a++) {
+            arrDS.push({
+              ds: Object.values(dataArrWeek[a].doanhso).slice(16, 77),
+            });
+          }
+          this.setState({
+            dS: arrDS,
+          });
+          var dt = this.state.dS;
+          var datalastweek = [];
+          for (let z = 0; z < dt.length; z++) {
+            for (let y = dt[z].ds.length - 1; y > -1; y--) {
+              if (dt[z].ds[y] !== 0) {
+                datalastweek.push([dt[z].ds[y]]);
+                break;
+              }
+            }
+          }
+          //queryPhongNhom
+          firebaseApp
+            .firestore()
+            .collection('stall')
+            .onSnapshot(querySnapshot1 => {
+              querySnapshot1.forEach(doc1 => {
+                if (idteamuser === doc1.data().id) {
+                  tennhom = doc1.data().teamName;
+                }
+              });
+              firebaseApp
+                .firestore()
+                .collection('units')
+                .onSnapshot(querySnapshot1 => {
+                  querySnapshot1.forEach(doc1 => {
+                    if (idphonguser === doc1.data().id) {
+                      tenphong = doc1.data().unitsTitle;
+                    }
+                  });
+                  this.setState({
+                    data: data,
+                    loading: false,
+                    ngaysinh: days,
+                    dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
+                    phong: tenphong,
+                    team: tennhom,
+                  });
+                });
+            });
         });
       });
     const {navigation} = this.props;
@@ -283,19 +358,19 @@ export class HomeScreen extends Component {
                           sdt: item.sdt,
                           namsinh: item.namsinh,
                           hinhanh: item.ava,
-                          phong: item.idphong,
+                          phong: this.state.phong,
                           email: item.email,
-                          nhom: item.idnhom,
+                          nhom: this.state.team,
                         });
                       }}>
                       <View style={{alignItems: 'center'}}>
                         <Image style={styles.avatar} source={{uri: item.ava}} />
-                        {/* <Text style={styles.avatarTxt}>
-                          {item.doanhso
+                        <Text style={styles.avatarTxt}>
+                          {this.state.dtLastWeek
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
                           VND
-                        </Text> */}
+                        </Text>
                       </View>
                     </TouchableOpacity>
                   </View>
