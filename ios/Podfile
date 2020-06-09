@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'newDemoRNN' do
-  # Pods for newDemoRNN
+target 'BDSApp' do
+  # Pods for BDSApp
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -48,7 +48,7 @@ target 'newDemoRNN' do
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
 
-  target 'newDemoRNNTests' do
+  target 'BDSAppTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -56,10 +56,10 @@ target 'newDemoRNN' do
   use_native_modules!
 end
 
-target 'newDemoRNN-tvOS' do
-  # Pods for newDemoRNN-tvOS
+target 'BDSApp-tvOS' do
+  # Pods for BDSApp-tvOS
 
-  target 'newDemoRNN-tvOSTests' do
+  target 'BDSApp-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
