@@ -17,7 +17,7 @@ export class GroupResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tableHead: ['Tên', 'Kết quả KD', 'Xếp hạng'],
+      tableHead: ['Tên Phòng', 'Kết quả KD', 'Xếp hạng'],
       tableData: [],
       idNV: [],
       user: [],
@@ -34,14 +34,17 @@ export class GroupResult extends Component {
     var dataArrWeek = [];
     var arrDS = [];
     var arr = [];
+    var stt = [];
     var tenNV = [];
     dataY.get().then(queryY => {
       queryY.forEach(doc => idDS.push(doc.data()));
       for (let i = 0; i < idDS.length; i++) {
         arr = Object.entries(idDS[i]);
+        // console.log(arr);
         for (let y = 0; y < arr.length; y++) {
           if (moment().year() === parseInt(arr[y][0], 0)) {
             dataArrWeek.push({
+              id: arr[2][1],
               name: arr[arr.length - 1][1],
               doanhso: arr[y][1],
             });
@@ -57,6 +60,7 @@ export class GroupResult extends Component {
       });
       for (let i = 0; i < this.state.dataArrWeek.length; i++) {
         arrDS.push({
+          id: [dataArrWeek[i].id],
           ds: Object.values(dataArrWeek[i].doanhso).slice(16, 77),
           name: dataArrWeek[i].name,
         });
@@ -67,32 +71,25 @@ export class GroupResult extends Component {
       var dt = this.state.dS;
       // console.log(dt);
       var datalastweek = [];
+
       for (let z = 0; z < dt.length; z++) {
         for (let y = dt[z].ds.length - 1; y > -1; y--) {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
+              id: [dt[z].ds[z] + 'a'],
               ds: [dt[z].ds[y]],
               name: dt[z].name,
             });
+            stt.push([z + 1]);
             break;
           }
         }
       }
       this.setState({
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
-        tableTitle: [
-          ['1'],
-          ['2'],
-          ['3'],
-          ['4'],
-          ['5'],
-          ['6'],
-          ['7'],
-          ['8'],
-          ['9'],
-          ['10'],
-        ],
+        tableTitle: stt,
       });
+      console.log(this.state.dtLastWeek);
     });
   }
 
@@ -120,6 +117,7 @@ export class GroupResult extends Component {
           />
           <TableWrapper style={styles.wrapper}>
             <FlatList
+              initialNumToRender={1}
               data={this.state.dtLastWeek}
               renderItem={({item}) => (
                 <Cols
@@ -149,7 +147,7 @@ export class GroupResult extends Component {
                   />
                 </View>
               )}
-              keyExtractor={item => item.id}
+              keyExtractor={item => item.id[0]}
             />
             <Col
               data={state.tableTitle}

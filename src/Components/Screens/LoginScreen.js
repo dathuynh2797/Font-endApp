@@ -15,7 +15,7 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-
+import {RFValue} from 'react-native-responsive-fontsize';
 import {firebaseApp} from '../config';
 import bgImage from '../../img/bgLogin.jpg';
 import eye from '../../img/eye.png';
@@ -356,7 +356,8 @@ const styles = StyleSheet.create({
   },
   btnLogin: {
     width: WIDTH - 265,
-    height: 50,
+    // height: 50,\
+    paddingVertical: 5,
     borderRadius: 45,
     justifyContent: 'center',
     backgroundColor: '#1085B8',
@@ -373,11 +374,13 @@ const styles = StyleSheet.create({
   },
   btnforgot: {
     backgroundColor: '#D0B369',
+    height: 50,
   },
   text: {
-    color: '#E5E5E5',
+    color: '#000',
     textAlign: 'center',
-    fontSize: 16,
+    fontWeight: '600',
+    fontSize: RFValue(13, 680),
   },
   error: {
     borderWidth: 2,

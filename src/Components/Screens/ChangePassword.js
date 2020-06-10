@@ -70,8 +70,17 @@ export class ChangePassword extends Component {
             Alert.alert(error.message);
           });
       })
-      .catch(error => {
-        Alert.alert(error.message);
+      .catch(function(error) {
+        var errorCode = error.code;
+
+        if (errorCode === 'auth/wrong-password') {
+          Alert.alert(
+            '',
+            'Vui lòng điền đầy đủ thông tin',
+            [{text: 'OK', onPress: () => console.log('OK pressed')}],
+            {cancelable: false},
+          );
+        }
       });
   };
 

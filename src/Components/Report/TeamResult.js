@@ -17,7 +17,7 @@ export class TeamResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tableHead: ['Tên', 'Kết quả KD', 'Xếp hạng'],
+      tableHead: ['Tên Nhóm', 'Tên Phòng', 'Kết quả KD', 'Xếp hạng'],
       tableData: [],
       idNV: [],
       user: [],
@@ -25,23 +25,28 @@ export class TeamResult extends Component {
       dataArrWeek: [],
       dtNameDs: [],
       dtLastWeek: [],
+      dtNameDsP: [],
     };
   }
 
   componentDidMount() {
     const dataY = firebaseApp.firestore().collection('stall');
     var idDS = [];
+    var idphong = [];
     var dataArrWeek = [];
     var arrDS = [];
     var arr = [];
+    var stt = [];
     var tenNV = [];
     dataY.get().then(queryY => {
       queryY.forEach(doc => idDS.push(doc.data()));
       for (let i = 0; i < idDS.length; i++) {
         arr = Object.entries(idDS[i]);
+        // console.log(arr);
         for (let y = 0; y < arr.length; y++) {
           if (moment().year() === parseInt(arr[y][0], 0)) {
             dataArrWeek.push({
+              id: arr[2][1],
               name: arr[arr.length - 1][1],
               doanhso: arr[y][1],
             });
@@ -57,6 +62,7 @@ export class TeamResult extends Component {
       });
       for (let i = 0; i < this.state.dataArrWeek.length; i++) {
         arrDS.push({
+          id: dataArrWeek[i].id,
           ds: Object.values(dataArrWeek[i].doanhso).slice(16, 77),
           name: dataArrWeek[i].name,
         });
@@ -67,32 +73,57 @@ export class TeamResult extends Component {
       var dt = this.state.dS;
       // console.log(dt);
       var datalastweek = [];
+
       for (let z = 0; z < dt.length; z++) {
         for (let y = dt[z].ds.length - 1; y > -1; y--) {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
+              id: dt[z].id,
               ds: [dt[z].ds[y]],
               name: dt[z].name,
             });
-            break;
+            stt.push([60 - y]);
           }
         }
       }
+      // console.log(datalastweek);
       this.setState({
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
-        tableTitle: [
-          ['1'],
-          ['2'],
-          ['3'],
-          ['4'],
-          ['5'],
-          ['6'],
-          ['7'],
-          ['8'],
-          ['9'],
-          ['10'],
-        ],
+        tableTitle: stt,
       });
+      var tenphong = [];
+      firebaseApp
+        .firestore()
+        .collection('units')
+        .get()
+        .then(querySnapshot => {
+          tenNV = [];
+          querySnapshot.forEach(doc => {
+            idphong.push({
+              name: doc.data().unitsTitle,
+              mangnhom: doc.data().productStall,
+            });
+          });
+          // console.log(idphong);
+          // console.log(this.state.dtLastWeek);
+          for (let p = 0; p < this.state.dtLastWeek.length; p++) {
+            for (let n = 0; n < idphong.length; n++) {
+              for (let f = 0; f < idphong[n].mangnhom.length; f++) {
+                if (this.state.dtLastWeek[p].id === idphong[n].mangnhom[f]) {
+                  tenphong.push({
+                    id: this.state.dtLastWeek[p].id,
+                    tenphong: idphong[n].name,
+                    ds: this.state.dtLastWeek[p].ds,
+                    tennhom: this.state.dtLastWeek[p].name,
+                  });
+                  // console.log(this.state.dtLastWeek[p].id);
+                }
+              }
+            }
+          }
+          this.setState({dtNameDsP: tenphong});
+          console.log(tenphong);
+        });
     });
   }
 
@@ -120,19 +151,31 @@ export class TeamResult extends Component {
           />
           <TableWrapper style={styles.wrapper}>
             <FlatList
-              data={this.state.dtLastWeek}
+              data={this.state.dtNameDsP}
               renderItem={({item}) => (
                 <Cols
-                  data={[[item.name]]}
+                  data={[[item.tennhom]]}
                   textStyle={styles.text}
                   style={styles.row}
                   borderStyle={{borderWidth: 1, borderColor: '#000'}}
                 />
               )}
+              keyExtractor={item => item.tennhom}
             />
-
             <FlatList
-              data={this.state.dtLastWeek}
+              data={this.state.dtNameDsP}
+              renderItem={({item}) => (
+                <Cols
+                  data={[[item.tenphong]]}
+                  textStyle={styles.text}
+                  style={styles.row}
+                  borderStyle={{borderWidth: 1, borderColor: '#000'}}
+                />
+              )}
+              keyExtractor={item => item.id}
+            />
+            <FlatList
+              data={this.state.dtNameDsP}
               renderItem={({item}) => (
                 <View>
                   <Cols
@@ -148,6 +191,7 @@ export class TeamResult extends Component {
                   />
                 </View>
               )}
+              keyExtractor={item => item.id}
             />
             <Col
               data={state.tableTitle}
