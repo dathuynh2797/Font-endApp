@@ -82,7 +82,7 @@ export class TeamResult extends Component {
               ds: [dt[z].ds[y]],
               name: dt[z].name,
             });
-            stt.push([60 - y]);
+            stt.push([z + 1]);
           }
         }
       }

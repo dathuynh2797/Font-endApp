@@ -18,6 +18,7 @@ export class DetailsProject extends Component {
     const hinhanhqc = navigation.getParam('hinhanhqc', 'chưa có dữ liệu');
     const latitude = navigation.getParam('latitude', 'chưa có dữ liệu');
     const longtitude = navigation.getParam('longtitude', 'chưa có dữ liệu');
+    // console.log(hinhanhqc);
     return (
       <SafeAreaView style={styles.MenuContainer}>
         <Header title={'Dự Án' + ' ' + ten} navigation={navigation} />

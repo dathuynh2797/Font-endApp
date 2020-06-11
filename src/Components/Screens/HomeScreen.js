@@ -384,7 +384,6 @@ export class HomeScreen extends Component {
 
         <View style={styles.menuContainer}>
           <TouchableOpacity
-            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('InfoScreen');
@@ -400,7 +399,6 @@ export class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('Project');
@@ -416,7 +414,6 @@ export class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('ReportScreen');
@@ -432,7 +429,6 @@ export class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            activeOpacity={1}
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('BarChartScreen');
