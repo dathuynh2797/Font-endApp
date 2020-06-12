@@ -10,7 +10,6 @@ export class PersonalDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDirect: false,
       tenphong: '',
       tennhom: '',
     };
@@ -90,20 +89,19 @@ export class PersonalDetail extends Component {
             <View style={styles.HorizonLine} />
             <Text>Email: {email}</Text>
           </View>
-          {!this.state.isDirect && (
-            <View style={styles.Item}>
-              <Image source={require('../../img/Profile/team.png')} />
-              <View style={styles.HorizonLine} />
-              <Text>Nhóm: {this.state.tennhom}</Text>
-            </View>
-          )}
-          {!this.state.isDirect && (
-            <View style={styles.Item}>
-              <Image source={require('../../img/Profile/department.png')} />
-              <View style={styles.HorizonLine} />
-              <Text>Phòng: {this.state.tenphong}</Text>
-            </View>
-          )}
+
+          <View style={styles.Item}>
+            <Image source={require('../../img/Profile/team.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Nhóm: {this.state.tennhom}</Text>
+          </View>
+
+          <View style={styles.Item}>
+            <Image source={require('../../img/Profile/department.png')} />
+            <View style={styles.HorizonLine} />
+            <Text>Phòng: {this.state.tenphong}</Text>
+          </View>
+
           <View style={styles.Item}>
             <Image source={require('../../img/Profile/mail.png')} />
             <View style={styles.HorizonLine} />

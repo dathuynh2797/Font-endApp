@@ -18,7 +18,7 @@ export class TeamResult extends Component {
     super(props);
     this.state = {
       tableHead: ['Tên Nhóm', 'Tên Phòng', 'Kết quả KD', 'Xếp hạng'],
-      tableData: [],
+      tableTitle: [],
       idNV: [],
       user: [],
       dS: [],
@@ -47,7 +47,7 @@ export class TeamResult extends Component {
           if (moment().year() === parseInt(arr[y][0], 0)) {
             dataArrWeek.push({
               id: arr[2][1],
-              name: arr[arr.length - 1][1],
+              name: arr[arr.length - 78][1],
               doanhso: arr[y][1],
             });
           }
@@ -71,9 +71,8 @@ export class TeamResult extends Component {
         dS: arrDS,
       });
       var dt = this.state.dS;
-      // console.log(dt);
+      console.log(dt);
       var datalastweek = [];
-
       for (let z = 0; z < dt.length; z++) {
         for (let y = dt[z].ds.length - 1; y > -1; y--) {
           if (dt[z].ds[y] !== 0) {
@@ -83,6 +82,7 @@ export class TeamResult extends Component {
               name: dt[z].name,
             });
             stt.push([z + 1]);
+            break;
           }
         }
       }
@@ -122,7 +122,7 @@ export class TeamResult extends Component {
             }
           }
           this.setState({dtNameDsP: tenphong});
-          console.log(tenphong);
+          // console.log(tenphong);
         });
     });
   }
@@ -151,7 +151,7 @@ export class TeamResult extends Component {
           />
           <TableWrapper style={styles.wrapper}>
             <FlatList
-              data={this.state.dtNameDsP}
+              data={this.state.dtNameDsP.slice(0, 10)}
               renderItem={({item}) => (
                 <Cols
                   data={[[item.tennhom]]}
@@ -163,7 +163,7 @@ export class TeamResult extends Component {
               keyExtractor={item => item.tennhom}
             />
             <FlatList
-              data={this.state.dtNameDsP}
+              data={this.state.dtNameDsP.slice(0, 10)}
               renderItem={({item}) => (
                 <Cols
                   data={[[item.tenphong]]}
@@ -175,7 +175,7 @@ export class TeamResult extends Component {
               keyExtractor={item => item.id}
             />
             <FlatList
-              data={this.state.dtNameDsP}
+              data={this.state.dtNameDsP.slice(0, 10)}
               renderItem={({item}) => (
                 <View>
                   <Cols
@@ -194,7 +194,7 @@ export class TeamResult extends Component {
               keyExtractor={item => item.id}
             />
             <Col
-              data={state.tableTitle}
+              data={state.tableTitle.slice(0, 10)}
               style={styles.title}
               heightArr={[45, 45, 45, 45, 45, 45, 45, 45, 45, 45]}
               borderStyle={{borderWidth: 1, borderColor: '#000'}}

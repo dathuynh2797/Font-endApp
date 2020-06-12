@@ -119,7 +119,7 @@ export class DetailsProject extends Component {
                   style={styles.Icon}
                 />
               </View>
-              <Text style={styles.Text}>Quảng cáo</Text>
+              <Text style={styles.Text}>Hình ảnh dự án</Text>
               <Text />
             </View>
           </TouchableOpacity>

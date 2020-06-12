@@ -42,7 +42,7 @@ export class Ogchartpns extends Component {
             name.push({
               ten1: doc.data().fullName,
               image: doc.data().avatars[0].publicUrl,
-              namsinh: doc.data().staffDateOfBirth,
+              chucvu: doc.data().roles[0],
               sdt: doc.data().phoneNumber,
             });
             this.setState({
@@ -70,10 +70,10 @@ export class Ogchartpns extends Component {
                   </View>
                   <View style={styles.locationContent}>
                     <Image
-                      source={require('../../img/food.png')}
+                      source={require('../../img/role.png')}
                       style={styles.icon}
                     />
-                    <Text style={styles.location}>{item.namsinh}</Text>
+                    <Text style={styles.location}>{item.chucvu}</Text>
                   </View>
                   <View style={styles.priceContent}>
                     <Image

@@ -1,27 +1,72 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, Dimensions, FlatList} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import {Modal} from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
-// import {firebaseApp} from './config';
+
 const {width: WIDTH} = Dimensions.get('window');
+
+const images = [
+  {
+    // Simplest usage.
+    url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460',
+
+    // width: number
+    // height: number
+    // Optional, if you know the image size, you can set the optimization performance
+
+    // You can pass props to <Image />.
+    // props: {
+    //   source: require('../img/background.jpg'),
+    // },
+  },
+  {
+    //   url: '',
+    props: {
+      // Or you can set source directory.
+      source: require('../img/background.jpg'),
+    },
+  },
+];
 export class Qc extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+    };
+    // console.log(this.state.idG);
+  }
+
   state = {image: []};
-  componentDidMount() {
+
+  renderModal() {
+    console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
     const hinhanhqc = navigation.getParam('hinhanhqc', 'chưa có dữ liệu');
+    console.log(hinhanhqc);
     for (let i = 0; i < hinhanhqc.length; i++) {
       hinhanh.push({url: hinhanhqc[i].publicUrl});
     }
-    this.setState({image: hinhanh});
-  }
-  renderModal() {
-    console.log(this.state.image);
-
     return (
-      <Modal visible={true} transparent={true}>
-        <ImageViewer imageUrls={this.state.image} />
+      <Modal
+        onRequestClose={() => {
+          this.setState({modal: false});
+        }}
+        visible={this.state.modal}
+        transparent={true}>
+        <ImageViewer
+          enableSwipeDown={true}
+          onSwipeDown={() => this.setState({modal: false})}
+          imageUrls={hinhanh}
+        />
       </Modal>
     );
   }
@@ -35,9 +80,28 @@ export class Qc extends Component {
           style={{}}
           data={hinhanhqc}
           renderItem={({item}) => (
-            <Image source={{uri: item.publicUrl}} style={styles.image} />
+            <TouchableOpacity onPress={() => this.setState({modal: true})}>
+              <Image source={{uri: item.publicUrl}} style={styles.image} />
+            </TouchableOpacity>
           )}
         />
+        {/* <TouchableOpacity
+          onPress={() => this.setState({modal: true})}
+          style={{backgroundColor: 'red', flex: 1 / 2}}
+        />
+        <Modal
+          style={{backgroundColor: 'green'}}
+          // onCancel={() => this.setState({modal: false})}
+          // onClick={onCancel => onCancel()}
+          visible={this.state.modal}
+          transparent={true}>
+          <ImageViewer
+            enableSwipeDown={true}
+            onSwipeDown={() => this.setState({modal: false})}
+            imageUrls={images}
+            style={{backgroundColor: 'red'}}
+          />
+        </Modal> */}
       </View>
     );
   }

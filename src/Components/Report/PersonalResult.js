@@ -77,7 +77,7 @@ export class PersonalResult extends Component {
         }
         arr = [];
       }
-      // console.log(dataArrWeek);
+      console.log(dataArrWeek);
       this.setState({
         dataArrWeek: dataArrWeek,
       });
@@ -91,6 +91,7 @@ export class PersonalResult extends Component {
         dS: arrDS,
       });
       var dt = this.state.dS;
+      console.log(dt);
       var datalastweek = [];
       for (let z = 0; z < dt.length; z++) {
         // for (let t = 0; t < dt[z].ds.length; t++) {

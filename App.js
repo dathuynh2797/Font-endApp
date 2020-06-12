@@ -200,7 +200,7 @@ const MainStack = createStackNavigator({
     navigationOptions: ({navigation}) => {
       return {
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <Title title="Quảng Cáo" />,
+        headerTitle: () => <Title title="Hình Ảnh Dự Án" />,
         headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },

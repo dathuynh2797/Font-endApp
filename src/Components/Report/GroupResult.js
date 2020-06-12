@@ -40,12 +40,12 @@ export class GroupResult extends Component {
       queryY.forEach(doc => idDS.push(doc.data()));
       for (let i = 0; i < idDS.length; i++) {
         arr = Object.entries(idDS[i]);
-        // console.log(arr);
+        console.log(arr);
         for (let y = 0; y < arr.length; y++) {
           if (moment().year() === parseInt(arr[y][0], 0)) {
             dataArrWeek.push({
               id: arr[2][1],
-              name: arr[arr.length - 1][1],
+              name: arr[arr.length - 78][1],
               doanhso: arr[y][1],
             });
           }
@@ -76,7 +76,7 @@ export class GroupResult extends Component {
         for (let y = dt[z].ds.length - 1; y > -1; y--) {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
-              id: [dt[z].ds[z] + 'a'],
+              id: [dt[z].ds[y] + 'a'],
               ds: [dt[z].ds[y]],
               name: dt[z].name,
             });
@@ -89,7 +89,7 @@ export class GroupResult extends Component {
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
         tableTitle: stt,
       });
-      console.log(this.state.dtLastWeek);
+      // console.log(this.state.dtLastWeek);
     });
   }
 
