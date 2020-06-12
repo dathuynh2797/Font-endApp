@@ -57,7 +57,7 @@ export class GroupCompare extends Component {
       quarter: [],
       mounth: [],
       data: {
-        dataSets: [],
+        // dataSets: [],
         config: {
           barWidth: 0.5,
           group: {

@@ -59,7 +59,7 @@ export class PersonalCompare extends Component {
       quarter: [],
       mounth: [],
       data: {
-        dataSets: [],
+        // dataSets: [{values: [0]}, {values: [0]}],
         config: {
           barWidth: 0.5,
           group: {

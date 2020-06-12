@@ -5,6 +5,8 @@ import {PersonalCompare} from './PersonalCompare';
 import {TeamCompare} from './TeamCompare';
 import {GroupCompare} from './GroupCompare';
 
+import {Text, View} from 'react-native';
+
 const StyleTabBar = {
   tabBarOptions: {
     upperCaseLabel: false,
@@ -35,12 +37,26 @@ const CompareTab = createMaterialTopTabNavigator(
       navigationOptions: {tabBarLabel: 'Nhóm'},
     },
     Third: {
-      screen: GroupCompare,
+      screen: TeamCompare,
       navigationOptions: {tabBarLabel: 'Phòng'},
     },
   },
   StyleTabBar,
 );
+// function Second() {
+//   return (
+//     <View>
+//       <Text> textInComponent </Text>
+//     </View>
+//   );
+// }
+// function Third() {
+//   return (
+//     <View>
+//       <Text> Hello </Text>
+//     </View>
+//   );
+// }
 
 const CompareResult = createAppContainer(CompareTab);
 
