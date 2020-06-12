@@ -18,6 +18,7 @@ export class DetailsProject extends Component {
     const hinhanhqc = navigation.getParam('hinhanhqc', 'chưa có dữ liệu');
     const latitude = navigation.getParam('latitude', 'chưa có dữ liệu');
     const longtitude = navigation.getParam('longtitude', 'chưa có dữ liệu');
+    // console.log(hinhanhqc);
     return (
       <SafeAreaView style={styles.MenuContainer}>
         <Header title={'Dự Án' + ' ' + ten} navigation={navigation} />
@@ -63,7 +64,7 @@ export class DetailsProject extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../../img/Inforicon/policy.png')}
+                  source={require('../../img/money.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -80,7 +81,7 @@ export class DetailsProject extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../../img/Inforicon/policy.png')}
+                  source={require('../../img/policy1.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -97,7 +98,7 @@ export class DetailsProject extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../../img/Inforicon/policy.png')}
+                  source={require('../../img/policy.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -114,7 +115,7 @@ export class DetailsProject extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../../img/Inforicon/policy.png')}
+                  source={require('../../img/marketing.png')}
                   style={styles.Icon}
                 />
               </View>
@@ -135,7 +136,7 @@ export class DetailsProject extends Component {
             <View style={styles.TabMenu}>
               <View style={styles.Iconstyle}>
                 <Image
-                  source={require('../../img/Inforicon/policy.png')}
+                  source={require('../../img/location.png')}
                   style={styles.Icon}
                 />
               </View>

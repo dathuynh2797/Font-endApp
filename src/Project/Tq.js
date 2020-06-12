@@ -9,15 +9,15 @@ export class Tq extends Component {
     const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
-        <View style={styles.child2}>
-          <Image
-            source={{
-              uri: hinhanhtq,
-            }}
-            style={styles.Proflie}
-          />
-        </View>
+        {/* <View style={styles.child2}> */}
+        <Image
+          source={{
+            uri: hinhanhtq,
+          }}
+          style={styles.Proflie}
+        />
       </View>
+      // </View>
     );
   }
 }

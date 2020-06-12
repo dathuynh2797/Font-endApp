@@ -55,11 +55,12 @@ export class PersonalResult extends Component {
     var dataArrWeek = [];
     var arrDS = [];
     var arr = [];
+    var stt = [];
     var tenNV = [];
     var stt = [];
     dataY.onSnapshot(queryY => {
       queryY.forEach(doc => idDS.push({id: doc.data().id, value: doc.data()}));
-      console.log(idDS);
+      // console.log(idDS);
       for (let j = 0; j < this.state.idNV.length; j++) {
         for (let k = 0; k < idDS.length; k++) {
           if (this.state.idNV[j] === idDS[k].id) {
@@ -77,7 +78,7 @@ export class PersonalResult extends Component {
         }
         arr = [];
       }
-      console.log(dataArrWeek);
+      // console.log(dataArrWeek);
       this.setState({
         dataArrWeek: dataArrWeek,
       });
@@ -116,6 +117,7 @@ export class PersonalResult extends Component {
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
       });
     });
+
     firebaseApp
       .firestore()
       .collection('user')
@@ -128,8 +130,15 @@ export class PersonalResult extends Component {
                 id: this.state.dtLastWeek[v].id,
                 doanhso: this.state.dtLastWeek[v].ds,
                 ten: doc.data().fullName,
+                sdt: doc.data().phoneNumber,
+                email: doc.data().email,
+                hinhanh: doc.data().avatars[0].publicUrl,
+                sinhnhat: doc.data().staffDateOfBirth,
+                chucvu: doc.data().roles[0],
+                idphong: doc.data().productUnit,
+                idnhom: doc.data().iamTeam,
               });
-              stt.push([JSON.stringify(v + 1)]);
+              stt.push([v + 1]);
             }
           });
           console.log(stt);
@@ -169,17 +178,18 @@ export class PersonalResult extends Component {
               data={this.state.dtNameDs}
               renderItem={({item}) => (
                 <TouchableOpacity
-                // onPress={() => {
-                //   this.props.navigation.navigate('PersonalDetail', {
-                //     sdt: item.sdt,
-                //     ten: item.ten,
-                //     namsinh: item.namsinh,
-                //     hinhanh: item.hinhanh,
-                //     email: item.email,
-                //     chucvu: item.chucvu,
-                //   });
-                // }}
-                >
+                  onPress={() => {
+                    this.props.navigation.navigate('PersonalDetail', {
+                      sdt: item.sdt,
+                      ten: item.ten,
+                      namsinh: item.sinhnhat,
+                      hinhanh: item.hinhanh,
+                      email: item.email,
+                      chucvu: item.chucvu,
+                      idphong: item.idphong,
+                      idnhom: item.idnhom,
+                    });
+                  }}>
                   <Cols
                     data={[[item.ten]]}
                     textStyle={styles.text}
@@ -188,6 +198,7 @@ export class PersonalResult extends Component {
                   />
                 </TouchableOpacity>
               )}
+              keyExtractor={item => item.sdt}
             />
 
             <FlatList
@@ -207,6 +218,7 @@ export class PersonalResult extends Component {
                   />
                 </View>
               )}
+              keyExtractor={item => item.email}
             />
             <Col
               data={state.tableTitle}

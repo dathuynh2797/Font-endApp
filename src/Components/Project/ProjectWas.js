@@ -40,7 +40,7 @@ export class ProjectWas extends Component {
             hinhanhbg: doc.data().supplierProfile3[0].publicUrl,
             hinhanhnv: doc.data().supplierProfile4[0].publicUrl,
             hinhanhkh: doc.data().supplierProfile5[0].publicUrl,
-            hinhanhqc: doc.data().supplierProfile6[0].publicUrl,
+            hinhanhqc: doc.data().supplierProfile6,
             latitude: doc.data().supplierLat,
             longtitude: doc.data().supplierLong,
           });

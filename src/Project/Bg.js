@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, StyleSheet, Dimensions} from 'react-native';
 // import {firebaseApp} from './config';
 const {width: WIDTH} = Dimensions.get('window');
 export class Bg extends Component {
@@ -9,22 +9,24 @@ export class Bg extends Component {
     const hinhanhbg = navigation.getParam('hinhanhbg', 'chưa có dữ liệu');
     return (
       <View style={{flex: 1}}>
-        <View style={styles.child2}>
-          <Image
-            source={{
-              uri: hinhanhbg,
-            }}
-            style={styles.Proflie}
-          />
-        </View>
+        <Image
+          source={{
+            uri: hinhanhbg,
+          }}
+          style={styles.Proflie}
+        />
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   Proflie: {
-    resizeMode: 'contain',
+    resizeMode: 'center',
     flex: 1,
+    // width: 180,
+    // marginLeft: 10,
+    // marginRight: 10,
+    // height: 0,
   },
   headerText: {
     width: WIDTH - 10,
@@ -39,6 +41,4 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-  child1: {flex: 1},
-  child2: {flex: 15, margin: 10},
 });

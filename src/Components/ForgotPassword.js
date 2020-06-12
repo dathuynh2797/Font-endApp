@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../Components/config';
 import bgImage from '../img/bgLogin.jpg';
+import {RFValue} from 'react-native-responsive-fontsize';
 import {DismissKeyboardView} from './DismissKeyBroad';
 
 const {width: WIDTH} = Dimensions.get('window');
@@ -69,7 +70,7 @@ export class ForgotPassword extends React.Component {
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-evenly',
+                justifyContent: 'space-around',
               }}>
               <TouchableOpacity
                 onPress={this.handlePasswordReset}
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
   input: {
-    width: WIDTH - 100,
+    width: WIDTH - 60,
     height: 50,
     borderRadius: 50,
     fontSize: 16,
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   btnLogin: {
-    width: WIDTH - 270,
+    width: WIDTH - 265,
     height: 50,
     borderRadius: 45,
     justifyContent: 'center',
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnCancel: {
-    width: WIDTH - 270,
+    width: WIDTH - 265,
     height: 50,
     borderRadius: 45,
     justifyContent: 'center',
@@ -202,9 +203,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: '#E5E5E5',
+    color: '#000',
     textAlign: 'center',
-    fontSize: 16,
+    fontWeight: '600',
+    fontSize: RFValue(13, 680),
   },
   error: {
     borderWidth: 2,
