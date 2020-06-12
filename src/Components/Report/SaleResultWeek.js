@@ -31,7 +31,7 @@ const SaleTab = createMaterialTopTabNavigator(
   {
     First: {
       screen: PersonalResult,
-      navigationOptions: {tabBarLabel: 'Nhân Sự'},
+      navigationOptions: {tabBarLabel: 'Nhân Viên'},
     },
     Second: {
       screen: TeamResult,

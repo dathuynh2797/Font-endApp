@@ -58,6 +58,7 @@ export class TeamBusiness extends Component {
         granularity: 1,
         axisMinimum: 0,
         textSize: 12,
+        position: 'BOTTOM',
         // centerAxisLabels: true,
       },
       legend: {
@@ -77,12 +78,12 @@ export class TeamBusiness extends Component {
         drawCubicIntensity: 0.4,
         circleRadius: 5,
         drawHighlightIndicators: false,
-        color: processColor('blue'),
+        color: processColor('#0000ff'),
         drawFilled: true,
-        fillColor: processColor('blue'),
+        fillColor: processColor('#0000ff'),
         fillAlpha: 45,
-        circleColor: processColor('blue'),
-        textColor: processColor('cyan'),
+        circleColor: processColor('#0000ff'),
+        textColor: processColor('#E0FFFF'),
       },
       yAxis: {
         left: {
@@ -128,7 +129,7 @@ export class TeamBusiness extends Component {
       queryY.forEach(doc => {
         if (e.id === doc.id) {
           const arr = Object.entries(doc.data());
-          for (let i = 0; i < arr.length - 1; i++) {
+          for (let i = 0; i < arr.length - 79; i++) {
             dataYear.push({
               id: i,
               name: arr[i][0],
@@ -188,6 +189,7 @@ export class TeamBusiness extends Component {
         mounthDoanhSo: arrMDs,
         quarter: quarter,
         checkSelect: 'year',
+        animation: {},
       });
       //   console.log('Nam', this.state.yearChart);
       //   console.log('Quy', this.state.quarterChart);
@@ -211,6 +213,11 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 1', 'Tháng 2', 'Tháng 3'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 1,
@@ -238,10 +245,11 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
-          xAxis: {
-            valueFormatter: ['Tháng 4', 'Tháng 5', 'Tháng 6'],
-            axisMaximum: 2,
-          },
+          animation: {},
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 4', 'Tháng 5', 'Tháng 6'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 4,
@@ -269,10 +277,11 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
-          xAxis: {
-            valueFormatter: ['Tháng 7', 'Tháng 8', 'Tháng 9'],
-            axisMaximum: 2,
-          },
+          animation: {},
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 7', 'Tháng 8', 'Tháng 9'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 7,
@@ -300,10 +309,11 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
-          xAxis: {
-            valueFormatter: ['Tháng 10', 'Tháng 11', 'Tháng 12'],
-            axisMaximum: 2,
-          },
+          animation: {},
+          //   xAxis: {
+          //     valueFormatter: ['Tháng 1', 'Tháng 11', 'Tháng 12'],
+          //     axisMaximum: 2,
+          //   },
           mounth: [
             {
               id: 10,
@@ -349,6 +359,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -362,6 +373,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -375,6 +387,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -388,6 +401,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -401,6 +415,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -414,6 +429,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -427,6 +443,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -440,6 +457,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -453,6 +471,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -466,6 +485,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -479,6 +499,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -492,6 +513,7 @@ export class TeamBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -541,6 +563,12 @@ export class TeamBusiness extends Component {
     switch (this.state.checkSelect) {
       case 'year':
         this.setState({
+          animation: {
+            durationY: 1500,
+            easingY: 'EaseOutSine',
+            // durationX: 2000,
+            // easingX: 'EaseInQuad',
+          },
           dataChart: this.state.yearChart,
           xAxis: {
             valueFormatter: ['Quý I', 'Quý II', 'Quý III', 'Quý IV'],
@@ -551,6 +579,12 @@ export class TeamBusiness extends Component {
         break;
       case 'quarter':
         this.setState({
+          animation: {
+            durationY: 1500,
+            easingY: 'EaseOutSine',
+            // durationX: 1000,
+            // easingX: 'EaseInQuad',
+          },
           dataChart: this.state.quarterChart,
           xAxis: {
             valueFormatter: [
@@ -565,6 +599,12 @@ export class TeamBusiness extends Component {
         break;
       case 'mounth':
         this.setState({
+          animation: {
+            durationY: 1500,
+            easingY: 'EaseOutSine',
+            // durationX: 2000,
+            // easingX: 'EaseInQuad',
+          },
           xAxis: {
             valueFormatter: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4', 'Tuần 5'],
             axisMaximum: 4,
@@ -577,27 +617,35 @@ export class TeamBusiness extends Component {
       default:
         this.setState({dialogVisible: true});
     }
+    console.log(this.state.xAxis);
   }
 
-  componentDidMount() {
-    const data = firebaseApp.firestore().collection('units');
-    const newData = [];
+  componentDidMount = async () => {
+    const db = firebaseApp.firestore();
+    const unitsData = [];
     const listTeam = [];
-    let i = -1;
-    data.get().then(
-      query =>
-        query.forEach(doc => {
-          i++;
-          newData.push({id: doc.id, name: doc.data().unitsTitle, idI: i});
+    // console.log('start');
+    var units = db.collection('units');
+    try {
+      var allUnitsSnapShot = await units.get();
+      allUnitsSnapShot.forEach(doc => {
+        if (doc.data().unitsTitle !== 'Ban Giám Đốc') {
+          unitsData.push({
+            id: doc.id,
+            name: doc.data().unitsTitle,
+          });
           listTeam.push({list: doc.data().productStall});
-        }),
-
-      this.setState({
-        groupName: newData,
-        listTeam: listTeam,
-      }),
-    );
-  }
+        }
+      });
+      //   console.log('end');
+    } catch (err) {
+      console.log('Error getting documents', err);
+    }
+    this.setState({
+      groupName: unitsData,
+      listTeam: listTeam,
+    });
+  };
 
   render() {
     return (
@@ -759,19 +807,12 @@ export class TeamBusiness extends Component {
                 style={styles.chart}
                 marker={this.state.marker}
                 legend={this.state.legend}
-                // drawGridBackground={true}
-                drawBorders={true}
-                touchEnabled={true}
-                dragEnabled={true}
-                scaleEnabled={true}
-                scaleXEnabled={true}
-                chartDescription={{text: ''}}
-                scaleYEnabled={true}
-                pinchZoom={true}
-                doubleTapToZoomEnabled={true}
-                dragDecelerationEnabled={true}
-                dragDecelerationFrictionCoef={0.99}
-                keepPositionOnRotation={false}
+                xAxis={this.state.xAxis}
+                animation={this.state.animation}
+                gridBackgroundColor={processColor('#ffffff')}
+                drawBarShadow={false}
+                drawValueAboveBar={true}
+                drawHighlightArrow={true}
                 data={{
                   dataSets: [
                     {
@@ -779,18 +820,10 @@ export class TeamBusiness extends Component {
                         'Đồ thị kết quả kinh doanh của ' +
                         `${this.state.staffChartName}`,
                       values: this.state.dataChart,
-                      //   values: [
-                      //     {x: 0, y: 1000},
-                      //     {x: 1, y: 2000},
-                      //     {x: 2, y: 3000},
-                      //     {x: 3, y: 2000},
-                      //     {x: 4, y: 4000},
-                      //   ],
                       config: this.state.config,
                     },
                   ],
                 }}
-                xAxis={this.state.xAxis}
                 yAxis={this.state.yAxis}
               />
             </View>
