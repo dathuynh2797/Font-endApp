@@ -57,12 +57,12 @@ export class PersonalBusiness extends Component {
         drawCubicIntensity: 0.4,
         circleRadius: 5,
         drawHighlightIndicators: false,
-        color: processColor('blue'),
+        color: processColor('#0000ff'),
         drawFilled: true,
-        fillColor: processColor('blue'),
+        fillColor: processColor('#0000ff'),
         fillAlpha: 45,
-        circleColor: processColor('blue'),
-        textColor: processColor('cyan'),
+        circleColor: processColor('#0000ff'),
+        textColor: processColor('#E0FFFF'),
       },
       legend: {
         enabled: true,
@@ -84,6 +84,7 @@ export class PersonalBusiness extends Component {
         axisMinimum: 0,
         textSize: 12,
         // centerAxisLabels: true,
+        position: 'BOTTOM',
       },
       yAxis: {
         right: {
@@ -167,6 +168,7 @@ export class PersonalBusiness extends Component {
         mounthDoanhSo: arrMDs,
         quarter: quarter,
         checkSelect: 'year',
+        animation: {},
       });
       //   console.log('Nam', this.state.yearChart);
       //   console.log('Quy', this.state.quarterChart);
@@ -190,6 +192,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           //   xAxis: {
           //     valueFormatter: ['Tháng 1', 'Tháng 2', 'Tháng 3'],
           //     axisMaximum: 2,
@@ -221,6 +224,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           //   xAxis: {
           //     valueFormatter: ['Tháng 4', 'Tháng 5', 'Tháng 6'],
           //     axisMaximum: 2,
@@ -252,6 +256,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           //   xAxis: {
           //     valueFormatter: ['Tháng 7', 'Tháng 8', 'Tháng 9'],
           //     axisMaximum: 2,
@@ -283,6 +288,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           //   xAxis: {
           //     valueFormatter: ['Tháng 1', 'Tháng 11', 'Tháng 12'],
           //     axisMaximum: 2,
@@ -332,6 +338,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -345,6 +352,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -358,6 +366,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -371,6 +380,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -384,6 +394,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -397,6 +408,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -410,6 +422,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -423,6 +436,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -436,6 +450,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -449,6 +464,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -462,6 +478,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -475,6 +492,7 @@ export class PersonalBusiness extends Component {
           });
         }
         this.setState({
+          animation: {},
           mounthChart: arrMDs,
           checkSelect: 'mounth',
         });
@@ -524,6 +542,12 @@ export class PersonalBusiness extends Component {
     switch (this.state.checkSelect) {
       case 'year':
         this.setState({
+          animation: {
+            durationY: 1500,
+            easingY: 'EaseOutSine',
+            // durationX: 2000,
+            // easingX: 'EaseInQuad',
+          },
           dataChart: this.state.yearChart,
           xAxis: {
             valueFormatter: ['Quý I', 'Quý II', 'Quý III', 'Quý IV'],
@@ -534,6 +558,12 @@ export class PersonalBusiness extends Component {
         break;
       case 'quarter':
         this.setState({
+          animation: {
+            durationY: 1500,
+            easingY: 'EaseOutSine',
+            // durationX: 1000,
+            // easingX: 'EaseInQuad',
+          },
           dataChart: this.state.quarterChart,
           xAxis: {
             valueFormatter: [
@@ -548,6 +578,12 @@ export class PersonalBusiness extends Component {
         break;
       case 'mounth':
         this.setState({
+          animation: {
+            durationY: 1500,
+            easingY: 'EaseOutSine',
+            // durationX: 2000,
+            // easingX: 'EaseInQuad',
+          },
           xAxis: {
             valueFormatter: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4', 'Tuần 5'],
             axisMaximum: 4,
@@ -563,27 +599,34 @@ export class PersonalBusiness extends Component {
     console.log(this.state.xAxis);
   }
 
-  componentDidMount() {
-    const data = firebaseApp.firestore().collection('user');
-    const newData = [];
-    data.get().then(query =>
-      query.forEach(doc => {
-        if (
-          doc.data().fullName !== null &&
-          doc.data().fullName !== undefined &&
-          doc.data().roles[0] !== 'Admin'
-        ) {
-          newData.push({
-            id: doc.id,
-            name: doc.data().fullName,
-          });
+  componentDidMount = async () => {
+    const db = firebaseApp.firestore();
+    const userData = [];
+    var user = db.collection('user');
+    try {
+      var allUserSnapShot = await user.get();
+      allUserSnapShot.forEach(doc => {
+        if (doc.data().roles[0] !== 'Admin') {
+          if (doc.data().roles[0] !== 'Giám Đốc') {
+            if (doc.data().roles[0] !== 'Phó Giám Đốc') {
+              userData.push({
+                id: doc.id,
+                name: doc.data().fullName,
+                // idNhom: doc.data().iamTeam,
+              });
+            }
+          }
         }
-      }),
-    );
+      });
+
+      // console.log('end');
+    } catch (err) {
+      console.log('Error getting documents', err);
+    }
     this.setState({
-      staffName: newData,
+      staffName: userData,
     });
-  }
+  };
 
   render() {
     return (
@@ -715,48 +758,32 @@ export class PersonalBusiness extends Component {
               <Text>Tìm Kiếm</Text>
             </TouchableOpacity>
           </View>
-          {this.state.toggleChart ? (
-            <View style={[styles.container, styles.bgChart]}>
-              <LineChart
-                style={styles.chart}
-                marker={this.state.marker}
-                xAxis={this.state.xAxis}
-                // drawGridBackground={true}
-                drawBorders={true}
-                touchEnabled={true}
-                dragEnabled={true}
-                scaleEnabled={true}
-                scaleXEnabled={true}
-                scaleYEnabled={true}
-                chartDescription={{text: ''}}
-                pinchZoom={true}
-                doubleTapToZoomEnabled={true}
-                dragDecelerationEnabled={true}
-                dragDecelerationFrictionCoef={0.99}
-                keepPositionOnRotation={false}
-                legend={this.state.legend}
-                data={{
-                  dataSets: [
-                    {
-                      label:
-                        'Đồ thị kết quả kinh doanh của ' +
-                        `${this.state.staffChartName}`,
-                      values: this.state.dataChart,
-                      //   values: [
-                      //     {x: 0, y: 1000},
-                      //     {x: 1, y: 2000},
-                      //     {x: 2, y: 3000},
-                      //     {x: 3, y: 2000},
-                      //     {x: 4, y: 4000},
-                      //   ],
-                      config: this.state.config,
-                    },
-                  ],
-                }}
-                yAxis={this.state.yAxis}
-              />
-            </View>
-          ) : null}
+
+          <View style={[styles.container, styles.bgChart]}>
+            <LineChart
+              style={styles.chart}
+              marker={this.state.marker}
+              legend={this.state.legend}
+              xAxis={this.state.xAxis}
+              animation={this.state.animation}
+              gridBackgroundColor={processColor('#ffffff')}
+              drawBarShadow={false}
+              drawValueAboveBar={true}
+              drawHighlightArrow={true}
+              data={{
+                dataSets: [
+                  {
+                    label:
+                      'Đồ thị kết quả kinh doanh của ' +
+                      `${this.state.staffChartName}`,
+                    values: this.state.dataChart,
+                    config: this.state.config,
+                  },
+                ],
+              }}
+              yAxis={this.state.yAxis}
+            />
+          </View>
         </SafeAreaView>
       </KeyboardAvoidingView>
     );

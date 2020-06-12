@@ -28,7 +28,7 @@ const CompareTab = createMaterialTopTabNavigator(
   {
     First: {
       screen: PersonalCompare,
-      navigationOptions: {tabBarLabel: 'Nhân Sự'},
+      navigationOptions: {tabBarLabel: 'Nhân Viên'},
     },
     Second: {
       screen: TeamCompare,

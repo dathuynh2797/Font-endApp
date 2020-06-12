@@ -27,7 +27,7 @@ const BusinessTab = createMaterialTopTabNavigator(
   {
     First: {
       screen: PersonalBusiness,
-      navigationOptions: {tabBarLabel: 'Nhân Sự'},
+      navigationOptions: {tabBarLabel: 'Nhân Viên'},
     },
     Second: {
       screen: TeamBusiness,

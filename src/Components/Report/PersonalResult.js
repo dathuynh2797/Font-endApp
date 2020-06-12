@@ -56,6 +56,7 @@ export class PersonalResult extends Component {
     var arrDS = [];
     var arr = [];
     var tenNV = [];
+    var stt = [];
     dataY.onSnapshot(queryY => {
       queryY.forEach(doc => idDS.push({id: doc.data().id, value: doc.data()}));
       console.log(idDS);
@@ -120,7 +121,6 @@ export class PersonalResult extends Component {
       .collection('user')
       .get()
       .then(querySnapshot => {
-        tenNV = [];
         for (let v = 0; v < this.state.dtLastWeek.length; v++) {
           querySnapshot.forEach(doc => {
             if (this.state.dtLastWeek[v].id === doc.id) {
@@ -129,22 +129,14 @@ export class PersonalResult extends Component {
                 doanhso: this.state.dtLastWeek[v].ds,
                 ten: doc.data().fullName,
               });
+              stt.push([JSON.stringify(v + 1)]);
             }
           });
+          console.log(stt);
+
           this.setState({
             dtNameDs: tenNV,
-            tableTitle: [
-              ['1'],
-              ['2'],
-              ['3'],
-              ['4'],
-              ['5'],
-              ['6'],
-              ['7'],
-              ['8'],
-              ['9'],
-              ['10'],
-            ],
+            tableTitle: stt,
           });
         }
       });
