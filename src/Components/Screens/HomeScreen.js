@@ -12,6 +12,7 @@ import {
   SafeAreaView,
   FlatList,
   ActivityIndicator,
+  TouchableHighlight,
 } from 'react-native';
 import bgImage from '../../img/bgprofile.png';
 import {firebaseApp} from '../config';
@@ -97,7 +98,7 @@ export class HomeScreen extends Component {
 
         //queryDoanhSo
         const dataY = firebaseApp.firestore().collection('taxClass');
-        dataY.onSnapshot(queryY => {
+        dataY.get().then(queryY => {
           queryY.forEach(doc =>
             idDS.push({id: doc.data().id, value: doc.data()}),
           );
@@ -413,7 +414,8 @@ export class HomeScreen extends Component {
               <Text style={styles.menuTitleTxt}>Dự án bất động sản</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
+          <TouchableHighlight
+            underlineColor="#fff"
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('ReportScreen');
@@ -427,7 +429,7 @@ export class HomeScreen extends Component {
               </View>
               <Text style={styles.menuTitleTxt}>Báo cáo - Thống kê</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {

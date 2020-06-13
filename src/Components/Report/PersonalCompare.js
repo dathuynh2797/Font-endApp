@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../config';
 import {Dialog} from 'react-native-simple-dialogs';
+import {DismissKeyboardView} from '../DismissKeyBroad';
 
 var quarter = [
   {
@@ -827,175 +828,177 @@ export class PersonalCompare extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : null}
-        style={{flex: 1}}>
-        <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
-          {this.renderAlert()}
-          <View style={{flex: 1 / 3}}>
-            <SearchableDropdown
-              placeholder="Nhập Phòng"
-              onTextChange={text => text}
-              onItemSelect={item => this.handleSelectGroup(item)}
-              items={this.state.groupName}
-              containerStyle={{marginTop: 20, marginHorizontal: 20}}
-              textInputStyle={{
-                padding: 10,
-                borderWidth: 0.7,
-                borderColor: '#000',
-                backgroundColor: '#FAF7F6',
-              }}
-              itemStyle={{
-                padding: 10,
-                marginTop: 4,
-                backgroundColor: '#FAF9F8',
-                borderColor: '#bbb',
-                borderWidth: 1,
-              }}
-              itemsContainerStyle={{
-                //items container style you can pass maxHeight
-                //to restrict the items dropdown hieght
-                maxHeight: 90,
-              }}
-            />
-            <SearchableDropdown
-              placeholder="Nhập Nhóm"
-              onTextChange={text => text}
-              onItemSelect={item => this.handleSelectTeam(item)}
-              items={this.state.team}
-              containerStyle={{marginTop: 20, marginHorizontal: 20}}
-              textInputStyle={{
-                padding: 10,
-                borderWidth: 0.7,
-                borderColor: '#000',
-                backgroundColor: '#FAF7F6',
-              }}
-              itemStyle={{
-                padding: 10,
-                marginTop: 4,
-                backgroundColor: '#FAF9F8',
-                borderColor: '#bbb',
-                borderWidth: 1,
-              }}
-              itemsContainerStyle={{
-                //items container style you can pass maxHeight
-                //to restrict the items dropdown hieght
-                maxHeight: 90,
-              }}
-            />
+      <DismissKeyboardView style={{flex: 1}}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : null}
+          style={{flex: 1}}>
+          <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
+            {this.renderAlert()}
+            <View style={{flex: 1 / 3}}>
+              <SearchableDropdown
+                placeholder="Nhập Phòng"
+                onTextChange={text => text}
+                onItemSelect={item => this.handleSelectGroup(item)}
+                items={this.state.groupName}
+                containerStyle={{marginTop: 20, marginHorizontal: 20}}
+                textInputStyle={{
+                  padding: 10,
+                  borderWidth: 0.7,
+                  borderColor: '#000',
+                  backgroundColor: '#FAF7F6',
+                }}
+                itemStyle={{
+                  padding: 10,
+                  marginTop: 4,
+                  backgroundColor: '#FAF9F8',
+                  borderColor: '#bbb',
+                  borderWidth: 1,
+                }}
+                itemsContainerStyle={{
+                  //items container style you can pass maxHeight
+                  //to restrict the items dropdown hieght
+                  maxHeight: 90,
+                }}
+              />
+              <SearchableDropdown
+                placeholder="Nhập Nhóm"
+                onTextChange={text => text}
+                onItemSelect={item => this.handleSelectTeam(item)}
+                items={this.state.team}
+                containerStyle={{marginTop: 20, marginHorizontal: 20}}
+                textInputStyle={{
+                  padding: 10,
+                  borderWidth: 0.7,
+                  borderColor: '#000',
+                  backgroundColor: '#FAF7F6',
+                }}
+                itemStyle={{
+                  padding: 10,
+                  marginTop: 4,
+                  backgroundColor: '#FAF9F8',
+                  borderColor: '#bbb',
+                  borderWidth: 1,
+                }}
+                itemsContainerStyle={{
+                  //items container style you can pass maxHeight
+                  //to restrict the items dropdown hieght
+                  maxHeight: 90,
+                }}
+              />
 
-            <View style={{flexDirection: 'row'}}>
-              <SearchableDropdown
-                placeholder="Nhập Năm"
-                onTextChange={text => text}
-                onItemSelect={item => this.handleSelectYear(item)}
-                items={this.state.year}
-                containerStyle={{marginTop: 20, marginLeft: 20, flex: 1 / 3}}
-                textInputStyle={{
+              <View style={{flexDirection: 'row'}}>
+                <SearchableDropdown
+                  placeholder="Nhập Năm"
+                  onTextChange={text => text}
+                  onItemSelect={item => this.handleSelectYear(item)}
+                  items={this.state.year}
+                  containerStyle={{marginTop: 20, marginLeft: 20, flex: 1 / 3}}
+                  textInputStyle={{
+                    padding: 10,
+                    borderWidth: 0.7,
+                    borderColor: '#000',
+                    backgroundColor: '#FAF7F6',
+                  }}
+                  itemStyle={{
+                    padding: 10,
+                    marginTop: 4,
+                    backgroundColor: '#FAF9F8',
+                    borderColor: '#bbb',
+                    borderWidth: 1,
+                  }}
+                  itemsContainerStyle={{
+                    //items container style you can pass maxHeight
+                    //to restrict the items dropdown hieght
+                    maxHeight: 90,
+                  }}
+                />
+                <SearchableDropdown
+                  placeholder="Nhập Quý"
+                  onTextChange={text => text}
+                  onItemSelect={item => this.handleSelectQuy(item)}
+                  items={this.state.quarter}
+                  containerStyle={{
+                    marginTop: 20,
+                    marginHorizontal: 5,
+                    flex: 1 / 3,
+                  }}
+                  textInputStyle={{
+                    padding: 10,
+                    borderWidth: 0.7,
+                    borderColor: '#000',
+                    backgroundColor: '#FAF7F6',
+                  }}
+                  itemStyle={{
+                    padding: 10,
+                    marginTop: 4,
+                    backgroundColor: '#FAF9F8',
+                    borderColor: '#bbb',
+                    borderWidth: 1,
+                  }}
+                  itemsContainerStyle={{
+                    //items container style you can pass maxHeight
+                    //to restrict the items dropdown hieght
+                    maxHeight: 90,
+                  }}
+                />
+                <SearchableDropdown
+                  placeholder="Nhập Tháng"
+                  onTextChange={text => text}
+                  onItemSelect={item => this.handleSelectMounth(item)}
+                  items={this.state.mounth}
+                  containerStyle={{marginTop: 20, marginRight: 20, flex: 1 / 3}}
+                  textInputStyle={{
+                    padding: 10,
+                    borderWidth: 0.7,
+                    borderColor: '#000',
+                    backgroundColor: '#FAF7F6',
+                  }}
+                  itemStyle={{
+                    padding: 10,
+                    marginTop: 4,
+                    backgroundColor: '#FAF9F8',
+                    borderColor: '#bbb',
+                    borderWidth: 1,
+                  }}
+                  itemsContainerStyle={{
+                    //items container style you can pass maxHeight
+                    //to restrict the items dropdown hieght
+                    maxHeight: 90,
+                  }}
+                />
+              </View>
+              <TouchableOpacity
+                onPress={() => this.handleSubmit()}
+                style={{
+                  alignItems: 'center',
+                  backgroundColor: '#95c1f0',
+                  borderWidth: 0.5,
+                  borderRadius: 5,
+                  alignSelf: 'center',
+                  marginVertical: 10,
                   padding: 10,
-                  borderWidth: 0.7,
-                  borderColor: '#000',
-                  backgroundColor: '#FAF7F6',
-                }}
-                itemStyle={{
-                  padding: 10,
-                  marginTop: 4,
-                  backgroundColor: '#FAF9F8',
-                  borderColor: '#bbb',
-                  borderWidth: 1,
-                }}
-                itemsContainerStyle={{
-                  //items container style you can pass maxHeight
-                  //to restrict the items dropdown hieght
-                  maxHeight: 90,
-                }}
-              />
-              <SearchableDropdown
-                placeholder="Nhập Quý"
-                onTextChange={text => text}
-                onItemSelect={item => this.handleSelectQuy(item)}
-                items={this.state.quarter}
-                containerStyle={{
-                  marginTop: 20,
-                  marginHorizontal: 5,
-                  flex: 1 / 3,
-                }}
-                textInputStyle={{
-                  padding: 10,
-                  borderWidth: 0.7,
-                  borderColor: '#000',
-                  backgroundColor: '#FAF7F6',
-                }}
-                itemStyle={{
-                  padding: 10,
-                  marginTop: 4,
-                  backgroundColor: '#FAF9F8',
-                  borderColor: '#bbb',
-                  borderWidth: 1,
-                }}
-                itemsContainerStyle={{
-                  //items container style you can pass maxHeight
-                  //to restrict the items dropdown hieght
-                  maxHeight: 90,
-                }}
-              />
-              <SearchableDropdown
-                placeholder="Nhập Tháng"
-                onTextChange={text => text}
-                onItemSelect={item => this.handleSelectMounth(item)}
-                items={this.state.mounth}
-                containerStyle={{marginTop: 20, marginRight: 20, flex: 1 / 3}}
-                textInputStyle={{
-                  padding: 10,
-                  borderWidth: 0.7,
-                  borderColor: '#000',
-                  backgroundColor: '#FAF7F6',
-                }}
-                itemStyle={{
-                  padding: 10,
-                  marginTop: 4,
-                  backgroundColor: '#FAF9F8',
-                  borderColor: '#bbb',
-                  borderWidth: 1,
-                }}
-                itemsContainerStyle={{
-                  //items container style you can pass maxHeight
-                  //to restrict the items dropdown hieght
-                  maxHeight: 90,
-                }}
+                }}>
+                <Text>Tìm Kiếm</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={[styles.container, styles.bgChart]}>
+              <View>
+                <Text>{this.state.title}</Text>
+              </View>
+              <BarChart
+                animation={this.state.animation}
+                style={styles.chart}
+                xAxis={this.state.xAxis}
+                data={this.state.data}
+                legend={this.state.legend}
+                drawValueAboveBar={false}
+                marker={this.state.marker}
               />
             </View>
-            <TouchableOpacity
-              onPress={() => this.handleSubmit()}
-              style={{
-                alignItems: 'center',
-                backgroundColor: '#95c1f0',
-                borderWidth: 0.5,
-                borderRadius: 5,
-                alignSelf: 'center',
-                marginVertical: 10,
-                padding: 10,
-              }}>
-              <Text>Tìm Kiếm</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={[styles.container, styles.bgChart]}>
-            <View>
-              <Text>{this.state.title}</Text>
-            </View>
-            <BarChart
-              animation={this.state.animation}
-              style={styles.chart}
-              xAxis={this.state.xAxis}
-              data={this.state.data}
-              legend={this.state.legend}
-              drawValueAboveBar={false}
-              marker={this.state.marker}
-            />
-          </View>
-        </SafeAreaView>
-      </KeyboardAvoidingView>
+          </SafeAreaView>
+        </KeyboardAvoidingView>
+      </DismissKeyboardView>
     );
   }
 }

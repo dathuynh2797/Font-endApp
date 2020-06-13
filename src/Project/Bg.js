@@ -7,34 +7,13 @@ import {
   Dimensions,
   FlatList,
   TouchableOpacity,
+  ImageBackground,
+  TouchableHighlight,
 } from 'react-native';
 import {Modal} from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 const {width: WIDTH} = Dimensions.get('window');
-
-const images = [
-  {
-    // Simplest usage.
-    url: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460',
-
-    // width: number
-    // height: number
-    // Optional, if you know the image size, you can set the optimization performance
-
-    // You can pass props to <Image />.
-    // props: {
-    //   source: require('../img/background.jpg'),
-    // },
-  },
-  {
-    //   url: '',
-    props: {
-      // Or you can set source directory.
-      source: require('../img/background.jpg'),
-    },
-  },
-];
 export class Bg extends Component {
   constructor(props) {
     super(props);
@@ -47,51 +26,77 @@ export class Bg extends Component {
   state = {image: []};
 
   renderModal() {
+    console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
     const hinhanhbg = navigation.getParam('hinhanhbg', 'chưa có dữ liệu');
+    // console.log(hinhanhqc);
     for (let i = 0; i < hinhanhbg.length; i++) {
       hinhanh.push({url: hinhanhbg[i].publicUrl});
     }
     return (
-      <Modal
-        onRequestClose={() => {
-          this.setState({modal: false});
-        }}
-        visible={this.state.modal}
-        transparent={true}>
-        <ImageViewer
-          enableSwipeDown={true}
-          onSwipeDown={() => this.setState({modal: false})}
-          imageUrls={hinhanh}
-        />
-      </Modal>
+      <View>
+        <Modal
+          onRequestClose={() => {
+            this.setState({modal: false});
+          }}
+          // animationType={'fade'}
+          visible={this.state.modal}
+          transparent={true}>
+          <TouchableHighlight
+            style={styles.Button}
+            onPress={() => {
+              this.setState({modal: false});
+            }}>
+            <Image
+              source={require('../img/backwhite.png')}
+              style={styles.IconBack}
+            />
+          </TouchableHighlight>
+          <ImageViewer
+            enableSwipeDown={true}
+            onSwipeDown={() => this.setState({modal: false})}
+            imageUrls={hinhanh}
+          />
+        </Modal>
+      </View>
     );
   }
   render() {
     const {navigation} = this.props;
     const hinhanhbg = navigation.getParam('hinhanhbg', 'chưa có dữ liệu');
     return (
-      <View style={{flex: 1}}>
-        {this.renderModal()}
-        <FlatList
-          style={{}}
-          data={hinhanhbg}
-          renderItem={({item}) => (
-            <TouchableOpacity onPress={() => this.setState({modal: true})}>
-              <Image source={{uri: item.publicUrl}} style={styles.image} />
-            </TouchableOpacity>
-          )}
-        />
-      </View>
+      <ImageBackground
+        source={require('../img/background.jpg')}
+        style={{flex: 1}}>
+        <View style={{flex: 1}}>
+          {this.renderModal()}
+
+          <FlatList
+            style={{}}
+            data={hinhanhbg}
+            renderItem={({item}) => (
+              <TouchableOpacity onPress={() => this.setState({modal: true})}>
+                <Image source={{uri: item.publicUrl}} style={styles.image} />
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  Proflie: {
-    // resizeMode: 'contain',
-    flex: 1,
+  Button: {
+    backgroundColor: '#000000',
+    padding: 10,
+    elevation: 2,
+  },
+  IconBack: {
+    marginLeft: 10,
+    height: 20,
+    width: 20,
   },
   headerText: {
     width: WIDTH - 10,
