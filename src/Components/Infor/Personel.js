@@ -153,7 +153,7 @@ export class Personel extends Component {
               style={styles.head}
               textStyle={styles.text}
               borderStyle={{borderWidth: 1, borderColor: '#000'}}
-              flexArr={[1.5, 1, 1]}
+              flexArr={[1.3, 1, 1]}
             />
             <FlatList
               data={this.state.tableData}
@@ -171,14 +171,14 @@ export class Personel extends Component {
                       idphong: item.idphong,
                       idnhom: item.idnhom,
                     });
-                    console.log(item.email);
+                    // console.log(item.email);
                   }}>
                   <Cols
                     data={[[item.ten], [item.namsinh], [item.sdt]]}
                     textStyle={styles.text}
-                    style={styles.boder}
+                    // style={styles.boder}
                     borderStyle={{borderWidth: 1, borderColor: '#000'}}
-                    flexArr={[1.5, 1, 1]}
+                    flexArr={[1.3, 1, 1]}
                   />
                 </TouchableOpacity>
               )}

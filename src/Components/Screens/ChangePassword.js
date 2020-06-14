@@ -67,20 +67,35 @@ export class ChangePassword extends Component {
             Alert.alert('Mật Khẩu Thay Đổi Thành Công');
           })
           .catch(error => {
-            Alert.alert(error.message);
+            var errorCode = error.code;
+            if (errorCode === 'auth/weak-password') {
+              Alert.alert(
+                '',
+                'Mật khẩu mới phải có tối thiểu 6 ký tự',
+                [{text: 'OK', onPress: () => console.log('OK pressed')}],
+                {cancelable: false},
+              );
+            }
           });
       })
       .catch(function(error) {
         var errorCode = error.code;
-
         if (errorCode === 'auth/wrong-password') {
           Alert.alert(
             '',
-            'Vui lòng điền đầy đủ thông tin',
+            'Mật khẩu hiện tại không đúng',
             [{text: 'OK', onPress: () => console.log('OK pressed')}],
             {cancelable: false},
           );
         }
+        // if (errorCode === 'auth/invalid-action-code') {
+        //   Alert.alert(
+        //     '',
+        //     'Mật khẩu hiện tại không đúng',
+        //     [{text: 'OK', onPress: () => console.log('OK pressed')}],
+        //     {cancelable: false},
+        //   );
+        // }
       });
   };
 

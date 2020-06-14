@@ -35,8 +35,16 @@ export class ForgotPassword extends React.Component {
         var errorCode = error.code;
         if (errorCode === 'auth/invalid-email') {
           Alert.alert(
-            'Thất bại',
-            'Không tìm thấy tài khoản email',
+            '',
+            'Vui lòng nhập đúng định dạng Email',
+            [{text: 'OK', onPress: () => console.log('OK pressed')}],
+            {cancelable: false},
+          );
+        }
+        if (errorCode === 'auth/user-not-found') {
+          Alert.alert(
+            '',
+            'Không tìm thấy Email trùng khớp',
             [{text: 'OK', onPress: () => console.log('OK pressed')}],
             {cancelable: false},
           );

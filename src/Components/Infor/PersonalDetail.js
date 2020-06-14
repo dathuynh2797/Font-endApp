@@ -1,11 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  ImageBackground,
+} from 'react-native';
 import 'firebase/firestore';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import bgAva from '../../img/bgAva.png';
 import {firebaseApp} from '../config';
-
+const windowHeight = Dimensions.get('window').height;
+const height = (windowHeight - (windowHeight * 87) / 100) / 10;
 export class PersonalDetail extends Component {
   constructor(props) {
     super(props);
@@ -145,11 +153,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 7,
     borderRadius: 4,
-    padding: 10,
+    padding: height,
     width: '90%',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 12,
   },
   HorizonLine: {
     borderWidth: 1,

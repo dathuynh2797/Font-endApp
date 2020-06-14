@@ -98,6 +98,7 @@ export class HomeScreen extends Component {
 
         //queryDoanhSo
         const dataY = firebaseApp.firestore().collection('taxClass');
+        dataY.onSnapshot(queryY => queryY.forEach(doc => doc.data()));
         dataY.get().then(queryY => {
           queryY.forEach(doc =>
             idDS.push({id: doc.data().id, value: doc.data()}),
@@ -272,7 +273,7 @@ export class HomeScreen extends Component {
         <View style={styles.top}>
           <Dialog
             visible={this.state.dialogVisible}
-            title="Chúc Mừng Sinh Nhật"
+            title="Công Ty Hello World Chúc Mừng Sinh Nhật"
             animationType="slide"
             titleStyle={{
               color: 'rgba(240, 36, 63, 0.65)',
@@ -384,7 +385,8 @@ export class HomeScreen extends Component {
         </View>
 
         <View style={styles.menuContainer}>
-          <TouchableOpacity
+          <TouchableHighlight
+            underlayColor="white"
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('InfoScreen');
@@ -398,8 +400,9 @@ export class HomeScreen extends Component {
               </View>
               <Text style={styles.menuTitleTxt}>Thông tin công ty</Text>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </TouchableHighlight>
+          <TouchableHighlight
+            underlayColor="white"
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('Project');
@@ -413,9 +416,9 @@ export class HomeScreen extends Component {
               </View>
               <Text style={styles.menuTitleTxt}>Dự án bất động sản</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
           <TouchableHighlight
-            underlineColor="#fff"
+            underlayColor="white"
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('ReportScreen');
@@ -430,7 +433,8 @@ export class HomeScreen extends Component {
               <Text style={styles.menuTitleTxt}>Báo cáo - Thống kê</Text>
             </View>
           </TouchableHighlight>
-          <TouchableOpacity
+          <TouchableHighlight
+            underlayColor="white"
             style={styles.menuItem}
             onPress={() => {
               this.props.navigation.navigate('BarChartScreen');
@@ -444,7 +448,7 @@ export class HomeScreen extends Component {
               </View>
               <Text style={styles.menuTitleTxt}>Công tác</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </View>
       </SafeAreaView>
     );
@@ -494,6 +498,7 @@ const styles = StyleSheet.create({
     width: '50%',
     height: '50%',
     padding: 15,
+    backgroundColor: '#fff',
   },
   menuIcon: {
     height: '100%',

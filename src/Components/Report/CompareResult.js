@@ -37,7 +37,7 @@ const CompareTab = createMaterialTopTabNavigator(
       navigationOptions: {tabBarLabel: 'Nhóm'},
     },
     Third: {
-      screen: TeamCompare,
+      screen: GroupCompare,
       navigationOptions: {tabBarLabel: 'Phòng'},
     },
   },

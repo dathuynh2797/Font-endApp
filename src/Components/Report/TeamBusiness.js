@@ -626,13 +626,16 @@ export class TeamBusiness extends Component {
     const listTeam = [];
     // console.log('start');
     var units = db.collection('units');
+    let i = -1;
     try {
       var allUnitsSnapShot = await units.get();
       allUnitsSnapShot.forEach(doc => {
         if (doc.data().unitsTitle !== 'Ban Giám Đốc') {
+          i++;
           unitsData.push({
             id: doc.id,
             name: doc.data().unitsTitle,
+            idI: i,
           });
           listTeam.push({list: doc.data().productStall});
         }
