@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "devtools": "react-devtools"
   },
   "dependencies": {
     "base-64": "^0.1.0",
@@ -21,10 +22,10 @@
     "react-native-gesture-handler": "^1.6.0",
     "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-maps": "0.27.1",
+    "react-native-picker-modal-view": "^1.3.2",
     "react-native-reanimated": "^1.4.0",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-screens": "^2.0.0-alpha.22",
-    "react-native-searchable-dropdown": "^1.1.1",
     "react-native-simple-dialogs": "^1.2.1",
     "react-native-sound": "^0.11.0",
     "react-native-table-component": "^1.2.1",

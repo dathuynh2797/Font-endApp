@@ -1,39 +1,44 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import SearchableDropdown from 'react-native-searchable-dropdown';
-import {BarChart} from 'react-native-charts-wrapper';
+import * as React from 'react';
 import {
-  View,
-  StyleSheet,
   SafeAreaView,
-  processColor,
-  TouchableOpacity,
   Text,
-  KeyboardAvoidingView,
-  Platform,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  processColor,
+  Image,
 } from 'react-native';
-import {firebaseApp} from '../config';
+import {BarChart} from 'react-native-charts-wrapper';
+import PickerModal from 'react-native-picker-modal-view';
 import {Dialog} from 'react-native-simple-dialogs';
-
-var quarter = [
+import {
+  SelectBoxStyle,
+  selectViewIsDisabled,
+} from 'react-native-picker-modal-view/dist/Assets/Styles';
+import {firebaseApp} from '../config';
+const quarter = [
   {
-    id: 1,
-    name: 'Quý I',
+    Id: 0,
+    Name: 'Quý 1',
+    Value: 'Quý 1',
   },
   {
-    id: 2,
-    name: 'Quý II',
+    Id: 1,
+    Name: 'Quý 2',
+    Value: 'Quý 2',
   },
   {
-    id: 3,
-    name: 'Quý III',
+    Id: 2,
+    Name: 'Quý 3',
+    Value: 'Quý 3',
   },
   {
-    id: 4,
-    name: 'Quý IV',
+    Id: 3,
+    Name: 'Quý 4',
+    Value: 'Quý 4',
   },
 ];
-
 const COLOR = [
   '#c7004c',
   '#8f71ff',
@@ -47,19 +52,24 @@ const COLOR = [
   '#FFB6C1',
 ];
 
-export class PersonalCompare extends Component {
+export class PersonalCompare extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      checkSelect: null,
-      toggleChart: true,
+      Year: [],
+      selectedT: false,
+      selectedY: false,
+      selectedQ: false,
+      selectedM: false,
+      nameDecription: false,
       staffName: [],
       doanhSo: [],
       year: [],
       quarter: [],
       mounth: [],
       data: {
-        // dataSets: [{values: [0]}, {values: [0]}],
+        // dataSets: [],
         config: {
           barWidth: 0.5,
           group: {
@@ -79,7 +89,13 @@ export class PersonalCompare extends Component {
         // centerAxisLabels: true,
         position: 'BOTTOM',
       },
-
+      legend: {
+        enabled: true,
+        textSize: 16,
+      },
+      description: {
+        text: '',
+      },
       marker: {
         enabled: true,
         markerColor: processColor('yellow'),
@@ -90,52 +106,49 @@ export class PersonalCompare extends Component {
   }
 
   handleSelectGroup = item => {
-    // console.log(item);
     const arrTeam = [];
-    // const arrYear = [];
-    // const arrDoanhSo = [];
-    // const arrY = [];
-
     this.state.stallData.forEach(e => {
       for (let i = 0; i < this.state.listTeam[item.idI].list.length; i++) {
-        //ss doc.id === list[] ? push
-        if (e.id === this.state.listTeam[item.idI].list[i]) {
+        if (e.Id === this.state.listTeam[item.idI].list[i]) {
           arrTeam.push({
-            id: e.id,
-            name: e.name,
-            // doanhSo: e.doanhSo,
+            Id: e.Id,
+            Name: e.Name,
+            Value: e.Name,
           });
         }
       }
     });
+    // console.log(arrTeam);
 
     this.setState({
-      // year: arrY,
-      // doanhSo: arrDoanhSo,
-      team: arrTeam,
+      selectedT: false,
+      selectedY: false,
+      selectedQ: false,
+      selectedM: false,
+      Team: arrTeam,
+      Year: [],
+      Quarter: [],
+      Mounth: [],
+      checkSelect: '',
     });
   };
 
-  handleSelectTeam = item => {
+  handleTeam = item => {
     const arrData = [];
     const arrYear = [];
     const arrY = [];
     const arrName = [];
     const arrDoanhSo = [];
-
-    // console.log(item);
-    // console.log(this.state.listUser);
-    // console.log(this.state.taxData);
     this.state.listUser.forEach(e => {
-      if (item.id === e.idNhom) {
+      if (item.Id === e.idNhom) {
         arrData.push(e);
         // console.log(arrData);
       }
     });
     this.state.taxData.forEach(e => {
       arrData.forEach(i => {
-        if (i.id === e.id) {
-          arrName.push(i.name);
+        if (i.Id === e.Id) {
+          arrName.push(i.Name);
           arrYear.push(
             Object.keys(e.doanhSo).slice(0, Object.keys(e.doanhSo).length - 1),
           );
@@ -149,39 +162,42 @@ export class PersonalCompare extends Component {
       });
     });
     arrYear[0].forEach((e, i) => {
-      arrY.push({id: i, name: e});
+      arrY.push({Id: i, Name: e, Value: e});
     });
     this.setState({
-      year: arrY,
+      selectedT: true,
+      selectedY: false,
+      selectedQ: false,
+      selectedM: false,
+      Year: arrY,
       doanhSo: arrDoanhSo,
       userName: arrName,
+      userChart: item.Name,
+      Quarter: [],
+      Mounth: [],
+      checkSelect: '',
     });
   };
 
   handleSelectYear = item => {
-    console.log('Doanh So', this.state.doanhSo);
-    // console.log('default', this.state.data);
-    console.log(item);
-
     const doanhSoQuy = [];
     const doanhSoThang = [];
     const doanhSoTuan = [];
     const dataQ = [];
     for (let i = 0; i < this.state.doanhSo.length; i++) {
       doanhSoQuy.push([
-        Object.values(this.state.doanhSo[i][item.id])
+        Object.values(this.state.doanhSo[i][item.Id])
           .slice(0, 4)
           .reduce((a, b) => a + b),
       ]);
       doanhSoThang.push(
-        Object.values(this.state.doanhSo[i][item.id]).slice(4, 16),
+        Object.values(this.state.doanhSo[i][item.Id]).slice(4, 16),
       );
-      doanhSoTuan.push(Object.values(this.state.doanhSo[i][item.id]).slice(16));
+      doanhSoTuan.push(Object.values(this.state.doanhSo[i][item.Id]).slice(16));
     }
     // console.log('Doanh So Q', doanhSoQuy);
     // console.log('Doanh So Thang', doanhSoThang);
     // console.log('Doanh So Tuan', doanhSoTuan);
-
     for (let i = 0; i < doanhSoQuy.length; i++) {
       dataQ.push({
         values: doanhSoQuy[i],
@@ -193,29 +209,26 @@ export class PersonalCompare extends Component {
       });
     }
     this.setState({
+      selectedY: true,
+      selectedQ: false,
+      selectedM: false,
+      Mounth: [],
+      Quarter: quarter,
       yearChart: dataQ,
-      checkSelect: 'year',
-      quarter: quarter,
       doanhSoThang: doanhSoThang,
       doanhSoTuan: doanhSoTuan,
       animation: {},
+      checkSelect: 'Year',
     });
-
-    // console.log('Doanh so quy', doanhSoQuy);
   };
 
   checkQuarter = item => {
-    // const arrQ = [];
     const doanhSoT = [];
     const dataT = [];
-    // console.log(item);
-    // console.log(this.state.doanhSoThang[0][0]);
-    // const data = this.state.doanhSoThang;
-    // console.log(typeof data);
-
+    let Mounth = [];
     for (let i = 0; i < this.state.doanhSoThang.length; i++) {
       switch (item) {
-        case 1:
+        case 0:
           doanhSoT.push([
             this.state.doanhSoThang[i].slice(0, 3).reduce((a, b) => a + b),
           ]);
@@ -227,27 +240,25 @@ export class PersonalCompare extends Component {
               colors: [processColor(COLOR[i])],
             },
           });
-          this.setState({
-            animation: {},
-            mounth: [
-              {
-                id: 1,
-                name: 'Tháng 1',
-              },
-              {
-                id: 2,
-                name: 'Tháng 2',
-              },
-              {
-                id: 3,
-                name: 'Tháng 3',
-              },
-            ],
-            quarterChart: dataT,
-            checkSelect: 'quarter',
-          });
+          Mounth = [
+            {
+              Id: 1,
+              Name: 'Tháng 1',
+              Value: 'Tháng 1',
+            },
+            {
+              Id: 2,
+              Name: 'Tháng 2',
+              Value: 'Tháng 2',
+            },
+            {
+              Id: 3,
+              Name: 'Tháng 3',
+              Value: 'Tháng 3',
+            },
+          ];
           break;
-        case 2:
+        case 1:
           doanhSoT.push([
             this.state.doanhSoThang[i].slice(3, 6).reduce((a, b) => a + b),
           ]);
@@ -259,27 +270,25 @@ export class PersonalCompare extends Component {
               colors: [processColor(COLOR[i])],
             },
           });
-          this.setState({
-            animation: {},
-            mounth: [
-              {
-                id: 4,
-                name: 'Tháng 4',
-              },
-              {
-                id: 5,
-                name: 'Tháng 5',
-              },
-              {
-                id: 6,
-                name: 'Tháng 6',
-              },
-            ],
-            quarterChart: dataT,
-            checkSelect: 'quarter',
-          });
+          Mounth = [
+            {
+              Id: 4,
+              Name: 'Tháng 4',
+              Value: 'Tháng 4',
+            },
+            {
+              Id: 5,
+              Name: 'Tháng 5',
+              Value: 'Tháng 5',
+            },
+            {
+              Id: 6,
+              Name: 'Tháng 6',
+              Value: 'Tháng 6',
+            },
+          ];
           break;
-        case 3:
+        case 2:
           doanhSoT.push([
             this.state.doanhSoThang[i].slice(6, 9).reduce((a, b) => a + b),
           ]);
@@ -291,27 +300,25 @@ export class PersonalCompare extends Component {
               colors: [processColor(COLOR[i])],
             },
           });
-          this.setState({
-            animation: {},
-            mounth: [
-              {
-                id: 7,
-                name: 'Tháng 7',
-              },
-              {
-                id: 8,
-                name: 'Tháng 8',
-              },
-              {
-                id: 9,
-                name: 'Tháng 9',
-              },
-            ],
-            quarterChart: dataT,
-            checkSelect: 'quarter',
-          });
+          Mounth = [
+            {
+              Id: 7,
+              Name: 'Tháng 7',
+              Value: 'Tháng 7',
+            },
+            {
+              Id: 8,
+              Name: 'Tháng 8',
+              Value: 'Tháng 8',
+            },
+            {
+              Id: 8,
+              Name: 'Tháng 8',
+              Value: 'Tháng 8',
+            },
+          ];
           break;
-        case 4:
+        case 3:
           doanhSoT.push([
             this.state.doanhSoThang[i].slice(9, 12).reduce((a, b) => a + b),
           ]);
@@ -323,51 +330,47 @@ export class PersonalCompare extends Component {
               colors: [processColor(COLOR[i])],
             },
           });
-          this.setState({
-            animation: {},
-            mounth: [
-              {
-                id: 10,
-                name: 'Tháng 10',
-              },
-              {
-                id: 11,
-                name: 'Tháng 11',
-              },
-              {
-                id: 12,
-                name: 'Tháng 12',
-              },
-            ],
-            quarterChart: dataT,
-            checkSelect: 'quarter',
-          });
-          break;
-
-        default:
+          Mounth = [
+            {
+              Id: 10,
+              Name: 'Tháng 10',
+              Value: 'Tháng 10',
+            },
+            {
+              Id: 8,
+              Name: 'Tháng 10',
+              Value: 'Tháng 10',
+            },
+            {
+              Id: 8,
+              Name: 'Tháng 10',
+              Value: 'Tháng 10',
+            },
+          ];
           break;
       }
     }
-    console.log(doanhSoT);
-    console.log(dataT);
+    this.setState({
+      selectedQ: true,
+      animation: {},
+      Mounth: Mounth,
+      quarterChart: dataT,
+      checkSelect: 'Quarter',
+    });
   };
-
-  handleSelectQuy = item => {
-    this.checkQuarter(item.id);
+  handleSelectQuarter = item => {
+    this.checkQuarter(item.Id);
   };
-
   handleSelectMounth = item => {
-    console.log(item);
     const doanhSoW = [];
     const dataW = [];
     for (let i = 0; i < this.state.doanhSoTuan.length; i++) {
-      switch (item.id) {
+      switch (item.Id) {
         case 1:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(0, 5).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -375,19 +378,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 2:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(5, 10).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -395,19 +392,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 3:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(10, 15).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -415,19 +406,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 4:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(15, 20).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -435,19 +420,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 5:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(20, 25).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -455,19 +434,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 6:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(25, 30).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -475,19 +448,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 7:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(30, 35).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -495,19 +462,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 8:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(35, 40).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -515,19 +476,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 9:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(40, 45).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -535,19 +490,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 10:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(45, 50).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -555,19 +504,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 11:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(50, 55).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -575,19 +518,13 @@ export class PersonalCompare extends Component {
               drawValues: false,
               colors: [processColor(COLOR[i])],
             },
-          });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
           });
           break;
         case 12:
           doanhSoW.push([
             this.state.doanhSoTuan[i].slice(55, 60).reduce((a, b) => a + b),
           ]);
-          console.log(doanhSoW);
-
+          //   console.log(doanhSoW);
           dataW.push({
             values: doanhSoW[i],
             label: this.state.userName[i],
@@ -596,18 +533,19 @@ export class PersonalCompare extends Component {
               colors: [processColor(COLOR[i])],
             },
           });
-          this.setState({
-            mounthChart: dataW,
-            animation: {},
-            checkSelect: 'mounth',
-          });
-          break;
-
-        default:
           break;
       }
     }
+    this.setState({
+      selectedM: true,
+      mounthChart: dataW,
+      animation: {},
+      checkSelect: 'Mounth',
+    });
   };
+  onBackButtonPressed() {
+    // console.log('back key pressed');
+  }
 
   renderAlert = () => (
     <Dialog
@@ -645,91 +583,87 @@ export class PersonalCompare extends Component {
 
   handleSubmit() {
     switch (this.state.checkSelect) {
-      case 'year':
-        this.setState(
-          {
-            animation: {
-              durationY: 1500,
-              durationX: 1500,
-              easingX: 'EaseOutSine',
-              easingY: 'EaseOutSine',
-            },
-            data: {
-              dataSets: this.state.yearChart,
-              config: {
-                barWidth: 0.5,
-                group: {
-                  fromX: 0,
-                  groupSpace: 0,
-                  barSpace: 0.1,
-                },
+      case 'Year':
+        this.setState({
+          title: 'Tổng Doanh Số Quý Trong Năm',
+          description: {
+            text: 'Đơn Vị: Triệu VNĐ',
+            textSize: 14,
+          },
+          nameDecription: true,
+          animation: {
+            durationY: 1500,
+            durationX: 1500,
+            easingX: 'EaseOutSine',
+            easingY: 'EaseOutSine',
+          },
+          data: {
+            dataSets: this.state.yearChart,
+            config: {
+              barWidth: 0.5,
+              group: {
+                fromX: 0,
+                groupSpace: 0,
+                barSpace: 0.1,
               },
             },
-            toggleChart: true,
-            title: 'Tổng Doanh Số Quý Trong Năm',
           },
-          //   () => {
-          //     console.log(this.state.data);
-          //   },
-        );
+        });
         break;
-      case 'quarter':
-        this.setState(
-          {
-            animation: {
-              durationY: 1500,
-              durationX: 1500,
-              easingX: 'EaseOutSine',
-              easingY: 'EaseOutSine',
-            },
-            data: {
-              dataSets: this.state.quarterChart,
-              config: {
-                barWidth: 0.5,
-                group: {
-                  fromX: 0,
-                  groupSpace: 0,
-                  barSpace: 0.1,
-                },
+      case 'Quarter':
+        this.setState({
+          title: 'Tổng Doanh Số Tháng Trong Quý',
+          nameDecription: true,
+          animation: {
+            durationY: 1500,
+            durationX: 1500,
+            easingX: 'EaseOutSine',
+            easingY: 'EaseOutSine',
+          },
+          description: {
+            text: 'Đơn Vị: Triệu VNĐ',
+            textSize: 14,
+          },
+          data: {
+            dataSets: this.state.quarterChart,
+            config: {
+              barWidth: 0.5,
+              group: {
+                fromX: 0,
+                groupSpace: 0,
+                barSpace: 0.1,
               },
             },
-            toggleChart: true,
-            title: 'Tổng Doanh Số Tháng Trong Quý',
           },
-          //   () => {
-          //     console.log(this.state.data);
-          //   },
-        );
+        });
         break;
-      case 'mounth':
-        this.setState(
-          {
-            animation: {
-              durationY: 1500,
-              durationX: 1500,
-              easingX: 'EaseOutSine',
-              easingY: 'EaseOutSine',
-            },
-            data: {
-              dataSets: this.state.mounthChart,
-              config: {
-                barWidth: 0.5,
-                group: {
-                  fromX: 0,
-                  groupSpace: 0,
-                  barSpace: 0.1,
-                },
+      case 'Mounth':
+        this.setState({
+          title: 'Tổng Doanh Số Tuần Trong Tháng',
+          description: {
+            text: 'Đơn Vị: Triệu VNĐ',
+            textSize: 14,
+          },
+          nameDecription: true,
+          animation: {
+            durationY: 1500,
+            durationX: 1500,
+            easingX: 'EaseOutSine',
+            easingY: 'EaseOutSine',
+          },
+          data: {
+            dataSets: this.state.mounthChart,
+            config: {
+              barWidth: 0.5,
+              group: {
+                fromX: 0,
+                groupSpace: 0,
+                barSpace: 0.1,
               },
             },
-            toggleChart: true,
-            title: 'Tổng Doanh Số Tuần Trong Tháng',
           },
-          //   () => {
-          //     console.log(this.state.data);
-          //   },
-        );
+        });
         break;
-
       default:
         this.setState({dialogVisible: true}, () => {});
     }
@@ -737,9 +671,6 @@ export class PersonalCompare extends Component {
 
   componentDidMount = async () => {
     const db = firebaseApp.firestore();
-    //   .collection('units')
-    //   .get()
-    //   .then(query => query);
     const userData = [];
     const taxData = [];
     const unitsData = [];
@@ -762,8 +693,9 @@ export class PersonalCompare extends Component {
         if (doc.data().unitsTitle !== 'Ban Giám Đốc') {
           index++;
           unitsData.push({
-            id: doc.id,
-            name: doc.data().unitsTitle,
+            Id: doc.id,
+            Name: doc.data().unitsTitle,
+            Value: doc.data().unitsTitle,
             idI: index,
           });
           listTeam.push({list: doc.data().productStall});
@@ -772,9 +704,10 @@ export class PersonalCompare extends Component {
       allStallSnapshot.forEach(doc => {
         if (doc.data().teamName !== 'Nhóm Giám Đốc') {
           stallData.push({
-            id: doc.id,
-            name: doc.data().teamName,
-            doanhSo: doc.data(),
+            Id: doc.id,
+            Name: doc.data().teamName,
+            Value: doc.data().teamName,
+            DoanhSo: doc.data(),
           });
         }
       });
@@ -783,8 +716,9 @@ export class PersonalCompare extends Component {
           if (doc.data().roles[0] !== 'Giám Đốc') {
             if (doc.data().roles[0] !== 'Phó Giám Đốc') {
               userData.push({
-                id: doc.id,
-                name: doc.data().fullName,
+                Id: doc.id,
+                Name: doc.data().fullName,
+                Value: doc.data().fullName,
                 idNhom: doc.data().iamTeam,
               });
             }
@@ -793,7 +727,7 @@ export class PersonalCompare extends Component {
       });
       allTaxSnapShot.forEach(doc => {
         taxData.push({
-          id: doc.id,
+          Id: doc.id,
           doanhSo: doc.data(),
         });
       });
@@ -801,206 +735,310 @@ export class PersonalCompare extends Component {
     } catch (err) {
       console.log('Error getting documents', err);
     }
-    // console.log('units', unitsData);
-    // console.log('user', userData);
-    // console.log('stall', stallData);
-    // console.log('list', listTeam);
-    // console.log('end comp');
-
-    // let i = -1;
-    // data.onSnapshot(
-    //   query =>
-    //     query.forEach(doc => {
-    //       i++;
-    //       newData.push({id: doc.id, name: doc.data().unitsTitle, idI: i});
-    //       listTeam.push({list: doc.data().productStall});
-    //     }),
     this.setState({
       groupName: unitsData,
       listTeam: listTeam,
       listUser: userData,
       stallData: stallData,
-      taxData,
+      taxData: taxData,
     });
-    // );
   };
 
   render() {
+    const {
+      groupName,
+      Team,
+      Year,
+      Quarter,
+      Mounth,
+      title,
+      userChart,
+    } = this.state;
+
     return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : null}
-        style={{flex: 1}}>
-        <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
-          {this.renderAlert()}
-          <View style={{flex: 1 / 3}}>
-            <SearchableDropdown
-              placeholder="Nhập Phòng"
-              onTextChange={text => text}
-              onItemSelect={item => this.handleSelectGroup(item)}
-              items={this.state.groupName}
-              containerStyle={{marginTop: 20, marginHorizontal: 20}}
-              textInputStyle={{
-                padding: 10,
-                borderWidth: 0.7,
-                borderColor: '#000',
-                backgroundColor: '#FAF7F6',
-              }}
-              itemStyle={{
-                padding: 10,
-                marginTop: 4,
-                backgroundColor: '#FAF9F8',
-                borderColor: '#bbb',
-                borderWidth: 1,
-              }}
-              itemsContainerStyle={{
-                //items container style you can pass maxHeight
-                //to restrict the items dropdown hieght
-                maxHeight: 90,
-              }}
-            />
-            <SearchableDropdown
-              placeholder="Nhập Nhóm"
-              onTextChange={text => text}
-              onItemSelect={item => this.handleSelectTeam(item)}
-              items={this.state.team}
-              containerStyle={{marginTop: 20, marginHorizontal: 20}}
-              textInputStyle={{
-                padding: 10,
-                borderWidth: 0.7,
-                borderColor: '#000',
-                backgroundColor: '#FAF7F6',
-              }}
-              itemStyle={{
-                padding: 10,
-                marginTop: 4,
-                backgroundColor: '#FAF9F8',
-                borderColor: '#bbb',
-                borderWidth: 1,
-              }}
-              itemsContainerStyle={{
-                //items container style you can pass maxHeight
-                //to restrict the items dropdown hieght
-                maxHeight: 90,
-              }}
-            />
-
-            <View style={{flexDirection: 'row'}}>
-              <SearchableDropdown
-                placeholder="Nhập Năm"
-                onTextChange={text => text}
-                onItemSelect={item => this.handleSelectYear(item)}
-                items={this.state.year}
-                containerStyle={{marginTop: 20, marginLeft: 20, flex: 1 / 3}}
-                textInputStyle={{
-                  padding: 10,
-                  borderWidth: 0.7,
-                  borderColor: '#000',
-                  backgroundColor: '#FAF7F6',
-                }}
-                itemStyle={{
-                  padding: 10,
-                  marginTop: 4,
-                  backgroundColor: '#FAF9F8',
-                  borderColor: '#bbb',
-                  borderWidth: 1,
-                }}
-                itemsContainerStyle={{
-                  //items container style you can pass maxHeight
-                  //to restrict the items dropdown hieght
-                  maxHeight: 90,
-                }}
-              />
-              <SearchableDropdown
-                placeholder="Nhập Quý"
-                onTextChange={text => text}
-                onItemSelect={item => this.handleSelectQuy(item)}
-                items={this.state.quarter}
-                containerStyle={{
-                  marginTop: 20,
-                  marginHorizontal: 5,
-                  flex: 1 / 3,
-                }}
-                textInputStyle={{
-                  padding: 10,
-                  borderWidth: 0.7,
-                  borderColor: '#000',
-                  backgroundColor: '#FAF7F6',
-                }}
-                itemStyle={{
-                  padding: 10,
-                  marginTop: 4,
-                  backgroundColor: '#FAF9F8',
-                  borderColor: '#bbb',
-                  borderWidth: 1,
-                }}
-                itemsContainerStyle={{
-                  //items container style you can pass maxHeight
-                  //to restrict the items dropdown hieght
-                  maxHeight: 90,
-                }}
-              />
-              <SearchableDropdown
-                placeholder="Nhập Tháng"
-                onTextChange={text => text}
-                onItemSelect={item => this.handleSelectMounth(item)}
-                items={this.state.mounth}
-                containerStyle={{marginTop: 20, marginRight: 20, flex: 1 / 3}}
-                textInputStyle={{
-                  padding: 10,
-                  borderWidth: 0.7,
-                  borderColor: '#000',
-                  backgroundColor: '#FAF7F6',
-                }}
-                itemStyle={{
-                  padding: 10,
-                  marginTop: 4,
-                  backgroundColor: '#FAF9F8',
-                  borderColor: '#bbb',
-                  borderWidth: 1,
-                }}
-                itemsContainerStyle={{
-                  //items container style you can pass maxHeight
-                  //to restrict the items dropdown hieght
-                  maxHeight: 90,
-                }}
+      <SafeAreaView style={styles.mainContent}>
+        {this.renderAlert()}
+        <View style={styles.selectionContent}>
+          <PickerModal
+            renderSelectView={(disabled, selected, showModal) => (
+              <TouchableOpacity
+                onPress={() => showModal()}
+                style={[
+                  SelectBoxStyle.pressBtn,
+                  disabled && SelectBoxStyle.disabledBtn,
+                ]}>
+                <View style={SelectBoxStyle.container}>
+                  <Text
+                    style={[
+                      disabled
+                        ? SelectBoxStyle.disabledTxt
+                        : SelectBoxStyle.chooseText,
+                    ]}>
+                    {selected && selected.Name
+                      ? selected.Name
+                      : 'Chọn Phòng Kinh Doanh'}
+                  </Text>
+                  <Image
+                    source={require('../../img/downArrow.png')}
+                    style={[
+                      SelectBoxStyle.downBtn,
+                      selectViewIsDisabled && SelectBoxStyle.disabledImage,
+                    ]}
+                  />
+                </View>
+              </TouchableOpacity>
+            )}
+            onSelected={this.handleSelectGroup.bind(this)}
+            onBackButtonPressed={this.onBackButtonPressed.bind(this)}
+            items={groupName}
+            sortingLanguage={'vn'}
+            showToTopButton={true}
+            showAlphabeticalIndex={true}
+            autoGenerateAlphabeticalIndex={true}
+            selectPlaceholderText={'Chọn Nhân Viên'}
+            // onEndReached={() => {}}
+            searchPlaceholderText={'Tìm kiếm...'}
+            requireSelection={false}
+            autoSort={true}
+          />
+          <PickerModal
+            renderSelectView={(disabled, selected, showModal) => (
+              <TouchableOpacity
+                disabled={disabled}
+                onPress={() => showModal()}
+                style={[
+                  SelectBoxStyle.pressBtn,
+                  disabled && SelectBoxStyle.disabledBtn,
+                ]}>
+                <View style={SelectBoxStyle.container}>
+                  <Text
+                    style={[
+                      disabled
+                        ? SelectBoxStyle.disabledTxt
+                        : SelectBoxStyle.chooseText,
+                    ]}>
+                    {this.state.selectedT
+                      ? selected.Name
+                      : 'Chọn Nhóm Kinh Doanh'}
+                  </Text>
+                  <Image
+                    source={require('../../img/downArrow.png')}
+                    style={[
+                      SelectBoxStyle.downBtn,
+                      selectViewIsDisabled && SelectBoxStyle.disabledImage,
+                    ]}
+                  />
+                </View>
+              </TouchableOpacity>
+            )}
+            onSelected={this.handleTeam.bind(this)}
+            onBackButtonPressed={this.onBackButtonPressed.bind(this)}
+            items={Team}
+            sortingLanguage={'vn'}
+            showToTopButton={true}
+            showAlphabeticalIndex={true}
+            autoGenerateAlphabeticalIndex={true}
+            // selectPlaceholderText={'Chọn Nhân Viên'}
+            // onEndReached={() => {}}
+            searchPlaceholderText={'Tìm kiếm...'}
+            requireSelection={false}
+            autoSort={true}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              //   backgroundColor: 'red',
+            }}>
+            <View style={styles.selection}>
+              <PickerModal
+                renderSelectView={(disabled, selected, showModal) => (
+                  <TouchableOpacity
+                    disabled={disabled}
+                    onPress={() => showModal()}
+                    style={[
+                      SelectBoxStyle.pressBtn,
+                      disabled && SelectBoxStyle.disabledBtn,
+                    ]}>
+                    <View style={SelectBoxStyle.container}>
+                      <Text
+                        style={[
+                          disabled
+                            ? SelectBoxStyle.disabledTxt
+                            : SelectBoxStyle.chooseText,
+                        ]}>
+                        {this.state.selectedY ? selected.Name : 'Chọn Năm'}
+                      </Text>
+                      <Image
+                        source={require('../../img/downArrow.png')}
+                        style={[
+                          SelectBoxStyle.downBtn,
+                          selectViewIsDisabled && SelectBoxStyle.disabledImage,
+                        ]}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                )}
+                selectPlaceholderText="Chọn Năm"
+                items={Year}
+                onSelected={this.handleSelectYear.bind(this)}
+                onEndReached={() =>
+                  this.setState({
+                    animation: {},
+                  })
+                }
+                onBackButtonPressed={this.onBackButtonPressed.bind(this)}
+                showToTopButton={true}
+                searchPlaceholderText={'Tìm kiếm năm...'}
+                requireSelection={false}
               />
             </View>
-            <TouchableOpacity
-              onPress={() => this.handleSubmit()}
-              style={{
-                alignItems: 'center',
-                backgroundColor: '#95c1f0',
-                borderWidth: 0.5,
-                borderRadius: 5,
-                alignSelf: 'center',
-                marginVertical: 10,
-                padding: 10,
-              }}>
-              <Text>Tìm Kiếm</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={[styles.container, styles.bgChart]}>
-            <View>
-              <Text>{this.state.title}</Text>
+            <View style={[styles.selection, {marginHorizontal: 10}]}>
+              <PickerModal
+                renderSelectView={(disabled, selected, showModal) => (
+                  <TouchableOpacity
+                    disabled={disabled}
+                    onPress={() => showModal()}
+                    style={[
+                      SelectBoxStyle.pressBtn,
+                      disabled && SelectBoxStyle.disabledBtn,
+                    ]}>
+                    <View style={SelectBoxStyle.container}>
+                      <Text
+                        style={[
+                          disabled
+                            ? SelectBoxStyle.disabledTxt
+                            : SelectBoxStyle.chooseText,
+                        ]}>
+                        {this.state.selectedQ ? selected.Name : 'Chọn Quý'}
+                      </Text>
+                      <Image
+                        source={require('../../img/downArrow.png')}
+                        style={[
+                          SelectBoxStyle.downBtn,
+                          selectViewIsDisabled && SelectBoxStyle.disabledImage,
+                        ]}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                )}
+                selectPlaceholderText={'Chọn Quý'}
+                items={Quarter}
+                onSelected={this.handleSelectQuarter.bind(this)}
+                onEndReached={() =>
+                  this.setState({
+                    animation: {},
+                  })
+                }
+                onBackButtonPressed={this.onBackButtonPressed.bind(this)}
+                showToTopButton={true}
+                searchPlaceholderText={'Tìm kiếm quý...'}
+                requireSelection={false}
+              />
             </View>
-            <BarChart
-              animation={this.state.animation}
-              style={styles.chart}
-              xAxis={this.state.xAxis}
-              data={this.state.data}
-              legend={this.state.legend}
-              drawValueAboveBar={false}
-              marker={this.state.marker}
-            />
+            <View style={{width: '33%'}}>
+              <PickerModal
+                renderSelectView={(disabled, selected, showModal) => (
+                  <TouchableOpacity
+                    disabled={disabled}
+                    onPress={() => showModal()}
+                    style={[
+                      SelectBoxStyle.pressBtn,
+                      disabled && SelectBoxStyle.disabledBtn,
+                    ]}>
+                    <View style={SelectBoxStyle.container}>
+                      <Text
+                        style={[
+                          disabled
+                            ? SelectBoxStyle.disabledTxt
+                            : SelectBoxStyle.chooseText,
+                        ]}>
+                        {this.state.selectedM ? selected.Name : 'Chọn Tháng'}
+                      </Text>
+                      <Image
+                        source={require('../../img/downArrow.png')}
+                        style={[
+                          SelectBoxStyle.downBtn,
+                          selectViewIsDisabled && SelectBoxStyle.disabledImage,
+                        ]}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                )}
+                modalAnimationType={'slide'}
+                selectPlaceholderText={'Chọn Tháng'}
+                items={Mounth}
+                onSelected={this.handleSelectMounth.bind(this)}
+                onBackButtonPressed={this.onBackButtonPressed.bind(this)}
+                showToTopButton={true}
+                searchPlaceholderText={'Tìm kiếm tháng...'}
+                requireSelection={false}
+              />
+            </View>
           </View>
-        </SafeAreaView>
-      </KeyboardAvoidingView>
+          <TouchableOpacity
+            onPress={() => this.handleSubmit()}
+            style={{
+              alignItems: 'center',
+              backgroundColor: '#95c1f0',
+              borderWidth: 0.5,
+              borderRadius: 5,
+              alignSelf: 'center',
+              marginVertical: 10,
+              padding: 10,
+            }}>
+            <Text>Tìm Kiếm</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={[styles.containerChart, styles.bgChart]}>
+          {this.state.nameDecription && (
+            <View style={styles.description}>
+              <Text style={styles.txtDes}>{`${title} của`}</Text>
+              <Text style={styles.txtDes}>{`${userChart}`}</Text>
+            </View>
+          )}
+          <BarChart
+            animation={this.state.animation}
+            style={styles.chart}
+            xAxis={this.state.xAxis}
+            data={this.state.data}
+            description={this.state.description}
+            legend={this.state.legend}
+            drawValueAboveBar={false}
+            marker={this.state.marker}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }
+
 const styles = StyleSheet.create({
-  container: {
+  mainContent: {
+    flex: 1,
+    justifyContent: 'space-between',
+    // backgroundColor: 'yellow',
+  },
+  selectionContent: {
+    flex: 1 / 3,
+    justifyContent: 'center',
+    marginHorizontal: 20,
+    marginTop: 30,
+    // backgroundColor: 'red',
+  },
+  selection: {
+    width: '30%',
+  },
+  btnStaff: {
+    //   alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    backgroundColor: 'yellow',
+  },
+  containerChart: {
     flex: 1 / 2,
   },
   bgChart: {
@@ -1008,5 +1046,10 @@ const styles = StyleSheet.create({
   },
   chart: {
     flex: 1,
+  },
+  description: {alignItems: 'center'},
+  txtDes: {
+    fontSize: 18,
+    color: 'red',
   },
 });

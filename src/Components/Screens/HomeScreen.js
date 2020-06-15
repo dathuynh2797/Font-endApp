@@ -150,8 +150,8 @@ export class HomeScreen extends Component {
               firebaseApp
                 .firestore()
                 .collection('units')
-                .onSnapshot(querySnapshot1 => {
-                  querySnapshot1.forEach(doc1 => {
+                .onSnapshot(query => {
+                  query.forEach(doc1 => {
                     if (idphonguser === doc1.data().id) {
                       tenphong = doc1.data().unitsTitle;
                     }
@@ -429,9 +429,10 @@ export class HomeScreen extends Component {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            activeOpacity={0}
             style={styles.menuItem}
             onPress={() => {
-              this.props.navigation.navigate('BarChartScreen');
+              this.props.navigation.navigate('Test');
             }}>
             <View style={styles.menuIcon}>
               <View style={styles.menuIconCircle}>
@@ -486,7 +487,7 @@ const styles = StyleSheet.create({
     height: '60%',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    padding: 5,
+    padding: 10,
   },
   menuItem: {
     width: '50%',
@@ -506,7 +507,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.7,
     shadowRadius: 5,
-    elevation: 20,
+    elevation: 5,
   },
   menuIconCircle: {
     marginTop: 20,
