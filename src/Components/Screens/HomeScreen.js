@@ -10,11 +10,11 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
-  FlatList,
   ActivityIndicator,
   TouchableHighlight,
 } from 'react-native';
-import bgImage from '../../img/bgprofile.png';
+// import bgImage from '../../img/bgprofile.png';
+import bgAva from '../../img/bgAva.png';
 import {firebaseApp} from '../config';
 import {RFValue} from 'react-native-responsive-fontsize';
 var Sound = require('react-native-sound');
@@ -267,6 +267,42 @@ export class HomeScreen extends Component {
       .then(() => this.props.navigation.navigate('LoginScreen'));
   }
 
+  renderUser() {
+    return this.state.data.map((user, index) => {
+      return (
+        <View style={styles.avatarContainer} key={index}>
+          <Text style={[styles.avatarTxt, styles.HeaderTxt]}>
+            Công Ty Hello World Xin chào
+          </Text>
+          <Text style={styles.avatarTxt}>{user.ten}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('userDetail', {
+                id: user.id,
+                ten: user.ten,
+                sdt: user.sdt,
+                namsinh: user.ngaysinh,
+                hinhanh: user.ava,
+                phong: this.state.phong,
+                email: user.email,
+                nhom: this.state.team,
+              });
+            }}>
+            <View style={{alignItems: 'center'}}>
+              <Image style={styles.avatar} source={{uri: user.ava}} />
+              <Text style={styles.avatarTxt}>
+                {this.state.dtLastWeek
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                ,000,000 VND
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
+    });
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.Container}>
@@ -322,7 +358,7 @@ export class HomeScreen extends Component {
               </TouchableOpacity>
             </View>
           </Dialog>
-          <ImageBackground style={styles.backgroundImg} source={bgImage}>
+          <ImageBackground style={styles.backgroundImg} source={bgAva}>
             <TouchableOpacity
               style={styles.buttonLogout}
               onPress={() => {
@@ -347,40 +383,8 @@ export class HomeScreen extends Component {
                 style={styles.avatarContainer}
               />
             )}
-            {!this.state.loading && (
-              <FlatList
-                data={this.state.data}
-                renderItem={({item}) => (
-                  <View style={styles.avatarContainer}>
-                    <Text style={styles.avatarTxt}>Xin chào: {item.ten}</Text>
-                    <TouchableOpacity
-                      onPress={() => {
-                        this.props.navigation.navigate('userDetail', {
-                          id: item.id,
-                          ten: item.ten,
-                          sdt: item.sdt,
-                          namsinh: item.ngaysinh,
-                          hinhanh: item.ava,
-                          phong: this.state.phong,
-                          email: item.email,
-                          nhom: this.state.team,
-                        });
-                      }}>
-                      <View style={{alignItems: 'center'}}>
-                        <Image style={styles.avatar} source={{uri: item.ava}} />
-                        <Text style={styles.avatarTxt}>
-                          {this.state.dtLastWeek
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                          VND
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                )}
-                keyExtractor={(item => item.ten, item => item.ava)}
-              />
-            )}
+
+            {this.renderUser()}
           </ImageBackground>
         </View>
 
@@ -486,7 +490,7 @@ const styles = StyleSheet.create({
   avatarTxt: {
     fontSize: 20,
     textAlign: 'center',
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    fontWeight: '500',
   },
   menuContainer: {
     height: '60%',
@@ -531,5 +535,10 @@ const styles = StyleSheet.create({
     fontSize: RFValue(15, 680),
     // fontSize: RFPercentage(2),
     textAlign: 'center',
+  },
+  HeaderTxt: {
+    color: 'red',
+    fontSize: RFValue(24, 680),
+    marginVertical: 10,
   },
 });
