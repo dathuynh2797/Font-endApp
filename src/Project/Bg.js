@@ -8,7 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
   ImageBackground,
-  TouchableHighlight,
+  Platform,
   SafeAreaView,
 } from 'react-native';
 import {Modal} from 'react-native';
@@ -45,17 +45,23 @@ export class Bg extends Component {
             // animationType={'fade'}
             visible={this.state.modal}
             transparent={true}>
-            <TouchableHighlight
-              style={styles.Button}
-              onPress={() => {
-                this.setState({modal: false});
-              }}>
-              <Image
-                source={require('../img/backwhite.png')}
-                style={styles.IconBack}
-              />
-            </TouchableHighlight>
             <ImageViewer
+              renderHeader={() => {
+                return (
+                  <View>
+                    <TouchableOpacity
+                      style={[styles.Button]}
+                      onPress={() => {
+                        this.setState({modal: false});
+                      }}>
+                      <Image
+                        source={require('../img/backwhite.png')}
+                        style={styles.IconBack}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                );
+              }}
               enableSwipeDown={true}
               onSwipeDown={() => this.setState({modal: false})}
               imageUrls={hinhanh}
@@ -95,6 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     padding: 10,
     elevation: 2,
+    marginTop: Platform.OS === 'ios' ? 30 : 0,
   },
   IconBack: {
     marginLeft: 10,

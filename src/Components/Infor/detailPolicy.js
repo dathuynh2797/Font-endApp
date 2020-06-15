@@ -9,8 +9,8 @@ import {
   Dimensions,
   FlatList,
   TouchableOpacity,
-  TouchableHighlight,
   ImageBackground,
+  Platform,
 } from 'react-native';
 import {Modal} from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
@@ -46,23 +46,30 @@ export class detailPolicy extends Component {
     return (
       <View>
         <Modal
+          style={{justifyContent: 'center'}}
           onRequestClose={() => {
             this.setState({modal: false});
           }}
           // animationType={'fade'}
           visible={this.state.modal}
           transparent={true}>
-          <TouchableHighlight
-            style={styles.Button}
-            onPress={() => {
-              this.setState({modal: false});
-            }}>
-            <Image
-              source={require('../../img/backwhite.png')}
-              style={styles.IconBack}
-            />
-          </TouchableHighlight>
           <ImageViewer
+            renderHeader={() => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    style={[styles.Button]}
+                    onPress={() => {
+                      this.setState({modal: false});
+                    }}>
+                    <Image
+                      source={require('../../img/backwhite.png')}
+                      style={styles.IconBack}
+                    />
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
             enableSwipeDown={true}
             onSwipeDown={() => this.setState({modal: false})}
             imageUrls={hinhanh}
@@ -101,9 +108,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Button: {
-    backgroundColor: '#000000',
+    // backgroundColor: 'red',
     padding: 10,
     elevation: 2,
+    marginTop: Platform.OS === 'ios' ? 30 : 0,
   },
   IconBack: {
     marginLeft: 10,
