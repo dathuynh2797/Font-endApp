@@ -154,9 +154,6 @@ export class GroupCompare extends React.Component {
     const doanhSoT = [];
     const dataT = [];
     let Mounth = [];
-    // console.log('state', this.state.doanhSoThang);
-    // console.log(item);
-
     for (let i = 0; i < this.state.doanhSoThang.length; i++) {
       switch (item) {
         case 0:
@@ -243,9 +240,9 @@ export class GroupCompare extends React.Component {
               Value: 'Tháng 8',
             },
             {
-              Id: 8,
-              Name: 'Tháng 8',
-              Value: 'Tháng 8',
+              Id: 9,
+              Name: 'Tháng 9',
+              Value: 'Tháng 9',
             },
           ];
           break;
@@ -268,12 +265,12 @@ export class GroupCompare extends React.Component {
               Value: 'Tháng 10',
             },
             {
-              Id: 8,
+              Id: 11,
               Name: 'Tháng 11',
               Value: 'Tháng 11',
             },
             {
-              Id: 8,
+              Id: 12,
               Name: 'Tháng 12',
               Value: 'Tháng 12',
             },
@@ -283,6 +280,7 @@ export class GroupCompare extends React.Component {
     }
     this.setState({
       selectedQ: true,
+      selectedM: false,
       animation: {},
       Mounth: Mounth,
       quarterChart: dataT,
