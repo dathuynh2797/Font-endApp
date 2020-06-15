@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     alignSelf: 'center',
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     marginVertical: 10,
     width: 360,
     height: 180,

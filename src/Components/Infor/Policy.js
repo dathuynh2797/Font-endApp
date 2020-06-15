@@ -24,7 +24,7 @@ export class Policy extends Component {
         policy.push({
           id: doc.id,
           name: doc.data().policyName,
-          image: doc.data().policyImg[0].publicUrl,
+          image: doc.data().policyImg,
         });
 
         this.setState({
