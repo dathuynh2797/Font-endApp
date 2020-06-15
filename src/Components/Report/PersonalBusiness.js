@@ -797,6 +797,7 @@ export class PersonalBusiness extends React.Component {
             data={{
               dataSets: [
                 {
+                  label: 'Đồ thị kết quả kinh doanh của ' + `${userChart}`,
                   values: this.state.dataChart,
                   config: this.state.config,
                 },

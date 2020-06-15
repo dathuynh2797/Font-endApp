@@ -158,19 +158,14 @@ export class HomeScreen extends Component {
                       tenphong = doc1.data().unitsTitle;
                     }
                   });
-                  this.setState(
-                    {
-                      data: data,
-                      loading: false,
-                      ngaysinh: days,
-                      dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
-                      phong: tenphong,
-                      team: tennhom,
-                    },
-                    () => {
-                      console.log(this.state.dtLastWeek);
-                    },
-                  );
+                  this.setState({
+                    data: data,
+                    loading: false,
+                    ngaysinh: days,
+                    dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
+                    phong: tenphong,
+                    team: tennhom,
+                  });
                 });
             });
         });
