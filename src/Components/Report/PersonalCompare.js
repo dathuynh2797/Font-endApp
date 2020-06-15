@@ -1003,7 +1003,7 @@ export class PersonalCompare extends React.Component {
             style={styles.chart}
             xAxis={this.state.xAxis}
             data={this.state.data}
-            description={this.state.description}
+            chartDescription={this.state.description}
             legend={this.state.legend}
             drawValueAboveBar={false}
             marker={this.state.marker}
