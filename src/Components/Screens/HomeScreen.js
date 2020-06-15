@@ -158,14 +158,19 @@ export class HomeScreen extends Component {
                       tenphong = doc1.data().unitsTitle;
                     }
                   });
-                  this.setState({
-                    data: data,
-                    loading: false,
-                    ngaysinh: days,
-                    dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
-                    phong: tenphong,
-                    team: tennhom,
-                  });
+                  this.setState(
+                    {
+                      data: data,
+                      loading: false,
+                      ngaysinh: days,
+                      dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
+                      phong: tenphong,
+                      team: tennhom,
+                    },
+                    () => {
+                      console.log(this.state.dtLastWeek);
+                    },
+                  );
                 });
             });
         });
@@ -268,6 +273,16 @@ export class HomeScreen extends Component {
   }
 
   renderUser() {
+    let doanhSo = '';
+    if (this.state.dtLastWeek.length !== 0) {
+      if (this.state.dtLastWeek[0] !== 0) {
+        doanhSo =
+          this.state.dtLastWeek
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ',000,000 VND';
+        //   console.log(doanhSo);
+      }
+    }
     return this.state.data.map((user, index) => {
       return (
         <View style={styles.avatarContainer} key={index}>
@@ -291,10 +306,11 @@ export class HomeScreen extends Component {
             <View style={{alignItems: 'center'}}>
               <Image style={styles.avatar} source={{uri: user.ava}} />
               <Text style={styles.avatarTxt}>
-                {this.state.dtLastWeek
+                {/* {this.state.dtLastWeek
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                ,000,000 VND
+                ,000,000 VND */}
+                {doanhSo}
               </Text>
             </View>
           </TouchableOpacity>
