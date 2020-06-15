@@ -7,11 +7,13 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import 'firebase/firestore';
 import {HeaderLeft, HeaderRight, Title} from '../CustomHeader';
 import bgAva from '../../img/bgAva.png';
-
+const windowHeight = Dimensions.get('window').height;
+const height = (windowHeight - (windowHeight * 86) / 100) / 10;
 export class userDetail extends Component {
   constructor() {
     super();
@@ -64,6 +66,7 @@ export class userDetail extends Component {
   //     });
   // }
   render() {
+    console.log(height);
     const {navigation} = this.props;
     const namsinh = navigation.getParam('namsinh', 'chưa có dữ liệu');
     const ten = navigation.getParam('ten');
@@ -158,11 +161,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 7,
     borderRadius: 4,
-    padding: 10,
+    padding: height,
     width: '90%',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 11,
   },
   HorizonLine: {
     borderWidth: 1,

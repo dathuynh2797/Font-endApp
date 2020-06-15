@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Dimensions} from 'react-native';
 const moment = require('moment');
 import {
   Table,
@@ -13,6 +13,8 @@ import {
 import {firebaseApp} from '../config';
 import {FlatList, Text, TouchableOpacity} from 'react-native';
 
+const windowHeight = Dimensions.get('window').height;
+const height = (windowHeight - (windowHeight * 40) / 100) / 10;
 export class PersonalResult extends Component {
   constructor(props) {
     super(props);
@@ -25,10 +27,12 @@ export class PersonalResult extends Component {
       dataArrWeek: [],
       dtNameDs: [],
       dtLastWeek: [],
+      tableTitle: [],
     };
   }
 
   componentDidMount = async () => {
+    // console.log((windowHeight - (windowHeight * 39) / 100) / 10);
     const business = firebaseApp.firestore();
     business
       .collection('user')
@@ -92,7 +96,7 @@ export class PersonalResult extends Component {
         dS: arrDS,
       });
       var dt = this.state.dS;
-      console.log(dt);
+      // console.log(dt);
       var datalastweek = [];
       for (let z = 0; z < dt.length; z++) {
         // for (let t = 0; t < dt[z].ds.length; t++) {
@@ -116,6 +120,7 @@ export class PersonalResult extends Component {
       }
       this.setState({
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
+        tableTitle: stt,
       });
     });
 
@@ -139,14 +144,13 @@ export class PersonalResult extends Component {
                 idphong: doc.data().productUnit,
                 idnhom: doc.data().iamTeam,
               });
-              stt.push([v + 1]);
             }
           });
-          console.log(stt);
+          stt.push([v + 1]);
+          // console.log(stt);
 
           this.setState({
             dtNameDs: tenNV,
-            tableTitle: stt,
           });
         }
       });
@@ -176,7 +180,7 @@ export class PersonalResult extends Component {
           />
           <TableWrapper style={styles.wrapper}>
             <FlatList
-              data={this.state.dtNameDs}
+              data={this.state.dtNameDs.slice(0, 10)}
               renderItem={({item}) => (
                 <TouchableOpacity
                   onPress={() => {
@@ -203,7 +207,7 @@ export class PersonalResult extends Component {
             />
 
             <FlatList
-              data={this.state.dtNameDs}
+              data={this.state.dtNameDs.slice(0, 10)}
               renderItem={({item}) => (
                 <View>
                   <Cols
@@ -222,9 +226,20 @@ export class PersonalResult extends Component {
               keyExtractor={item => item.email}
             />
             <Col
-              data={state.tableTitle}
+              data={state.tableTitle.slice(0, 10)}
               style={styles.title}
-              heightArr={[45, 45, 45, 45, 45, 45, 45, 45, 45, 45]}
+              heightArr={[
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+              ]}
               borderStyle={{borderWidth: 1, borderColor: '#000'}}
               textStyle={styles.text}
             />
@@ -237,10 +252,10 @@ export class PersonalResult extends Component {
 
 const styles = StyleSheet.create({
   container: {flex: 1, padding: 5, paddingTop: 20, backgroundColor: '#fff'},
-  head: {height: 45, backgroundColor: '#1787AB'},
+  head: {height: height, backgroundColor: '#1787AB'},
   wrapper: {flexDirection: 'row'},
   title: {flex: 1, backgroundColor: '#f6f8fa'},
-  row: {height: 45},
+  row: {height: height},
   textHead: {
     textAlign: 'center',
     fontWeight: 'bold',

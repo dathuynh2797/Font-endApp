@@ -1,18 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Dimensions} from 'react-native';
 const moment = require('moment');
 import {
   Table,
   TableWrapper,
   Row,
-  Rows,
   Col,
   Cols,
 } from 'react-native-table-component';
 import {firebaseApp} from '../config';
-import {FlatList, Text, TouchableOpacity} from 'react-native';
-
+import {FlatList, Text} from 'react-native';
+const windowHeight = Dimensions.get('window').height;
+const height = (windowHeight - (windowHeight * 40) / 100) / 10;
 export class GroupResult extends Component {
   constructor(props) {
     super(props);
@@ -35,12 +35,11 @@ export class GroupResult extends Component {
     var arrDS = [];
     var arr = [];
     var stt = [];
-    var tenNV = [];
     dataY.get().then(queryY => {
       queryY.forEach(doc => idDS.push(doc.data()));
       for (let i = 0; i < idDS.length; i++) {
         arr = Object.entries(idDS[i]);
-        console.log(arr);
+        // console.log(arr);
         for (let y = 0; y < arr.length; y++) {
           if (moment().year() === parseInt(arr[y][0], 0)) {
             dataArrWeek.push({
@@ -59,11 +58,13 @@ export class GroupResult extends Component {
         dataArrWeek: dataArrWeek,
       });
       for (let i = 0; i < this.state.dataArrWeek.length; i++) {
-        arrDS.push({
-          id: [dataArrWeek[i].id],
-          ds: Object.values(dataArrWeek[i].doanhso).slice(16, 77),
-          name: dataArrWeek[i].name,
-        });
+        if (this.state.dataArrWeek[i].name !== 'Ban Giám Đốc') {
+          arrDS.push({
+            id: [dataArrWeek[i].id],
+            ds: Object.values(dataArrWeek[i].doanhso).slice(16, 77),
+            name: dataArrWeek[i].name,
+          });
+        }
       }
       this.setState({
         dS: arrDS,
@@ -73,14 +74,14 @@ export class GroupResult extends Component {
       var datalastweek = [];
 
       for (let z = 0; z < dt.length; z++) {
-        for (let y = dt[z].ds.length - 1; y > -1; y--) {
+        for (let y = 0; y < dt[z].ds.length - 1; y++) {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
               id: [dt[z].ds[y] + 'a'],
               ds: [dt[z].ds[y]],
               name: dt[z].name,
             });
-            stt.push([z + 1]);
+            stt.push(z + 1);
             break;
           }
         }
@@ -152,7 +153,18 @@ export class GroupResult extends Component {
             <Col
               data={state.tableTitle}
               style={styles.title}
-              heightArr={[45, 45, 45, 45, 45, 45, 45, 45, 45, 45]}
+              heightArr={[
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+              ]}
               borderStyle={{borderWidth: 1, borderColor: '#000'}}
               textStyle={styles.text}
             />
@@ -165,10 +177,10 @@ export class GroupResult extends Component {
 
 const styles = StyleSheet.create({
   container: {flex: 1, padding: 5, paddingTop: 20, backgroundColor: '#fff'},
-  head: {height: 45, backgroundColor: '#1787AB'},
+  head: {height: height, backgroundColor: '#1787AB'},
   wrapper: {flexDirection: 'row'},
   title: {flex: 1, backgroundColor: '#f6f8fa'},
-  row: {height: 45},
+  row: {height: height},
   textHead: {
     textAlign: 'center',
     fontWeight: 'bold',

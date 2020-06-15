@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Dimensions} from 'react-native';
 const moment = require('moment');
 import {
   Table,
@@ -12,7 +12,8 @@ import {
 } from 'react-native-table-component';
 import {firebaseApp} from '../config';
 import {FlatList, Text, TouchableOpacity} from 'react-native';
-
+const windowHeight = Dimensions.get('window').height;
+const height = (windowHeight - (windowHeight * 40) / 100) / 10;
 export class TeamResult extends Component {
   constructor(props) {
     super(props);
@@ -71,17 +72,16 @@ export class TeamResult extends Component {
         dS: arrDS,
       });
       var dt = this.state.dS;
-      console.log(dt);
+      // console.log(dt);
       var datalastweek = [];
       for (let z = 0; z < dt.length; z++) {
-        for (let y = dt[z].ds.length - 1; y > -1; y--) {
+        for (let y = 0; y < dt[z].ds.length; y++) {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
               id: dt[z].id,
               ds: [dt[z].ds[y]],
               name: dt[z].name,
             });
-            stt.push([z + 1]);
             break;
           }
         }
@@ -120,6 +120,7 @@ export class TeamResult extends Component {
                 }
               }
             }
+            stt.push([p + 1]);
           }
           this.setState({dtNameDsP: tenphong});
           // console.log(tenphong);
@@ -196,7 +197,18 @@ export class TeamResult extends Component {
             <Col
               data={state.tableTitle.slice(0, 10)}
               style={styles.title}
-              heightArr={[45, 45, 45, 45, 45, 45, 45, 45, 45, 45]}
+              heightArr={[
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+                height,
+              ]}
               borderStyle={{borderWidth: 1, borderColor: '#000'}}
               textStyle={styles.text}
             />
@@ -209,10 +221,10 @@ export class TeamResult extends Component {
 
 const styles = StyleSheet.create({
   container: {flex: 1, padding: 5, paddingTop: 20, backgroundColor: '#fff'},
-  head: {height: 45, backgroundColor: '#1787AB'},
+  head: {height: height, backgroundColor: '#1787AB'},
   wrapper: {flexDirection: 'row'},
   title: {flex: 1, backgroundColor: '#f6f8fa'},
-  row: {height: 45},
+  row: {height: height},
   textHead: {
     textAlign: 'center',
     fontWeight: 'bold',
