@@ -836,6 +836,7 @@ const styles = StyleSheet.create({
   },
   containerChart: {
     flex: 1 / 2,
+    marginBottom: 10,
   },
   bgChart: {
     backgroundColor: '#F5FCFF',

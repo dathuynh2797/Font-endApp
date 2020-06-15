@@ -705,7 +705,7 @@ export class GroupCompare extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm năm...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
             <View style={[styles.selection, {marginHorizontal: 10}]}>
@@ -748,7 +748,7 @@ export class GroupCompare extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm quý...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
             <View style={{width: '33%'}}>
@@ -787,7 +787,7 @@ export class GroupCompare extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm tháng...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
           </View>

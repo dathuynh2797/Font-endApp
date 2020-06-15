@@ -51,7 +51,9 @@ export class Ogchart extends Component {
             idP: doc.data().id,
           });
           this.setState({
-            tenphong: name,
+            tenphong: name.sort((a, b) => {
+              return a.ten > b.ten;
+            }),
             idG: idGroup,
           });
           // console.log(this.state.idG);

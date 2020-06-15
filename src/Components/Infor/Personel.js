@@ -15,6 +15,7 @@ import {firebaseApp} from '../config';
 import 'firebase/firestore';
 import {Table, Row, Cols} from 'react-native-table-component';
 import {Platform, InteractionManager} from 'react-native';
+import {DismissKeyboardView} from '../DismissKeyBroad';
 
 const {width: WIDTH} = Dimensions.get('window');
 
@@ -123,69 +124,71 @@ export class Personel extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Text style={styles.headerText}>Thông tin nhân viên</Text>
-        <Image
-          style={{
-            position: 'absolute',
-            height: 30,
-            width: 30,
-            top: 60,
-            left: 20,
-          }}
-          source={require('../../img/Profile/seach.png')}
-        />
-        <View style={{paddingHorizontal: 10, marginBottom: 10}}>
-          <TextInput
-            placeholder="Tìm kiếm"
-            style={styles.seachbar}
-            onChangeText={text => this.filterSearch(text)}
-            value={this.state.value}
-          />
-        </View>
-        <View style={styles.container}>
-          <Table
+        <DismissKeyboardView>
+          <Text style={styles.headerText}>Thông tin nhân viên</Text>
+          <Image
             style={{
-              maxHeight: '90%',
-              marginHorizontal: 10,
-            }}>
-            <Row
-              data={this.state.tableHead}
-              style={styles.head}
-              textStyle={styles.text}
-              borderStyle={{borderWidth: 1, borderColor: '#000'}}
-              flexArr={[1.3, 1, 1]}
+              position: 'absolute',
+              height: 30,
+              width: 30,
+              top: 60,
+              left: 20,
+            }}
+            source={require('../../img/Profile/seach.png')}
+          />
+          <View style={{paddingHorizontal: 10, marginBottom: 10}}>
+            <TextInput
+              placeholder="Tìm kiếm"
+              style={styles.seachbar}
+              onChangeText={text => this.filterSearch(text)}
+              value={this.state.value}
             />
-            <FlatList
-              data={this.state.tableData}
-              renderItem={({item}) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    this.props.navigation.navigate('PersonalDetail', {
-                      id: item.id,
-                      ten: item.ten,
-                      sdt: item.sdt,
-                      namsinh: item.namsinh,
-                      hinhanh: item.hinhanh,
-                      email: item.email,
-                      chucvu: item.chucvu,
-                      idphong: item.idphong,
-                      idnhom: item.idnhom,
-                    });
-                    // console.log(item.email);
-                  }}>
-                  <Cols
-                    data={[[item.ten], [item.namsinh], [item.sdt]]}
-                    textStyle={styles.text}
-                    // style={styles.boder}
-                    borderStyle={{borderWidth: 1, borderColor: '#000'}}
-                    flexArr={[1.3, 1, 1]}
-                  />
-                </TouchableOpacity>
-              )}
-              keyExtractor={item => item.id}
-            />
-          </Table>
-        </View>
+          </View>
+          <View style={styles.container}>
+            <Table
+              style={{
+                maxHeight: '90%',
+                marginHorizontal: 10,
+              }}>
+              <Row
+                data={this.state.tableHead}
+                style={styles.head}
+                textStyle={styles.text}
+                borderStyle={{borderWidth: 1, borderColor: '#000'}}
+                flexArr={[1.3, 1, 1]}
+              />
+              <FlatList
+                data={this.state.tableData}
+                renderItem={({item}) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.props.navigation.navigate('PersonalDetail', {
+                        id: item.id,
+                        ten: item.ten,
+                        sdt: item.sdt,
+                        namsinh: item.namsinh,
+                        hinhanh: item.hinhanh,
+                        email: item.email,
+                        chucvu: item.chucvu,
+                        idphong: item.idphong,
+                        idnhom: item.idnhom,
+                      });
+                      // console.log(item.email);
+                    }}>
+                    <Cols
+                      data={[[item.ten], [item.namsinh], [item.sdt]]}
+                      textStyle={styles.text}
+                      // style={styles.boder}
+                      borderStyle={{borderWidth: 1, borderColor: '#000'}}
+                      flexArr={[1.3, 1, 1]}
+                    />
+                  </TouchableOpacity>
+                )}
+                keyExtractor={item => item.id}
+              />
+            </Table>
+          </View>
+        </DismissKeyboardView>
       </SafeAreaView>
     );
   }

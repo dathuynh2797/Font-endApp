@@ -16,6 +16,7 @@ import * as firebase from 'firebase';
 const {width: WIDTH} = Dimensions.get('window');
 import bgImage from '../../img/bgLogin.jpg';
 import {EMAIL, PASSWORD} from '../Regex';
+import {DismissKeyboardView} from '../DismissKeyBroad';
 export class ChangePassword extends Component {
   constructor(props) {
     super(props);
@@ -102,54 +103,54 @@ export class ChangePassword extends Component {
   render() {
     return (
       <ImageBackground source={bgImage} style={styles.ImageBackground}>
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior={Platform.OS === 'ios' ? 'padding' : null}>
-          <View style={styles.logoContainer}>
-            <Text style={styles.logoText}>Đổi Mật Khẩu</Text>
-          </View>
-          <View style={styles.inputContainer}>
-            <TextInput
-              style={[
-                styles.textInput,
-                !this.state.passwordOldValid ? styles.error : null,
-              ]}
-              placeholder="Mật Khẩu Hiện Tại"
-              value={this.state.currentPassword}
-              autoCapitalize="none"
-              secureTextEntry={true}
-              onChangeText={currentPassword => {
-                this.validate('currentPassword', currentPassword);
-              }}
-            />
-            <TextInput
-              style={[
-                styles.textInput,
-                !this.state.passwordNewValid ? styles.error : null,
-              ]}
-              placeholder="Mật Khẩu Mới"
-              value={this.state.newPassword}
-              autoCapitalize="none"
-              secureTextEntry={true}
-              onChangeText={newPassword => {
-                this.validate('newPassword', newPassword);
-              }}
-            />
-          </View>
-          <View style={styles.button}>
-            <TouchableOpacity
-              disabled={this.state.loginBtn}
-              onPress={this.onChangePassword}
-              style={styles.btnChangePass}>
-              <Text>Thay đổi mật khẩu</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.goBack()}
-              style={styles.btnChangePass1}>
-              <Text>Quay về</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
+        <DismissKeyboardView>
+          <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
+            <View style={styles.logoContainer}>
+              <Text style={styles.logoText}>Đổi Mật Khẩu</Text>
+            </View>
+            <View style={styles.inputContainer}>
+              <TextInput
+                style={[
+                  styles.textInput,
+                  !this.state.passwordOldValid ? styles.error : null,
+                ]}
+                placeholder="Mật Khẩu Hiện Tại"
+                value={this.state.currentPassword}
+                autoCapitalize="none"
+                secureTextEntry={true}
+                onChangeText={currentPassword => {
+                  this.validate('currentPassword', currentPassword);
+                }}
+              />
+              <TextInput
+                style={[
+                  styles.textInput,
+                  !this.state.passwordNewValid ? styles.error : null,
+                ]}
+                placeholder="Mật Khẩu Mới"
+                value={this.state.newPassword}
+                autoCapitalize="none"
+                secureTextEntry={true}
+                onChangeText={newPassword => {
+                  this.validate('newPassword', newPassword);
+                }}
+              />
+            </View>
+            <View style={styles.button}>
+              <TouchableOpacity
+                disabled={this.state.loginBtn}
+                onPress={this.onChangePassword}
+                style={styles.btnChangePass}>
+                <Text>Thay đổi mật khẩu</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.goBack()}
+                style={styles.btnChangePass1}>
+                <Text>Quay về</Text>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </DismissKeyboardView>
       </ImageBackground>
     );
   }

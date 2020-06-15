@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
   TouchableHighlight,
+  SafeAreaView,
   ImageBackground,
 } from 'react-native';
 import {Modal} from 'react-native';
@@ -35,31 +36,33 @@ export class Qc extends Component {
       hinhanh.push({url: hinhanhqc[i].publicUrl});
     }
     return (
-      <View>
-        <Modal
-          onRequestClose={() => {
-            this.setState({modal: false});
-          }}
-          // animationType={'fade'}
-          visible={this.state.modal}
-          transparent={true}>
-          <TouchableHighlight
-            style={styles.Button}
-            onPress={() => {
+      <SafeAreaView style={styles.Container}>
+        <View>
+          <Modal
+            onRequestClose={() => {
               this.setState({modal: false});
-            }}>
-            <Image
-              source={require('../img/backwhite.png')}
-              style={styles.IconBack}
+            }}
+            // animationType={'fade'}
+            visible={this.state.modal}
+            transparent={true}>
+            <TouchableHighlight
+              style={styles.Button}
+              onPress={() => {
+                this.setState({modal: false});
+              }}>
+              <Image
+                source={require('../img/backwhite.png')}
+                style={styles.IconBack}
+              />
+            </TouchableHighlight>
+            <ImageViewer
+              enableSwipeDown={true}
+              onSwipeDown={() => this.setState({modal: false})}
+              imageUrls={hinhanh}
             />
-          </TouchableHighlight>
-          <ImageViewer
-            enableSwipeDown={true}
-            onSwipeDown={() => this.setState({modal: false})}
-            imageUrls={hinhanh}
-          />
-        </Modal>
-      </View>
+          </Modal>
+        </View>
+      </SafeAreaView>
     );
   }
   render() {
@@ -100,6 +103,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     height: 20,
     width: 20,
+  },
+  Container: {
+    flex: 1,
   },
   headerText: {
     width: WIDTH - 10,

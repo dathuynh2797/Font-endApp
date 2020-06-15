@@ -627,7 +627,7 @@ export class GroupBusiness extends React.Component {
             selectPlaceholderText={'Chọn Nhân Viên'}
             // onEndReached={() => {}}
             searchPlaceholderText={'Tìm kiếm...'}
-            requireSelection={false}
+            requireSelection={true}
             autoSort={true}
           />
           <View
@@ -676,7 +676,7 @@ export class GroupBusiness extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm năm...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
             <View style={[styles.selection, {marginHorizontal: 10}]}>
@@ -719,7 +719,7 @@ export class GroupBusiness extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm quý...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
             <View style={{width: '33%'}}>
@@ -758,7 +758,7 @@ export class GroupBusiness extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm tháng...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
           </View>
@@ -837,6 +837,7 @@ const styles = StyleSheet.create({
   },
   containerChart: {
     flex: 1 / 2,
+    marginBottom: 10,
   },
   bgChart: {
     backgroundColor: '#F5FCFF',

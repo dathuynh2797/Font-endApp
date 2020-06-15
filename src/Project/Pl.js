@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
   TouchableHighlight,
+  SafeAreaView,
   ImageBackground,
 } from 'react-native';
 import {Modal} from 'react-native';
@@ -35,31 +36,34 @@ export class Pl extends Component {
       hinhanh.push({url: hinhanhpl[i].publicUrl});
     }
     return (
-      <View>
-        <Modal
-          onRequestClose={() => {
-            this.setState({modal: false});
-          }}
-          // animationType={'fade'}
-          visible={this.state.modal}
-          transparent={true}>
-          <TouchableHighlight
-            style={styles.Button}
-            onPress={() => {
+      <SafeAreaView style={styles.Container}>
+        <View>
+          <Modal
+            onRequestClose={() => {
               this.setState({modal: false});
-            }}>
-            <Image
-              source={require('../img/backwhite.png')}
-              style={styles.IconBack}
+            }}
+            // animationType={'fade'}
+            visible={this.state.modal}
+            transparent={true}>
+            <TouchableHighlight
+              style={styles.Button}
+              onPress={() => {
+                this.setState({modal: false});
+              }}>
+              <Image
+                source={require('../img/backwhite.png')}
+                style={styles.IconBack}
+              />
+            </TouchableHighlight>
+            <ImageViewer
+              enableSwipeDown={true}
+              onSwipeDown={() => this.setState({modal: false})}
+              imageUrls={hinhanh}
             />
-          </TouchableHighlight>
-          <ImageViewer
-            enableSwipeDown={true}
-            onSwipeDown={() => this.setState({modal: false})}
-            imageUrls={hinhanh}
-          />
-        </Modal>
-      </View>
+          </Modal>
+        </View>
+        \
+      </SafeAreaView>
     );
   }
   render() {
@@ -95,6 +99,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     padding: 10,
     elevation: 2,
+  },
+  Container: {
+    flex: 1,
   },
   IconBack: {
     marginLeft: 10,

@@ -799,7 +799,7 @@ export class PersonalCompare extends React.Component {
             selectPlaceholderText={'Chọn Nhân Viên'}
             // onEndReached={() => {}}
             searchPlaceholderText={'Tìm kiếm...'}
-            requireSelection={false}
+            requireSelection={true}
             autoSort={true}
           />
           <PickerModal
@@ -842,7 +842,7 @@ export class PersonalCompare extends React.Component {
             // selectPlaceholderText={'Chọn Nhân Viên'}
             // onEndReached={() => {}}
             searchPlaceholderText={'Tìm kiếm...'}
-            requireSelection={false}
+            requireSelection={true}
             autoSort={true}
           />
           <View
@@ -891,7 +891,7 @@ export class PersonalCompare extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm năm...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
             <View style={[styles.selection, {marginHorizontal: 10}]}>
@@ -934,7 +934,7 @@ export class PersonalCompare extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm quý...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
             <View style={{width: '33%'}}>
@@ -973,7 +973,7 @@ export class PersonalCompare extends React.Component {
                 onBackButtonPressed={this.onBackButtonPressed.bind(this)}
                 showToTopButton={true}
                 searchPlaceholderText={'Tìm kiếm tháng...'}
-                requireSelection={false}
+                requireSelection={true}
               />
             </View>
           </View>
