@@ -36,40 +36,37 @@ export class Pl extends Component {
       hinhanh.push({url: hinhanhpl[i].publicUrl});
     }
     return (
-      <SafeAreaView style={styles.Container}>
-        <View>
-          <Modal
-            onRequestClose={() => {
-              this.setState({modal: false});
+      <View>
+        <Modal
+          onRequestClose={() => {
+            this.setState({modal: false});
+          }}
+          // animationType={'fade'}
+          visible={this.state.modal}
+          transparent={true}>
+          <ImageViewer
+            renderHeader={() => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    style={[styles.Button]}
+                    onPress={() => {
+                      this.setState({modal: false});
+                    }}>
+                    <Image
+                      source={require('../img/backwhite.png')}
+                      style={styles.IconBack}
+                    />
+                  </TouchableOpacity>
+                </View>
+              );
             }}
-            // animationType={'fade'}
-            visible={this.state.modal}
-            transparent={true}>
-            <ImageViewer
-              renderHeader={() => {
-                return (
-                  <View>
-                    <TouchableOpacity
-                      style={[styles.Button]}
-                      onPress={() => {
-                        this.setState({modal: false});
-                      }}>
-                      <Image
-                        source={require('../img/backwhite.png')}
-                        style={styles.IconBack}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                );
-              }}
-              enableSwipeDown={true}
-              onSwipeDown={() => this.setState({modal: false})}
-              imageUrls={hinhanh}
-            />
-          </Modal>
-        </View>
-        \
-      </SafeAreaView>
+            enableSwipeDown={true}
+            onSwipeDown={() => this.setState({modal: false})}
+            imageUrls={hinhanh}
+          />
+        </Modal>
+      </View>
     );
   }
   render() {

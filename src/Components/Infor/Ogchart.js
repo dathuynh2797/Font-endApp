@@ -51,9 +51,7 @@ export class Ogchart extends Component {
             idP: doc.data().id,
           });
           this.setState({
-            tenphong: name.sort((a, b) => {
-              return a.ten > b.ten;
-            }),
+            tenphong: name,
             idG: idGroup,
           });
           // console.log(this.state.idG);
@@ -66,6 +64,7 @@ export class Ogchart extends Component {
       .onSnapshot(querySnapshot => {
         var name = [];
         var b = [];
+        var v = [];
         var countStaff = [];
         let count = 0;
         querySnapshot.forEach(doc => name.push(doc.data().productUnit));
@@ -80,11 +79,19 @@ export class Ogchart extends Component {
         }
         // console.log(countStaff[0]);
         for (let i = 0; i < countStaff.length; i++) {
-          var a = Object.assign({}, this.state.tenphong[i], countStaff[i]);
+          if (this.state.tenphong[i].ten === 'Ban Giám Đốc') {
+            var c = Object.assign({}, this.state.tenphong[i], countStaff[i]);
+            v.push(c);
+          } else {
+            var a = Object.assign({}, this.state.tenphong[i], countStaff[i]);
+            b.push(a);
+          }
           // console.log(a);
-          b.push(a);
         }
-        this.setState({tenphong: b});
+        b.forEach(e => {
+          v.push(e);
+        });
+        this.setState({tenphong: v});
       });
   }
 
