@@ -92,6 +92,7 @@ export class TeamCompare extends React.Component {
       legend: {
         enabled: true,
         textSize: 16,
+        wordWrapEnabled: true,
       },
       description: {
         text: '',

@@ -496,7 +496,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 4,
     borderColor: '#fff',
-    margin: 10,
+    // margin: 10,
   },
   avatarTxt: {
     fontSize: 20,
