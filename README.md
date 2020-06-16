@@ -50,3 +50,10 @@
 ```bash
     react-native run-ios
 ```
+
+### Functional
+
+- [x] Information Company
+- [x] Information All Project Real Estate
+- [x] Bussiness Report Sales With Chart
+- [ ] Bussiness Trip
