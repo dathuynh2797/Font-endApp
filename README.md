@@ -51,6 +51,14 @@
     react-native run-ios
 ```
 
+### Some Screenshot
+
+- **Android**
+  ![](https://raw.githubusercontent.com/dathuynh2797/bdsApp/master/BDS%20App%20Screenshot/Android/ANDROID.jpg)
+
+- **IOS**
+  ![](https://raw.githubusercontent.com/dathuynh2797/bdsApp/master/BDS%20App%20Screenshot/IOS/IOS.jpg)
+
 ### Functional
 
 - [x] Information Company
