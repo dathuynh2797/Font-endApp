@@ -20,7 +20,7 @@
 
 # Installation guide
 
-### Make sure you was settup environment for React Native
+### Make sure you was settup environment for [React Native](https://reactnative.dev/docs/environment-setup)
 
 ```bash
     git clone https://github.com/dathuynh2797/bdsApp.git
