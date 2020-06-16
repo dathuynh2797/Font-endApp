@@ -27,7 +27,8 @@ export class Ogchart extends Component {
     firebaseApp
       .firestore()
       .collection('brands')
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         var image = '';
         querySnapshot.forEach(doc => {
           image = doc.data().brandCover[0].publicUrl;
@@ -40,7 +41,8 @@ export class Ogchart extends Component {
     firebaseApp
       .firestore()
       .collection('units')
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         var name = [];
         var idGroup = [];
         querySnapshot.forEach(doc => {
@@ -61,7 +63,8 @@ export class Ogchart extends Component {
     firebaseApp
       .firestore()
       .collection('user')
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         var name = [];
         var b = [];
         var v = [];
