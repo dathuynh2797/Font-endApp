@@ -45,11 +45,11 @@ export class ProjectNow extends Component {
             longtitude: doc.data().supplierLong,
           });
 
-          this.setState({
-            Project: name,
-            loading: false,
-          });
           // console.log(this.state.Project);
+        });
+        this.setState({
+          Project: name,
+          loading: false,
         });
       });
   };

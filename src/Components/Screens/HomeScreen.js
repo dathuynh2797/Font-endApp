@@ -275,8 +275,8 @@ export class HomeScreen extends Component {
           this.state.dtLastWeek
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ',000,000 VND';
-        //   console.log(doanhSo);
       }
+      // console.log(doanhSo);
     }
     return this.state.data.map((user, index) => {
       return (
@@ -300,13 +300,7 @@ export class HomeScreen extends Component {
             }}>
             <View style={{alignItems: 'center'}}>
               <Image style={styles.avatar} source={{uri: user.ava}} />
-              <Text style={styles.avatarTxt}>
-                {/* {this.state.dtLastWeek
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                ,000,000 VND */}
-                {doanhSo}
-              </Text>
+              <Text style={styles.avatarTxt}>{doanhSo}</Text>
             </View>
           </TouchableOpacity>
         </View>

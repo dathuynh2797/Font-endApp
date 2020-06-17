@@ -28,6 +28,7 @@ export class PersonalResult extends Component {
       dtNameDs: [],
       dtLastWeek: [],
       tableTitle: [],
+      loading: false,
     };
   }
 
@@ -82,7 +83,7 @@ export class PersonalResult extends Component {
         }
         arr = [];
       }
-      console.log(dataArrWeek);
+      // console.log(dataArrWeek);
       this.setState({
         dataArrWeek: dataArrWeek,
       });
@@ -111,12 +112,13 @@ export class PersonalResult extends Component {
         for (let y = dt[z].ds.length - 1; y > -1; y--) {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
-              ds: [dt[z].ds[y]],
+              ds: dt[z].ds[y],
               id: dt[z].id,
             });
             break;
           }
         }
+        // console.log(datalastweek);
       }
       this.setState({
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
@@ -134,7 +136,9 @@ export class PersonalResult extends Component {
             if (this.state.dtLastWeek[v].id === doc.id) {
               tenNV.push({
                 id: this.state.dtLastWeek[v].id,
-                doanhso: this.state.dtLastWeek[v].ds,
+                doanhso: this.state.dtLastWeek[v].ds
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
                 ten: doc.data().fullName,
                 sdt: doc.data().phoneNumber,
                 email: doc.data().email,
@@ -147,12 +151,12 @@ export class PersonalResult extends Component {
             }
           });
           stt.push([v + 1]);
-          // console.log(stt);
-
-          this.setState({
-            dtNameDs: tenNV,
-          });
         }
+        this.setState({
+          dtNameDs: tenNV,
+          loading: true,
+        });
+        // console.log(tenNV);
       });
   };
 
@@ -162,13 +166,17 @@ export class PersonalResult extends Component {
       <View style={styles.container}>
         <Text style={styles.titles}>
           kết quả kinh doanh tuần của nhân viên từ{' '}
-          {moment()
-            .weekday(1)
-            .format('DD/MM')}{' '}
+          <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
+            {moment()
+              .weekday(1)
+              .format('DD/MM')}{' '}
+          </Text>
           đến{' '}
-          {moment()
-            .weekday(6)
-            .format('DD/MM')}
+          <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
+            {moment()
+              .weekday(6)
+              .format('DD/MM')}
+          </Text>
         </Text>
         <Table>
           <Row
@@ -212,12 +220,12 @@ export class PersonalResult extends Component {
                 <View>
                   <Cols
                     data={[
-                      item.doanhso,
+                      [item.doanhso],
                       // item.ds[
                       //   item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                       // ],
                     ]}
-                    textStyle={styles.text}
+                    textStyle={{textAlign: 'center'}}
                     style={styles.row}
                     borderStyle={{borderWidth: 1, borderColor: '#000'}}
                   />
@@ -241,10 +249,13 @@ export class PersonalResult extends Component {
                 height,
               ]}
               borderStyle={{borderWidth: 1, borderColor: '#000'}}
-              textStyle={styles.text}
+              textStyle={{textAlign: 'center'}}
             />
           </TableWrapper>
         </Table>
+        {this.state.loading && (
+          <Text style={{textAlign: 'right'}}>Đơn vị: Triệu Đồng</Text>
+        )}
       </View>
     );
   }
@@ -262,6 +273,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#FFFFFF',
   },
-  text: {textAlign: 'center'},
-  titles: {fontSize: 15},
+  text: {textAlign: 'left', margin: 5},
+  titles: {fontSize: 18},
 });

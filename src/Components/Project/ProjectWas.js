@@ -44,11 +44,10 @@ export class ProjectWas extends Component {
             latitude: doc.data().supplierLat,
             longtitude: doc.data().supplierLong,
           });
-
-          this.setState({
-            Project: name,
-            loading: false,
-          });
+        });
+        this.setState({
+          Project: name,
+          loading: false,
         });
       });
   };

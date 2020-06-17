@@ -45,10 +45,10 @@ export class Ogchartpns extends Component {
               chucvu: doc.data().roles[0],
               sdt: doc.data().phoneNumber,
             });
-            this.setState({
-              tennv: name,
-            });
           }
+        });
+        this.setState({
+          tennv: name,
         });
       });
   }

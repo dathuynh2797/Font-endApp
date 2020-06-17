@@ -27,6 +27,7 @@ export class TeamResult extends Component {
       dtNameDs: [],
       dtLastWeek: [],
       dtNameDsP: [],
+      loading: false,
     };
   }
 
@@ -79,7 +80,7 @@ export class TeamResult extends Component {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
               id: dt[z].id,
-              ds: [dt[z].ds[y]],
+              ds: dt[z].ds[y],
               name: dt[z].name,
             });
             break;
@@ -113,7 +114,9 @@ export class TeamResult extends Component {
                   tenphong.push({
                     id: this.state.dtLastWeek[p].id,
                     tenphong: idphong[n].name,
-                    ds: this.state.dtLastWeek[p].ds,
+                    ds: this.state.dtLastWeek[p].ds
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
                     tennhom: this.state.dtLastWeek[p].name,
                   });
                   // console.log(this.state.dtLastWeek[p].id);
@@ -122,7 +125,7 @@ export class TeamResult extends Component {
             }
             stt.push([p + 1]);
           }
-          this.setState({dtNameDsP: tenphong});
+          this.setState({dtNameDsP: tenphong, loading: true});
           // console.log(tenphong);
         });
     });
@@ -134,13 +137,17 @@ export class TeamResult extends Component {
       <View style={styles.container}>
         <Text style={styles.titles}>
           kết quả kinh doanh tuần của nhân viên từ{' '}
-          {moment()
-            .weekday(1)
-            .format('DD/MM')}{' '}
+          <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
+            {moment()
+              .weekday(1)
+              .format('DD/MM')}{' '}
+          </Text>
           đến{' '}
-          {moment()
-            .weekday(6)
-            .format('DD/MM')}
+          <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
+            {moment()
+              .weekday(6)
+              .format('DD/MM')}
+          </Text>
         </Text>
         <Table>
           <Row
@@ -156,7 +163,7 @@ export class TeamResult extends Component {
               renderItem={({item}) => (
                 <Cols
                   data={[[item.tennhom]]}
-                  textStyle={styles.text}
+                  textStyle={{margin: 5}}
                   style={styles.row}
                   borderStyle={{borderWidth: 1, borderColor: '#000'}}
                 />
@@ -168,7 +175,7 @@ export class TeamResult extends Component {
               renderItem={({item}) => (
                 <Cols
                   data={[[item.tenphong]]}
-                  textStyle={styles.text}
+                  textStyle={{textAlign: 'left', margin: 5}}
                   style={styles.row}
                   borderStyle={{borderWidth: 1, borderColor: '#000'}}
                 />
@@ -181,12 +188,12 @@ export class TeamResult extends Component {
                 <View>
                   <Cols
                     data={[
-                      item.ds,
+                      [item.ds],
                       // item.ds[
                       //   item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                       // ],
                     ]}
-                    textStyle={styles.text}
+                    textStyle={{textAlign: 'center'}}
                     style={styles.row}
                     borderStyle={{borderWidth: 1, borderColor: '#000'}}
                   />
@@ -210,10 +217,13 @@ export class TeamResult extends Component {
                 height,
               ]}
               borderStyle={{borderWidth: 1, borderColor: '#000'}}
-              textStyle={styles.text}
+              textStyle={{textAlign: 'center'}}
             />
           </TableWrapper>
         </Table>
+        {this.state.loading && (
+          <Text style={{textAlign: 'right'}}>Đơn vị: Triệu Đồng</Text>
+        )}
       </View>
     );
   }
@@ -231,6 +241,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#FFFFFF',
   },
-  text: {textAlign: 'center'},
-  titles: {fontSize: 15},
+  // text: {textAlign: 'center'},
+  titles: {fontSize: 18},
 });

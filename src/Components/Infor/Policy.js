@@ -26,10 +26,9 @@ export class Policy extends Component {
           name: doc.data().policyName,
           image: doc.data().policyImg,
         });
-
-        this.setState({
-          data: policy,
-        });
+      });
+      this.setState({
+        data: policy,
       });
     });
   }

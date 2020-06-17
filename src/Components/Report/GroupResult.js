@@ -78,7 +78,7 @@ export class GroupResult extends Component {
           if (dt[z].ds[y] !== 0) {
             datalastweek.push({
               id: [dt[z].ds[y] + 'a'],
-              ds: [dt[z].ds[y]],
+              ds: dt[z].ds[y].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','),
               name: dt[z].name,
             });
             stt.push(z + 1);
@@ -90,7 +90,7 @@ export class GroupResult extends Component {
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
         tableTitle: stt,
       });
-      // console.log(this.state.dtLastWeek);
+      console.log(this.state.dtLastWeek);
     });
   }
 
@@ -100,13 +100,17 @@ export class GroupResult extends Component {
       <View style={styles.container}>
         <Text style={styles.titles}>
           kết quả kinh doanh tuần của nhân viên từ{' '}
-          {moment()
-            .weekday(1)
-            .format('DD/MM')}{' '}
+          <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
+            {moment()
+              .weekday(1)
+              .format('DD/MM')}{' '}
+          </Text>
           đến{' '}
-          {moment()
-            .weekday(6)
-            .format('DD/MM')}
+          <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
+            {moment()
+              .weekday(6)
+              .format('DD/MM')}
+          </Text>
         </Text>
         <Table>
           <Row
@@ -123,7 +127,7 @@ export class GroupResult extends Component {
               renderItem={({item}) => (
                 <Cols
                   data={[[item.name]]}
-                  textStyle={styles.text}
+                  textStyle={{textAlign: 'left', margin: 5}}
                   style={styles.row}
                   borderStyle={{borderWidth: 1, borderColor: '#000'}}
                 />
@@ -137,7 +141,7 @@ export class GroupResult extends Component {
                 <View>
                   <Cols
                     data={[
-                      item.ds,
+                      [item.ds],
                       // item.ds[
                       //   item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                       // ],
@@ -170,6 +174,7 @@ export class GroupResult extends Component {
             />
           </TableWrapper>
         </Table>
+        <Text style={{textAlign: 'right'}}>Đơn vị: Triệu Đồng</Text>
       </View>
     );
   }
@@ -188,5 +193,5 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   text: {textAlign: 'center'},
-  titles: {fontSize: 15},
+  titles: {fontSize: 18},
 });

@@ -97,14 +97,13 @@ export class Personel extends Component {
               idnhom: doc.data().iamTeam,
             });
           }
-
-          this.setState({
-            tableData: name.sort((a, b) => {
-              return a.ten > b.ten;
-            }),
-            loading: true,
-            data: name,
-          });
+        });
+        this.setState({
+          tableData: name.sort((a, b) => {
+            return a.ten > b.ten;
+          }),
+          loading: true,
+          data: name,
         });
       });
   }
