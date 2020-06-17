@@ -20,7 +20,7 @@
 
 # Installation guide
 
-### Make sure you was settup environment for React Native
+### Make sure you was settup environment for [React Native](https://reactnative.dev/docs/environment-setup)
 
 ```bash
     git clone https://github.com/dathuynh2797/bdsApp.git
@@ -50,3 +50,18 @@
 ```bash
     react-native run-ios
 ```
+
+### Some Screenshot
+
+- **Android**
+  ![](https://raw.githubusercontent.com/dathuynh2797/bdsApp/master/BDS%20App%20Screenshot/Android/ANDROID.jpg)
+
+- **IOS**
+  ![](https://raw.githubusercontent.com/dathuynh2797/bdsApp/master/BDS%20App%20Screenshot/IOS/IOS.jpg)
+
+### Functional
+
+- [x] Information Company
+- [x] Information All Project Real Estate
+- [x] Bussiness Report Sales With Chart
+- [ ] Bussiness Trip
