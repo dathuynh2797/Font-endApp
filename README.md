@@ -6,7 +6,7 @@
 | ------------------ | ---------------------------- | --------- |
 | Huỳnh Tuấn Đạt     | huynhtuandat2797@gmail.com   | Developer |
 | Trương Quang Vương | quangvuong12c7@gmail.com     | Developer |
-| Nguyễn Anh Minh    | Nuanmi155@gmail.com          | Developer |
+| Nguyễn Anh Minh    | nguyenanhminh155@gmail.com   | Developer |
 | Trịnh Như Phương   | trinhnhuphuong.qn1@gmail.com | Tester    |
 | Phạm Quốc Nhân     | phamquocnhan147@gmail.com    | Designer  |
 
