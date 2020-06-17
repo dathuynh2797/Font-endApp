@@ -63,5 +63,5 @@
 
 - [x] Information Company
 - [x] Information All Project Real Estate
-- [x] Bussiness Report Sales With Chart
-- [ ] Bussiness Trip
+- [x] Business Report Sales With Chart
+- [ ] Business Trip
