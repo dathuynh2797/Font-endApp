@@ -24,10 +24,10 @@ export class Qc extends Component {
     // console.log(this.state.idG);
   }
 
-  state = {image: []};
+  // state = {image: []};
 
   renderModal() {
-    console.log(this.state.image);
+    // console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
     const hinhanhqc = navigation.getParam('hinhanhqc', 'chưa có dữ liệu');
@@ -82,7 +82,7 @@ export class Qc extends Component {
         <View style={{flex: 1}}>
           {this.renderModal()}
           <FlatList
-            style={{}}
+            // style={{}}
             data={hinhanhqc}
             renderItem={({item}) => (
               <TouchableOpacity onPress={() => this.setState({modal: true})}>

@@ -8,8 +8,8 @@ import {
   FlatList,
   TouchableOpacity,
   Platform,
-  SafeAreaView,
   ImageBackground,
+  SafeAreaView,
 } from 'react-native';
 import {Modal} from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
@@ -24,10 +24,10 @@ export class Pl extends Component {
     // console.log(this.state.idG);
   }
 
-  state = {image: []};
+  // state = {image: []};
 
   renderModal() {
-    console.log(this.state.image);
+    // console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
     const hinhanhpl = navigation.getParam('hinhanhpl', 'chưa có dữ liệu');
@@ -36,37 +36,41 @@ export class Pl extends Component {
       hinhanh.push({url: hinhanhpl[i].publicUrl});
     }
     return (
-      <View>
-        <Modal
-          onRequestClose={() => {
-            this.setState({modal: false});
-          }}
-          // animationType={'fade'}
-          visible={this.state.modal}
-          transparent={true}>
-          <ImageViewer
-            renderHeader={() => {
-              return (
-                <View>
-                  <TouchableOpacity
-                    style={[styles.Button]}
-                    onPress={() => {
-                      this.setState({modal: false});
-                    }}>
-                    <Image
-                      source={require('../img/backwhite.png')}
-                      style={styles.IconBack}
-                    />
-                  </TouchableOpacity>
-                </View>
-              );
+      <SafeAreaView style={styles.Container}>
+        <View>
+          <Modal
+            onRequestClose={() => {
+              this.setState({modal: false});
             }}
-            enableSwipeDown={true}
-            onSwipeDown={() => this.setState({modal: false})}
-            imageUrls={hinhanh}
-          />
-        </Modal>
-      </View>
+            // animationType={'fade'}
+            visible={this.state.modal}
+            transparent={true}>
+            <ImageViewer
+              renderHeader={() => {
+                return (
+                  <SafeAreaView>
+                    <View>
+                      <TouchableOpacity
+                        style={[styles.Button]}
+                        onPress={() => {
+                          this.setState({modal: false});
+                        }}>
+                        <Image
+                          source={require('../img/backwhite.png')}
+                          style={styles.IconBack}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </SafeAreaView>
+                );
+              }}
+              enableSwipeDown={true}
+              onSwipeDown={() => this.setState({modal: false})}
+              imageUrls={hinhanh}
+            />
+          </Modal>
+        </View>
+      </SafeAreaView>
     );
   }
   render() {
@@ -79,7 +83,7 @@ export class Pl extends Component {
         <View style={{flex: 1}}>
           {this.renderModal()}
           <FlatList
-            style={{}}
+            // style={{}}
             data={hinhanhpl}
             renderItem={({item}) => (
               <TouchableOpacity onPress={() => this.setState({modal: true})}>
@@ -98,14 +102,14 @@ const styles = StyleSheet.create({
     // resizeMode: 'contain',
     flex: 1,
   },
+  Container: {
+    flex: 1,
+  },
   Button: {
     backgroundColor: '#000000',
     padding: 10,
     elevation: 2,
     marginTop: Platform.OS === 'ios' ? 30 : 0,
-  },
-  Container: {
-    flex: 1,
   },
   IconBack: {
     marginLeft: 10,

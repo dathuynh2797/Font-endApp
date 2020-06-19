@@ -24,10 +24,10 @@ export class Bg extends Component {
     // console.log(this.state.idG);
   }
 
-  state = {image: []};
+  // state = {image: []};
 
   renderModal() {
-    console.log(this.state.image);
+    // console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
     const hinhanhbg = navigation.getParam('hinhanhbg', 'chưa có dữ liệu');
@@ -82,7 +82,7 @@ export class Bg extends Component {
           {this.renderModal()}
 
           <FlatList
-            style={{}}
+            // style={{}}
             data={hinhanhbg}
             renderItem={({item}) => (
               <TouchableOpacity onPress={() => this.setState({modal: true})}>

@@ -24,10 +24,10 @@ export class Csbhnv extends Component {
     // console.log(this.state.idG);
   }
 
-  state = {image: []};
+  // state = {image: []};
 
   renderModal() {
-    console.log(this.state.image);
+    // console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
     const hinhanhnv = navigation.getParam('hinhanhnv', 'chưa có dữ liệu');

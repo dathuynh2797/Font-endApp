@@ -100,12 +100,14 @@ export class GroupResult extends Component {
       <View style={styles.container}>
         <Text style={styles.titles}>
           kết quả kinh doanh tuần của nhân viên từ{' '}
+        </Text>
+        <Text>
           <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
             {moment()
               .weekday(1)
               .format('DD/MM')}{' '}
           </Text>
-          đến{' '}
+          <Text style={styles.titles}>đến </Text>
           <Text style={{fontSize: 16.5, fontWeight: 'bold'}}>
             {moment()
               .weekday(6)

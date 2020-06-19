@@ -24,10 +24,10 @@ export class Tq extends Component {
     // console.log(this.state.idG);
   }
 
-  state = {image: []};
+  // state = {image: []};
 
   renderModal() {
-    console.log(this.state.image);
+    // console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
     const hinhanhtq = navigation.getParam('hinhanhtq', 'chưa có dữ liệu');
@@ -83,7 +83,7 @@ export class Tq extends Component {
         <View style={{flex: 1}}>
           {this.renderModal()}
           <FlatList
-            style={{}}
+            // style={{}}
             data={hinhanhtq}
             renderItem={({item}) => (
               <TouchableOpacity onPress={() => this.setState({modal: true})}>

@@ -8,6 +8,7 @@ import {
   StyleSheet,
   processColor,
   Image,
+  Alert,
 } from 'react-native';
 import {BarChart} from 'react-native-charts-wrapper';
 import PickerModal from 'react-native-picker-modal-view';
@@ -139,25 +140,28 @@ export class TeamCompare extends React.Component {
         ),
       );
     }
-
-    arrYear[0].forEach((e, i) => {
-      arrY.push({Id: i, Name: e, Value: e});
-    });
+    if (arrYear.length !== 0) {
+      arrYear[0].forEach((e, i) => {
+        arrY.push({Id: i, Name: e, Value: e});
+      });
+      this.setState({
+        selectedY: false,
+        selectedQ: false,
+        selectedM: false,
+        Year: arrY,
+        doanhSo: arrDoanhSo,
+        Team: arrTeam,
+        //   userName: arrName,
+        userChart: item.Name,
+        Quarter: [],
+        Mounth: [],
+        checkSelect: '',
+      });
+    } else {
+      this.setState({checkDS: true, dialogVisible: true});
+    }
 
     // // console.log(arrTeam);
-    this.setState({
-      selectedY: false,
-      selectedQ: false,
-      selectedM: false,
-      Year: arrY,
-      doanhSo: arrDoanhSo,
-      Team: arrTeam,
-      //   userName: arrName,
-      userChart: item.Name,
-      Quarter: [],
-      Mounth: [],
-      checkSelect: '',
-    });
   };
 
   handleSelectYear = item => {
@@ -529,40 +533,47 @@ export class TeamCompare extends React.Component {
   onBackButtonPressed() {
     // console.log('back key pressed');
   }
+  renderAlert = title => {
+    // console.log(title);
 
-  renderAlert = () => (
-    <Dialog
-      visible={this.state.dialogVisible}
-      title="Vui lòng nhập thông tin cần tìm kiếm"
-      titleStyle={{
-        fontSize: 16,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: 5,
-      }}
-      dialogStyle={{
-        // borderRadius: 20,
-        backgroundColor: 'rgb(255,255,255)',
-      }}
-      overlayStyle={{backgroundColor: 'rgba(0,0,0,.1)'}}
-      onTouchOutside={() => this.setState({dialogVisible: false})}>
-      <TouchableOpacity
-        style={{
-          alignSelf: 'center',
-          borderRadius: 45,
-          justifyContent: 'center',
-          borderWidth: 1,
-          backgroundColor: '#95c1f0',
-          marginTop: 10,
-          padding: 10,
+    return (
+      <Dialog
+        visible={this.state.dialogVisible}
+        title={
+          title !== undefined ? title : 'Vui lòng nhập thông tin cần tìm kiếm'
+        }
+        titleStyle={{
+          fontSize: 16,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          marginTop: 5,
         }}
-        onPress={() => {
-          this.setState({dialogVisible: false});
+        dialogStyle={{
+          // borderRadius: 20,
+          backgroundColor: 'rgb(255,255,255)',
+        }}
+        overlayStyle={{backgroundColor: 'rgba(0,0,0,.1)'}}
+        onTouchOutside={() => {
+          this.setState({dialogVisible: false, checkDS: false});
         }}>
-        <Text>Xác Nhận</Text>
-      </TouchableOpacity>
-    </Dialog>
-  );
+        <TouchableOpacity
+          style={{
+            alignSelf: 'center',
+            borderRadius: 45,
+            justifyContent: 'center',
+            borderWidth: 1,
+            backgroundColor: '#95c1f0',
+            marginTop: 10,
+            padding: 10,
+          }}
+          onPress={() => {
+            this.setState({dialogVisible: false, checkDS: false});
+          }}>
+          <Text>Xác Nhận</Text>
+        </TouchableOpacity>
+      </Dialog>
+    );
+  };
 
   handleSubmit() {
     switch (this.state.checkSelect) {
@@ -699,11 +710,21 @@ export class TeamCompare extends React.Component {
   };
 
   render() {
-    const {groupName, Year, Quarter, Mounth, title, userChart} = this.state;
+    const {
+      groupName,
+      Year,
+      Quarter,
+      Mounth,
+      title,
+      userChart,
+      checkDS,
+    } = this.state;
 
     return (
       <SafeAreaView style={styles.mainContent}>
-        {this.renderAlert()}
+        {checkDS
+          ? this.renderAlert('Phòng chưa có doanh số')
+          : this.renderAlert()}
         <View style={styles.selectionContent}>
           <PickerModal
             renderSelectView={(disabled, selected, showModal) => (
