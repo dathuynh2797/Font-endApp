@@ -15,8 +15,9 @@ export class Ogchart extends Component {
     super(props);
     this.state = {
       tenphong: [],
+      Namephong: [],
       tennv: [],
-      image: '',
+      // image: '',
       length: [],
       idG: [],
       lengthnv: [],
@@ -52,12 +53,12 @@ export class Ogchart extends Component {
             ten: doc.data().unitsTitle,
             idP: doc.data().id,
           });
-          this.setState({
-            tenphong: name,
-            idG: idGroup,
-          });
-          // console.log(this.state.idG);
         });
+        this.setState({
+          Namephong: name,
+          idG: idGroup,
+        });
+        // console.log(this.state.idG);
       });
 
     firebaseApp
@@ -82,11 +83,11 @@ export class Ogchart extends Component {
         }
         // console.log(countStaff[0]);
         for (let i = 0; i < countStaff.length; i++) {
-          if (this.state.tenphong[i].ten === 'Ban Giám Đốc') {
-            var c = Object.assign({}, this.state.tenphong[i], countStaff[i]);
+          if (this.state.Namephong[i].ten === 'Ban Giám Đốc') {
+            var c = Object.assign({}, this.state.Namephong[i], countStaff[i]);
             v.push(c);
           } else {
-            var a = Object.assign({}, this.state.tenphong[i], countStaff[i]);
+            var a = Object.assign({}, this.state.Namephong[i], countStaff[i]);
             b.push(a);
           }
           // console.log(a);
@@ -119,7 +120,12 @@ export class Ogchart extends Component {
                     });
                   }}>
                   <View style={styles.TabMenu}>
-                    <Text style={styles.Text}>{item.ten}</Text>
+                    <Text style={styles.Text}>
+                      {item.ten === 'Ban Giám Đốc'
+                        ? item.ten
+                        : 'Phòng Kinh Doanh ' + item.ten}
+                      {/* {item.ten} */}
+                    </Text>
                     <Text>{item.length} nhân sự</Text>
                   </View>
                 </TouchableOpacity>

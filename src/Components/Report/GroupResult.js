@@ -90,7 +90,7 @@ export class GroupResult extends Component {
         dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
         tableTitle: stt,
       });
-      console.log(this.state.dtLastWeek);
+      // console.log(this.state.dtLastWeek);
     });
   }
 

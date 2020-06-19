@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 import {Modal} from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
@@ -38,49 +39,52 @@ export class detailPolicy extends Component {
     // console.log(this.state.image);
     const {navigation} = this.props;
     var hinhanh = [];
-    const image = navigation.getParam('image', 'chưa có dữ liệu');
+    const hinhanhtq = navigation.getParam('image', 'chưa có dữ liệu');
     // console.log(hinhanhqc);
-    for (let i = 0; i < image.length; i++) {
-      hinhanh.push({url: image[i].publicUrl});
+    for (let i = 0; i < hinhanhtq.length; i++) {
+      hinhanh.push({url: hinhanhtq[i].publicUrl});
     }
     return (
-      <View>
-        <Modal
-          style={{justifyContent: 'center'}}
-          onRequestClose={() => {
-            this.setState({modal: false});
-          }}
-          // animationType={'fade'}
-          visible={this.state.modal}
-          transparent={true}>
-          <ImageViewer
-            renderHeader={() => {
-              return (
-                <View>
-                  <TouchableOpacity
-                    style={[styles.Button]}
-                    onPress={() => {
-                      this.setState({modal: false});
-                    }}>
-                    <Image
-                      source={require('../../img/backwhite.png')}
-                      style={styles.IconBack}
-                    />
-                  </TouchableOpacity>
-                </View>
-              );
+      <SafeAreaView style={styles.Container}>
+        <View>
+          <Modal
+            onRequestClose={() => {
+              this.setState({modal: false});
             }}
-            enableSwipeDown={true}
-            onSwipeDown={() => this.setState({modal: false})}
-            imageUrls={hinhanh}
-          />
-        </Modal>
-      </View>
+            // animationType={'fade'}
+            visible={this.state.modal}
+            transparent={true}>
+            <ImageViewer
+              renderHeader={() => {
+                return (
+                  <SafeAreaView>
+                    <View>
+                      <TouchableOpacity
+                        style={[styles.Button]}
+                        onPress={() => {
+                          this.setState({modal: false});
+                        }}>
+                        <Image
+                          source={require('../../img/backwhite.png')}
+                          style={styles.IconBack}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </SafeAreaView>
+                );
+              }}
+              enableSwipeDown={true}
+              onSwipeDown={() => this.setState({modal: false})}
+              imageUrls={hinhanh}
+            />
+          </Modal>
+        </View>
+      </SafeAreaView>
     );
   }
   render() {
     const {navigation} = this.props;
-    const image = navigation.getParam('image', 'chưa có dữ liệu');
+    const hinhanhtq = navigation.getParam('image', 'chưa có dữ liệu');
     return (
       <ImageBackground
         source={require('../../img/background.jpg')}
@@ -88,8 +92,8 @@ export class detailPolicy extends Component {
         <View style={{flex: 1}}>
           {this.renderModal()}
           <FlatList
-            style={{}}
-            data={image}
+            // style={{}}
+            data={hinhanhtq}
             renderItem={({item}) => (
               <TouchableOpacity onPress={() => this.setState({modal: true})}>
                 <Image source={{uri: item.publicUrl}} style={styles.image} />
@@ -107,8 +111,11 @@ const styles = StyleSheet.create({
     // resizeMode: 'contain',
     flex: 1,
   },
+  Container: {
+    flex: 1,
+  },
   Button: {
-    // backgroundColor: 'red',
+    backgroundColor: '#000000',
     padding: 10,
     elevation: 2,
     marginTop: Platform.OS === 'ios' ? 30 : 0,
@@ -141,5 +148,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  child1: {flex: 1},
   child2: {flex: 15, margin: 10},
 });

@@ -51,7 +51,7 @@ export class DetailsProject extends Component {
                   style={styles.Icon}
                 />
               </View>
-              <Text style={styles.Text}>Pháp lý</Text>
+              <Text style={styles.Text}>Hình ảnh thiết kế căn hộ</Text>
               <Text />
             </View>
           </TouchableOpacity>

@@ -73,7 +73,6 @@ export class HomeScreen extends Component {
         var dataArrWeek = [];
         var arrDS = [];
         var arr = [];
-        var tenNV = [];
         var idphonguser = '';
         var idteamuser = '';
         querySnapshot.forEach(doc => {

@@ -36,7 +36,8 @@ export class Ogchartpns extends Component {
     firebaseApp
       .firestore()
       .collection('user')
-      .onSnapshot(querySnapshot => {
+      .get()
+      .then(querySnapshot => {
         querySnapshot.forEach(doc => {
           if (idPhong === doc.data().productUnit) {
             name.push({

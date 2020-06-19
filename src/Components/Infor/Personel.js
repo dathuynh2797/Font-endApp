@@ -152,9 +152,9 @@ export class Personel extends Component {
               <Row
                 data={this.state.tableHead}
                 style={styles.head}
-                textStyle={styles.text}
+                textStyle={{textAlign: 'center'}}
                 borderStyle={{borderWidth: 1, borderColor: '#000'}}
-                flexArr={[1.3, 1, 1]}
+                flexArr={[1.4, 0.85, 0.95]}
               />
               <FlatList
                 data={this.state.tableData}
@@ -179,7 +179,7 @@ export class Personel extends Component {
                       textStyle={styles.text}
                       // style={styles.boder}
                       borderStyle={{borderWidth: 1, borderColor: '#000'}}
-                      flexArr={[1.3, 1, 1]}
+                      flexArr={[1.4, 0.85, 0.95]}
                     />
                   </TouchableOpacity>
                 )}
@@ -206,7 +206,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#1787AB',
   },
   text: {
-    margin: 10,
+    marginLeft: 5,
+    marginBottom: 12,
+    marginTop: 12,
     // alignSelf: 'center',
   },
   headerText: {
