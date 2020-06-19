@@ -106,10 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Button: {
-    backgroundColor: '#000000',
-    padding: 10,
-    elevation: 2,
-    marginTop: Platform.OS === 'ios' ? 30 : 0,
+    width: (WIDTH * 30) / 100,
   },
   IconBack: {
     marginLeft: 10,

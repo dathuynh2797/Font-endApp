@@ -48,7 +48,7 @@ export class Bg extends Component {
             <ImageViewer
               renderHeader={() => {
                 return (
-                  <View>
+                  <SafeAreaView>
                     <TouchableOpacity
                       style={[styles.Button]}
                       onPress={() => {
@@ -59,7 +59,7 @@ export class Bg extends Component {
                         style={styles.IconBack}
                       />
                     </TouchableOpacity>
-                  </View>
+                  </SafeAreaView>
                 );
               }}
               enableSwipeDown={true}
@@ -98,10 +98,7 @@ export class Bg extends Component {
 
 const styles = StyleSheet.create({
   Button: {
-    backgroundColor: '#000000',
-    padding: 10,
-    elevation: 2,
-    marginTop: Platform.OS === 'ios' ? 30 : 0,
+    width: (WIDTH * 30) / 100,
   },
   IconBack: {
     marginLeft: 10,

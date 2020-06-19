@@ -51,7 +51,7 @@ export class Tq extends Component {
                   <SafeAreaView>
                     <View>
                       <TouchableOpacity
-                        style={[styles.Button]}
+                        style={styles.Button}
                         onPress={() => {
                           this.setState({modal: false});
                         }}>
@@ -64,6 +64,7 @@ export class Tq extends Component {
                   </SafeAreaView>
                 );
               }}
+              //   style={{paddingBottom: 300}}
               enableSwipeDown={true}
               onSwipeDown={() => this.setState({modal: false})}
               imageUrls={hinhanh}
@@ -106,10 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Button: {
-    backgroundColor: '#000000',
-    padding: 10,
-    elevation: 2,
-    marginTop: Platform.OS === 'ios' ? 30 : 0,
+    width: (WIDTH * 30) / 100,
   },
   IconBack: {
     marginLeft: 10,

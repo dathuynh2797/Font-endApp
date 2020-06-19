@@ -43,26 +43,28 @@ export class Qc extends Component {
               this.setState({modal: false});
             }}
             // animationType={'fade'}
-            // visible={true}
             visible={this.state.modal}
             transparent={true}>
             <ImageViewer
               renderHeader={() => {
                 return (
-                  <View>
-                    <TouchableOpacity
-                      style={[styles.Button]}
-                      onPress={() => {
-                        this.setState({modal: false});
-                      }}>
-                      <Image
-                        source={require('../img/backwhite.png')}
-                        style={styles.IconBack}
-                      />
-                    </TouchableOpacity>
-                  </View>
+                  <SafeAreaView>
+                    <View>
+                      <TouchableOpacity
+                        style={styles.Button}
+                        onPress={() => {
+                          this.setState({modal: false});
+                        }}>
+                        <Image
+                          source={require('../img/backwhite.png')}
+                          style={styles.IconBack}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </SafeAreaView>
                 );
               }}
+              //   style={{paddingBottom: 300}}
               enableSwipeDown={true}
               onSwipeDown={() => this.setState({modal: false})}
               imageUrls={hinhanh}
@@ -102,10 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Button: {
-    // backgroundColor: 'red',
-    padding: 10,
-    elevation: 2,
-    marginTop: Platform.OS === 'ios' ? 30 : 0,
+    width: (WIDTH * 30) / 100,
   },
   IconBack: {
     marginLeft: 10,
