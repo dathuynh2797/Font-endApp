@@ -48,7 +48,7 @@ export class Csbhnv extends Component {
             <ImageViewer
               renderHeader={() => {
                 return (
-                  <View>
+                  <SafeAreaView>
                     <TouchableOpacity
                       style={[styles.Button]}
                       onPress={() => {
@@ -59,7 +59,7 @@ export class Csbhnv extends Component {
                         style={styles.IconBack}
                       />
                     </TouchableOpacity>
-                  </View>
+                  </SafeAreaView>
                 );
               }}
               enableSwipeDown={true}
@@ -104,10 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   Button: {
-    backgroundColor: '#000000',
-    padding: 10,
-    elevation: 2,
-    marginTop: Platform.OS === 'ios' ? 30 : 0,
+    width: (WIDTH * 30) / 100,
   },
   IconBack: {
     marginLeft: 10,
