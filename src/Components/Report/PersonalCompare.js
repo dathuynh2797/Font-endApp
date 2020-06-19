@@ -198,7 +198,18 @@ export class PersonalCompare extends React.Component {
         checkSelect: '',
       });
     } else {
-      this.setState({checkDS: true, dialogVisible: true});
+      this.setState({
+        checkDS: true,
+        dialogVisible: true,
+        selectedT: true,
+        selectedY: false,
+        selectedQ: false,
+        selectedM: false,
+        Year: [],
+        Quarter: [],
+        Mounth: [],
+        checkSelect: '',
+      });
     }
   };
 
@@ -572,8 +583,6 @@ export class PersonalCompare extends React.Component {
   }
 
   renderAlert = title => {
-    console.log(title);
-
     return (
       <Dialog
         visible={this.state.dialogVisible}
