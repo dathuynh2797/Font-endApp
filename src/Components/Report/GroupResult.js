@@ -74,11 +74,11 @@ export class GroupResult extends Component {
       var datalastweek = [];
 
       for (let z = 0; z < dt.length; z++) {
-        for (let y = 0; y < dt[z].ds.length - 1; y++) {
-          if (dt[z].ds[y] !== 0) {
+        for (let k = 0; k < dt[z].ds.length - 1; k++) {
+          if (dt[z].ds[k] !== 0) {
             datalastweek.push({
-              id: [dt[z].ds[y] + 'a'],
-              ds: dt[z].ds[y].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+              id: [dt[z].ds[k] + 'a'],
+              ds: dt[z].ds[k],
               name: dt[z].name,
             });
             stt.push(z + 1);
@@ -143,7 +143,11 @@ export class GroupResult extends Component {
                 <View>
                   <Cols
                     data={[
-                      [item.ds],
+                      [
+                        item.ds
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+                      ],
                       // item.ds[
                       //   item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                       // ],
