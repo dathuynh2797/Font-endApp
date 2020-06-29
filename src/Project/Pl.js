@@ -125,10 +125,10 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     alignSelf: 'center',
-    resizeMode: 'stretch',
-    marginVertical: 10,
+    resizeMode: 'cover',
+    marginVertical: 5,
     width: WIDTH - 20,
-    height: 480,
+    height: 260,
     // backgroundColor: 'grey',
   },
   // outside: {resizeMode: 'contain'},
