@@ -44,11 +44,13 @@ export class PersonalResult extends Component {
         var idNv = [];
         tenNV = [];
         querySnapshot.forEach(doc => {
-          idNV.push(doc.data().id);
-          name.push({
-            id: doc.data().id,
-            ten: doc.data().fullName,
-          });
+          if (doc.data().disabled === false) {
+            idNV.push(doc.data().id);
+            name.push({
+              id: doc.data().id,
+              ten: doc.data().fullName,
+            });
+          }
           this.setState({
             userDetial: name,
             idNV: idNV,

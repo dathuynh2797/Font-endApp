@@ -40,12 +40,14 @@ export class Ogchartpns extends Component {
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
           if (idPhong === doc.data().productUnit) {
-            name.push({
-              ten1: doc.data().fullName,
-              image: doc.data().avatars[0].publicUrl,
-              chucvu: doc.data().roles[0],
-              sdt: doc.data().phoneNumber,
-            });
+            if (doc.data().disabled === false) {
+              name.push({
+                ten1: doc.data().fullName,
+                image: doc.data().avatars[0].publicUrl,
+                chucvu: doc.data().roles[0],
+                sdt: doc.data().phoneNumber,
+              });
+            }
           }
         });
         this.setState({

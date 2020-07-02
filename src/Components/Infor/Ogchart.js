@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   Imgview1: {
     // resizeMode: 'cover',
     width: '95%',
-    height: '100%',
+    height: '95%',
   },
   iconBack: {
     width: 30,
