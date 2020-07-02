@@ -72,6 +72,7 @@ export class GroupResult extends Component {
       var dt = this.state.dS;
       // console.log(dt);
       var datalastweek = [];
+      var data = [];
 
       for (let z = 0; z < dt.length; z++) {
         for (let k = 0; k < dt[z].ds.length - 1; k++) {
@@ -81,16 +82,23 @@ export class GroupResult extends Component {
               ds: dt[z].ds[k],
               name: dt[z].name,
             });
-            stt.push(z + 1);
             break;
           }
         }
       }
+      console.log(datalastweek);
+      for (let p = 0; p < datalastweek.length; p++) {
+        data.push({
+          id: datalastweek[p].id,
+          ds: datalastweek[p].ds,
+          name: datalastweek[p].name,
+        });
+        stt.push(p + 1);
+      }
       this.setState({
-        dtLastWeek: datalastweek.sort((a, b) => b.ds - a.ds),
+        dtLastWeek: data.sort((a, b) => b.ds - a.ds),
         tableTitle: stt,
       });
-      // console.log(this.state.dtLastWeek);
     });
   }
 

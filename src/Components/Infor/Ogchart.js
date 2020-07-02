@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Imgview1: {
-    resizeMode: 'contain',
-    width: '100%',
+    // resizeMode: 'cover',
+    width: '95%',
     height: '100%',
   },
   iconBack: {
@@ -160,8 +160,8 @@ const styles = StyleSheet.create({
   Chart: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 170,
-    width: 329,
+    height: '100%',
+    width: '100%',
   },
   MenuContainer: {
     flex: 2 / 3,
